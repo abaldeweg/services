@@ -1,3 +1,3 @@
-# Feature for devcontainer
+# Devcontainer Features
 
 Opinionated features for devcontainer.
