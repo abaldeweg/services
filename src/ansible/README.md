@@ -7,7 +7,7 @@ Installs ansible
 
 ```json
 "features": {
-    "ghcr.io/abaldeweg/features_for_devcontainer/ansible:0": {}
+    "ghcr.io/abaldeweg/devcontainer_features/ansible:0": {}
 }
 ```
 
@@ -17,4 +17,4 @@ Installs ansible
 
 ---
 
-_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/abaldeweg/features_for_devcontainer/blob/main/src/ansible/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
+_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/abaldeweg/devcontainer_features/blob/main/src/ansible/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
