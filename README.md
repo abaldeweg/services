@@ -1,3 +1,3 @@
 # Devcontainer Features
 
-Opinionated features for devcontainer.
+Personal and opinionated collection of features for devcontainer.
