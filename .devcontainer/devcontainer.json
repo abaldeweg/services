@@ -9,5 +9,8 @@
 				"timonwong.shellcheck"
 			]
 		}
+	},
+	"features": {
+		"ghcr.io/abaldeweg/devcontainer_features/bash:latest": {}
 	}
 }
