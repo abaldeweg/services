@@ -7,6 +7,8 @@ CUSTOM_BASH_FILE="/usr/local/etc/bash_custom.sh"
 cat << 'EOF' > "$CUSTOM_BASH_FILE"
 #!/bin/bash
 
+git config --global pull.rebase false
+
 PATH="$(yarn global bin):$PATH"
 
 alias ll='ls -alF'
