@@ -1,4 +1,13 @@
 {
 	"name": "Ubuntu",
-	"image": "mcr.microsoft.com/devcontainers/base:noble"
+	"image": "mcr.microsoft.com/devcontainers/base:noble",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"EditorConfig.EditorConfig",
+				"donjayamanne.githistory",
+				"timonwong.shellcheck"
+			]
+		}
+	}
 }
