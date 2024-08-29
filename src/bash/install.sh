@@ -25,19 +25,52 @@ function tag()
   fi
 }
 
-function dev ()
+function dev()
 {
   if [ -f yarn.lock ]
     then
       yarn dev
   fi
+  if [ -f composer.json ]
+    then
+      symfony server:start --no-tls
+  fi
+  if [ -f package-lock.json ]
+    then
+      npm run dev
+  fi
+  if [ -f docker-compose.yml ]
+    then
+      sudo docker-compose up
+  fi
+  if [ -f go.sum ]
+    then
+      go run ./
+  fi
 }
 
-function build ()
+function build()
 {
   if [ -f yarn.lock ]
     then
       yarn build
+  fi
+  if [ -f composer.json ]
+    then
+      vendor/bin/php-cs-fixer fix
+      bin/phpunit
+  fi
+  if [ -f package-lock.json ]
+    then
+      npm run build
+  fi
+  if [ -f .goreleaser.yaml ]
+    then
+      goreleaser build --snapshot --rm-dist
+  fi
+    if [ -f Makefile ]
+    then
+      make build
   fi
 }
 EOF
