@@ -2,9 +2,7 @@
 name: "Release & Documentation"
 
 on:
-  push:
-    tags:
-      - '*'
+  workflow_dispatch:
 
 jobs:
   deploy:
