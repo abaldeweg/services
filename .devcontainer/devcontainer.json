@@ -5,7 +5,6 @@
 		"vscode": {
 			"extensions": [
 				"EditorConfig.EditorConfig",
-				"donjayamanne.githistory",
 				"timonwong.shellcheck"
 			]
 		}
