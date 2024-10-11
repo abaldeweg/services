@@ -51,6 +51,10 @@ function dev()
     then
       go run ./
   fi
+  if [ -f hugo.yaml ]
+    then
+      hugo server
+  fi
 }
 
 function build()
@@ -75,6 +79,11 @@ function build()
     if [ -f Makefile ]
     then
       make build
+  fi
+  fi
+    if [ -f hugo.yaml ]
+    then
+      hugo
   fi
 }
 EOF
