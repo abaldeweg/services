@@ -9,7 +9,9 @@ cat << 'EOF' > "$CUSTOM_BASH_FILE"
 
 git config --global pull.rebase false
 
-PATH="$(yarn global bin):$PATH"
+if command -v yarn &> /dev/null; then
+  PATH="$(yarn global bin):$PATH"
+fi
 
 alias ll='ls -alF'
 
