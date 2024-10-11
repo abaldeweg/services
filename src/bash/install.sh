@@ -80,8 +80,7 @@ function build()
     then
       make build
   fi
-  fi
-    if [ -f hugo.yaml ]
+  if [ -f hugo.yaml ]
     then
       hugo
   fi
