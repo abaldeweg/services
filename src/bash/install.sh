@@ -25,7 +25,16 @@ function tag()
       echo "Git repo has uncommitted changes."
       git status -s;
     else
-      git tag -a "v${1}" -m "v${1}";
+      git describe --tags --abbrev=0 $(git rev-list --tags --max-count=3)
+
+      read -p "Enter the version tag: " tag
+
+      if [ -z "$tag" ]; then
+        echo "Error: Version tag cannot be empty."
+        exit 1
+      fi
+
+      git tag -a "v${tag}" -m "v${tag}";
   fi
 }
 
