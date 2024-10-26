@@ -104,7 +104,7 @@ function build()
   fi
   if [ -f hugo.yaml ]
     then
-      hugo
+      hugo --minify
   fi
 }
 EOF
