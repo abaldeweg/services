@@ -23,18 +23,31 @@ function tag()
   if [[ $(git status -s) ]];
     then
       echo "Git repo has uncommitted changes."
-      git status -s;
+      git status -s
     else
+      #!/bin/sh
+
+      echo "Latest tags"
       git describe --tags --abbrev=0 $(git rev-list --tags --max-count=3)
 
-      read -p "Enter the version tag: " tag
+      read -p "Please set the version number in your files. Press any key to continue..." _
+
+      read -p "Version: " tag
 
       if [ -z "$tag" ]; then
         echo "Error: Version tag cannot be empty."
         exit 1
       fi
 
-      git tag -a "v${tag}" -m "v${tag}";
+      read -p "Subpackage (optional): " subpackage
+
+      if [ -n "$subpackage" ]; then
+        subpackage="${subpackage}/"
+      fi
+
+      echo "Set tag ${subpackage}${tag}"
+
+      git tag -a "v${tag}" -m "v${tag}"
   fi
 }
 
