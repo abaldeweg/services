@@ -30,8 +30,6 @@ function tag()
       echo "Latest tags"
       git describe --tags --abbrev=0 $(git rev-list --tags --max-count=3)
 
-      read -p "Please set the version number in your files. Press any key to continue..." _
-
       read -p "Version: " tag
 
       if [ -z "$tag" ]; then
@@ -45,9 +43,9 @@ function tag()
         subpackage="${subpackage}/"
       fi
 
-      echo "Set tag ${subpackage}${tag}"
+      echo "Set tag ${subpackage}v${tag}"
 
-      git tag -a "v${tag}" -m "v${tag}"
+      git tag -a "${subpackage}v${tag}" -m "${subpackage}v${tag}"
   fi
 }
 
