@@ -76,35 +76,6 @@ function dev()
       hugo server
   fi
 }
-
-function build()
-{
-  if [ -f yarn.lock ]
-    then
-      yarn build
-  fi
-  if [ -f composer.json ]
-    then
-      vendor/bin/php-cs-fixer fix
-      bin/phpunit
-  fi
-  if [ -f package-lock.json ]
-    then
-      npm run build
-  fi
-  if [ -f .goreleaser.yaml ]
-    then
-      goreleaser build --snapshot --rm-dist
-  fi
-    if [ -f Makefile ]
-    then
-      make build
-  fi
-  if [ -f hugo.yaml ]
-    then
-      hugo --minify
-  fi
-}
 EOF
 
 echo "source $CUSTOM_BASH_FILE" >> /etc/bash.bashrc
