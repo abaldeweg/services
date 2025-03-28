@@ -9,14 +9,10 @@ cat << 'EOF' > "$CUSTOM_BASH_FILE"
 
 git config --global pull.rebase false
 
-if command -v yarn &> /dev/null; then
-  PATH="$(yarn global bin):$PATH"
-fi
-
 alias ll='ls -alF'
 
 alias push='git push origin --follow-tags'
-alias ws="yarn workspace"
+alias ws="pnpm -F"
 
 function tag()
 {
