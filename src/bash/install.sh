@@ -75,6 +75,10 @@ function dev()
     then
       hugo server
   fi
+  if [ -f pnpm-lock.yaml ]
+    then
+      pnpm dev
+  fi
 }
 EOF
 
