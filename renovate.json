@@ -1,7 +1,13 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": [
-        "config:recommended",
-        ":disableDependencyDashboard"
-    ]
+  "extends": [
+    "config:base",
+    ":disableDependencyDashboard"
+  ],
+  "packageRules": [
+    {
+      "updateTypes": ["patch"],
+      "automerge": true,
+      "requiredStatusChecks": ["ci/tests"],
+    }
+  ]
 }
