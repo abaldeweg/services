@@ -1,0 +1,19 @@
+{
+	"name": "Go",
+	"image": "mcr.microsoft.com/devcontainers/go:1-1.20-bookworm",
+	"features": {
+		"ghcr.io/guiyomh/features/goreleaser:0.1.1": {},
+        "ghcr.io/abaldeweg/devcontainer_features/bash:3.0.0": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"mikestead.dotenv",
+				"EditorConfig.EditorConfig",
+				"golang.go",
+				"DavidAnson.vscode-markdownlint",
+				"christian-kohler.path-intellisense"
+			]
+		}
+	}
+}
