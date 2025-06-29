@@ -1,22 +1,16 @@
-# go-monorepo-template
+# Services
 
-Template for go using workspaces.
+Collection of useful microservices.
 
-## Requirements
+## letter
 
-- Requirement
+Usage: `odtgen <templatePath> <outputPath> <replacementsPath>`
 
-## Get Started
+Replacements could look like this:
 
-First steps and how to run the app.
-
-## Commands
-
-- command: description
-
-## Create a new module
-
-```shell
-go mod init github.com/abaldeweg/go-monorepo-template/module
-goreleaser init
+```json
+{
+    "[TITLE]": "Title",
+    "[CONTENT]": "This is the content."
+}
 ```
