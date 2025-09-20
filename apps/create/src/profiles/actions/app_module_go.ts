@@ -1,6 +1,7 @@
 import { text } from '@clack/prompts';
-import { copyTemplate, createDirs } from '../../helpers/index.js';
+import { copyTemplate, createDirs, createFiles } from '../../helpers/index.js';
 import type { Profile } from '../../types/types.js';
+import { createFile } from 'fs-extra';
 
 /**
  * Create a go module in apps/.
@@ -21,10 +22,22 @@ export const appModuleGoAction: Profile = {
       },
     });
 
-    return { name };
+    const importPath = await text({
+      message: 'What is the import path of the module?',
+      placeholder: 'Path',
+      initialValue: 'github.com/abaldeweg/services',
+      validate(value) {
+        if (value.length === 0) return `Value is required!`;
+      },
+    });
+
+    return { name, importPath };
   },
   run: async (options) => {
     createDirs([`apps/${options.name}`, `apps/${options.name}/app`, `apps/${options.name}/pkg`, `apps/${options.name}/internal`]);
     copyTemplate({ templateName: 'module_go/main.go', targetPath: `apps/${options.name}/app/main.go` });
+    createFiles([{
+      path: `apps/${options.name}/go.mod`, content: `module ${options.importPath}\n\ngo 1.24`
+    }]);
   }
 };
