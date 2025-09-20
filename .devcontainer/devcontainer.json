@@ -1,19 +1,26 @@
 {
-    "name": "Go",
-    "image": "mcr.microsoft.com/devcontainers/universal:2",
-    "features": {
-        "ghcr.io/guiyomh/features/goreleaser:0.1.1": {},
-        "ghcr.io/abaldeweg/devcontainer_features/bash:3.0.0": {}
-    },
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "mikestead.dotenv",
-                "EditorConfig.EditorConfig",
-                "golang.go",
-                "DavidAnson.vscode-markdownlint",
-                "christian-kohler.path-intellisense"
-            ]
-        }
+  "name": "Services",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+    "ghcr.io/guiyomh/features/goreleaser:0.1.1": {},
+    "ghcr.io/abaldeweg/devcontainer_features/bash:3.0.0": {}
+  },
+  "postCreateCommand": "pnpm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "mikestead.dotenv",
+        "EditorConfig.EditorConfig",
+        "golang.go",
+        "DavidAnson.vscode-markdownlint",
+        "christian-kohler.path-intellisense",
+        "mrmlnc.vscode-apache",
+        "Vue.volar",
+        "redhat.vscode-yaml",
+        "vitest.explorer",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
     }
+  }
 }
