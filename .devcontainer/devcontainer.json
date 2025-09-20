@@ -1,6 +1,6 @@
 {
   "name": "Services",
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "image": "mcr.microsoft.com/devcontainers/universal:4",
   "features": {
     "ghcr.io/guiyomh/features/goreleaser:0.1.1": {},
     "ghcr.io/abaldeweg/devcontainer_features/bash:3.0.0": {}
