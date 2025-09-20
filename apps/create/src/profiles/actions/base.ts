@@ -36,14 +36,14 @@ export const baseAction: Profile = {
   run: async (options) => {
     createDirs(['apps', 'packages', 'scripts']);
     createFiles([{ path: 'README.md', content: `# ${options.projectName}` }]);
-    copyTemplate({ templateName: 'renovate.json', targetPath: 'renovate.json' });
+    copyTemplate({ templateName: 'base/renovate.json', targetPath: 'renovate.json' });
     createFiles([{ path: 'LICENSE', content: '' }]);
     log.info('Created LICENSE file, please update it with the correct license text. https://opensource.org/licenses');
-    copyTemplate({ templateName: 'package.json', targetPath: 'package.json', variables: { description: options.description, license: options.license } });
-    copyTemplate({ templateName: '.gitignore', targetPath: '.gitignore' });
-    copyTemplate({ templateName: '.editorconfig', targetPath: '.editorconfig' });
+    copyTemplate({ templateName: 'base/package.json', targetPath: 'package.json', variables: { description: options.description, license: options.license } });
+    copyTemplate({ templateName: 'base/base/.gitignore', targetPath: '.gitignore' });
+    copyTemplate({ templateName: 'base/.editorconfig', targetPath: '.editorconfig' });
     createFiles([{ path: 'pnpm-workspace.yaml', content: 'packages:\n' }]);
     createFiles([{ path: 'go.work', content: 'go 1.24\n\n' }]);
-    copyTemplate({ templateName: 'Makefile', targetPath: 'Makefile' });
+    copyTemplate({ templateName: 'base/Makefile', targetPath: 'Makefile' });
   }
 };
