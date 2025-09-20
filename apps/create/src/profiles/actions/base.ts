@@ -3,11 +3,11 @@ import { copyTemplate, createDirs, createFiles } from '../../helpers/index.js';
 import type { Profile } from '../../types/types.js';
 
 /**
- * Base action - creates basic directory structure
+ * Creates basic directory structure and files.
  */
 export const baseAction: Profile = {
   name: 'base',
-  description: 'Create basic directory structure with apps/, packages/ and scripts/ directories',
+  description: 'Creates basic directory structure and files.',
   ask: async () => {
     const projectName = await text({
       message: 'Whats the name of the project?',
@@ -19,9 +19,9 @@ export const baseAction: Profile = {
     });
 
     const description = await text({
-      message: 'Whats the description of the project?',
+      message: 'What\'s the description of the project?',
       placeholder: 'Description',
-      initialValue: 'Description',
+      initialValue: '',
     });
 
     const license = await text({
@@ -29,7 +29,6 @@ export const baseAction: Profile = {
       placeholder: 'License',
       initialValue: '',
     });
-
 
     return { projectName, description, license };
   },
@@ -40,10 +39,13 @@ export const baseAction: Profile = {
     createFiles([{ path: 'LICENSE', content: '' }]);
     log.info('Created LICENSE file, please update it with the correct license text. https://opensource.org/licenses');
     copyTemplate({ templateName: 'base/package.json', targetPath: 'package.json', variables: { description: options.description, license: options.license } });
-    copyTemplate({ templateName: 'base/base/.gitignore', targetPath: '.gitignore' });
+    copyTemplate({ templateName: 'base/.gitignore', targetPath: '.gitignore' });
     copyTemplate({ templateName: 'base/.editorconfig', targetPath: '.editorconfig' });
+    // @fix new apps and packages need to be added to the workspace file
     createFiles([{ path: 'pnpm-workspace.yaml', content: 'packages:\n' }]);
+    // @fix every new go app or package needs to be added to the go.work file
     createFiles([{ path: 'go.work', content: 'go 1.24\n\n' }]);
+    // @ fix every new app needs an entry in the Makefile for the release process
     copyTemplate({ templateName: 'base/Makefile', targetPath: 'Makefile' });
   }
 };

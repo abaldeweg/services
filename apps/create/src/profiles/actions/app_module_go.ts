@@ -24,9 +24,7 @@ export const appModuleGoAction: Profile = {
     return { name };
   },
   run: async (options) => {
-    createDirs([`apps/${options.name}`]);
-    copyTemplate({ templateName: 'module_go/main.go', targetPath: `apps/${options.name}/main.go` });
-    copyTemplate({ templateName: 'module_go/sum.go', targetPath: `apps/${options.name}/sum/sum.go` });
-    copyTemplate({ templateName: 'module_go/sum_test.go', targetPath: `apps/${options.name}/sum/sum_test.go` });
+    createDirs([`apps/${options.name}`, `apps/${options.name}/app`, `apps/${options.name}/pkg`, `apps/${options.name}/internal`]);
+    copyTemplate({ templateName: 'module_go/main.go', targetPath: `apps/${options.name}/app/main.go` });
   }
 };
