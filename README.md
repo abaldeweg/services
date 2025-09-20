@@ -1,16 +1,6 @@
 # Services
 
-Collection of useful microservices.
+Collection of useful services.
 
-## letter
-
-Usage: `odtgen <templatePath> <outputPath> <replacementsPath>`
-
-Replacements could look like this:
-
-```json
-{
-    "[TITLE]": "Title",
-    "[CONTENT]": "This is the content."
-}
-```
+- [letter](./apps/letter/README.md): Writes a letter using an ODT template and replacements.
+- [create](./apps/create/README.md): A simple project generator with profile-based configuration for creating a monorepo.
