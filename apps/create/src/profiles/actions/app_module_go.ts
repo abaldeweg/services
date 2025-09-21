@@ -1,7 +1,6 @@
 import { text } from '@clack/prompts';
 import { copyTemplate, createDirs, createFiles } from '../../helpers/index.js';
 import type { Profile } from '../../types/types.js';
-import { createFile } from 'fs-extra';
 
 /**
  * Create a go module in apps/.
@@ -35,9 +34,15 @@ export const appModuleGoAction: Profile = {
   },
   run: async (options) => {
     createDirs([`apps/${options.name}`, `apps/${options.name}/app`, `apps/${options.name}/pkg`, `apps/${options.name}/internal`]);
-    copyTemplate({ templateName: 'module_go/main.go', targetPath: `apps/${options.name}/app/main.go` });
+    copyTemplate({ templateName: 'app_module_go/main.go', targetPath: `apps/${options.name}/app/main.go` });
     createFiles([{
       path: `apps/${options.name}/go.mod`, content: `module ${options.importPath}\n\ngo 1.24`
     }]);
+
+    createDirs(['.github']);
+    copyTemplate({ templateName: 'app_module_go/release.yaml', targetPath: `.github/workflows/release_${options.name}.yaml` });
+    copyTemplate({ templateName: 'app_module_go/tests.yaml', targetPath: `.github/workflows/tests_${options.name}.yaml` });
+
+    copyTemplate({ templateName: 'app_module_go/cloudbuild.yaml', targetPath: `apps/${options.name}/cloudbuild.yaml`, variables: { name: options.name } });
   }
 };
