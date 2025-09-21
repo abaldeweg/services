@@ -38,7 +38,11 @@ export const baseAction: Profile = {
     copyTemplate({ templateName: 'base/renovate.json', targetPath: 'renovate.json' });
     createFiles([{ path: 'LICENSE', content: '' }]);
     log.info('Created LICENSE file, please update it with the correct license text. https://opensource.org/licenses');
-    copyTemplate({ templateName: 'base/package.json', targetPath: 'package.json', variables: { description: options.description, license: options.license } });
+    copyTemplate({
+      templateName: 'base/package.json',
+      targetPath: 'package.json',
+      variables: { description: options.description, license: options.license }
+    });
     copyTemplate({ templateName: 'base/.gitignore', targetPath: '.gitignore' });
     copyTemplate({ templateName: 'base/.editorconfig', targetPath: '.editorconfig' });
     // @fix new apps and packages need to be added to the workspace file
