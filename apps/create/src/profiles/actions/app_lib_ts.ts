@@ -3,15 +3,15 @@ import { copyTemplate, createDirs, createFiles } from '../../helpers/index.js';
 import type { Profile } from '../../types/types.js';
 
 /**
- * Creates a typescript package
+ * Create a typescript package
  */
 export const appLibTsAction: Profile = {
-  name: 'packageLibTs',
-  description: 'Create basic directory structure with apps/, packages/ and scripts/ directories',
+  name: 'appLibTsAction',
+  description: 'Create a typescript package',
   ask: async () => {
     const name = await text({
       message: 'What is the name of the package?',
-      placeholder: 'Not sure',
+      placeholder: 'Package Name',
       initialValue: 'my-package',
       validate(value) {
         if (value.length === 0) return `Value is required!`;
@@ -24,13 +24,17 @@ export const appLibTsAction: Profile = {
     return { name };
   },
   run: async (options) => {
-    createDirs([`packages/${options.name}`, `packages/${options.name}/src`]);
-    copyTemplate({ templateName: 'package_lib_ts/package.json', targetPath: `packages/${options.name}/package.json`, variables: { name: options.name } });
-    copyTemplate({ templateName: 'package_lib_ts/tsconfig.json', targetPath: `packages/${options.name}/tsconfig.json` });
-    copyTemplate({ templateName: 'package_lib_ts/jest.config.js', targetPath: `packages/${options.name}/jest.config.js` });
+    createDirs([`apps/${options.name}`, `apps/${options.name}/src`]);
+    copyTemplate({ templateName: 'app_lib_ts/package.json', targetPath: `apps/${options.name}/package.json`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'app_lib_ts/tsconfig.json', targetPath: `apps/${options.name}/tsconfig.json` });
+    copyTemplate({ templateName: 'app_lib_ts/jest.config.js', targetPath: `apps/${options.name}/jest.config.js` });
     createFiles([
-      { path: `packages/${options.name}/src/index.ts`, content: '' },
-      { path: `packages/${options.name}/src/index.test.ts`, content: '' }
+      { path: `apps/${options.name}/src/index.ts`, content: '' },
+      { path: `apps/${options.name}/src/index.test.ts`, content: '' }
     ])
+
+    createDirs(['.github']);
+    copyTemplate({ templateName: 'release.yaml', targetPath: `.github/workflows/release_${options.name}.yaml` });
+    copyTemplate({ templateName: 'tests.yaml', targetPath: `.github/workflows/tests_${options.name}.yaml`, variables: { name: options.name } });
   }
 };
