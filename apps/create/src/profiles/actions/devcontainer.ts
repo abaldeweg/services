@@ -10,6 +10,7 @@ export const devcontainerAction: Profile = {
   description: 'Create a basic devcontainer with universal image',
   run: async (options) => {
     const devcontainerFile = join('.devcontainer', 'devcontainer.json');
+    // @fix install features and extensions only if ecosystem is selected
     copyTemplate({
       templateName: 'devcontainer/devcontainer.json',
       targetPath: devcontainerFile
