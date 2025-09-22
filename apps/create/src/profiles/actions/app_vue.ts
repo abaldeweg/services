@@ -29,25 +29,25 @@ export const appVueAction: Profile = {
     copyTemplate({ templateName: 'app_vue_ts/.prettierrc.json', targetPath: `apps/${options.name}/.prettierrc.json` });
     copyTemplate({ templateName: 'app_vue_ts/Dockerfile.app', targetPath: `apps/${options.name}/Dockerfile.app`, variables: { name: options.name } });
     copyTemplate({ templateName: 'app_vue_ts/env.d.ts', targetPath: `apps/${options.name}/env.d.ts` });
-    copyTemplate({ templateName: 'app_vue_ts/eslint.config.ts', targetPath: `apps/${options.name}/eslint.config.ts` });
+    copyTemplate({ templateName: 'app_vue_ts/eslint.config.ts.ejs', targetPath: `apps/${options.name}/eslint.config.ts` });
     copyTemplate({ templateName: 'app_vue_ts/index.html', targetPath: `apps/${options.name}/index.html`, variables: { name: options.name } });
     copyTemplate({ templateName: 'app_vue_ts/package.json', targetPath: `apps/${options.name}/package.json`, variables: { name: options.name } });
     copyTemplate({ templateName: 'app_vue_ts/tsconfig.app.json', targetPath: `apps/${options.name}/tsconfig.app.json` });
     copyTemplate({ templateName: 'app_vue_ts/tsconfig.json', targetPath: `apps/${options.name}/tsconfig.json` });
     copyTemplate({ templateName: 'app_vue_ts/tsconfig.node.json', targetPath: `apps/${options.name}/tsconfig.node.json` });
     copyTemplate({ templateName: 'app_vue_ts/tsconfig.vitest.json', targetPath: `apps/${options.name}/tsconfig.vitest.json` });
-    copyTemplate({ templateName: 'app_vue_ts/vite.config.ts', targetPath: `apps/${options.name}/vite.config.ts` });
+    copyTemplate({ templateName: 'app_vue_ts/vite.config.ts.ejs', targetPath: `apps/${options.name}/vite.config.ts` });
 
     copyTemplate({ templateName: 'app_vue_ts/App.vue', targetPath: `apps/${options.name}/src/App.vue` });
-    copyTemplate({ templateName: 'app_vue_ts/main.ts', targetPath: `apps/${options.name}/src/main.ts`, variables: { name: options.name } });
-    copyTemplate({ templateName: 'app_vue_ts/unit.setup.ts', targetPath: `apps/${options.name}/src/unit.setup.ts` });
-    copyTemplate({ templateName: 'app_vue_ts/Welcome.spec.ts', targetPath: `apps/${options.name}/src/Welcome.spec.ts` });
+    copyTemplate({ templateName: 'app_vue_ts/main.ts.ejs', targetPath: `apps/${options.name}/src/main.ts`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'app_vue_ts/unit.setup.ts.ejs', targetPath: `apps/${options.name}/src/unit.setup.ts` });
+    copyTemplate({ templateName: 'app_vue_ts/Welcome.spec.ts.ejs', targetPath: `apps/${options.name}/src/Welcome.spec.ts` });
     copyTemplate({ templateName: 'app_vue_ts/Welcome.vue', targetPath: `apps/${options.name}/src/Welcome.vue` });
     copyTemplate({ templateName: 'app_vue_ts/de.json', targetPath: `apps/${options.name}/src/de.json` });
     copyTemplate({ templateName: 'app_vue_ts/en.json', targetPath: `apps/${options.name}/src/en.json` });
-    copyTemplate({ templateName: 'app_vue_ts/index.ts', targetPath: `apps/${options.name}/src/index.ts` });
+    copyTemplate({ templateName: 'app_vue_ts/index.ts.ejs', targetPath: `apps/${options.name}/src/index.ts` });
     copyTemplate({ templateName: 'app_vue_ts/DefaultLayout.vue', targetPath: `apps/${options.name}/src/DefaultLayout.vue` });
-    copyTemplate({ templateName: 'app_vue_ts/index.ts', targetPath: `apps/${options.name}/src/index.ts` });
+    copyTemplate({ templateName: 'app_vue_ts/index.ts.ejs', targetPath: `apps/${options.name}/src/index.ts` });
     copyTemplate({ templateName: 'app_vue_ts/baldeweg-ui.d.ts', targetPath: `apps/${options.name}/src/baldeweg-ui.d.ts` });
     copyTemplate({ templateName: 'app_vue_ts/HomeView.vue', targetPath: `apps/${options.name}/src/HomeView.vue` });
 
