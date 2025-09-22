@@ -1,6 +1,9 @@
 {
-    "name": "services",
-    "version": "0.0.0",
-    "description": "Collection of useful services.",
-    "license": "MIT"
+  "name": "services",
+  "version": "0.0.0",
+  "description": "Collection of useful services.",
+  "scripts": {
+    "dev:cli": "pnpm -F create build && node ./apps/create/dist/cli.js"
+  },
+  "license": "MIT"
 }
