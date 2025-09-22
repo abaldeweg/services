@@ -9,7 +9,7 @@ export const baseAction: Profile = {
   name: 'base',
   description: 'Creates basic directory structure and files.',
   ask: async () => {
-    const projectName = await text({
+    const name = await text({
       message: 'Whats the name of the project?',
       placeholder: 'Name',
       initialValue: 'My Project',
@@ -30,11 +30,11 @@ export const baseAction: Profile = {
       initialValue: '',
     });
 
-    return { projectName, description, license };
+    return { name, description, license };
   },
   run: async (options) => {
     createDirs(['apps', 'packages', 'scripts']);
-    createFiles([{ path: 'README.md', content: `# ${options.projectName}` }]);
+    createFiles([{ path: 'README.md', content: `# ${options.name}` }]);
     copyTemplate({ templateName: 'base/renovate.json', targetPath: 'renovate.json' });
     createFiles([{ path: 'LICENSE', content: '' }]);
     log.info('Created LICENSE file, please update it with the correct license text. https://opensource.org/licenses');
