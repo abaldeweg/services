@@ -1,5 +1,5 @@
 import { text } from '@clack/prompts';
-import { copyTemplate, createDirs, createFiles } from '../helpers/index.js';
+import { copyTemplate, createDirs, createFiles, writeJson } from '../helpers/index.js';
 import type { Profile } from '../types/types.js';
 
 /**
@@ -24,17 +24,60 @@ export const appLibTs: Profile = {
     return { name };
   },
   run: async (options) => {
-    createDirs([`apps/${options.name}`, `apps/${options.name}/src`]);
-    copyTemplate({ templateName: 'app_lib_ts/package.json', targetPath: `apps/${options.name}/package.json`, variables: { name: options.name } });
-    copyTemplate({ templateName: 'app_lib_ts/tsconfig.json', targetPath: `apps/${options.name}/tsconfig.json` });
-    copyTemplate({ templateName: 'app_lib_ts/jest.config.js', targetPath: `apps/${options.name}/jest.config.js` });
+    createDirs(['.github', `apps/${options.name}`, `apps/${options.name}/src`]);
+
+    writeJson(`apps/${options.name}/package.json`, {
+      "name": options.name,
+      "version": "0.0.0",
+      "main": "dist/index.js",
+      "types": "dist/index.d.ts",
+      "scripts": {
+        "build": "tsc",
+        "test": "jest"
+      },
+      "devDependencies": {
+        "@types/jest": "30.0.0",
+        "jest": "30.1.3",
+        "ts-jest": "29.4.4",
+        "typescript": "5.9.2"
+      }
+    })
+
+    writeJson(`apps/${options.name}/tsconfig.json`, {
+      "compilerOptions": {
+        "outDir": "./dist",
+        "module": "nodenext",
+        "target": "esnext",
+        "types": [],
+        "sourceMap": true,
+        "declaration": true,
+        "declarationMap": true,
+        "noUncheckedIndexedAccess": true,
+        "exactOptionalPropertyTypes": true,
+        "strict": true,
+        "jsx": "react-jsx",
+        "verbatimModuleSyntax": true,
+        "isolatedModules": true,
+        "noUncheckedSideEffectImports": true,
+        "moduleDetection": "force",
+        "skipLibCheck": true,
+      }
+    })
+
+    copyTemplate({ templateName: 'apps_lib_ts/jest.config.js', targetPath: `apps/${options.name}/jest.config.js` });
+
     createFiles([
       { path: `apps/${options.name}/src/index.ts`, content: '' },
       { path: `apps/${options.name}/src/index.test.ts`, content: '' }
     ])
 
-    createDirs(['.github']);
-    copyTemplate({ templateName: 'release.yaml', targetPath: `.github/workflows/release_${options.name}.yaml` });
-    copyTemplate({ templateName: 'tests.yaml', targetPath: `.github/workflows/tests_${options.name}.yaml`, variables: { name: options.name } });
+    // @fix provide json object
+    // @fix use ejs file extension for all template files
+    copyTemplate({ templateName: 'apps_lib_ts/release.yaml', targetPath: `.github/workflows/release_apps_${options.name}.yaml` });
+
+    // @fix provide json object
+    // @fix use ejs file extension for all template files
+    copyTemplate({ templateName: 'apps_lib_ts/tests.yaml', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
+
   }
 };
