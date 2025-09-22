@@ -6,7 +6,7 @@ import type { Profile } from '../../types/types.js';
  * Base action - creates basic directory structure
  */
 export const appVueAction: Profile = {
-  name: 'base',
+  name: 'appVueAction',
   description: 'Create basic directory structure with apps/, packages/ and scripts/ directories',
   ask: async () => {
     const name = await text({
