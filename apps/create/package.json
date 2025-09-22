@@ -14,7 +14,8 @@
     "deepmerge": "4.3.1",
     "ejs": "3.1.10",
     "fs-extra": "11.3.2",
-    "js-yaml": "4.1.0"
+    "js-yaml": "4.1.0",
+    "yaml": "2.8.1"
   },
   "devDependencies": {
     "@types/ejs": "3.1.5",

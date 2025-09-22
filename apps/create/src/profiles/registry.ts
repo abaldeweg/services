@@ -3,7 +3,7 @@ import { appVueAction } from './actions/app_vue.js';
 import { baseAction } from './actions/base.js';
 import { devcontainerAction } from './actions/devcontainer.js';
 import { appLibTsAction } from './actions/app_lib_ts.js';
-import { appModuleGoAction } from './actions/app_module_go.js';
+import { appGoAction } from './actions/app_go.js';
 
 /**
  * Registry of available profiles
@@ -13,7 +13,7 @@ export const profiles: Record<string, Profile> = {
   devcontainer: devcontainerAction,
   appVueAction: appVueAction,
   appLibTsAction: appLibTsAction,
-  appModuleGo: appModuleGoAction,
+  appGoAction: appGoAction,
 };
 
 /**

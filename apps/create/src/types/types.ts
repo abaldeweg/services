@@ -13,3 +13,15 @@ export interface TemplateOptions {
 }
 
 export interface FileObject { path: string; content: string; }
+
+export interface Devcontainer {
+  name: string;
+  image: string;
+  features: { [key: string]: {} };
+  postCreateCommand: string | undefined;
+  customizations: {
+    vscode: {
+      extensions: string[];
+    };
+  };
+}

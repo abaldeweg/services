@@ -2,8 +2,8 @@
   "name": "Services",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
-    "ghcr.io/guiyomh/features/goreleaser:0.1.1": {},
-    "ghcr.io/abaldeweg/devcontainer_features/bash:3.0.0": {}
+    "ghcr.io/abaldeweg/devcontainer_features/bash:3.0.0": {},
+    "ghcr.io/guiyomh/features/goreleaser:0.1.1": {}
   },
   "postCreateCommand": "pnpm install",
   "customizations": {
@@ -11,15 +11,15 @@
       "extensions": [
         "mikestead.dotenv",
         "EditorConfig.EditorConfig",
-        "golang.go",
         "DavidAnson.vscode-markdownlint",
         "christian-kohler.path-intellisense",
-        "mrmlnc.vscode-apache",
-        "Vue.volar",
-        "redhat.vscode-yaml",
-        "vitest.explorer",
         "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "Vue.volar",
+        "vitest.explorer",
+        "mrmlnc.vscode-apache",
+        "redhat.vscode-yaml",
+        "golang.go"
       ]
     }
   }

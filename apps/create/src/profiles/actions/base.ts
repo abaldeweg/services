@@ -3,11 +3,11 @@ import { copyTemplate, createDirs, createFiles, writeJson } from '../../helpers/
 import type { Profile } from '../../types/types.js';
 
 /**
- * Creates basic directory structure and files.
+ * Create basic directory structure and files.
  */
 export const baseAction: Profile = {
   name: 'base',
-  description: 'Creates basic directory structure and files.',
+  description: 'Create basic directory structure and files.',
   ask: async () => {
     const name = await text({
       message: 'Whats the name of the project?',
@@ -72,9 +72,6 @@ export const baseAction: Profile = {
     // @fix new apps and packages need to be added to the workspace file
     createFiles([{ path: 'pnpm-workspace.yaml', content: 'packages:\n' }]);
 
-    // @fix every new go app or package needs to be added to the go.work file
-    createFiles([{ path: 'go.work', content: 'go 1.24\n\n' }]);
-    
     // @fix every new app needs an entry in the Makefile for the release process
     copyTemplate({ templateName: 'base/Makefile', targetPath: 'Makefile' });
   }
