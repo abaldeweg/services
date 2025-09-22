@@ -1,5 +1,5 @@
 import { log, text } from '@clack/prompts';
-import { copyTemplate, createDirs, createFiles } from '../../helpers/index.js';
+import { copyTemplate, createDirs, createFiles, writeJson } from '../../helpers/index.js';
 import type { Profile } from '../../types/types.js';
 
 /**
@@ -34,22 +34,48 @@ export const baseAction: Profile = {
   },
   run: async (options) => {
     createDirs(['apps', 'packages', 'scripts']);
+
     createFiles([{ path: 'README.md', content: `# ${options.name}` }]);
-    copyTemplate({ templateName: 'base/renovate.json', targetPath: 'renovate.json' });
+
+    writeJson('renovate.json', {
+      "extends": [
+        "config:base",
+        ":disableDependencyDashboard"
+      ],
+      "packageRules": [
+        {
+          "updateTypes": [
+            "patch"
+          ],
+          "automerge": true,
+          "requiredStatusChecks": [
+            "ci/tests"
+          ]
+        }
+      ]
+    })
+
     createFiles([{ path: 'LICENSE', content: '' }]);
     log.info('Created LICENSE file, please update it with the correct license text. https://opensource.org/licenses');
-    copyTemplate({
-      templateName: 'base/package.json',
-      targetPath: 'package.json',
-      variables: { description: options.description, license: options.license }
-    });
+
+    writeJson('package.json', {
+      "name": "root",
+      "version": "0.0.0",
+      "description": options.description,
+      "license": options.license
+    })
+
     copyTemplate({ templateName: 'base/.gitignore', targetPath: '.gitignore' });
+
     copyTemplate({ templateName: 'base/.editorconfig', targetPath: '.editorconfig' });
+
     // @fix new apps and packages need to be added to the workspace file
     createFiles([{ path: 'pnpm-workspace.yaml', content: 'packages:\n' }]);
+
     // @fix every new go app or package needs to be added to the go.work file
     createFiles([{ path: 'go.work', content: 'go 1.24\n\n' }]);
-    // @ fix every new app needs an entry in the Makefile for the release process
+    
+    // @fix every new app needs an entry in the Makefile for the release process
     copyTemplate({ templateName: 'base/Makefile', targetPath: 'Makefile' });
   }
 };
