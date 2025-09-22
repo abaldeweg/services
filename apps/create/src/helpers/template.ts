@@ -1,9 +1,10 @@
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { join, dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { ensureDirSync } from 'fs-extra';
 import type { TemplateOptions } from '../types/types.js';
 import ejs from 'ejs';
+import { log } from '@clack/prompts';
 
 /**
  * Copy a template file to target location with variable substitution.
@@ -17,6 +18,10 @@ export function copyTemplate(options: TemplateOptions): void {
   } = options;
 
   const absTargetPath = resolve('.', targetPath);
+  if (existsSync(absTargetPath)) {
+    log.warn(`File already exists, skipping: ${targetPath}`);
+    return;
+  }
   const templateContent = getTemplateContent(templateName, templateDir);
   const processedContent = renderEjsTemplate(templateContent, variables);
   ensureDirSync(dirname(absTargetPath));
