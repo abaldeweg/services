@@ -91,6 +91,10 @@ To make your profile available add it to the `profiles` object in `src/profiles/
 
 ### Helpers
 
+Helpers should create as much as possible e.g. if creating a file also create the directories.
+
+Nothing should be overwritten. If a file already exists, it should be skipped with a notice.
+
 The following helper functions are available for use in profiles.
 
 #### `createDirs(dirs: string[]): void`
