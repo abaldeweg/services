@@ -1,12 +1,12 @@
 import { text } from '@clack/prompts';
-import { copyTemplate, createDirs } from '../../helpers/index.js';
-import type { Profile } from '../../types/types.js';
+import { copyTemplate, createDirs } from '../helpers/index.js';
+import type { Profile } from '../types/types.js';
 
 /**
  * Base action - creates basic directory structure
  */
-export const appVueAction: Profile = {
-  name: 'appVueAction',
+export const appVue: Profile = {
+  name: 'appVue',
   description: 'Create basic directory structure with apps/, packages/ and scripts/ directories',
   ask: async () => {
     const name = await text({

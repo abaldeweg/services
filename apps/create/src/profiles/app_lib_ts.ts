@@ -1,18 +1,18 @@
 import { text } from '@clack/prompts';
-import { copyTemplate, createDirs, createFiles } from '../../helpers/index.js';
-import type { Profile } from '../../types/types.js';
+import { copyTemplate, createDirs, createFiles } from '../helpers/index.js';
+import type { Profile } from '../types/types.js';
 
 /**
- * Create a typescript package
+ * Create a typescript library in apps/.
  */
-export const appLibTsAction: Profile = {
-  name: 'appLibTsAction',
-  description: 'Create a typescript package',
+export const appLibTs: Profile = {
+  name: 'appLibTs',
+  description: 'Create a typescript library in apps/.',
   ask: async () => {
     const name = await text({
-      message: 'What is the name of the package?',
-      placeholder: 'Package Name',
-      initialValue: 'my-package',
+      message: 'What is the name of the library?',
+      placeholder: 'Library Name',
+      initialValue: 'my-library',
       validate(value) {
         if (value.length === 0) return `Value is required!`;
         if (!/^[a-zA-Z0-9_-]+$/.test(value)) {

@@ -1,11 +1,11 @@
 import { log, text } from '@clack/prompts';
-import { copyTemplate, createDirs, createFiles, writeJson } from '../../helpers/index.js';
-import type { Profile } from '../../types/types.js';
+import { copyTemplate, createDirs, createFiles, writeJson } from '../helpers/index.js';
+import type { Profile } from '../types/types.js';
 
 /**
  * Create basic directory structure and files.
  */
-export const baseAction: Profile = {
+export const base: Profile = {
   name: 'base',
   description: 'Create basic directory structure and files.',
   ask: async () => {

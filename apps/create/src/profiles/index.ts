@@ -1,19 +1,19 @@
 import type { Profile } from './../types/types.js';
-import { appVueAction } from './actions/app_vue.js';
-import { baseAction } from './actions/base.js';
-import { devcontainerAction } from './actions/devcontainer.js';
-import { appLibTsAction } from './actions/app_lib_ts.js';
-import { appGoAction } from './actions/app_go.js';
+import { appVue } from './app_vue.js';
+import { base } from './base.js';
+import { devcontainer } from './devcontainer.js';
+import { appLibTs } from './app_lib_ts.js';
+import { appGo } from './app_go.js';
 
 /**
  * Registry of available profiles
  */
 export const profiles: Record<string, Profile> = {
-  base: baseAction,
-  devcontainer: devcontainerAction,
-  appVueAction: appVueAction,
-  appLibTsAction: appLibTsAction,
-  appGoAction: appGoAction,
+  base,
+  devcontainer,
+  appVue,
+  appLibTs,
+  appGo,
 };
 
 /**

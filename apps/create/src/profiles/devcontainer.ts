@@ -1,11 +1,11 @@
 import { multiselect } from '@clack/prompts';
-import { writeJson } from '../../helpers/writeJson.js';
-import type { Devcontainer, Profile } from '../../types/types.js';
+import { writeJson } from '../helpers/writeJson.js';
+import type { Devcontainer, Profile } from '../types/types.js';
 
 /**
  * Create a basic devcontainer with universal image
  */
-export const devcontainerAction: Profile = {
+export const devcontainer: Profile = {
   name: 'devcontainer',
   description: 'Create a basic devcontainer with universal image',
   ask: async () => {

@@ -1,13 +1,13 @@
 import { text } from '@clack/prompts';
-import { copyTemplate, createDirs, createFiles, runCommand } from '../../helpers/index.js';
-import type { Profile } from '../../types/types.js';
+import { copyTemplate, createDirs, createFiles, runCommand } from '../helpers/index.js';
+import type { Profile } from '../types/types.js';
 import { existsSync } from 'fs';
 
 /**
  * Create a go module in apps/.
  */
-export const appGoAction: Profile = {
-  name: 'appGoAction',
+export const appGo: Profile = {
+  name: 'appGo',
   description: 'Create a go module in apps/.',
   ask: async () => {
     const name = await text({
