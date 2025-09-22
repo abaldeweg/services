@@ -24,9 +24,9 @@ jobs:
           go-version: '1.25'
 
       - name: Install dependencies
-        working-directory: ./letter
+        working-directory: ./apps/letter
         run: go mod tidy
 
       - name: Run tests
-        working-directory: ./letter
+        working-directory: ./apps/letter
         run: go test ./...
