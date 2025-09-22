@@ -12,7 +12,7 @@ export async function writeYaml(path: string, data: unknown): Promise<void> {
   const parentDir = dirname(filePath);
   if (!existsSync(filePath)) {
     mkdirSync(parentDir, { recursive: true });
-    writeFileSync(filePath, yaml.stringify(data));
+    writeFileSync(filePath, yaml.stringify(data) + '\n');
   } else {
     log.warning(`File ${filePath} already exists. Skipping creation.`);
   }

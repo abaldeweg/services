@@ -11,7 +11,7 @@ export async function writeJson(path: string, data: unknown): Promise<void> {
   const parentDir = dirname(filePath);
   if (!existsSync(filePath)) {
     mkdirSync(parentDir, { recursive: true });
-    writeFileSync(filePath, JSON.stringify(data, null, 2));
+    writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n');
   } else {
     log.warning(`File ${filePath} already exists. Skipping creation.`);
   }
