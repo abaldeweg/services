@@ -36,22 +36,18 @@ export const appGo: Profile = {
   run: async (options) => {
     createDirs(['.github', `apps/${options.name}`, `apps/${options.name}/app`, `apps/${options.name}/pkg`, `apps/${options.name}/internal`]);
 
-    // @fix use ejs file extension for all template files
-    copyTemplate({ templateName: 'apps_go/main.go', targetPath: `apps/${options.name}/app/main.go` });
+    copyTemplate({ templateName: 'apps_go/main.go.ejs', targetPath: `apps/${options.name}/app/main.go` });
 
     runCommand('go', ['mod', 'init', options.importPath], `apps/${options.name}`);
 
     // @fix provide json object
-    // @fix use ejs file extension for all template files
-    copyTemplate({ templateName: 'apps_go/release.yaml', targetPath: `.github/workflows/release_apps_${options.name}.yaml` });
+    copyTemplate({ templateName: 'apps_go/release.yaml.ejs', targetPath: `.github/workflows/release_apps_${options.name}.yaml` });
 
     // @fix provide json object
-    // @fix use ejs file extension for all template files
-    copyTemplate({ templateName: 'apps_go/tests.yaml', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'apps_go/tests.yaml.ejs', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
 
     // @fix provide json object
-    // @fix use ejs file extension for all template files
-    copyTemplate({ templateName: 'apps_go/cloudbuild.yaml', targetPath: `apps/${options.name}/cloudbuild.yaml`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'apps_go/cloudbuild.yaml.ejs', targetPath: `apps/${options.name}/cloudbuild.yaml`, variables: { name: options.name } });
 
     if (!existsSync('go.work')) {
       runCommand('go', ['work', 'init', `apps/${options.name}`]);

@@ -65,17 +65,14 @@ export const base: Profile = {
       "license": options.license
     })
 
-    // @fix use ejs file extension for all template files
-    copyTemplate({ templateName: 'base/.gitignore', targetPath: '.gitignore' });
+    copyTemplate({ templateName: 'base/.gitignore.ejs', targetPath: '.gitignore' });
 
-    // @fix use ejs file extension for all template files
-    copyTemplate({ templateName: 'base/.editorconfig', targetPath: '.editorconfig' });
+    copyTemplate({ templateName: 'base/.editorconfig.ejs', targetPath: '.editorconfig' });
 
     // @fix new apps and packages need to be added to the workspace file
     createFiles([{ path: 'pnpm-workspace.yaml', content: 'packages:\n' }]);
 
     // @fix every new app needs an entry in the Makefile for the release process
-    // @fix use ejs file extension for all template files
-    copyTemplate({ templateName: 'base/Makefile', targetPath: 'Makefile' });
+    copyTemplate({ templateName: 'base/Makefile.ejs', targetPath: 'Makefile' });
   }
 };

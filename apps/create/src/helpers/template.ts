@@ -23,7 +23,7 @@ export function copyTemplate(options: TemplateOptions): void {
     return;
   }
   const templateContent = getTemplateContent(templateName, templateDir);
-  const processedContent = renderEjsTemplate(templateContent, variables);
+  const processedContent = ejs.render(templateContent, variables);
   ensureDirSync(dirname(absTargetPath));
   writeFileSync(absTargetPath, processedContent);
 }
@@ -49,11 +49,4 @@ function getTemplateContent(
   } catch (error) {
     throw new Error(`Template file not found: ${templatePath}`);
   }
-}
-
-/**
- * Render template content using EJS for variables and logic.
- */
-function renderEjsTemplate(template: string, vars: Record<string, any>): string {
-  return ejs.render(template, vars);
 }
