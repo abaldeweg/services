@@ -62,7 +62,10 @@ export const base: Profile = {
       "name": "root",
       "version": "0.0.0",
       "description": options.description,
-      "license": options.license
+      "license": options.license,
+      "devDependencies": {
+        "@baldeweg/create": "0.1.3",
+      }
     })
 
     copyTemplate({ templateName: 'base/.gitignore.ejs', targetPath: '.gitignore' });
