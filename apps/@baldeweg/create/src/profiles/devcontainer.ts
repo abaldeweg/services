@@ -22,7 +22,7 @@ export const devcontainer: Profile = {
   run: async (options) => {
     let devcontainer: Devcontainer = {
       "name": "Monorepo",
-      "image": "mcr.microsoft.com/devcontainers/universal:2",
+      "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
       "features": {
         "ghcr.io/abaldeweg/devcontainer_features/bash:3.0.0": {}
       },
@@ -40,6 +40,9 @@ export const devcontainer: Profile = {
     };
 
     if (options.ecosystems.includes('js')) {
+      devcontainer.features['ghcr.io/devcontainers/features/node:1'] = {
+        "installPnpm": "true"
+      };
       devcontainer.postCreateCommand = 'pnpm install';
       devcontainer.customizations.vscode.extensions.push(
         'dbaeumer.vscode-eslint',
@@ -51,6 +54,7 @@ export const devcontainer: Profile = {
       );
     }
     if (options.ecosystems.includes('go')) {
+      devcontainer.features['ghcr.io/devcontainers/features/go:1'] = {};
       devcontainer.features['ghcr.io/guiyomh/features/goreleaser:0.1.1'] = {};
       devcontainer.customizations.vscode.extensions.push(
         'golang.go',
@@ -58,7 +62,7 @@ export const devcontainer: Profile = {
         'redhat.vscode-yaml'
       );
     }
-
+    
     devcontainer.customizations.vscode.extensions = [...new Set(devcontainer.customizations.vscode.extensions)];
 
     writeJson('.devcontainer/devcontainer.json', devcontainer)
