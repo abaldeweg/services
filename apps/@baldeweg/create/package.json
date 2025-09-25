@@ -4,7 +4,7 @@
   "description": "A simple project generator.",
   "main": "dist/cli.js",
   "bin": {
-    "create": "dist/cli.js"
+    "baldeweg-create": "dist/cli.js"
   },
   "scripts": {
     "build": "tsc"
