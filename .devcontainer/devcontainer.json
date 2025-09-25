@@ -1,9 +1,13 @@
 {
   "name": "Services",
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
   "features": {
     "ghcr.io/abaldeweg/devcontainer_features/bash:3.0.0": {},
-    "ghcr.io/guiyomh/features/goreleaser:0.1.1": {}
+    "ghcr.io/guiyomh/features/goreleaser:0.1.1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "installPnpm": "true"
+    },
+    "ghcr.io/devcontainers/features/go:1": {}
   },
   "postCreateCommand": "pnpm install",
   "customizations": {
