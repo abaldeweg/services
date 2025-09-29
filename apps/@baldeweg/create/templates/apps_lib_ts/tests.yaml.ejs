@@ -1,4 +1,4 @@
-name: Tests
+name: Test <%= name %>
 
 on:
   push:
@@ -9,9 +9,7 @@ on:
       - main
 
 permissions:
-  - read
-  - write
-  - execute
+    contents: read
 
 jobs:
   test:
