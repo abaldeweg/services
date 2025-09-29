@@ -42,7 +42,7 @@ export const appGo: Profile = {
 
     createFiles([{ path: 'go.sum', content: '' }]);
 
-    copyTemplate({ templateName: 'apps_go/Dockerfile.ejs', targetPath: `apps/${options.name}/Dockerfile` });
+    copyTemplate({ templateName: 'apps_go/Dockerfile.ejs', targetPath: `apps/${options.name}/Dockerfile`, variables: { name: options.name } });
 
     // @fix provide json object
     copyTemplate({
