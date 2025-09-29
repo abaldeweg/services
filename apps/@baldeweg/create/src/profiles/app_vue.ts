@@ -66,9 +66,9 @@ export const appVue: Profile = {
       },
       "devDependencies": {
         "@baldeweg/ui": "0.18.1",
-        "@tsconfig/node22": "22.0.2",
+        "@tsconfig/node24": "24.0.1",
         "@types/jsdom": "21.1.7",
-        "@types/node": "22.18.4",
+        "@types/node": "24.5.2",
         "@unhead/vue": "2.0.14",
         "@vitejs/plugin-vue": "6.0.1",
         "@vitest/eslint-plugin": "1.3.10",
@@ -130,7 +130,7 @@ export const appVue: Profile = {
     });
 
     writeJson(`apps/${options.name}/tsconfig.node.json`, {
-      "extends": "@tsconfig/node22/tsconfig.json",
+      "extends": "@tsconfig/node24/tsconfig.json",
       "include": [
         "vite.config.*",
         "vitest.config.*",
@@ -179,7 +179,7 @@ export const appVue: Profile = {
 
     copyTemplate({ templateName: 'apps_vue_ts/src/unit.setup.ts.ejs', targetPath: `apps/${options.name}/src/unit.setup.ts` });
 
-    copyTemplate({ templateName: 'apps_vue_ts/src/components/__tests__/Welcome.spec.ts.ejs', targetPath: `apps/${options.name}/src/components/__tests__/Welcome.spec.ts` });
+    copyTemplate({ templateName: 'apps_vue_ts/src/components/Welcome.spec.ts.ejs', targetPath: `apps/${options.name}/src/components/Welcome.test.ts` });
 
     copyTemplate({ templateName: 'apps_vue_ts/src/components/Welcome.vue.ejs', targetPath: `apps/${options.name}/src/components/Welcome.vue` });
 
@@ -220,11 +220,11 @@ export const appVue: Profile = {
     // ci
     // @fix provide json object
     // @fix use ejs file extension for all template files
-    copyTemplate({ templateName: 'apps_lib_ts/release.yaml', targetPath: `.github/workflows/release_apps_${options.name}.yaml`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'apps_vue_ts/release.yaml.ejs', targetPath: `.github/workflows/release_apps_${options.name}.yaml`, variables: { name: options.name } });
 
     // @fix provide json object
     // @fix use ejs file extension for all template files
-    copyTemplate({ templateName: 'apps_lib_ts/tests.yaml', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'apps_vue_ts/tests.yaml.ejs', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
 
     runCommand('pnpm', ['install'])
   }
