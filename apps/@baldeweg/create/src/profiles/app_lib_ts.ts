@@ -28,6 +28,7 @@ export const appLibTs: Profile = {
 
     writeJson(`apps/${options.name}/package.json`, {
       "name": options.name,
+      "type": "module",
       "version": "0.0.0",
       "main": "dist/index.js",
       "types": "dist/index.d.ts",
@@ -37,6 +38,7 @@ export const appLibTs: Profile = {
       },
       "devDependencies": {
         "@types/jest": "30.0.0",
+        "@types/node": "24.5.2",
         "jest": "30.1.3",
         "ts-jest": "29.4.4",
         "typescript": "5.9.2"

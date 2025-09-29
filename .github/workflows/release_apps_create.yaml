@@ -40,17 +40,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: git push origin ${{ inputs.tag_name }}
 
-  release:
+  publish:
     needs: tag
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - name: Pull latest changes
         run: git pull origin HEAD
-      - name: Use Node.js 22.x
+      - name: Use Node.js 24.x
         uses: actions/setup-node@v5
         with:
-          node-version: 22.x
+          node-version: 24.x
           registry-url: "https://registry.npmjs.org"
       - name: Install pnpm
         run: npm install -g pnpm
