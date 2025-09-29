@@ -74,8 +74,5 @@ export const base: Profile = {
 
     // @fix new apps and packages need to be added to the workspace file
     createFiles([{ path: 'pnpm-workspace.yaml', content: 'packages:\n' }]);
-
-    // @fix every new app needs an entry in the Makefile for the release process
-    copyTemplate({ templateName: 'base/Makefile.ejs', targetPath: 'Makefile' });
   }
 };
