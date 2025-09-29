@@ -1,4 +1,4 @@
-name: Tag and release packages
+name: Release <%= name %>
 
 on:
   workflow_dispatch:
@@ -15,9 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: Set up Git user
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
       - name: Set the tag
-        run: git tag -a ${{ inputs.tag_name }} -m "Version ${{ inputs.tag_name }}"
+        run: git tag -a <%= name %>/${{ inputs.tag_name }} -m "Version <%= name %>/${{ inputs.tag_name }}"
       - name: Push the tag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: git push origin ${{ inputs.tag_name }}
+        run: git push origin <%= name %>/${{ inputs.tag_name }}

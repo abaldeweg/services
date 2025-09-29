@@ -1,0 +1,25 @@
+# Build stage
+FROM golang:1.25 as builder
+
+ENV CGO_ENABLED=0
+ENV MODULE_PATH=apps/<%= name %>
+
+WORKDIR /app
+
+COPY ${MODULE_PATH}/go.mod ${MODULE_PATH}/go.sum ./
+RUN go mod download && go mod verify
+COPY ${MODULE_PATH}/ .
+RUN go build -v -o /app/<%= name %> ./app/main.go
+
+# Production stage
+FROM alpine:3.22 as prod
+
+RUN adduser -D -u 10001 appuser
+
+WORKDIR /app
+
+COPY --from=builder --chown=appuser:appuser /app/<%= name %> .
+
+USER appuser
+EXPOSE 8080
+CMD ["./<%= name %>"]
