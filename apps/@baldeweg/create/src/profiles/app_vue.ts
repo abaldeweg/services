@@ -1,5 +1,5 @@
 import { text } from '@clack/prompts';
-import { copyTemplate, createDirs, createFiles, runCommand, writeJson } from '../helpers/index.js';
+import { copyTemplate, createDirs, createFiles, mergeYaml, runCommand, writeJson } from '../helpers/index.js';
 import type { Profile } from '../types/types.js';
 
 /**
@@ -102,7 +102,7 @@ export const appVue: Profile = {
         "src/**/*.vue"
       ],
       "exclude": [
-        "src/**/__tests__/*"
+        "src/**/*.test.ts"
       ],
       "compilerOptions": {
         "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
@@ -112,7 +112,8 @@ export const appVue: Profile = {
           ]
         }
       }
-    });
+    }
+    );
 
     writeJson(`apps/${options.name}/tsconfig.json`, {
       "files": [],
@@ -145,29 +146,27 @@ export const appVue: Profile = {
           "node"
         ]
       }
-    });
+    }
+    );
 
     writeJson(`apps/${options.name}/tsconfig.vitest.json`, {
       "extends": "./tsconfig.app.json",
-      "include": ["src/**/__tests__/*", "env.d.ts"],
+      "include": [
+        "src/**/*.test.ts",
+        "env.d.ts"
+      ],
       "exclude": [],
       "compilerOptions": {
         "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.vitest.tsbuildinfo",
         "lib": [],
-        "types": ["node", "jsdom"]
+        "types": [
+          "node",
+          "jsdom"
+        ]
       }
     });
 
-    writeJson(`apps/${options.name}/vite.config.ts`, {
-      "extends": "./tsconfig.app.json",
-      "include": ["src/**/__tests__/*", "env.d.ts"],
-      "exclude": [],
-      "compilerOptions": {
-        "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.vitest.tsbuildinfo",
-        "lib": [],
-        "types": ["node", "jsdom"]
-      }
-    });
+    copyTemplate({ templateName: 'apps_vue_ts/vite.config.ts.ejs', targetPath: `apps/${options.name}/vite.config.ts`, variables: { name: options.name } })
 
     // @fix provide json object
     copyTemplate({ templateName: 'apps_vue_ts/cloudbuild.yaml.ejs', targetPath: `apps/${options.name}/cloudbuild.yaml`, variables: { name: options.name } });
@@ -179,7 +178,7 @@ export const appVue: Profile = {
 
     copyTemplate({ templateName: 'apps_vue_ts/src/unit.setup.ts.ejs', targetPath: `apps/${options.name}/src/unit.setup.ts` });
 
-    copyTemplate({ templateName: 'apps_vue_ts/src/components/Welcome.spec.ts.ejs', targetPath: `apps/${options.name}/src/components/Welcome.test.ts` });
+    copyTemplate({ templateName: 'apps_vue_ts/src/components/Welcome.test.ts.ejs', targetPath: `apps/${options.name}/src/components/Welcome.test.ts` });
 
     copyTemplate({ templateName: 'apps_vue_ts/src/components/Welcome.vue.ejs', targetPath: `apps/${options.name}/src/components/Welcome.vue` });
 
@@ -202,12 +201,16 @@ export const appVue: Profile = {
     copyTemplate({ templateName: 'apps_vue_ts/src/views/HomeView.vue.ejs', targetPath: `apps/${options.name}/src/views/HomeView.vue` });
 
     // public
+    // @fix empty file
     copyTemplate({ templateName: 'apps_vue_ts/public/android-chrome-192x192.png', targetPath: `apps/${options.name}/public/android-chrome-192x192.png` });
 
+    // @fix empty file
     copyTemplate({ templateName: 'apps_vue_ts/public/android-chrome-512x512.png', targetPath: `apps/${options.name}/public/android-chrome-512x512.png` });
 
+    // @fix empty file
     copyTemplate({ templateName: 'apps_vue_ts/public/apple-touch-icon.png', targetPath: `apps/${options.name}/public/apple-touch-icon.png` });
 
+    // @fix empty file
     copyTemplate({ templateName: 'apps_vue_ts/public/favicon.ico', targetPath: `apps/${options.name}/public/favicon.ico` });
 
     copyTemplate({ templateName: 'apps_vue_ts/public/favicon.svg', targetPath: `apps/${options.name}/public/favicon.svg` });
@@ -219,12 +222,13 @@ export const appVue: Profile = {
 
     // ci
     // @fix provide json object
-    // @fix use ejs file extension for all template files
     copyTemplate({ templateName: 'apps_vue_ts/release.yaml.ejs', targetPath: `.github/workflows/release_apps_${options.name}.yaml`, variables: { name: options.name } });
 
     // @fix provide json object
-    // @fix use ejs file extension for all template files
     copyTemplate({ templateName: 'apps_vue_ts/tests.yaml.ejs', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
+
+    createFiles([{ path: 'pnpm-workspace.yaml', content: '' }]);
+    mergeYaml({ filePath: `pnpm-workspace.yaml`, data: { 'packages': [`apps/${options.name}/`] } });
 
     runCommand('pnpm', ['install'])
   }
