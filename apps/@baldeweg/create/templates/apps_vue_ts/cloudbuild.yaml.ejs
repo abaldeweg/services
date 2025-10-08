@@ -1,35 +1,45 @@
 steps:
   - name: gcr.io/cloud-builders/docker
+    id: Build
     args:
       - build
       - '--no-cache'
       - '-t'
-      - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$_TAG'
+      - "${_IMAGE_NAME}:$COMMIT_SHA"
       - '-t'
-      - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$TAG_NAME'
+      - "${_IMAGE_NAME}:latest"
+      - .
       - '-f'
-      - Dockerfile.shop
+      - ./apps/<%= name %>/Dockerfile
       - '--build-arg'
       - VITE_BASE_URL=$_BASE_URL
-      - .
-    id: Build
   - name: gcr.io/cloud-builders/docker
-    args:
-      - push
-      - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$_TAG'
     id: Push
-  - name: gcr.io/cloud-builders/docker
     args:
       - push
-      - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$TAG_NAME'
-    id: Push2
+      - "${_IMAGE_NAME}:$COMMIT_SHA"
+  - name: gcr.io/cloud-builders/docker
+    id: PushLatest
+    args:
+      - push
+      - "${_IMAGE_NAME}:latest"
+
 images:
-  - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$_TAG'
-  - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$TAG_NAME'
+  - "${_IMAGE_NAME}:$COMMIT_SHA"
+  - "${_IMAGE_NAME}:latest"
+
 options:
   substitutionOption: ALLOW_LOOSE
+
 substitutions:
-  _TAG: latest
-  _GCR_HOSTNAME: eu.gcr.io
-tags:
-  - $_SERVICE_NAME
+  _SERVICE_NAME: <%= name %>
+  _AR_HOSTNAME: europe-west3-docker.pkg.dev
+  _AR_REPOSITORY: docker
+  _IMAGE_NAME: "${_AR_HOSTNAME}/${PROJECT_ID}/${_AR_REPOSITORY}/${REPO_NAME}/${_SERVICE_NAME}"
+
+artifacts:
+  images:
+    - "${_IMAGE_NAME}:$COMMIT_SHA"
+    - "${_IMAGE_NAME}:latest"
+
+timeout: '900s'
