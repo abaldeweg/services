@@ -1,32 +1,31 @@
-ARG VITE_BASE_URL
-
 # build stage
-FROM node:24-alpine as builder
+FROM node:24-alpine AS builder
 
-ARG VITE_BASE_URL
+ARG VITE_BASE_URL="/"
 ENV VITE_BASE_URL=$VITE_BASE_URL
 
-WORKDIR /usr/app
+WORKDIR /app
 
 COPY . .
 
 RUN npm install -g pnpm
-RUN pnpm install
+RUN pnpm install --frozen-lockfile
 RUN pnpm -F <%= name %> build
 
 # production stage
-FROM httpd:2.4-alpine as prod
+FROM httpd:2.4-alpine AS prod
 
-ARG VITE_BASE_URL
+ARG VITE_BASE_URL="/"
 ENV VITE_BASE_URL=$VITE_BASE_URL
 
-COPY ./packages/<%= name %>/docker/httpd.conf /usr/local/apache2/conf/httpd.conf
+RUN addgroup -S appgroup \
+	&& adduser -S appuser -G appgroup \
+	&& chown -R appuser:appgroup /usr/local/apache2/logs /usr/local/apache2/htdocs${VITE_BASE_URL}
 
-COPY --from=builder /usr/app/packages/<%= name %>/dist /usr/local/apache2/htdocs${VITE_BASE_URL}
+COPY ./apps/<%= name %>/docker/httpd.conf /usr/local/apache2/conf/httpd.conf
 
-RUN addgroup --system appgroup \
-	&& adduser --system --ingroup appgroup appuser \
-	&& chown -R appuser:appgroup /usr/local/apache2/htdocs${VITE_BASE_URL}
+COPY --from=builder /app/apps/<%= name %>/dist /usr/local/apache2/htdocs${VITE_BASE_URL}
+
 USER appuser
 
 EXPOSE 80

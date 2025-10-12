@@ -12,7 +12,7 @@ steps:
       - '-f'
       - ./apps/<%= name %>/Dockerfile
       - '--build-arg'
-      - VITE_BASE_URL=$_BASE_URL
+      - VITE_BASE_URL=$_VITE_BASE_URL
   - name: gcr.io/cloud-builders/docker
     id: Push
     args:
