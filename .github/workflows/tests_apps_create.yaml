@@ -1,4 +1,4 @@
-name: Test my-package
+name: Test @baldeweg/create
 
 on:
     push:
