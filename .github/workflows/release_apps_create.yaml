@@ -1,64 +1,63 @@
-name: Tag and release package
+name: Release @baldeweg/create
 
 on:
-  workflow_dispatch:
-    inputs:
-      tag_name:
-        description: "Name of the tag to create"
-        required: true
+    workflow_dispatch:
+        inputs:
+            tag_name:
+                description: "Name of the tag to create"
+                required: true
 
 permissions:
-  contents: write
+    contents: write
 
 jobs:
-  tag:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - name: Set up Git user
-        run: |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-      - name: Use Node.js 22.x
-        uses: actions/setup-node@v5
-        with:
-          node-version: 22.x
-      - name: Set version in package.json
-        run: |
-          sed -i 's/"version": "[^"]*"/"version": "${{ inputs.tag_name }}"/g' apps/@baldeweg/create/package.json
-      - name: Commit Version Changes
-        uses: stefanzweifel/git-auto-commit-action@v6
-        with:
-          commit_message: "chore: update version"
-          file_pattern: apps/@baldeweg/create/*
-      - name: Push Changes
-        run: git push origin HEAD
-      - name: Tag the commit
-        run: git tag -a ${{ inputs.tag_name }} -m "Version ${{ inputs.tag_name }}"
-      - name: Push the tag
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: git push origin ${{ inputs.tag_name }}
-
-  publish:
-    needs: tag
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - name: Pull latest changes
-        run: git pull origin HEAD
-      - name: Use Node.js 24.x
-        uses: actions/setup-node@v5
-        with:
-          node-version: 24.x
-          registry-url: "https://registry.npmjs.org"
-      - name: Install pnpm
-        run: npm install -g pnpm
-      - name: Install dependencies
-        run: pnpm install
-      - name: Build package
-        run: pnpm -F @baldeweg/create build
-      - name: Publish @baldeweg/create to NPM
-        run: pnpm -F @baldeweg/create publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    tag:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v5
+            - name: Set up Git user
+              run: |
+                  git config --global user.email "github-actions[bot]@users.noreply.github.com"
+                  git config --global user.name "github-actions[bot]"
+            - name: Use Node.js 24.x
+              uses: actions/setup-node@v5
+              with:
+                  node-version: 24.x
+            - name: Set version in package.json
+              run: |
+                  sed -i 's/"version": "[^"]*"/"version": "${{ inputs.tag_name }}"/g' apps/@baldeweg/create/package.json
+            - name: Commit Version Changes
+              uses: stefanzweifel/git-auto-commit-action@v6
+              with:
+                  commit_message: "chore: update version"
+                  file_pattern: apps/@baldeweg/create/**/*
+            - name: Push Changes
+              run: git push origin HEAD
+            - name: Tag the commit
+              run: git tag -a ${{ inputs.tag_name }} -m "Version ${{ inputs.tag_name }}"
+            - name: Push the tag
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: git push origin ${{ inputs.tag_name }}
+    publish:
+        needs: tag
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v5
+            - name: Pull latest changes
+              run: git pull origin HEAD
+            - name: Use Node.js 24.x
+              uses: actions/setup-node@v5
+              with:
+                  node-version: 24.x
+                  registry-url: "https://registry.npmjs.org"
+            - name: Install pnpm
+              run: npm install -g pnpm
+            - name: Install dependencies
+              run: pnpm install
+            - name: Build package
+              run: pnpm -F @baldeweg/create build
+            - name: Publish @baldeweg/create to NPM
+              run: pnpm -F @baldeweg/create publish
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
