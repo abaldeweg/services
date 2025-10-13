@@ -10,12 +10,18 @@ A simple project generator with profile-based configuration for creating a monor
 pnpm install -g @baldeweg/create
 ```
 
+or
+
+```bash
+npx @baldeweg/create
+```
+
 ## Usage
 
 The CLI will prompt you to select one or more profiles to run. This will display a multi-select interface where you can choose any combination of the available profiles.
 
 ```bash
-create
+baldeweg-create
 ```
 
 ## Monorepo Structure
@@ -28,27 +34,15 @@ This structure organizes your codebase around self-contained modules, promoting 
 
 ### Testing
 
-Tests are placed alongside the code they test. For Go, this means `*_test.go` files, and for JavaScript/VueJS, `.test.js` files.
+Tests are placed alongside the code they test. For JavaScript/VueJS, this means `.test.js` files and for Go, `*_test.go` files.
 
 ### Dealing with Naming Conflicts
 
-To deal with packages that have the same name in different languages (e.g. Go and JavaScript), the recommended approach is to use a language-specific subdirectory for each.
+We try to find new, unique names for each package to avoid conflicts. For JavaScript, you can make use of vendor prefixes (e.g., `@baldeweg/auth`) to ensure uniqueness.
 
-Example:
+The goal is to avoid renaming or moving packages later by choosing unique and descriptive names from the start.
 
-```bash
-monorepo/
-└── packages/
-    ├── go/
-    │   └── auth/
-    │      ├── auth.go
-    │      └── go.mod
-    └── js/
-        └── auth/
-            ├── src/
-            │   └── index.js
-            └── package.json
-```
+We do not use a subdirectory for every language. This is because if you have a JavaScript library called `auth` and, a few years later, you want to add a Go package with the same name, you would have to move the existing JS package, which is disruptive.
 
 ## Profiles
 
