@@ -13,18 +13,16 @@ permissions:
 jobs:
   tag:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v5
       - name: Set up Git user
         run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
-      - name: Use Node.js 22.x
+      - name: Use Node.js 24.x
         uses: actions/setup-node@v5
         with:
-          node-version: 22.x
+          node-version: 24.x
       - name: Set version in package.json
         run: |
           sed -i 's/"version": "[^"]*"/"version": "${{ inputs.tag_name }}"/g' apps/<%= name %>/package.json
