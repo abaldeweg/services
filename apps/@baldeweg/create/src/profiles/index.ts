@@ -3,7 +3,7 @@ import { appVue } from './app_vue.js';
 import { base } from './base.js';
 import { devcontainer } from './devcontainer.js';
 import { appLibTs } from './app_lib_ts.js';
-import { appGo } from './app_go.js';
+import { appGo } from './go_app.js';
 
 /**
  * Registry of available profiles

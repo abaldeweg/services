@@ -36,24 +36,24 @@ export const appGo: Profile = {
   run: async (options) => {
     createDirs(['.github', `apps/${options.name}`, `apps/${options.name}/app`, `apps/${options.name}/pkg`, `apps/${options.name}/internal`]);
 
-    copyTemplate({ templateName: 'apps_go/main.go.ejs', targetPath: `apps/${options.name}/app/main.go` });
+    copyTemplate({ templateName: 'go_app/main.go.ejs', targetPath: `apps/${options.name}/app/main.go` });
 
     runCommand('go', ['mod', 'init', options.importPath], `apps/${options.name}`);
 
     createFiles([{ path: `apps/${options.name}/go.sum`, content: '' }]);
 
-    copyTemplate({ templateName: 'apps_go/Dockerfile.ejs', targetPath: `apps/${options.name}/Dockerfile`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'go_app/Dockerfile.ejs', targetPath: `apps/${options.name}/Dockerfile`, variables: { name: options.name } });
 
     // @fix provide json object
     copyTemplate({
-      templateName: 'apps_go/release.yaml.ejs', targetPath: `.github/workflows/release_apps_${options.name}.yaml`, variables: { name: options.name }
+      templateName: 'go_app/release.yaml.ejs', targetPath: `.github/workflows/release_apps_${options.name}.yaml`, variables: { name: options.name }
     });
 
     // @fix provide json object
-    copyTemplate({ templateName: 'apps_go/tests.yaml.ejs', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'go_app/tests.yaml.ejs', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
 
     // @fix provide json object
-    copyTemplate({ templateName: 'apps_go/cloudbuild.yaml.ejs', targetPath: `apps/${options.name}/cloudbuild.yaml`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'go_app/cloudbuild.yaml.ejs', targetPath: `apps/${options.name}/cloudbuild.yaml`, variables: { name: options.name } });
 
     if (!existsSync('go.work')) {
       runCommand('go', ['work', 'init', `apps/${options.name}`]);
