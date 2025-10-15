@@ -66,7 +66,7 @@ export const appLibTs: Profile = {
       }
     })
 
-    copyTemplate({ templateName: 'apps_lib_ts/jest.config.js.ejs', targetPath: `apps/${options.name}/jest.config.js` });
+    copyTemplate({ templateName: 'ts_app/jest.config.js.ejs', targetPath: `apps/${options.name}/jest.config.js` });
 
     createFiles([
       { path: `apps/${options.name}/src/index.ts`, content: '' },
@@ -74,9 +74,9 @@ export const appLibTs: Profile = {
     ])
 
     // @fix provide json object
-    copyTemplate({ templateName: 'apps_lib_ts/release.yaml.ejs', targetPath: `.github/workflows/release_apps_${options.name}.yaml`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'ts_app/release.yaml.ejs', targetPath: `.github/workflows/release_apps_${options.name}.yaml`, variables: { name: options.name } });
 
     // @fix provide json object
-    copyTemplate({ templateName: 'apps_lib_ts/tests.yaml.ejs', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'ts_app/tests.yaml.ejs', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
   }
 };
