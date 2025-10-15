@@ -20,7 +20,7 @@ jobs:
                   git config --global user.email "github-actions[bot]@users.noreply.github.com"
                   git config --global user.name "github-actions[bot]"
             - name: Use Node.js 24.x
-              uses: actions/setup-node@v5
+              uses: actions/setup-node@v6
               with:
                   node-version: 24.x
             - name: Set version in package.json
@@ -47,7 +47,7 @@ jobs:
             - name: Pull latest changes
               run: git pull origin HEAD
             - name: Use Node.js 24.x
-              uses: actions/setup-node@v5
+              uses: actions/setup-node@v6
               with:
                   node-version: 24.x
                   registry-url: "https://registry.npmjs.org"
