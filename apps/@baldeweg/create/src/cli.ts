@@ -6,7 +6,7 @@ import { listProfiles, getProfile } from './profiles/index.js';
 /**
  * Project Generator CLI
  */
-async function main(): Promise<void> {
+const main = async (): Promise<void> => {
   intro('🎯 Project Generator');
 
   const profiles = listProfiles();
