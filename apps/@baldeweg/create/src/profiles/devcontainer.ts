@@ -3,11 +3,11 @@ import { writeJson } from '../helpers/writeJson.js';
 import type { Devcontainer, Profile } from '../types/types.js';
 
 /**
- * Create a basic devcontainer with universal image
+ * Create a basic devcontainer with base image and features.
  */
 export const devcontainer: Profile = {
   name: 'devcontainer',
-  description: 'Create a basic devcontainer with universal image',
+  description: 'Create a basic devcontainer with base image and features.',
   ask: async () => {
     const ecosystems = await multiselect({
       message: 'Which ecosystems do you want to use?',
@@ -41,6 +41,7 @@ export const devcontainer: Profile = {
 
     if (options.ecosystems.includes('js')) {
       devcontainer.features['ghcr.io/devcontainers/features/node:1'] = {
+        "version": "24",
         "installPnpm": "true"
       };
       devcontainer.postCreateCommand = 'pnpm install';
@@ -62,7 +63,7 @@ export const devcontainer: Profile = {
         'redhat.vscode-yaml'
       );
     }
-    
+
     devcontainer.customizations.vscode.extensions = [...new Set(devcontainer.customizations.vscode.extensions)];
 
     writeJson('.devcontainer/devcontainer.json', devcontainer)
