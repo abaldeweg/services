@@ -1,5 +1,5 @@
 import { log, text } from '@clack/prompts';
-import { copyTemplate, createDirs, createFiles, writeJson } from '../helpers/index.js';
+import { copyTemplate, createDirs, createFiles, writeJson, writeYaml } from '../helpers/index.js';
 import type { Profile } from '../types/types.js';
 
 /**
@@ -25,7 +25,7 @@ export const base: Profile = {
     });
 
     const license = await text({
-      message: 'Which license did you choose?',
+      message: 'What license do you want to use?',
       placeholder: 'License',
       initialValue: '',
     });
@@ -72,7 +72,8 @@ export const base: Profile = {
 
     copyTemplate({ templateName: 'base/.editorconfig.ejs', targetPath: '.editorconfig' });
 
-    // @fix new apps and packages need to be added to the workspace file
-    createFiles([{ path: 'pnpm-workspace.yaml', content: 'packages:\n' }]);
+    writeYaml('pnpm-workspace.yaml', {
+      packages: []
+    })
   }
 };
