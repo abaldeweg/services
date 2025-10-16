@@ -9,6 +9,7 @@ export async function writeJson(path: string, data: unknown): Promise<void> {
   const projectPath = resolve('.');
   const filePath = join(projectPath, path);
   const parentDir = dirname(filePath);
+
   if (!existsSync(filePath)) {
     mkdirSync(parentDir, { recursive: true });
     writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n');

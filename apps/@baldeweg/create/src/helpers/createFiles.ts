@@ -11,6 +11,7 @@ export async function createFiles(files: FileObject[]): Promise<void> {
   files.forEach(({ path, content }) => {
     const filePath = join(projectPath, path);
     const parentDir = dirname(filePath);
+
     if (!existsSync(filePath)) {
       mkdirSync(parentDir, { recursive: true });
       writeFileSync(filePath, content);

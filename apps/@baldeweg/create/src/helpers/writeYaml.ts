@@ -10,6 +10,7 @@ export async function writeYaml(path: string, data: unknown): Promise<void> {
   const projectPath = resolve('.');
   const filePath = join(projectPath, path);
   const parentDir = dirname(filePath);
+
   if (!existsSync(filePath)) {
     mkdirSync(parentDir, { recursive: true });
     writeFileSync(filePath, yaml.stringify(data) + '\n');
