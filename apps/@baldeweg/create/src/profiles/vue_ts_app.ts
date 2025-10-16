@@ -5,8 +5,9 @@ import type { Profile } from '../types/types.js';
 /**
  * Create a Vue 3 + Vite app in apps/.
  */
-export const appVue: Profile = {
-  name: 'appVue',
+export const tsVueApp: Profile = {
+  id: 'tsVueApp',
+  name: 'TS Vue App',
   description: 'Create a Vue 3 + Vite app in apps/.',
   ask: async () => {
     const name = await text({

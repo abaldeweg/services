@@ -11,7 +11,7 @@ const main = async (): Promise<void> => {
 
   const profiles = listProfiles();
   const options = profiles.map(profile => ({
-    value: profile.name,
+    value: profile.id,
     label: `${profile.name}: ${profile.description}`
   }));
 
@@ -26,10 +26,10 @@ const main = async (): Promise<void> => {
     process.exit(0);
   }
 
-  for (const name of selected) {
-    const profile = getProfile(name);
+  for (const id of selected) {
+    const profile = getProfile(id);
     if (!profile) {
-      log.error(`❌ Unknown profile: ${name}`);
+      log.error(`❌ Unknown profile: ${id}`);
       continue;
     }
 

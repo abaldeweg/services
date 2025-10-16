@@ -1,4 +1,5 @@
 export interface Profile {
+  id: string;
   name: string;
   description: string;
   ask?: () => Promise<void | Record<string, any>>;

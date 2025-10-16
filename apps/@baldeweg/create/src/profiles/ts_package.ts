@@ -6,7 +6,8 @@ import type { Profile } from '../types/types.js';
  * Create a typescript library in packages/.
  */
 export const tsPackage: Profile = {
-  name: 'tsPackage',
+  id: 'tsPackage',
+  name: 'TypeScript Package',
   description: 'Create a typescript library in packages/.',
   ask: async () => {
     const name = await text({

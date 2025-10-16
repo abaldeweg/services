@@ -6,7 +6,8 @@ import type { Devcontainer, Profile } from '../types/types.js';
  * Create a basic devcontainer with base image and features.
  */
 export const devcontainer: Profile = {
-  name: 'devcontainer',
+  id: 'devcontainer',
+  name: 'Devcontainer',
   description: 'Create a basic devcontainer with base image and features.',
   ask: async () => {
     const ecosystems = await multiselect({

@@ -7,7 +7,8 @@ import { existsSync } from 'fs';
  * Create a go module in packages/.
  */
 export const goPackage: Profile = {
-  name: 'goPackage',
+  id: 'goPackage',
+  name: 'Go Package',
   description: 'Create a go module in packages/.',
   ask: async () => {
     const name = await text({
