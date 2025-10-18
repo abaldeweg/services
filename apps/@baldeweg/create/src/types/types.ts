@@ -13,7 +13,10 @@ export interface TemplateOptions {
   templateDir?: string;
 }
 
-export interface FileObject { path: string; content: string; }
+export interface FileObject {
+  path: string;
+  content: string | null;
+}
 
 export interface Devcontainer {
   name: string;

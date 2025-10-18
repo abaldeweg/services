@@ -113,7 +113,7 @@ Creates files at the given paths, creating parent directories as needed. Skips f
 import { createFiles } from './src/helpers';
 
 await createFiles([
-    { path: 'apps/api/main.go', content: '' },
+    { path: 'apps/api/main.go', content: null },
     { path: 'README.md', content: '# My Project' }
 ]);
 ```

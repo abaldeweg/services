@@ -56,7 +56,7 @@ export const base: Profile = {
       ]
     })
 
-    createFiles([{ path: 'LICENSE', content: '' }]);
+    createFiles([{ path: 'LICENSE', content: null }]);
     log.info('Created LICENSE file, please update it with the correct license text. https://opensource.org/licenses');
 
     writeJson('package.json', {

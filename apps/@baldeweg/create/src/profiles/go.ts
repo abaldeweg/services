@@ -50,7 +50,7 @@ export const go: Profile = {
 
     runCommand('go', ['mod', 'init', options.importPath], `${outputDir}`);
 
-    createFiles([{ path: `${outputDir}/go.sum`, content: '' }]);
+    createFiles([{ path: `${outputDir}/go.sum`, content: null }]);
 
     if (options.deploy) {
       copyTemplate({ templateName: 'go/Dockerfile.ejs', targetPath: `${outputDir}/Dockerfile`, variables: { name: options.name } });

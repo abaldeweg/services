@@ -76,8 +76,8 @@ export const tsLib: Profile = {
     copyTemplate({ templateName: 'ts/jest.config.js.ejs', targetPath: `${outputDir}/jest.config.js` });
 
     createFiles([
-      { path: `${outputDir}/src/index.ts`, content: '' },
-      { path: `${outputDir}/src/index.test.ts`, content: '' }
+      { path: `${outputDir}/src/index.ts`, content: null },
+      { path: `${outputDir}/src/index.test.ts`, content: null }
     ])
 
     if (options.deploy) {

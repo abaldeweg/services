@@ -14,7 +14,7 @@ export async function createFiles(files: FileObject[]): Promise<void> {
 
     if (!existsSync(filePath)) {
       mkdirSync(parentDir, { recursive: true });
-      writeFileSync(filePath, content);
+      writeFileSync(filePath, content || '');
     } else {
       log.warning(`File ${filePath} already exists. Skipping creation.`);
     }
