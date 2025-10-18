@@ -3,7 +3,7 @@ import { resolve, join, dirname } from 'path';
 import { log } from '@clack/prompts';
 
 /**
- * Write a JSON object to disk at the given path. If parent directories do not exist, they are created.
+ * Writes a JSON object to disk at the given path. If parent directories do not exist, they are created.
  */
 export async function writeJson(path: string, data: unknown): Promise<void> {
   const projectPath = resolve('.');

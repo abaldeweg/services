@@ -3,7 +3,7 @@ import { resolve } from 'path';
 import { log } from '@clack/prompts';
 
 /**
- * Run a command.
+ * Runs a command.
  */
 export function runCommand(command: string, args: string[] = [], workingDir: string = '.'): void {
   const result = spawnSync(command, args, {

@@ -118,7 +118,7 @@ await createFiles([
 ]);
 ```
 
-#### `mergeJson(options: { filePath: string; data: object }): void`
+#### `mergeJson(filePath: string, data: object): void`
 
 Merges a JSON object into an existing JSON file at the specified path.
 
@@ -127,13 +127,13 @@ Merges a JSON object into an existing JSON file at the specified path.
 ```typescript
 import { mergeJson } from './src/helpers';
 
-mergeJson({
-    filePath: 'package.json',
-    data: { dependencies: { '@baldeweg/create': '1.0.0' } }
-});
+mergeJson(
+    'package.json',
+    { dependencies: { '@baldeweg/create': '1.0.0' } }
+);
 ```
 
-#### `mergeYaml(options: { filePath: string; data: object }): void`
+#### `mergeYaml(filePath: string, data: object): void`
 
 Merges a JavaScript object into an existing YAML file at the specified path.
 
@@ -142,10 +142,10 @@ Merges a JavaScript object into an existing YAML file at the specified path.
 ```typescript
 import { mergeYaml } from './src/helpers';
 
-mergeYaml({
-    filePath: 'config.yaml',
-    data: { key: 'value' }
-});
+mergeYaml(
+    'config.yaml',
+    { key: 'value' }
+);
 ```
 
 #### `copyTemplate(options: TemplateOptions): void`

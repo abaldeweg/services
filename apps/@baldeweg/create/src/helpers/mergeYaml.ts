@@ -7,11 +7,7 @@ import deepmerge from 'deepmerge';
 /**
  * Merge data into an existing YAML file.
  */
-export function mergeYaml(options: {
-  filePath: string;
-  data: object;
-}): void {
-  const { filePath, data } = options;
+export function mergeYaml(filePath: string, data: object): void {
   const absFilePath = resolve('.', filePath);
 
   let fileContent: any = {};

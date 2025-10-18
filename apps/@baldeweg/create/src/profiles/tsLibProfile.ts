@@ -89,7 +89,7 @@ export const tsLibProfile: Profile = {
     copyTemplate({ templateName: 'ts/tests.yaml.ejs', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
 
     createFiles([{ path: 'pnpm-workspace.yaml', content: null }]);
-    mergeYaml({ filePath: `pnpm-workspace.yaml`, data: { 'packages': [`apps/${options.name}/`] } });
+    mergeYaml(`pnpm-workspace.yaml`, { 'packages': [`apps/${options.name}/`] });
 
     runCommand('pnpm', ['install'])
   }

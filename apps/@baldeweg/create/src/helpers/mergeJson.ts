@@ -4,13 +4,9 @@ import { log } from '@clack/prompts';
 import deepmerge from 'deepmerge';
 
 /**
- * Merge data into an existing JSON file.
+ * Merges data into an existing JSON file.
  */
-export function mergeJson(options: {
-  filePath: string;
-  data: object;
-}): void {
-  const { filePath, data } = options;
+export function mergeJson(filePath: string, data: object): void {
   const absFilePath = resolve('.', filePath);
 
   let fileContent: any = {};
