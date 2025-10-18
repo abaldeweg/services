@@ -6,8 +6,8 @@ import { existsSync } from 'fs';
 /**
  * Create a go module.
  */
-export const go: Profile = {
-  id: 'go',
+export const goModuleProfile: Profile = {
+  id: 'goModuleProfile',
   name: 'Go',
   description: 'Create a go module.',
   ask: async () => {

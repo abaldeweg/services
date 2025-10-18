@@ -5,8 +5,8 @@ import type { Profile } from '../types/types.js';
 /**
  * Create a typescript library.
  */
-export const tsLib: Profile = {
-  id: 'tsLib',
+export const tsLibProfile: Profile = {
+  id: 'tsLibProfile',
   name: 'TypeScript Library',
   description: 'Create a typescript library.',
   ask: async () => {

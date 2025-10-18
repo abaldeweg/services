@@ -5,8 +5,8 @@ import type { Devcontainer, Profile } from '../types/types.js';
 /**
  * Create a basic devcontainer with base image and features.
  */
-export const devcontainer: Profile = {
-  id: 'devcontainer',
+export const devcontainerProfile: Profile = {
+  id: 'devcontainerProfile',
   name: 'Devcontainer',
   description: 'Create a basic devcontainer with base image and features.',
   ask: async () => {

@@ -5,8 +5,8 @@ import type { Profile } from '../types/types.js';
 /**
  * Create basic directory structure and files.
  */
-export const base: Profile = {
-  id: 'base',
+export const baseProfile: Profile = {
+  id: 'baseProfile',
   name: 'Base',
   description: 'Create basic directory structure and files.',
   ask: async () => {

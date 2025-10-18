@@ -1,19 +1,19 @@
 import type { Profile } from './../types/types.js';
-import { tsVue } from './tsVue.js';
-import { base } from './base.js';
-import { devcontainer } from './devcontainer.js';
-import { tsLib } from './tsLib.js';
-import { go } from './go.js';
+import { tsVueProfile } from './tsVueProfile.js';
+import { baseProfile } from './baseProfile.js';
+import { devcontainerProfile } from './devcontainerProfile.js';
+import { tsLibProfile } from './tsLibProfile.js';
+import { goModuleProfile } from './goModuleProfile.js';
 
 /**
  * Registry of available profiles.
  */
 export const profiles: Record<string, Profile> = {
-  base,
-  devcontainer,
-  tsVue,
-  tsLib,
-  go,
+  baseProfile,
+  devcontainerProfile,
+  tsVueProfile,
+  tsLibProfile,
+  goModuleProfile,
 };
 
 /**
