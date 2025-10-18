@@ -1,19 +1,19 @@
-import { text } from '@clack/prompts';
+import { text, confirm } from '@clack/prompts';
 import { copyTemplate, createDirs, createFiles, writeJson } from '../helpers/index.js';
 import type { Profile } from '../types/types.js';
 
 /**
- * Create a typescript library in apps/.
+ * Create a typescript library.
  */
-export const tsLibApp: Profile = {
-  id: 'tsLibApp',
-  name: 'TypeScript Library App',
-  description: 'Create a typescript library in apps/.',
+export const tsLib: Profile = {
+  id: 'tsLib',
+  name: 'TypeScript Library',
+  description: 'Create a typescript library.',
   ask: async () => {
     const name = await text({
       message: 'What is the name of the library?',
       placeholder: 'Library Name',
-      initialValue: 'my-library',
+      initialValue: 'ts_library',
       validate(value) {
         if (value.length === 0) return `Value is required!`;
         if (!/^[a-zA-Z0-9_-]+$/.test(value)) {
@@ -22,12 +22,18 @@ export const tsLibApp: Profile = {
       },
     });
 
-    return { name };
+    const deploy = await confirm({
+      message: "Do you plan to deploy your package? This will create your package into the apps/ directory and create build specific files. Otherwise it will be created into the packages/ directory.",
+    });
+
+    return { name, deploy };
   },
   run: async (options) => {
-    createDirs(['.github', `apps/${options.name}`, `apps/${options.name}/src`]);
+    const outputDir = options.deploy ? `apps/${options.name}` : `packages/${options.name}`;
 
-    writeJson(`apps/${options.name}/package.json`, {
+    createDirs(['.github', `${outputDir}`, `${outputDir}/src`]);
+
+    writeJson(`${outputDir}/package.json`, {
       "name": options.name,
       "type": "module",
       "version": "0.0.0",
@@ -46,7 +52,7 @@ export const tsLibApp: Profile = {
       }
     })
 
-    writeJson(`apps/${options.name}/tsconfig.json`, {
+    writeJson(`${outputDir}/tsconfig.json`, {
       "compilerOptions": {
         "outDir": "./dist",
         "module": "nodenext",
@@ -67,17 +73,19 @@ export const tsLibApp: Profile = {
       }
     })
 
-    copyTemplate({ templateName: 'ts_app/jest.config.js.ejs', targetPath: `apps/${options.name}/jest.config.js` });
+    copyTemplate({ templateName: 'ts/jest.config.js.ejs', targetPath: `${outputDir}/jest.config.js` });
 
     createFiles([
-      { path: `apps/${options.name}/src/index.ts`, content: '' },
-      { path: `apps/${options.name}/src/index.test.ts`, content: '' }
+      { path: `${outputDir}/src/index.ts`, content: '' },
+      { path: `${outputDir}/src/index.test.ts`, content: '' }
     ])
 
-    // @fix provide json object
-    copyTemplate({ templateName: 'ts_app/release.yaml.ejs', targetPath: `.github/workflows/release_apps_${options.name}.yaml`, variables: { name: options.name } });
+    if (options.deploy) {
+      // @fix provide json object
+      copyTemplate({ templateName: 'ts/release.yaml.ejs', targetPath: `.github/workflows/release_apps_${options.name}.yaml`, variables: { name: options.name } });
+    }
 
     // @fix provide json object
-    copyTemplate({ templateName: 'ts_app/tests.yaml.ejs', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'ts/tests.yaml.ejs', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
   }
 };

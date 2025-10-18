@@ -1,4 +1,4 @@
-import { text } from '@clack/prompts';
+import { text, confirm } from '@clack/prompts';
 import { copyTemplate, createDirs, createFiles, mergeYaml, runCommand, writeJson } from '../helpers/index.js';
 import type { Profile } from '../types/types.js';
 
@@ -28,9 +28,15 @@ export const tsVueApp: Profile = {
       initialValue: '',
     });
 
-    return { name, license };
+    const deploy = await confirm({
+      message: "Do you plan to deploy your package? This will create your package into the apps/ directory and create build specific files. Otherwise it will be created into the packages/ directory.",
+    });
+
+    return { name, license, deploy };
   },
   run: async (options) => {
+    const outputDir = options.deploy ? `apps/${options.name}` : `packages/${options.name}`;
+
     createDirs(['.github', `apps/${options.name}`, `apps/${options.name}/src`, `apps/${options.name}/public`, `apps/${options.name}/docker`, `apps/${options.name}/src/composables/`]);
 
     // root
