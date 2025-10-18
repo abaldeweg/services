@@ -1,19 +1,19 @@
-import { text, confirm } from '@clack/prompts';
+import { text } from '@clack/prompts';
 import { copyTemplate, createDirs, createFiles, mergeYaml, runCommand, writeJson } from '../helpers/index.js';
 import type { Profile } from '../types/types.js';
 
 /**
  * Create a Vue 3 + Vite app in apps/.
  */
-export const tsVueApp: Profile = {
-  id: 'tsVueApp',
-  name: 'TS Vue App',
+export const tsVue: Profile = {
+  id: 'tsVue',
+  name: 'TypeScript Vue App',
   description: 'Create a Vue 3 + Vite app in apps/.',
   ask: async () => {
     const name = await text({
       message: 'What is the name of the package?',
       placeholder: 'Package Name',
-      initialValue: 'my-package',
+      initialValue: 'ts_vue',
       validate(value) {
         if (value.length === 0) return `Value is required!`;
         if (!/^[a-zA-Z0-9_-]+$/.test(value)) {
@@ -28,15 +28,9 @@ export const tsVueApp: Profile = {
       initialValue: '',
     });
 
-    const deploy = await confirm({
-      message: "Do you plan to deploy your package? This will create your package into the apps/ directory and create build specific files. Otherwise it will be created into the packages/ directory.",
-    });
-
-    return { name, license, deploy };
+    return { name, license };
   },
   run: async (options) => {
-    const outputDir = options.deploy ? `apps/${options.name}` : `packages/${options.name}`;
-
     createDirs(['.github', `apps/${options.name}`, `apps/${options.name}/src`, `apps/${options.name}/public`, `apps/${options.name}/docker`, `apps/${options.name}/src/composables/`]);
 
     // root
@@ -49,13 +43,13 @@ export const tsVueApp: Profile = {
       "printWidth": 100
     });
 
-    copyTemplate({ templateName: 'vue_ts_app/Dockerfile.ejs', targetPath: `apps/${options.name}/Dockerfile`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'ts_vue/Dockerfile.ejs', targetPath: `apps/${options.name}/Dockerfile`, variables: { name: options.name } });
 
-    copyTemplate({ templateName: 'vue_ts_app/env.d.ts.ejs', targetPath: `apps/${options.name}/env.d.ts` });
+    copyTemplate({ templateName: 'ts_vue/env.d.ts.ejs', targetPath: `apps/${options.name}/env.d.ts` });
 
-    copyTemplate({ templateName: 'vue_ts_app/eslint.config.ts.ejs', targetPath: `apps/${options.name}/eslint.config.ts` });
+    copyTemplate({ templateName: 'ts_vue/eslint.config.ts.ejs', targetPath: `apps/${options.name}/eslint.config.ts` });
 
-    copyTemplate({ templateName: 'vue_ts_app/index.html.ejs', targetPath: `apps/${options.name}/index.html`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'ts_vue/index.html.ejs', targetPath: `apps/${options.name}/index.html`, variables: { name: options.name } });
 
     writeJson(`apps/${options.name}/package.json`, {
       "name": options.name,
@@ -173,21 +167,21 @@ export const tsVueApp: Profile = {
       }
     });
 
-    copyTemplate({ templateName: 'vue_ts_app/vite.config.ts.ejs', targetPath: `apps/${options.name}/vite.config.ts`, variables: { name: options.name } })
+    copyTemplate({ templateName: 'ts_vue/vite.config.ts.ejs', targetPath: `apps/${options.name}/vite.config.ts`, variables: { name: options.name } })
 
     // @fix provide json object
-    copyTemplate({ templateName: 'vue_ts_app/cloudbuild.yaml.ejs', targetPath: `apps/${options.name}/cloudbuild.yaml`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'ts_vue/cloudbuild.yaml.ejs', targetPath: `apps/${options.name}/cloudbuild.yaml`, variables: { name: options.name } });
 
     // src
-    copyTemplate({ templateName: 'vue_ts_app/src/App.vue.ejs', targetPath: `apps/${options.name}/src/App.vue` });
+    copyTemplate({ templateName: 'ts_vue/src/App.vue.ejs', targetPath: `apps/${options.name}/src/App.vue` });
 
-    copyTemplate({ templateName: 'vue_ts_app/src/main.ts.ejs', targetPath: `apps/${options.name}/src/main.ts`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'ts_vue/src/main.ts.ejs', targetPath: `apps/${options.name}/src/main.ts`, variables: { name: options.name } });
 
-    copyTemplate({ templateName: 'vue_ts_app/src/unit.setup.ts.ejs', targetPath: `apps/${options.name}/src/unit.setup.ts` });
+    copyTemplate({ templateName: 'ts_vue/src/unit.setup.ts.ejs', targetPath: `apps/${options.name}/src/unit.setup.ts` });
 
-    copyTemplate({ templateName: 'vue_ts_app/src/components/Welcome.test.ts.ejs', targetPath: `apps/${options.name}/src/components/Welcome.test.ts` });
+    copyTemplate({ templateName: 'ts_vue/src/components/Welcome.test.ts.ejs', targetPath: `apps/${options.name}/src/components/Welcome.test.ts` });
 
-    copyTemplate({ templateName: 'vue_ts_app/src/components/Welcome.vue.ejs', targetPath: `apps/${options.name}/src/components/Welcome.vue` });
+    copyTemplate({ templateName: 'ts_vue/src/components/Welcome.vue.ejs', targetPath: `apps/${options.name}/src/components/Welcome.vue` });
 
     writeJson(`apps/${options.name}/src/i18n/locales/de.json`, {
       "welcome": "Willkommen"
@@ -197,42 +191,42 @@ export const tsVueApp: Profile = {
       "welcome": "Welcome"
     });
 
-    copyTemplate({ templateName: 'vue_ts_app/src/i18n/index.ts.ejs', targetPath: `apps/${options.name}/src/i18n/index.ts` });
+    copyTemplate({ templateName: 'ts_vue/src/i18n/index.ts.ejs', targetPath: `apps/${options.name}/src/i18n/index.ts` });
 
-    copyTemplate({ templateName: 'vue_ts_app/src/layouts/DefaultLayout.vue', targetPath: `apps/${options.name}/src/layouts/DefaultLayout.vue` });
+    copyTemplate({ templateName: 'ts_vue/src/layouts/DefaultLayout.vue', targetPath: `apps/${options.name}/src/layouts/DefaultLayout.vue` });
 
-    copyTemplate({ templateName: 'vue_ts_app/src/router/index.ts.ejs', targetPath: `apps/${options.name}/src/router/index.ts` });
+    copyTemplate({ templateName: 'ts_vue/src/router/index.ts.ejs', targetPath: `apps/${options.name}/src/router/index.ts` });
 
-    copyTemplate({ templateName: 'vue_ts_app/src/types/baldeweg-ui.d.ts.ejs', targetPath: `apps/${options.name}/src/types/baldeweg-ui.d.ts` });
+    copyTemplate({ templateName: 'ts_vue/src/types/baldeweg-ui.d.ts.ejs', targetPath: `apps/${options.name}/src/types/baldeweg-ui.d.ts` });
 
-    copyTemplate({ templateName: 'vue_ts_app/src/views/HomeView.vue.ejs', targetPath: `apps/${options.name}/src/views/HomeView.vue` });
+    copyTemplate({ templateName: 'ts_vue/src/views/HomeView.vue.ejs', targetPath: `apps/${options.name}/src/views/HomeView.vue` });
 
     // public
     // @fix empty file
-    copyTemplate({ templateName: 'vue_ts_app/public/android-chrome-192x192.png', targetPath: `apps/${options.name}/public/android-chrome-192x192.png` });
+    copyTemplate({ templateName: 'ts_vue/public/android-chrome-192x192.png', targetPath: `apps/${options.name}/public/android-chrome-192x192.png` });
 
     // @fix empty file
-    copyTemplate({ templateName: 'vue_ts_app/public/android-chrome-512x512.png', targetPath: `apps/${options.name}/public/android-chrome-512x512.png` });
+    copyTemplate({ templateName: 'ts_vue/public/android-chrome-512x512.png', targetPath: `apps/${options.name}/public/android-chrome-512x512.png` });
 
     // @fix empty file
-    copyTemplate({ templateName: 'vue_ts_app/public/apple-touch-icon.png', targetPath: `apps/${options.name}/public/apple-touch-icon.png` });
+    copyTemplate({ templateName: 'ts_vue/public/apple-touch-icon.png', targetPath: `apps/${options.name}/public/apple-touch-icon.png` });
 
     // @fix empty file
-    copyTemplate({ templateName: 'vue_ts_app/public/favicon.ico', targetPath: `apps/${options.name}/public/favicon.ico` });
+    copyTemplate({ templateName: 'ts_vue/public/favicon.ico', targetPath: `apps/${options.name}/public/favicon.ico` });
 
-    copyTemplate({ templateName: 'vue_ts_app/public/favicon.svg', targetPath: `apps/${options.name}/public/favicon.svg` });
+    copyTemplate({ templateName: 'ts_vue/public/favicon.svg', targetPath: `apps/${options.name}/public/favicon.svg` });
 
-    copyTemplate({ templateName: 'vue_ts_app/public/robots.txt.ejs', targetPath: `apps/${options.name}/public/robots.txt` });
+    copyTemplate({ templateName: 'ts_vue/public/robots.txt.ejs', targetPath: `apps/${options.name}/public/robots.txt` });
 
     // docker
-    copyTemplate({ templateName: 'vue_ts_app/docker/httpd.conf.ejs', targetPath: `apps/${options.name}/docker/httpd.conf` });
+    copyTemplate({ templateName: 'ts_vue/docker/httpd.conf.ejs', targetPath: `apps/${options.name}/docker/httpd.conf` });
 
     // ci
     // @fix provide json object
-    copyTemplate({ templateName: 'vue_ts_app/release.yaml.ejs', targetPath: `.github/workflows/release_apps_${options.name}.yaml`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'ts_vue/release.yaml.ejs', targetPath: `.github/workflows/release_apps_${options.name}.yaml`, variables: { name: options.name } });
 
     // @fix provide json object
-    copyTemplate({ templateName: 'vue_ts_app/tests.yaml.ejs', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'ts_vue/tests.yaml.ejs', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
 
     createFiles([{ path: 'pnpm-workspace.yaml', content: '' }]);
     mergeYaml({ filePath: `pnpm-workspace.yaml`, data: { 'packages': [`apps/${options.name}/`] } });

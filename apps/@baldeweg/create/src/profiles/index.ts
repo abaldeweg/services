@@ -1,5 +1,5 @@
 import type { Profile } from './../types/types.js';
-import { tsVueApp } from './vue_ts_app.js';
+import { tsVue } from './tsVue.js';
 import { base } from './base.js';
 import { devcontainer } from './devcontainer.js';
 import { tsLib } from './tsLib.js';
@@ -11,7 +11,7 @@ import { go } from './go.js';
 export const profiles: Record<string, Profile> = {
   base,
   devcontainer,
-  tsVueApp,
+  tsVue,
   tsLib,
   go,
 };
