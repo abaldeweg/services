@@ -6,3 +6,4 @@ export * from './writeJson.js';
 export * from './writeYaml.js';
 export * from './mergeYaml.js';
 export * from './runCommand.js';
+export * from './copyFile.js';

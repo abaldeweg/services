@@ -103,6 +103,18 @@ import { createDirs } from './src/helpers';
 createDirs(['apps', 'packages']);
 ```
 
+#### `copyFile(sourcePath: string, targetPath: string): void`
+
+Copies a file from the templates directory to the specified target location. Useful for binary files, like images. If the target file already exists, it is skipped with a notice.
+
+**Usage:**
+
+```typescript
+import { copyFile } from './src/helpers';
+
+copyFile('base/image.png', 'apps/web/public/image.png');
+```
+
 #### `createFiles(files: FileObject[]): Promise<void>`
 
 Creates files at the given paths, creating parent directories as needed. Skips files that already exist.

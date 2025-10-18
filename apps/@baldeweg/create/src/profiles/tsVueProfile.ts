@@ -1,5 +1,5 @@
 import { log, text } from '@clack/prompts';
-import { copyTemplate, createDirs, createFiles, mergeYaml, runCommand, writeJson } from '../helpers/index.js';
+import { copyFile, copyTemplate, createDirs, createFiles, mergeYaml, runCommand, writeJson } from '../helpers/index.js';
 import type { Profile } from '../types/types.js';
 
 /**
@@ -221,19 +221,15 @@ export const tsVueProfile: Profile = {
     copyTemplate({ templateName: 'ts_vue/src/views/HomeView.vue.ejs', targetPath: `apps/${options.name}/src/views/HomeView.vue` });
 
     // public
-    // @fix empty file
-    copyTemplate({ templateName: 'ts_vue/public/android-chrome-192x192.png', targetPath: `apps/${options.name}/public/android-chrome-192x192.png` });
+    copyFile('ts_vue/public/android-chrome-192x192.png', `apps/${options.name}/public/android-chrome-192x192.png`);
 
-    // @fix empty file
-    copyTemplate({ templateName: 'ts_vue/public/android-chrome-512x512.png', targetPath: `apps/${options.name}/public/android-chrome-512x512.png` });
+    copyFile('ts_vue/public/android-chrome-512x512.png', `apps/${options.name}/public/android-chrome-512x512.png`);
 
-    // @fix empty file
-    copyTemplate({ templateName: 'ts_vue/public/apple-touch-icon.png', targetPath: `apps/${options.name}/public/apple-touch-icon.png` });
+    copyFile('ts_vue/public/apple-touch-icon.png', `apps/${options.name}/public/apple-touch-icon.png`);
 
-    // @fix empty file
-    copyTemplate({ templateName: 'ts_vue/public/favicon.ico', targetPath: `apps/${options.name}/public/favicon.ico` });
+    copyFile('ts_vue/public/favicon.ico', `apps/${options.name}/public/favicon.ico`);
 
-    copyTemplate({ templateName: 'ts_vue/public/favicon.svg', targetPath: `apps/${options.name}/public/favicon.svg` });
+    copyFile('ts_vue/public/favicon.svg', `apps/${options.name}/public/favicon.svg`);
 
     copyTemplate({ templateName: 'ts_vue/public/robots.txt.ejs', targetPath: `apps/${options.name}/public/robots.txt` });
 
