@@ -168,7 +168,6 @@ export const tsVueProfile: Profile = {
 
     copyTemplate({ templateName: 'ts_vue/vite.config.ts.ejs', targetPath: `apps/${options.name}/vite.config.ts`, variables: { name: options.name } })
 
-    // @fix provide json object
     copyTemplate({ templateName: 'ts_vue/cloudbuild.yaml.ejs', targetPath: `apps/${options.name}/cloudbuild.yaml`, variables: { name: options.name } });
 
     // src
