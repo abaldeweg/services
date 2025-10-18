@@ -55,14 +55,15 @@ export const tsLib: Profile = {
         "outDir": "./dist",
         "module": "nodenext",
         "target": "esnext",
-        "types": [],
+        "types": [
+          "vitest/globals"
+        ],
         "sourceMap": true,
         "declaration": true,
         "declarationMap": true,
         "noUncheckedIndexedAccess": true,
         "exactOptionalPropertyTypes": true,
         "strict": true,
-        "jsx": "react-jsx",
         "verbatimModuleSyntax": true,
         "isolatedModules": true,
         "noUncheckedSideEffectImports": true,
