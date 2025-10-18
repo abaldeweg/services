@@ -44,11 +44,9 @@ export const tsLib: Profile = {
         "test": "jest"
       },
       "devDependencies": {
-        "@types/jest": "30.0.0",
-        "@types/node": "24.5.2",
-        "jest": "30.1.3",
-        "ts-jest": "29.4.4",
-        "typescript": "5.9.2"
+        "@types/node": "24.8.1",
+        "typescript": "5.9.3",
+        "vitest": "3.2.4"
       }
     })
 
@@ -73,7 +71,7 @@ export const tsLib: Profile = {
       }
     })
 
-    copyTemplate({ templateName: 'ts/jest.config.js.ejs', targetPath: `${outputDir}/jest.config.js` });
+    copyTemplate({ templateName: 'ts/vitest.config.ts.ejs', targetPath: `${outputDir}/vitest.config.ts` });
 
     createFiles([
       { path: `${outputDir}/src/index.ts`, content: null },
@@ -81,11 +79,9 @@ export const tsLib: Profile = {
     ])
 
     if (options.deploy) {
-      // @fix provide json object
       copyTemplate({ templateName: 'ts/release.yaml.ejs', targetPath: `.github/workflows/release_apps_${options.name}.yaml`, variables: { name: options.name } });
     }
 
-    // @fix provide json object
     copyTemplate({ templateName: 'ts/tests.yaml.ejs', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
   }
 };
