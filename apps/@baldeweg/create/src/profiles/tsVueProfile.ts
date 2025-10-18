@@ -1,4 +1,4 @@
-import { text } from '@clack/prompts';
+import { log, text } from '@clack/prompts';
 import { copyTemplate, createDirs, createFiles, mergeYaml, runCommand, writeJson } from '../helpers/index.js';
 import type { Profile } from '../types/types.js';
 
@@ -22,13 +22,31 @@ export const tsVueProfile: Profile = {
       },
     });
 
+    const description = await text({
+      message: 'What is the description of the package?',
+      placeholder: 'Description',
+      initialValue: 'Description',
+    });
+
     const license = await text({
       message: 'What is the license of the package?',
       placeholder: 'License',
       initialValue: '',
     });
 
-    return { name, license };
+    const color = await text({
+      message: "Which theme color should be used? (hex code)",
+      placeholder: "Hex color, e.g. #d31e27",
+      initialValue: "#d31e27",
+      validate(value: string) {
+        if (value.length === 0) return `Value is required!`;
+        if (!/^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/.test(value)) {
+          return 'Enter a valid hex color (e.g. #d31e27 or #f00)';
+        }
+      },
+    });
+
+    return { name, license, color, description };
   },
   run: async (options) => {
     createDirs(['.github', `apps/${options.name}`, `apps/${options.name}/src`, `apps/${options.name}/public`, `apps/${options.name}/docker`, `apps/${options.name}/src/composables/`]);
@@ -49,7 +67,7 @@ export const tsVueProfile: Profile = {
 
     copyTemplate({ templateName: 'ts_vue/eslint.config.ts.ejs', targetPath: `apps/${options.name}/eslint.config.ts` });
 
-    copyTemplate({ templateName: 'ts_vue/index.html.ejs', targetPath: `apps/${options.name}/index.html`, variables: { name: options.name } });
+    copyTemplate({ templateName: 'ts_vue/index.html.ejs', targetPath: `apps/${options.name}/index.html`, variables: { name: options.name, color: options.color, description: options.description } });
 
     writeJson(`apps/${options.name}/package.json`, {
       "name": options.name,
@@ -62,34 +80,34 @@ export const tsVueProfile: Profile = {
         "test": "vitest"
       },
       "dependencies": {
-        "vue": "3.5.21",
-        "vue-router": "4.5.1"
+        "vue": "3.5.22",
+        "vue-router": "4.6.3"
       },
       "devDependencies": {
         "@baldeweg/ui": "0.18.1",
         "@tsconfig/node24": "24.0.1",
-        "@types/jsdom": "21.1.7",
-        "@types/node": "24.5.2",
-        "@unhead/vue": "2.0.14",
+        "@types/jsdom": "27.0.0",
+        "@types/node": "24.8.1",
+        "@unhead/vue": "2.0.19",
         "@vitejs/plugin-vue": "6.0.1",
-        "@vitest/eslint-plugin": "1.3.10",
+        "@vitest/eslint-plugin": "1.3.23",
         "@vue/eslint-config-prettier": "10.2.0",
         "@vue/eslint-config-typescript": "14.6.0",
         "@vue/test-utils": "2.4.6",
         "@vue/tsconfig": "0.8.1",
         "axios": "1.12.2",
-        "eslint": "9.35.0",
-        "eslint-plugin-vue": "10.4.0",
-        "jiti": "2.5.1",
-        "jsdom": "26.1.0",
+        "eslint": "9.38.0",
+        "eslint-plugin-vue": "10.5.1",
+        "jiti": "2.6.1",
+        "jsdom": "27.0.1",
         "prettier": "3.6.2",
-        "typescript": "5.9.2",
-        "vite": "7.1.5",
-        "vite-plugin-pwa": "1.0.3",
+        "typescript": "5.9.3",
+        "vite": "7.1.10",
+        "vite-plugin-pwa": "1.1.0",
         "vite-plugin-webfont-dl": "3.11.1",
         "vitest": "3.2.4",
         "vue-i18n": "11.1.12",
-        "vue-tsc": "3.0.7"
+        "vue-tsc": "3.1.1"
       },
       "license": options.license || undefined
     }
@@ -161,12 +179,15 @@ export const tsVueProfile: Profile = {
         "lib": [],
         "types": [
           "node",
-          "jsdom"
+          "jsdom",
+          "vitest/globals"
         ]
       }
     });
 
-    copyTemplate({ templateName: 'ts_vue/vite.config.ts.ejs', targetPath: `apps/${options.name}/vite.config.ts`, variables: { name: options.name } })
+    const short_name = String(options.name).replace(/[^a-zA-Z0-9_-]+/g, '-') || 'short_name';
+    log.info(`Derived short_name: ${short_name}`);
+    copyTemplate({ templateName: 'ts_vue/vite.config.ts.ejs', targetPath: `apps/${options.name}/vite.config.ts`, variables: { name: options.name, color: options.color, description: options.description, short_name: short_name } })
 
     copyTemplate({ templateName: 'ts_vue/cloudbuild.yaml.ejs', targetPath: `apps/${options.name}/cloudbuild.yaml`, variables: { name: options.name } });
 
@@ -177,9 +198,9 @@ export const tsVueProfile: Profile = {
 
     copyTemplate({ templateName: 'ts_vue/src/unit.setup.ts.ejs', targetPath: `apps/${options.name}/src/unit.setup.ts` });
 
-    copyTemplate({ templateName: 'ts_vue/src/components/Welcome.test.ts.ejs', targetPath: `apps/${options.name}/src/components/Welcome.test.ts` });
+    copyTemplate({ templateName: 'ts_vue/src/components/HomeWelcome.test.ts.ejs', targetPath: `apps/${options.name}/src/components/HomeWelcome.test.ts` });
 
-    copyTemplate({ templateName: 'ts_vue/src/components/Welcome.vue.ejs', targetPath: `apps/${options.name}/src/components/Welcome.vue` });
+    copyTemplate({ templateName: 'ts_vue/src/components/HomeWelcome.vue.ejs', targetPath: `apps/${options.name}/src/components/HomeWelcome.vue` });
 
     writeJson(`apps/${options.name}/src/i18n/locales/de.json`, {
       "welcome": "Willkommen"

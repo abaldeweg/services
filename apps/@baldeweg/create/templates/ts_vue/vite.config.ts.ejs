@@ -15,9 +15,9 @@ export default defineConfig(({ mode }) => {
         includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
         manifest: {
           name: '<%= name %>',
-          short_name: 'short_name',
-          description: 'Description',
-          theme_color: '#d31e27',
+          short_name: '<%= short_name %>',
+          description: '<%= description %>',
+          theme_color: '<%= color %>',
           icons: [
             {
               src: 'android-chrome-192x192.png',
@@ -48,6 +48,7 @@ export default defineConfig(({ mode }) => {
     test: {
       setupFiles: ['src/unit.setup.ts'],
       environment: 'jsdom',
+      globals: true,
       root: fileURLToPath(new URL('./', import.meta.url)),
     },
   }

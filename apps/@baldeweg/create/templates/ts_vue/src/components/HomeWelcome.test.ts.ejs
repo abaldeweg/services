@@ -1,0 +1,9 @@
+import { mount } from '@vue/test-utils'
+import HomeWelcome from './HomeWelcome.vue'
+
+describe('HomeWelcome', () => {
+  it('renders properly', () => {
+    const wrapper = mount(HomeWelcome, { props: { msg: 'Welcome' } })
+    expect(wrapper.text()).toContain('Welcome')
+  })
+})
