@@ -8,7 +8,7 @@ import { log } from '@clack/prompts';
 export function runCommand(command: string, args: string[] = [], workingDir: string = '.'): void {
   const result = spawnSync(command, args, {
     cwd: resolve(workingDir),
-    shell: true,
+    shell: false,
     encoding: 'utf-8',
   });
 
