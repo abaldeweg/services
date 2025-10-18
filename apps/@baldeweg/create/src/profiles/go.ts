@@ -57,17 +57,14 @@ export const go: Profile = {
     }
 
     if (options.deploy) {
-      // @fix provide json object
       copyTemplate({
         templateName: 'go/release.yaml.ejs', targetPath: `.github/workflows/release_apps_${options.name}.yaml`, variables: { name: options.name }
       });
     }
 
-    // @fix provide json object
     copyTemplate({ templateName: 'go/tests.yaml.ejs', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
 
     if (options.deploy) {
-      // @fix provide json object
       copyTemplate({ templateName: 'go/cloudbuild.yaml.ejs', targetPath: `${outputDir}/cloudbuild.yaml`, variables: { name: options.name } });
     }
 
