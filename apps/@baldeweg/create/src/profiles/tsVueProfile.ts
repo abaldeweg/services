@@ -40,7 +40,7 @@ export const tsVueProfile: Profile = {
       "$schema": "https://json.schemastore.org/prettierrc",
       "semi": false,
       "singleQuote": true,
-      "printWidth": 100
+      "printWidth": 80
     });
 
     copyTemplate({ templateName: 'ts_vue/Dockerfile.ejs', targetPath: `apps/${options.name}/Dockerfile`, variables: { name: options.name } });
@@ -147,8 +147,7 @@ export const tsVueProfile: Profile = {
           "node"
         ]
       }
-    }
-    );
+    });
 
     writeJson(`apps/${options.name}/tsconfig.vitest.json`, {
       "extends": "./tsconfig.app.json",
@@ -222,10 +221,8 @@ export const tsVueProfile: Profile = {
     copyTemplate({ templateName: 'ts_vue/docker/httpd.conf.ejs', targetPath: `apps/${options.name}/docker/httpd.conf` });
 
     // ci
-    // @fix provide json object
     copyTemplate({ templateName: 'ts_vue/release.yaml.ejs', targetPath: `.github/workflows/release_apps_${options.name}.yaml`, variables: { name: options.name } });
 
-    // @fix provide json object
     copyTemplate({ templateName: 'ts_vue/tests.yaml.ejs', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
 
     createFiles([{ path: 'pnpm-workspace.yaml', content: null }]);
