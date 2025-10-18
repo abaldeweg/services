@@ -69,6 +69,9 @@ export const tsLibProfile: Profile = {
         "noUncheckedSideEffectImports": true,
         "moduleDetection": "force",
         "skipLibCheck": true,
+        "include": [
+          "src/**/*"
+        ]
       }
     })
 
