@@ -48,7 +48,6 @@ export default defineConfig(({ mode }) => {
     test: {
       setupFiles: ['src/unit.setup.ts'],
       environment: 'jsdom',
-      globals: true,
       root: fileURLToPath(new URL('./', import.meta.url)),
     },
   }
