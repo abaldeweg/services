@@ -1,6 +1,6 @@
 export * from './createDirs.js';
 export * from './mergeJson.js';
-export * from './template.js';
+export * from './copyTemplate.js';
 export * from './createFiles.js';
 export * from './writeJson.js';
 export * from './writeYaml.js';

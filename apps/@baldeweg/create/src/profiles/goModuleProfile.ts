@@ -46,26 +46,26 @@ export const goModuleProfile: Profile = {
       createDirs([`${outputDir}/pkg`]);
     }
 
-    copyTemplate({ templateName: 'go/main.go.ejs', targetPath: `${outputDir}/app/main.go` });
+    copyTemplate('go/main.go.ejs', `${outputDir}/app/main.go`);
 
     runCommand('go', ['mod', 'init', options.importPath], `${outputDir}`);
 
     createFiles([{ path: `${outputDir}/go.sum`, content: null }]);
 
     if (options.deploy) {
-      copyTemplate({ templateName: 'go/Dockerfile.ejs', targetPath: `${outputDir}/Dockerfile`, variables: { name: options.name } });
+      copyTemplate('go/Dockerfile.ejs', `${outputDir}/Dockerfile`, { name: options.name });
     }
 
     if (options.deploy) {
-      copyTemplate({
-        templateName: 'go/release.yaml.ejs', targetPath: `.github/workflows/release_apps_${options.name}.yaml`, variables: { name: options.name }
-      });
+      copyTemplate(
+        'go/release.yaml.ejs', `.github/workflows/release_apps_${options.name}.yaml`, { name: options.name }
+      );
     }
 
-    copyTemplate({ templateName: 'go/tests.yaml.ejs', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
+    copyTemplate('go/tests.yaml.ejs', `.github/workflows/tests_apps_${options.name}.yaml`, { name: options.name });
 
     if (options.deploy) {
-      copyTemplate({ templateName: 'go/cloudbuild.yaml.ejs', targetPath: `${outputDir}/cloudbuild.yaml`, variables: { name: options.name } });
+      copyTemplate('go/cloudbuild.yaml.ejs', `${outputDir}/cloudbuild.yaml`, { name: options.name });
     }
 
     if (!existsSync('go.work')) {

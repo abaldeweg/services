@@ -1,19 +1,15 @@
 import { copyFileSync, existsSync } from 'fs';
-import { resolve, dirname, join } from 'path';
+import { dirname } from 'path';
 import { mkdirSync } from 'fs';
-import { fileURLToPath } from 'url';
+import { getSourcePath, getTargetPath } from './utils.js';
+import { log } from '@clack/prompts';
 
 /**
  * Copies a file to specified dir. Useful for binary files, like images.
  */
 export function copyFile(sourcePath: string, targetPath: string): void {
-  const moduleUrl = new URL('', import.meta.url);
-  const currentFilePath = fileURLToPath(moduleUrl);
-  const currentDir = dirname(currentFilePath);
-  const absSource = join(currentDir, '..', '..', 'templates', sourcePath);
-
-  const projectPath = resolve('.');
-  const absTarget = join(projectPath, targetPath);
+  const absSource = getSourcePath(sourcePath);
+  const absTarget = getTargetPath(targetPath);
 
   if (existsSync(absTarget)) {
     console.warn(`File already exists, skipping: ${targetPath}`);
@@ -26,6 +22,6 @@ export function copyFile(sourcePath: string, targetPath: string): void {
   try {
     copyFileSync(absSource, absTarget);
   } catch (err: any) {
-    throw new Error(`Failed to copy file from ${absSource} to ${absTarget}: ${err?.message || err}`);
+    log.error(`Failed to copy file from ${absSource} to ${absTarget}: ${err?.message || err}`);
   }
 }

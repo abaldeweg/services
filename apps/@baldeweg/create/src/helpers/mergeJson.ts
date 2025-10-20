@@ -1,13 +1,13 @@
 import { readFileSync, writeFileSync, existsSync } from 'fs';
-import { resolve } from 'path';
 import { log } from '@clack/prompts';
 import deepmerge from 'deepmerge';
+import { getTargetPath } from './utils.js';
 
 /**
  * Merges data into an existing JSON file.
  */
 export function mergeJson(filePath: string, data: object): void {
-  const absFilePath = resolve('.', filePath);
+  const absFilePath = getTargetPath(filePath);
 
   let fileContent: any = {};
   if (existsSync(absFilePath)) {

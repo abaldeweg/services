@@ -6,13 +6,6 @@ export interface Profile {
   run: (options: Record<string, any>) => Promise<void>;
 }
 
-export interface TemplateOptions {
-  templateName: string;
-  targetPath: string;
-  variables?: Record<string, string>;
-  templateDir?: string;
-}
-
 export interface FileObject {
   path: string;
   content: string | null;

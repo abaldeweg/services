@@ -1,14 +1,14 @@
 import { readFileSync, writeFileSync, existsSync } from 'fs';
-import { resolve } from 'path';
 import yaml from 'js-yaml';
 import { log } from '@clack/prompts';
 import deepmerge from 'deepmerge';
+import { getTargetPath } from './utils.js';
 
 /**
- * Merge data into an existing YAML file.
+ * Merges data into an existing YAML file.
  */
 export function mergeYaml(filePath: string, data: object): void {
-  const absFilePath = resolve('.', filePath);
+  const absFilePath = getTargetPath(filePath);
 
   let fileContent: any = {};
   if (existsSync(absFilePath)) {

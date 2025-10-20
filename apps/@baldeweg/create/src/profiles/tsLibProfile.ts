@@ -75,7 +75,7 @@ export const tsLibProfile: Profile = {
       }
     })
 
-    copyTemplate({ templateName: 'ts/vitest.config.ts.ejs', targetPath: `${outputDir}/vitest.config.ts` });
+    copyTemplate('ts/vitest.config.ts.ejs', `${outputDir}/vitest.config.ts`);
 
     createFiles([
       { path: `${outputDir}/src/index.ts`, content: null },
@@ -83,10 +83,10 @@ export const tsLibProfile: Profile = {
     ])
 
     if (options.deploy) {
-      copyTemplate({ templateName: 'ts/release.yaml.ejs', targetPath: `.github/workflows/release_apps_${options.name}.yaml`, variables: { name: options.name } });
+      copyTemplate('ts/release.yaml.ejs', `.github/workflows/release_apps_${options.name}.yaml`, { name: options.name });
     }
 
-    copyTemplate({ templateName: 'ts/tests.yaml.ejs', targetPath: `.github/workflows/tests_apps_${options.name}.yaml`, variables: { name: options.name } });
+    copyTemplate('ts/tests.yaml.ejs', `.github/workflows/tests_apps_${options.name}.yaml`, { name: options.name });
 
     createFiles([{ path: 'pnpm-workspace.yaml', content: null }]);
     mergeYaml(`pnpm-workspace.yaml`, { 'packages': [`apps/${options.name}/`] });
