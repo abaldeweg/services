@@ -38,7 +38,7 @@ jobs:
             - name: Push the tag
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              run: git push origin <%= name %>/${{ inputs.tag_name }}
+              run: git push origin @baldeweg/create/${{ inputs.tag_name }}
     publish:
         needs: tag
         runs-on: ubuntu-latest
