@@ -8,9 +8,12 @@
       "version": "24",
       "installPnpm": "true"
     },
-    "ghcr.io/devcontainers/features/go:1": {}
+    "ghcr.io/devcontainers/features/go:1": {},
+    "ghcr.io/devcontainers/features/python:1": {}
   },
-  "postCreateCommand": "pnpm install",
+  "postCreateCommand": [
+    "pnpm install"
+  ],
   "customizations": {
     "vscode": {
       "extensions": [

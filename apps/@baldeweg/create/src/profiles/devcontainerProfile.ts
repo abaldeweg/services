@@ -15,6 +15,7 @@ export const devcontainerProfile: Profile = {
       options: [
         { value: 'js', label: 'JavaScript/ TypeScript/ VueJS' },
         { value: 'go', label: 'Go' },
+        { value: 'python', label: 'Python/ Jupyter Notebooks' },
       ],
     });
 
@@ -27,7 +28,7 @@ export const devcontainerProfile: Profile = {
       "features": {
         "ghcr.io/abaldeweg/devcontainer_features/bash:3.0.0": {}
       },
-      "postCreateCommand": undefined,
+      "postCreateCommand": [],
       "customizations": {
         "vscode": {
           "extensions": [
@@ -45,7 +46,7 @@ export const devcontainerProfile: Profile = {
         "version": "24",
         "installPnpm": "true"
       };
-      devcontainer.postCreateCommand = 'pnpm install';
+      devcontainer.postCreateCommand = ['pnpm install'];
       devcontainer.customizations.vscode.extensions.push(
         'dbaeumer.vscode-eslint',
         'esbenp.prettier-vscode',
@@ -55,13 +56,14 @@ export const devcontainerProfile: Profile = {
         'redhat.vscode-yaml'
       );
     }
-    if (options.ecosystems.includes('go')) {
-      devcontainer.features['ghcr.io/devcontainers/features/go:1'] = {};
-      devcontainer.features['ghcr.io/guiyomh/features/goreleaser:0.1.1'] = {};
+    if (options.ecosystems.includes('python')) {
+      devcontainer.features['ghcr.io/devcontainers/features/python:1'] = {};
       devcontainer.customizations.vscode.extensions.push(
-        'golang.go',
-        'mrmlnc.vscode-apache',
-        'redhat.vscode-yaml'
+        "ms-toolsai.jupyter",
+        "ms-python.python",
+        "mechatroner.rainbow-csv",
+        "ms-python.black-formatter",
+        "ms-python.isort",
       );
     }
 

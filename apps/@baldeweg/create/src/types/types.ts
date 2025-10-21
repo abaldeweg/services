@@ -15,7 +15,7 @@ export interface Devcontainer {
   name: string;
   image: string;
   features: { [key: string]: {} };
-  postCreateCommand: string | undefined;
+  postCreateCommand?: string[];
   customizations: {
     vscode: {
       extensions: string[];
