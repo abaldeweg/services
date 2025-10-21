@@ -188,6 +188,18 @@ import { runCommand } from './src/helpers';
 await runCommand('pnpm', ['install']);
 ```
 
+#### `makeSlug(term: string): string`
+
+Replaces special characters in a string to create a slug suitable for filenames. It replaces `/` with `_` and removes any other non-alphanumeric characters except underscores and hyphens.
+
+**Usage:**
+
+```typescript
+import { makeSlug } from './src/helpers';
+
+const slug = makeSlug('my/project name'); // 'my_project_name'
+```
+
 ## Template Engine
 
 This project uses EJS for template rendering. You can use EJS syntax in your templates, including variables and logic such as if statements and loops.
