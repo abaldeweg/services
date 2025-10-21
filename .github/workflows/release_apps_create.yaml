@@ -34,11 +34,11 @@ jobs:
             - name: Push Changes
               run: git push origin HEAD
             - name: Tag the commit
-              run: git tag -a ${{ inputs.tag_name }} -m "Version ${{ inputs.tag_name }}"
+              run: git tag -a <%= name %>/${{ inputs.tag_name }} -m "Version <%= name %>/${{ inputs.tag_name }}"
             - name: Push the tag
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              run: git push origin ${{ inputs.tag_name }}
+              run: git push origin <%= name %>/${{ inputs.tag_name }}
     publish:
         needs: tag
         runs-on: ubuntu-latest
