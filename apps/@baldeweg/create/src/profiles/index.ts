@@ -4,6 +4,7 @@ import { devcontainerProfile } from './devcontainerProfile.js';
 import { tsLibProfile } from './tsLibProfile.js';
 import { goModuleProfile } from './goModuleProfile.js';
 import type { Profile } from './../types/types.js';
+import { notebookProfile } from './notebookProfile.js';
 
 /**
  * Registry of available profiles.
@@ -14,6 +15,7 @@ export const profiles: Record<string, Profile> = {
   tsVueProfile,
   tsLibProfile,
   goModuleProfile,
+  notebookProfile
 };
 
 /**
