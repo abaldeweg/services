@@ -30,11 +30,11 @@ jobs:
               uses: stefanzweifel/git-auto-commit-action@v7
               with:
                   commit_message: "chore: update version"
-                  file_pattern: apps/@baldeweg/create/*
+                  file_pattern: apps/@baldeweg/create/package.json
             - name: Push Changes
               run: git push origin HEAD
             - name: Tag the commit
-              run: git tag -a <%= name %>/${{ inputs.tag_name }} -m "Version <%= name %>/${{ inputs.tag_name }}"
+              run: git tag -a @baldeweg/create/${{ inputs.tag_name }} -m "Version @baldeweg/create/${{ inputs.tag_name }}"
             - name: Push the tag
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
