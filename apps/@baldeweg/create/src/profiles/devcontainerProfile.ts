@@ -42,7 +42,7 @@ export const devcontainerProfile: Profile = {
     };
 
     if (options.ecosystems.includes('js')) {
-      devcontainer.features['ghcr.io/devcontainers/features/node:1'] = {
+      devcontainer.features['ghcr.io/devcontainers/features/node:1.6.3'] = {
         "version": "24",
         "installPnpm": "true"
       };
@@ -56,8 +56,19 @@ export const devcontainerProfile: Profile = {
         'redhat.vscode-yaml'
       );
     }
+
+    if (options.ecosystems.includes('go')) {
+      devcontainer.features['ghcr.io/devcontainers/features/go:1.3.2'] = {};
+      devcontainer.features['ghcr.io/guiyomh/features/goreleaser:0.1.1'] = {};
+      devcontainer.customizations.vscode.extensions.push(
+        'golang.go',
+        'mrmlnc.vscode-apache',
+        'redhat.vscode-yaml'
+      );
+    }
+
     if (options.ecosystems.includes('python')) {
-      devcontainer.features['ghcr.io/devcontainers/features/python:1'] = {};
+      devcontainer.features['ghcr.io/devcontainers/features/python:1.7.1'] = {};
       devcontainer.customizations.vscode.extensions.push(
         "ms-toolsai.jupyter",
         "ms-python.python",
