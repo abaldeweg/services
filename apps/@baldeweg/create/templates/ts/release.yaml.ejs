@@ -30,7 +30,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: "chore: update version"
-          file_pattern: apps/<%= name %>/*
+          file_pattern: apps/<%= name %>/package.json
       - name: Push Changes
         run: git push origin HEAD
       - name: Tag the commit
