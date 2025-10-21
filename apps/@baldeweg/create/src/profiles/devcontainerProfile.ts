@@ -48,12 +48,12 @@ export const devcontainerProfile: Profile = {
       };
       devcontainer.postCreateCommand = ['pnpm install'];
       devcontainer.customizations.vscode.extensions.push(
-        'dbaeumer.vscode-eslint',
-        'esbenp.prettier-vscode',
-        'Vue.volar',
-        'vitest.explorer',
-        'mrmlnc.vscode-apache',
-        'redhat.vscode-yaml'
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "Vue.volar",
+        "vitest.explorer",
+        "mrmlnc.vscode-apache",
+        "redhat.vscode-yaml",
       );
     }
 
@@ -61,9 +61,9 @@ export const devcontainerProfile: Profile = {
       devcontainer.features['ghcr.io/devcontainers/features/go:1.3.2'] = {};
       devcontainer.features['ghcr.io/guiyomh/features/goreleaser:0.1.1'] = {};
       devcontainer.customizations.vscode.extensions.push(
-        'golang.go',
-        'mrmlnc.vscode-apache',
-        'redhat.vscode-yaml'
+        "golang.go",
+        "mrmlnc.vscode-apache",
+        "redhat.vscode-yaml",
       );
     }
 
