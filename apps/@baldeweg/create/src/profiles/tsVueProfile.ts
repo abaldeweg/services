@@ -1,6 +1,7 @@
 import { log, text } from '@clack/prompts';
 import { copyFile, copyTemplate, createDirs, createFiles, mergeYaml, runCommand, writeJson } from '../helpers/index.js';
 import type { Profile } from '../types/types.js';
+import { makeSlug } from '../helpers/makeSlug.js';
 
 /**
  * Create a Vue 3 + Vite app in apps/.
@@ -16,8 +17,20 @@ export const tsVueProfile: Profile = {
       initialValue: 'ts_vue',
       validate(value) {
         if (value.length === 0) return `Value is required!`;
+        if (!/^[a-zA-Z0-9_@\/-]+$/.test(value)) {
+          return 'Name must only contain letters, numbers, hyphens (-), underscores (_), at (@), and slash (/).';
+        }
+      },
+    });
+
+    const shortName = await text({
+      message: 'What is the short name of the package? It will be used in the manifest for the PWA.',
+      placeholder: 'Short Package Name',
+      initialValue: 'ts_vue',
+      validate(value) {
+        if (value.length === 0) return `Value is required!`;
         if (!/^[a-zA-Z0-9_-]+$/.test(value)) {
-          return 'Name must only contain letters, numbers, hyphens (-), and underscores (_).';
+          return 'Name must only contain letters, numbers, hyphens (-) and underscores (_).';
         }
       },
     });
@@ -46,7 +59,7 @@ export const tsVueProfile: Profile = {
       },
     });
 
-    return { name, license, color, description };
+    return { name, shortName, license, color, description };
   },
   run: async (options) => {
     createDirs(['.github', `apps/${options.name}`, `apps/${options.name}/src`, `apps/${options.name}/public`, `apps/${options.name}/docker`, `apps/${options.name}/src/composables/`]);
@@ -185,9 +198,7 @@ export const tsVueProfile: Profile = {
       }
     });
 
-    const short_name = String(options.name).replace(/[^a-zA-Z0-9_-]+/g, '-') || 'short_name';
-    log.info(`Derived short_name: ${short_name}`);
-    copyTemplate('ts_vue/vite.config.ts.ejs', `apps/${options.name}/vite.config.ts`, { name: options.name, color: options.color, description: options.description, short_name: short_name })
+    copyTemplate('ts_vue/vite.config.ts.ejs', `apps/${options.name}/vite.config.ts`, { name: options.name, color: options.color, description: options.description, short_name: options.shortName })
 
     copyTemplate('ts_vue/cloudbuild.yaml.ejs', `apps/${options.name}/cloudbuild.yaml`, { name: options.name });
 
@@ -237,9 +248,9 @@ export const tsVueProfile: Profile = {
     copyTemplate('ts_vue/docker/httpd.conf.ejs', `apps/${options.name}/docker/httpd.conf`);
 
     // ci
-    copyTemplate('ts_vue/release.yaml.ejs', `.github/workflows/release_apps_${options.name}.yaml`, { name: options.name });
+    copyTemplate('ts_vue/release.yaml.ejs', `.github/workflows/release_apps_${makeSlug(options.name)}.yaml`, { name: options.name });
 
-    copyTemplate('ts_vue/tests.yaml.ejs', `.github/workflows/tests_apps_${options.name}.yaml`, { name: options.name });
+    copyTemplate('ts_vue/tests.yaml.ejs', `.github/workflows/tests_apps_${makeSlug(options.name)}.yaml`, { name: options.name });
 
     createFiles([{ path: 'pnpm-workspace.yaml', content: null }]);
     mergeYaml(`pnpm-workspace.yaml`, { 'packages': [`apps/${options.name}/`] });

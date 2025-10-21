@@ -1,6 +1,7 @@
 import { text, confirm } from '@clack/prompts';
 import { copyTemplate, createDirs, createFiles, mergeYaml, runCommand, writeJson } from '../helpers/index.js';
 import type { Profile } from '../types/types.js';
+import { makeSlug } from '../helpers/makeSlug.js';
 
 /**
  * Create a typescript library.
@@ -16,8 +17,8 @@ export const tsLibProfile: Profile = {
       initialValue: 'ts_library',
       validate(value) {
         if (value.length === 0) return `Value is required!`;
-        if (!/^[a-zA-Z0-9_-]+$/.test(value)) {
-          return 'Name must only contain letters, numbers, hyphens (-), and underscores (_).';
+        if (!/^[a-zA-Z0-9_@\/-]+$/.test(value)) {
+          return 'Name must only contain letters, numbers, hyphens (-), underscores (_), at (@), and slash (/).';
         }
       },
     });
@@ -80,10 +81,10 @@ export const tsLibProfile: Profile = {
     ])
 
     if (options.deploy) {
-      copyTemplate('ts/release.yaml.ejs', `.github/workflows/release_apps_${options.name}.yaml`, { name: options.name });
+      copyTemplate('ts/release.yaml.ejs', `.github/workflows/release_apps_${makeSlug(options.name)}.yaml`, { name: options.name });
     }
 
-    copyTemplate('ts/tests.yaml.ejs', `.github/workflows/tests_apps_${options.name}.yaml`, { name: options.name });
+    copyTemplate('ts/tests.yaml.ejs', `.github/workflows/tests_apps_${makeSlug(options.name)}.yaml`, { name: options.name });
 
     createFiles([{ path: 'pnpm-workspace.yaml', content: null }]);
     mergeYaml(`pnpm-workspace.yaml`, { 'packages': [`apps/${options.name}/`] });
