@@ -3,12 +3,12 @@ import { writeJson } from '../helpers/writeJson.js';
 import type { Devcontainer, Profile } from '../types/types.js';
 
 /**
- * Create a basic devcontainer with base image and features.
+ * Creates a basic devcontainer with base image and features.
  */
 export const devcontainerProfile: Profile = {
   id: 'devcontainerProfile',
   name: 'Devcontainer',
-  description: 'Create a basic devcontainer with base image and features.',
+  description: 'Creates a basic devcontainer with base image and features.',
   ask: async () => {
     const ecosystems = await multiselect({
       message: 'Which ecosystems do you want to use?',
