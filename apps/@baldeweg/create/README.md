@@ -30,6 +30,7 @@ This structure organizes your codebase around self-contained modules, promoting 
 
 - `apps/`: This directory contains all of your executable applications. These are typically the public-facing or end-user facing parts of your project, such as a web frontend, an API server, or a command-line tool. An app consumes packages from the `packages` directory.
 - `packages/`: This directory holds all the reusable libraries that are shared across your applications. A package is a dependency that can be imported by one or more apps across different repositories.
+- `notebooks/`: This directory contains notebooks for data analysis or experimentation.
 - `scripts/`: Shell scripts are the universal language for automating your build and test processes. They're natively supported on all major operating systems and CI/CD environments, ensuring your commands run everywhere.
 
 ### Testing

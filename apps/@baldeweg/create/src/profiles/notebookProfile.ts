@@ -9,7 +9,7 @@ import { makeSlug } from '../helpers/makeSlug.js';
 export const notebookProfile: Profile = {
   id: 'notebookProfile',
   name: 'Notebook',
-  description: 'Creates a notebook in packages/.',
+  description: 'Creates a notebook.',
   ask: async () => {
     const name = await text({
       message: 'Whats the name of the project?',
@@ -26,19 +26,19 @@ export const notebookProfile: Profile = {
     return { name };
   },
   run: async (options) => {
-    createDirs([`packages/${options.name}`, `packages/${options.name}/data`, `packages/${options.name}/export`, `packages/${options.name}/lib`]);
+    createDirs([`notebooks/${options.name}`, `notebooks/${options.name}/data`, `notebooks/${options.name}/export`, `notebooks/${options.name}/lib`]);
 
-    createFiles([{ path: `packages/${options.name}/README.md`, content: '# Notebook' }]);
+    createFiles([{ path: `notebooks/${options.name}/README.md`, content: '# Notebook' }]);
 
-    createFiles([{ path: `packages/${options.name}/notebook.ipynb`, content: null }]);
+    createFiles([{ path: `notebooks/${options.name}/notebook.ipynb`, content: null }]);
 
     createFiles([{
-      path: `packages/${options.name}/requirements.txt`, content: 'ipywidgets==8.1.7\nmatplotlib==3.10.7\npandas == 2.3.3'
+      path: `notebooks/${options.name}/requirements.txt`, content: 'ipywidgets==8.1.7\nmatplotlib==3.10.7\npandas == 2.3.3'
     }]);
 
-    runCommand('python', ['-m', 'venv', '.venv'], `packages/${options.name}`);
-    runCommand('.venv/bin/pip', ['install', '-r', 'requirements.txt'], `packages/${options.name}`);
-    runCommand('.venv/bin/pip', ['install', 'ipykernel'], `packages/${options.name}`);
-    runCommand('.venv/bin/python', ['-m', 'ipykernel', 'install', '--user', `--name=${makeSlug(options.name)}-venv`, `--display-name='${options.name} Venv'`], `packages/${options.name}`);
+    runCommand('python', ['-m', 'venv', '.venv'], `notebooks/${options.name}`);
+    runCommand('.venv/bin/pip', ['install', '-r', 'requirements.txt'], `notebooks/${options.name}`);
+    runCommand('.venv/bin/pip', ['install', 'ipykernel'], `notebooks/${options.name}`);
+    runCommand('.venv/bin/python', ['-m', 'ipykernel', 'install', '--user', `--name=${makeSlug(options.name)}-venv`, `--display-name='${options.name} Venv'`], `notebooks/${options.name}`);
   }
 };

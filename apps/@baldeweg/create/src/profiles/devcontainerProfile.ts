@@ -15,7 +15,7 @@ export const devcontainerProfile: Profile = {
       options: [
         { value: 'js', label: 'JavaScript/ TypeScript/ VueJS' },
         { value: 'go', label: 'Go' },
-        { value: 'python', label: 'Python/ Jupyter Notebooks' },
+        { value: 'python', label: 'Python/ Notebooks' },
       ],
     });
 
