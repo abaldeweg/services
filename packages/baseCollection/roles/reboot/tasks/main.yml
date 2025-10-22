@@ -1,0 +1,8 @@
+---
+- name: Create Cron Job
+  ansible.builtin.template:
+      src: "reboot"
+      dest: "/etc/cron.d/reboot"
+      mode: "0644"
+      owner: root
+      group: root
