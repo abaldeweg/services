@@ -46,7 +46,7 @@ export const goModuleProfile: Profile = {
       createDirs([`${outputDir}/pkg`]);
     }
 
-    copyTemplate('go/main.go.ejs', `${outputDir}/app/main.go`);
+    copyTemplate('go/main.go.ejs', `${outputDir}/main.go`);
 
     runCommand('go', ['mod', 'init', options.importPath], `${outputDir}`);
 
