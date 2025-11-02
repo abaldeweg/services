@@ -1,7 +1,7 @@
 import { text } from '@clack/prompts';
-import type { Profile } from '../types/types.js';
 import { createDirs, createFiles, runCommand } from '../helpers/index.js';
 import { makeSlug } from '../helpers/makeSlug.js';
+import type { Profile } from '../types/types.js';
 
 /**
  * Creates a notebook in packages/.
