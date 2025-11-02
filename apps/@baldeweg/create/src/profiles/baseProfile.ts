@@ -65,7 +65,7 @@ export const baseProfile: Profile = {
       "description": options.description,
       "license": options.license,
       "devDependencies": {
-        "@baldeweg/create": "0.1.3",
+        "@baldeweg/create": "0.3.0",
       }
     })
 
