@@ -9,7 +9,7 @@ import type { Profile } from '../types/types.js';
 export const tsLibProfile: Profile = {
   id: 'tsLibProfile',
   name: 'TypeScript Library',
-  description: 'Create a typescript library.',
+  description: 'Creates a typescript library.',
   ask: async () => {
     const name = await text({
       message: 'What is the name of the library?',
