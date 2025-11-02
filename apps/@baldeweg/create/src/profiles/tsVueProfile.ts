@@ -47,7 +47,7 @@ export const tsVueProfile: Profile = {
     });
 
     const color = await text({
-      message: "Which theme color should be used? (hex code)",
+      message: "Which theme color should be used (hex code)?",
       placeholder: "Hex color, e.g. #d31e27",
       initialValue: "#d31e27",
       validate(value: string) {
