@@ -1,7 +1,7 @@
 import { text, confirm } from '@clack/prompts';
 import { copyTemplate, createDirs, createFiles, mergeYaml, runCommand, writeJson } from '../helpers/index.js';
-import type { Profile } from '../types/types.js';
 import { makeSlug } from '../helpers/makeSlug.js';
+import type { Profile } from '../types/types.js';
 
 /**
  * Create a typescript library.
