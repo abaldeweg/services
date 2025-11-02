@@ -4,7 +4,7 @@ import type { Profile } from '../types/types.js';
 import { existsSync } from 'fs';
 
 /**
- * Create a go module.
+ * Creates a go module.
  */
 export const goModuleProfile: Profile = {
   id: 'goModuleProfile',
