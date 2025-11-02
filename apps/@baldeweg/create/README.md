@@ -4,16 +4,16 @@ A simple project generator with profile-based configuration for creating a monor
 
 ## Overview
 
-## Installation
-
-```bash
-pnpm install -g @baldeweg/create
-```
-
-or
+## Quick Start
 
 ```bash
 npx @baldeweg/create
+```
+
+## Install
+
+```bash
+pnpm install -g @baldeweg/create
 ```
 
 ## Usage
