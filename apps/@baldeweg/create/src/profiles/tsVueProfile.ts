@@ -11,7 +11,7 @@ export const tsVueProfile: Profile = {
   description: 'Creates a Vue 3 + Vite app in apps/.',
   ask: async () => {
     const name = await text({
-      message: 'What is the name of the package?',
+      message: 'What\'s the name of the package?',
       placeholder: 'Package Name',
       initialValue: 'ts_vue',
       validate(value) {
