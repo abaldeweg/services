@@ -9,7 +9,7 @@ import { makeSlug } from '../helpers/makeSlug.js';
 export const tsVueProfile: Profile = {
   id: 'tsVueProfile',
   name: 'TypeScript Vue App',
-  description: 'Create a Vue 3 + Vite app in apps/.',
+  description: 'Creates a Vue 3 + Vite app in apps/.',
   ask: async () => {
     const name = await text({
       message: 'What is the name of the package?',
