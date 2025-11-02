@@ -3,7 +3,7 @@ import { copyFile, copyTemplate, createDirs, createFiles, mergeYaml, runCommand,
 import type { Profile } from '../types/types.js';
 
 /**
- * Create a Vue 3 + Vite app in apps/.
+ * Creates a Vue 3 + Vite app in apps/.
  */
 export const tsVueProfile: Profile = {
   id: 'tsVueProfile',
