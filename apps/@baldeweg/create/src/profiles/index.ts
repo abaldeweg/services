@@ -3,8 +3,8 @@ import { baseProfile } from './baseProfile.js';
 import { devcontainerProfile } from './devcontainerProfile.js';
 import { tsLibProfile } from './tsLibProfile.js';
 import { goModuleProfile } from './goModuleProfile.js';
-import type { Profile } from './../types/types.js';
 import { notebookProfile } from './notebookProfile.js';
+import type { Profile } from './../types/types.js';
 
 /**
  * Registry of available profiles.
