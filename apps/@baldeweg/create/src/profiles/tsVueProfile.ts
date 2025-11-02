@@ -35,7 +35,7 @@ export const tsVueProfile: Profile = {
     });
 
     const description = await text({
-      message: 'What is the description of the package?',
+      message: 'What\'s the description of the package?',
       placeholder: 'Description',
       initialValue: 'Description',
     });
