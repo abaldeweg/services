@@ -41,7 +41,7 @@ export const tsVueProfile: Profile = {
     });
 
     const license = await text({
-      message: 'What is the license of the package?',
+      message: 'What\'s the license of the package?',
       placeholder: 'License',
       initialValue: '',
     });
