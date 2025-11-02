@@ -1,7 +1,6 @@
 import { log, text } from '@clack/prompts';
-import { copyFile, copyTemplate, createDirs, createFiles, mergeYaml, runCommand, writeJson } from '../helpers/index.js';
+import { copyFile, copyTemplate, createDirs, createFiles, mergeYaml, runCommand, writeJson, makeSlug } from '../helpers/index.js';
 import type { Profile } from '../types/types.js';
-import { makeSlug } from '../helpers/makeSlug.js';
 
 /**
  * Create a Vue 3 + Vite app in apps/.
