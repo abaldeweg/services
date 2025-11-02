@@ -12,7 +12,7 @@ export const tsLibProfile: Profile = {
   description: 'Creates a typescript library.',
   ask: async () => {
     const name = await text({
-      message: 'What is the name of the library?',
+      message: 'What\'s the name of the library?',
       placeholder: 'Library Name',
       initialValue: 'ts_library',
       validate(value) {
