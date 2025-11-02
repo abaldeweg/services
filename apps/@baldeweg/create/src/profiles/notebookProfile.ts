@@ -12,7 +12,7 @@ export const notebookProfile: Profile = {
   description: 'Creates a notebook.',
   ask: async () => {
     const name = await text({
-      message: 'Whats the name of the project?',
+      message: 'What\'s the name of the project?',
       placeholder: 'Name',
       initialValue: 'notebook',
       validate(value) {
