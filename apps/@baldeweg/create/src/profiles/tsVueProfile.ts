@@ -23,7 +23,7 @@ export const tsVueProfile: Profile = {
     });
 
     const shortName = await text({
-      message: 'What is the short name of the package? It will be used in the manifest for the PWA.',
+      message: 'What\'s the short name of the package? It will be used in the manifest for the PWA.',
       placeholder: 'Short Package Name',
       initialValue: 'ts_vue',
       validate(value) {
