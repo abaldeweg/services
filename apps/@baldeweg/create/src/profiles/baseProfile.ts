@@ -3,7 +3,7 @@ import { copyTemplate, createDirs, createFiles, writeJson, writeYaml } from '../
 import type { Profile } from '../types/types.js';
 
 /**
- * Create basic directory structure and files.
+ * Creates basic directory structure and files.
  */
 export const baseProfile: Profile = {
   id: 'baseProfile',
