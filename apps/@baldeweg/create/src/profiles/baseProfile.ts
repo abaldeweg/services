@@ -8,7 +8,7 @@ import type { Profile } from '../types/types.js';
 export const baseProfile: Profile = {
   id: 'baseProfile',
   name: 'Base',
-  description: 'Create basic directory structure and files.',
+  description: 'Creates basic directory structure and files.',
   ask: async () => {
     const name = await text({
       message: 'Whats the name of the project?',
