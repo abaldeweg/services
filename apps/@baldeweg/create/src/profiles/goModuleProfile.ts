@@ -9,7 +9,7 @@ import { existsSync } from 'fs';
 export const goModuleProfile: Profile = {
   id: 'goModuleProfile',
   name: 'Go',
-  description: 'Create a go module.',
+  description: 'Creates a go module.',
   ask: async () => {
     const name = await text({
       message: 'What is the name of the module?',
