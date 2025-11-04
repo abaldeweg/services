@@ -41,7 +41,7 @@ export const goModuleProfile: Profile = {
   run: async (options) => {
     const outputDir = options.deploy ? `apps/${options.name}` : `packages/${options.name}`;
 
-    createDirs(['.github', `${outputDir}`, `${outputDir}/pkg`, `${outputDir}/internal`]);
+    createDirs(['.github', `${outputDir}`, `${outputDir}/internal`]);
 
     copyTemplate('go/main.go.ejs', `${outputDir}/main.go`);
 
