@@ -1,5 +1,5 @@
 import { text, confirm } from '@clack/prompts';
-import { copyTemplate, createDirs, createFiles, runCommand } from '../helpers/index.js';
+import { copyTemplate, createDirs, createFiles, runCommand, writeYaml } from '../helpers/index.js';
 import type { Profile } from '../types/types.js';
 import { existsSync } from 'fs';
 
@@ -44,6 +44,42 @@ export const goModuleProfile: Profile = {
     createDirs(['.github', `${outputDir}`, `${outputDir}/cmd`, `${outputDir}/internal`]);
 
     copyTemplate('go/main.go.ejs', `${outputDir}/main.go`);
+
+    writeYaml(`${outputDir}/openapi.yaml`, {
+      openapi: '3.0.0',
+      info: {
+        title: options.name,
+        version: 'v1',
+        description: `OpenAPI specification for ${options.name}.`,
+      },
+      servers: [
+        {
+          url: 'http://localhost:8080',
+        },
+      ],
+      tags: [
+        {
+          name: 'example',
+          description: `Example`
+        },
+      ],
+      paths: {},
+      components: {
+        securitySchemes: {
+          bearerAuth: {
+            type: 'http',
+            scheme: 'bearer',
+            bearerFormat: 'JWT',
+          },
+        },
+        schemas: {},
+      },
+      security: [
+        {
+          bearerAuth: []
+        }
+      ],
+    });
 
     runCommand('go', ['mod', 'init', options.importPath], `${outputDir}`);
 
