@@ -7,3 +7,4 @@ export * from './writeYaml.js';
 export * from './mergeYaml.js';
 export * from './runCommand.js';
 export * from './copyFile.js';
+export * from './makeSlug.js'
