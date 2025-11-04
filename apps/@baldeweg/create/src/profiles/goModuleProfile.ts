@@ -45,6 +45,8 @@ export const goModuleProfile: Profile = {
 
     copyTemplate('go/main.go.ejs', `${outputDir}/main.go`);
 
+    createFiles([{ path: `${outputDir}/README.md`, content: `# ${options.name}\n\n` }]);
+
     writeYaml(`${outputDir}/openapi.yaml`, {
       openapi: '3.0.0',
       info: {
@@ -93,10 +95,18 @@ export const goModuleProfile: Profile = {
       copyTemplate(
         'go/release.yaml.ejs', `.github/workflows/release_apps_${options.name}.yaml`, { name: options.name }
       );
+    } else {
+      copyTemplate(
+        'go/release.yaml.ejs', `.github/workflows/release_packages_${options.name}.yaml`, { name: options.name }
+      );
     }
 
-    copyTemplate('go/tests.yaml.ejs', `.github/workflows/tests_apps_${options.name}.yaml`, { name: options.name });
+    if (options.deploy) {
+      copyTemplate('go/tests.yaml.ejs', `.github/workflows/tests_apps_${options.name}.yaml`, { name: options.name });
+    } else {
+      copyTemplate('go/tests.yaml.ejs', `.github/workflows/tests_packages_${options.name}.yaml`, { name: options.name });
 
+    }
     if (options.deploy) {
       copyTemplate('go/cloudbuild.yaml.ejs', `${outputDir}/cloudbuild.yaml`, { name: options.name });
     }
