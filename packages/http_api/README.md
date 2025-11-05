@@ -1,6 +1,6 @@
 # http_api
 
-http_api offers a simple abstraction for existing tools to run an HTTP API server, with router, CORS and configuration management.
+http_api offers a simple abstraction around existing tools to run an HTTP API server, with router and CORS.
 
 ## Usage
 
