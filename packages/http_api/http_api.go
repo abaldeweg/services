@@ -1,23 +1,18 @@
 package HttpApi
 
 import (
-	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"slices"
-	"strconv"
 	"strings"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/spf13/viper"
 )
 
 // HttpApiInterface defines the public methods for HttpApi.
 type HttpApiInterface interface {
 	Run() error
-	SetPort(port int)
 
 	Request(method, path string, handlers ...gin.HandlerFunc) gin.IRoutes
 	Controller(path string, handlers ...gin.HandlerFunc) gin.IRoutes
@@ -33,8 +28,7 @@ type HttpApiInterface interface {
 // HttpApi wraps a gin.Engine and manages the server port.
 type HttpApi struct {
 	engine *gin.Engine
-	port   int
-	cfg    *viper.Viper
+	port   string
 }
 
 // NewHttpApi creates a new HttpApi with engine.
@@ -42,25 +36,15 @@ func NewHttpApi() HttpApiInterface {
 	setMode()
 	r := &HttpApi{
 		engine: gin.Default(),
-		port:   8080,
-		cfg:    viper.New(),
+		port:   getPort(),
 	}
-	r.loadConfig()
 	r.engine.Use(r.corsHeaders())
 	return r
 }
 
 // Run starts the HTTP server.
 func (r *HttpApi) Run() error {
-	return r.engine.Run(":" + strconv.Itoa(r.port))
-}
-
-// SetPort sets the port for the HTTP server.
-func (r *HttpApi) SetPort(port int) {
-	if port <= 0 {
-		port = r.port
-	}
-	r.port = port
+	return r.engine.Run(":" + r.port)
 }
 
 // Handle registers a new route with the given method.
@@ -117,16 +101,13 @@ func setMode() {
 	}
 }
 
-// loadConfig loads the application configuration.
-func (r *HttpApi) loadConfig() {
-	r.cfg.AutomaticEnv()
-	if err := r.cfg.ReadInConfig(); err != nil {
-		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
-			fmt.Println("The Config file was not found, using defaults.")
-		} else {
-			log.Fatalf("Error loading config file: %s", err)
-		}
+// getPort retrieves the port from the PORT environment variable or defaults to 8080.
+func getPort() string {
+	port := os.Getenv("PORT")
+	if port == "" {
+		return "8080"
 	}
+	return port
 }
 
 // corsHeaders returns the location middleware with default configuration.
@@ -135,8 +116,8 @@ func (r *HttpApi) corsHeaders() gin.HandlerFunc {
 	config.AddAllowHeaders("Authorization")
 
 	allowOrigin := "*"
-	if r.cfg.IsSet("CORS_ALLOW_ORIGIN") {
-		allowOrigin = r.cfg.GetString("CORS_ALLOW_ORIGIN")
+	if _, exists := os.LookupEnv("CORS_ALLOW_ORIGIN"); exists {
+		allowOrigin = os.Getenv("CORS_ALLOW_ORIGIN")
 	}
 	config.AllowOrigins = strings.Split(allowOrigin, ",")
 
