@@ -34,22 +34,19 @@ type RouterInterface interface {
 type Router struct {
 	engine *gin.Engine
 	port   int
+	cfg    *viper.Viper
 }
 
 // NewRouter creates a new Router with engine.
 func NewRouter() RouterInterface {
-	loadConfig()
-	mode := os.Getenv("MODE")
-	modes := []string{"release", "debug", "test"}
-	if slices.Contains(modes, mode) {
-		gin.SetMode(mode)
-	}
+	setMode()
 	r := &Router{
 		engine: gin.Default(),
 		port:   8080,
+		cfg:    viper.New(),
 	}
-	viper.SetDefault("CORS_ALLOW_ORIGIN", "http://127.0.0.1")
-	r.engine.Use(corsHeaders())
+	r.loadConfig()
+	r.engine.Use(r.corsHeaders())
 	return r
 }
 
@@ -111,33 +108,37 @@ func (r *Router) Head(path string, handlers ...gin.HandlerFunc) gin.IRoutes {
 	return r.Request(http.MethodHead, path, handlers...)
 }
 
-// corsHeaders returns the location middleware with default configuration.
-func corsHeaders() gin.HandlerFunc {
-	config := cors.DefaultConfig()
-	config.AddAllowHeaders("Authorization")
-
-	allowOrigin := "*"
-	if viper.IsSet("CORS_ALLOW_ORIGIN") {
-		allowOrigin = viper.GetString("CORS_ALLOW_ORIGIN")
+// setMode sets the Gin mode based on the MODE environment variable.
+func setMode() {
+	modes := []string{"release", "debug", "test"}
+	mode := os.Getenv("MODE")
+	if slices.Contains(modes, mode) {
+		gin.SetMode(mode)
 	}
-	config.AllowOrigins = strings.Split(allowOrigin, ",")
-
-	return cors.New(config)
 }
 
 // loadConfig loads the application configuration.
-func loadConfig() {
-	viper.SetConfigName("config")
-	viper.SetConfigType("yaml")
-	viper.AddConfigPath("config/")
-
-	viper.AutomaticEnv()
-
-	if err := viper.ReadInConfig(); err != nil {
+func (r *Router) loadConfig() {
+	r.cfg.AutomaticEnv()
+	if err := r.cfg.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
 			fmt.Println("The Config file was not found, using defaults.")
 		} else {
 			log.Fatalf("Error loading config file: %s", err)
 		}
 	}
+}
+
+// corsHeaders returns the location middleware with default configuration.
+func (r *Router) corsHeaders() gin.HandlerFunc {
+	config := cors.DefaultConfig()
+	config.AddAllowHeaders("Authorization")
+
+	allowOrigin := "*"
+	if r.cfg.IsSet("CORS_ALLOW_ORIGIN") {
+		allowOrigin = r.cfg.GetString("CORS_ALLOW_ORIGIN")
+	}
+	config.AllowOrigins = strings.Split(allowOrigin, ",")
+
+	return cors.New(config)
 }
