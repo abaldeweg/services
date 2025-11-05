@@ -130,7 +130,7 @@ func (r *HttpApi) corsHeaders() gin.HandlerFunc {
 	if allowOrigin, exists := os.LookupEnv(env_name_cors_allow_origin); exists {
 		config.AllowOrigins = strings.Split(allowOrigin, ",")
 	} else {
-		config.AllowOrigins = []string{"http://localhost"}
+		config.AllowAllOrigins = true
 	}
 
 	return cors.New(config)
