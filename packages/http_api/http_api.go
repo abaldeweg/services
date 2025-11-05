@@ -10,6 +10,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+var (
+	env_name_mode              = "MODE"
+	env_name_port              = "PORT"
+	env_name_cors_allow_origin = "CORS_ALLOW_ORIGIN"
+)
+
 // HttpApiInterface defines the public methods for HttpApi.
 type HttpApiInterface interface {
 	Run() error
@@ -31,12 +37,27 @@ type HttpApi struct {
 	port   string
 }
 
+// SetEnvMode sets the environment variable name for env_name_mode.
+func SetEnvMode(name string) {
+	env_name_mode = name
+}
+
+// SetEnvPort sets the environment variable name for env_name_port.
+func SetEnvPort(name string) {
+	env_name_port = name
+}
+
+// SetEnvCorsAllowOrigin sets the environment variable name for env_name_cors_allow_origin.
+func SetEnvCorsAllowOrigin(name string) {
+	env_name_cors_allow_origin = name
+}
+
 // NewHttpApi creates a new HttpApi with engine.
 func NewHttpApi() HttpApiInterface {
 	setMode()
 	r := &HttpApi{
 		engine: gin.Default(),
-		port:   os.Getenv("PORT"),
+		port:   os.Getenv(env_name_port),
 	}
 	r.engine.Use(r.corsHeaders())
 	return r
@@ -95,7 +116,7 @@ func (r *HttpApi) Head(path string, handlers ...gin.HandlerFunc) gin.IRoutes {
 // setMode sets the Gin mode based on the MODE environment variable.
 func setMode() {
 	modes := []string{"release", "debug", "test"}
-	mode := os.Getenv("MODE")
+	mode := os.Getenv(env_name_mode)
 	if slices.Contains(modes, mode) {
 		gin.SetMode(mode)
 	}
@@ -106,7 +127,7 @@ func (r *HttpApi) corsHeaders() gin.HandlerFunc {
 	config := cors.DefaultConfig()
 	config.AddAllowHeaders("Authorization")
 
-	if allowOrigin, exists := os.LookupEnv("CORS_ALLOW_ORIGIN"); exists {
+	if allowOrigin, exists := os.LookupEnv(env_name_cors_allow_origin); exists {
 		config.AllowOrigins = strings.Split(allowOrigin, ",")
 	}
 
