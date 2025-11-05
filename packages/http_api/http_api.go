@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"slices"
 	"strconv"
 	"strings"
 
@@ -37,18 +38,18 @@ type Router struct {
 
 // NewRouter creates a new Router with engine.
 func NewRouter() RouterInterface {
+	loadConfig()
 	mode := os.Getenv("MODE")
-	if mode == "" {
-		mode = gin.DebugMode
+	modes := []string{"release", "debug", "test"}
+	if slices.Contains(modes, mode) {
+		gin.SetMode(mode)
 	}
-	gin.SetMode(mode)
 	r := &Router{
 		engine: gin.Default(),
 		port:   8080,
 	}
 	viper.SetDefault("CORS_ALLOW_ORIGIN", "http://127.0.0.1")
 	r.engine.Use(corsHeaders())
-	loadConfig()
 	return r
 }
 
