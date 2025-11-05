@@ -106,11 +106,9 @@ func (r *HttpApi) corsHeaders() gin.HandlerFunc {
 	config := cors.DefaultConfig()
 	config.AddAllowHeaders("Authorization")
 
-	allowOrigin := "*"
-	if _, exists := os.LookupEnv("CORS_ALLOW_ORIGIN"); exists {
-		allowOrigin = os.Getenv("CORS_ALLOW_ORIGIN")
+	if allowOrigin, exists := os.LookupEnv("CORS_ALLOW_ORIGIN"); exists {
+		config.AllowOrigins = strings.Split(allowOrigin, ",")
 	}
-	config.AllowOrigins = strings.Split(allowOrigin, ",")
 
 	return cors.New(config)
 }
