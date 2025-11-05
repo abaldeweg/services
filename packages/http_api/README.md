@@ -8,6 +8,8 @@ Always set `MODE=release` in production environments for best performance and se
 
 You can set the Gin mode ("release", "debug", "test") via the environment variable `MODE`. If not set, it defaults to `debug`.
 
+All origins are allowed by default. You should restrict allowed origins in production via the environment variable `CORS_ALLOW_ORIGIN`, providing a comma-separated list of allowed origins.
+
 ```go
 package main
 
