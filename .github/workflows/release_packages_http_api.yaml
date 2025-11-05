@@ -1,0 +1,27 @@
+name: Release http_api
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: "Name of the tag to create"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up Git user
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+      - name: Set the tag
+        run: git tag -a http_api/${{ inputs.tag_name }} -m "Version http_api/${{ inputs.tag_name }}"
+      - name: Push the tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: git push origin http_api/${{ inputs.tag_name }}
