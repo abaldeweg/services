@@ -1,4 +1,4 @@
-package http_api
+package HttpApi
 
 import (
 	"fmt"
@@ -14,8 +14,8 @@ import (
 	"github.com/spf13/viper"
 )
 
-// RouterInterface defines the public methods for Router.
-type RouterInterface interface {
+// HttpApiInterface defines the public methods for HttpApi.
+type HttpApiInterface interface {
 	Run() error
 	SetPort(port int)
 
@@ -30,17 +30,17 @@ type RouterInterface interface {
 	Head(path string, handlers ...gin.HandlerFunc) gin.IRoutes
 }
 
-// Router wraps a gin.Engine and manages the server port.
-type Router struct {
+// HttpApi wraps a gin.Engine and manages the server port.
+type HttpApi struct {
 	engine *gin.Engine
 	port   int
 	cfg    *viper.Viper
 }
 
-// NewRouter creates a new Router with engine.
-func NewRouter() RouterInterface {
+// NewHttpApi creates a new HttpApi with engine.
+func NewHttpApi() HttpApiInterface {
 	setMode()
-	r := &Router{
+	r := &HttpApi{
 		engine: gin.Default(),
 		port:   8080,
 		cfg:    viper.New(),
@@ -51,12 +51,12 @@ func NewRouter() RouterInterface {
 }
 
 // Run starts the HTTP server.
-func (r *Router) Run() error {
+func (r *HttpApi) Run() error {
 	return r.engine.Run(":" + strconv.Itoa(r.port))
 }
 
 // SetPort sets the port for the HTTP server.
-func (r *Router) SetPort(port int) {
+func (r *HttpApi) SetPort(port int) {
 	if port <= 0 {
 		port = r.port
 	}
@@ -64,47 +64,47 @@ func (r *Router) SetPort(port int) {
 }
 
 // Handle registers a new route with the given method.
-func (r *Router) Request(method, path string, handlers ...gin.HandlerFunc) gin.IRoutes {
+func (r *HttpApi) Request(method, path string, handlers ...gin.HandlerFunc) gin.IRoutes {
 	return r.engine.Handle(method, path, handlers...)
 }
 
 // Controller creates a new route group with the given relative path and handlers.
-func (r *Router) Controller(path string, handlers ...gin.HandlerFunc) gin.IRoutes {
+func (r *HttpApi) Controller(path string, handlers ...gin.HandlerFunc) gin.IRoutes {
 	return r.engine.Group(path, handlers...)
 }
 
 // Get registers a new GET route.
-func (r *Router) Get(path string, handlers ...gin.HandlerFunc) gin.IRoutes {
+func (r *HttpApi) Get(path string, handlers ...gin.HandlerFunc) gin.IRoutes {
 	return r.Request(http.MethodGet, path, handlers...)
 }
 
 // Post registers a new POST route.
-func (r *Router) Post(path string, handlers ...gin.HandlerFunc) gin.IRoutes {
+func (r *HttpApi) Post(path string, handlers ...gin.HandlerFunc) gin.IRoutes {
 	return r.Request(http.MethodPost, path, handlers...)
 }
 
 // Delete registers a new DELETE route.
-func (r *Router) Delete(path string, handlers ...gin.HandlerFunc) gin.IRoutes {
+func (r *HttpApi) Delete(path string, handlers ...gin.HandlerFunc) gin.IRoutes {
 	return r.Request(http.MethodDelete, path, handlers...)
 }
 
 // Patch registers a new PATCH route.
-func (r *Router) Patch(path string, handlers ...gin.HandlerFunc) gin.IRoutes {
+func (r *HttpApi) Patch(path string, handlers ...gin.HandlerFunc) gin.IRoutes {
 	return r.Request(http.MethodPatch, path, handlers...)
 }
 
 // Put registers a new PUT route.
-func (r *Router) Put(path string, handlers ...gin.HandlerFunc) gin.IRoutes {
+func (r *HttpApi) Put(path string, handlers ...gin.HandlerFunc) gin.IRoutes {
 	return r.Request(http.MethodPut, path, handlers...)
 }
 
 // Options registers a new OPTIONS route.
-func (r *Router) Options(path string, handlers ...gin.HandlerFunc) gin.IRoutes {
+func (r *HttpApi) Options(path string, handlers ...gin.HandlerFunc) gin.IRoutes {
 	return r.Request(http.MethodOptions, path, handlers...)
 }
 
 // Head registers a new HEAD route.
-func (r *Router) Head(path string, handlers ...gin.HandlerFunc) gin.IRoutes {
+func (r *HttpApi) Head(path string, handlers ...gin.HandlerFunc) gin.IRoutes {
 	return r.Request(http.MethodHead, path, handlers...)
 }
 
@@ -118,7 +118,7 @@ func setMode() {
 }
 
 // loadConfig loads the application configuration.
-func (r *Router) loadConfig() {
+func (r *HttpApi) loadConfig() {
 	r.cfg.AutomaticEnv()
 	if err := r.cfg.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
@@ -130,7 +130,7 @@ func (r *Router) loadConfig() {
 }
 
 // corsHeaders returns the location middleware with default configuration.
-func (r *Router) corsHeaders() gin.HandlerFunc {
+func (r *HttpApi) corsHeaders() gin.HandlerFunc {
 	config := cors.DefaultConfig()
 	config.AddAllowHeaders("Authorization")
 

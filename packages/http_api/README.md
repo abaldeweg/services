@@ -20,7 +20,7 @@ import (
 )
 
 func main() {
-    r := http_api.NewRouter()
+    r := http_api.NewHttpApi()
     // Define your routes here
     controller := r.Controller("/api")
     controller.Get("/test", func(c *gin.Context) {
