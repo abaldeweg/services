@@ -36,7 +36,7 @@ func NewHttpApi() HttpApiInterface {
 	setMode()
 	r := &HttpApi{
 		engine: gin.Default(),
-		port:   getPort(),
+		port:   os.Getenv("PORT"),
 	}
 	r.engine.Use(r.corsHeaders())
 	return r
@@ -99,15 +99,6 @@ func setMode() {
 	if slices.Contains(modes, mode) {
 		gin.SetMode(mode)
 	}
-}
-
-// getPort retrieves the port from the PORT environment variable or defaults to 8080.
-func getPort() string {
-	port := os.Getenv("PORT")
-	if port == "" {
-		return "8080"
-	}
-	return port
 }
 
 // corsHeaders returns the location middleware with default configuration.
