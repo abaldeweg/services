@@ -201,6 +201,10 @@ export const tsVueProfile: Profile = {
 
     copyTemplate('ts_vue/cloudbuild.yaml.ejs', `apps/${options.name}/cloudbuild.yaml`, { name: options.name });
 
+    createFiles([{ path: `apps/${options.name}/README.md`, content: `# ${options.name}\n\n` }]);
+
+    createFiles([{ path: `apps/${options.name}/CHANGELOG.md`, content: `# Changelog\n\n` }]);
+
     // src
     copyTemplate('ts_vue/src/App.vue.ejs', `apps/${options.name}/src/App.vue`);
 
