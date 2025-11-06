@@ -47,6 +47,8 @@ export const goModuleProfile: Profile = {
 
     createFiles([{ path: `${outputDir}/${options.name}/README.md`, content: `# ${options.name}\n\n` }]);
 
+    createFiles([{ path: `${outputDir}/${options.name}/CHANGELOG.md`, content: `# Changelog\n\n` }]);
+
     if (options.deploy) {
       writeYaml(`${outputDir}/${options.name}/openapi.yaml`, {
         openapi: '3.0.0',
