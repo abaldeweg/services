@@ -47,43 +47,45 @@ export const goModuleProfile: Profile = {
 
     createFiles([{ path: `${outputDir}/${options.name}/README.md`, content: `# ${options.name}\n\n` }]);
 
-    writeYaml(`${outputDir}/${options.name}/openapi.yaml`, {
-      openapi: '3.0.0',
-      info: {
-        title: options.name,
-        version: 'v1',
-        description: `OpenAPI specification for ${options.name}.`,
-      },
-      servers: [
-        {
-          url: 'http://localhost:8080',
+    if (options.deploy) {
+      writeYaml(`${outputDir}/${options.name}/openapi.yaml`, {
+        openapi: '3.0.0',
+        info: {
+          title: options.name,
+          version: 'v1',
+          description: `OpenAPI specification for ${options.name}.`,
         },
-      ],
-      tags: [
-        {
-          name: 'example',
-          description: `Example`
-        },
-      ],
-      paths: {},
-      components: {
-        securitySchemes: {
-          bearerAuth: {
-            type: 'http',
-            scheme: 'bearer',
-            bearerFormat: 'JWT',
+        servers: [
+          {
+            url: 'http://localhost:8080',
           },
+        ],
+        tags: [
+          {
+            name: 'example',
+            description: `Example`
+          },
+        ],
+        paths: {},
+        components: {
+          securitySchemes: {
+            bearerAuth: {
+              type: 'http',
+              scheme: 'bearer',
+              bearerFormat: 'JWT',
+            },
+          },
+          schemas: {},
         },
-        schemas: {},
-      },
-      security: [
-        {
-          bearerAuth: []
-        }
-      ],
-    });
+        security: [
+          {
+            bearerAuth: []
+          }
+        ],
+      });
+    }
 
-    runCommand('go', ['mod', 'init', options.importPath], `${outputDir}`);
+    runCommand('go', ['mod', 'init', options.importPath], `${outputDir}/${options.name}`);
 
     createFiles([{ path: `${outputDir}/${options.name}/go.sum`, content: null }]);
 
