@@ -39,7 +39,7 @@ export const goModuleProfile: Profile = {
     return { name, importPath, deploy };
   },
   run: async (options) => {
-    const outputDir = options.deploy ? `apps/${options.name}` : `packages/${options.name}`;
+    const outputDir = options.deploy ? `apps` : `packages`;
 
     createDirs(['.github', `${outputDir}/${options.name}`, `${outputDir}/${options.name}/cmd`, `${outputDir}/${options.name}/internal`]);
 
