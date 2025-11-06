@@ -22,6 +22,7 @@ export const devcontainerProfile: Profile = {
     return { ecosystems };
   },
   run: async (options) => {
+    // base
     let devcontainer: Devcontainer = {
       "name": "Monorepo",
       "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
@@ -41,6 +42,7 @@ export const devcontainerProfile: Profile = {
       }
     };
 
+    // js
     if (options.ecosystems.includes('js')) {
       devcontainer.features['ghcr.io/devcontainers/features/node:1.6.3'] = {
         "version": "24",
@@ -57,6 +59,7 @@ export const devcontainerProfile: Profile = {
       );
     }
 
+    // go
     if (options.ecosystems.includes('go')) {
       devcontainer.features['ghcr.io/devcontainers/features/go:1.3.2'] = {};
       devcontainer.features['ghcr.io/guiyomh/features/goreleaser:0.1.1'] = {};
@@ -67,6 +70,7 @@ export const devcontainerProfile: Profile = {
       );
     }
 
+    // python
     if (options.ecosystems.includes('python')) {
       devcontainer.features['ghcr.io/devcontainers/features/python:1.7.1'] = {};
       devcontainer.customizations.vscode.extensions.push(
