@@ -11,7 +11,7 @@ export const baseProfile: Profile = {
   description: 'Creates basic directory structure and files.',
   ask: async () => {
     const name = await text({
-      message: 'Whats the name of the project?',
+      message: 'What\'s the name of the project?',
       placeholder: 'Name',
       initialValue: 'My Project',
       validate(value) {
