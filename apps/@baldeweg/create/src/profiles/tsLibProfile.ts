@@ -1,5 +1,5 @@
 import { text, confirm } from '@clack/prompts';
-import { copyTemplate, createDirs, createFiles, mergeYaml, runCommand, writeJson } from '../helpers/index.js';
+import { copyTemplate, createDirs, createFiles, mergeYaml, runCommand, writeJson, writeYaml } from '../helpers/index.js';
 import { makeSlug } from '../helpers/makeSlug.js';
 import type { Profile } from '../types/types.js';
 
@@ -24,17 +24,17 @@ export const tsLibProfile: Profile = {
     });
 
     const deploy = await confirm({
-      message: "Do you plan to deploy your package? This will create your package into the apps/ directory and create build specific files. Otherwise it will be created into the packages/ directory.",
+      message: "Do you plan to deploy your package? This will create your package into the apps/ directory. Otherwise it will be created into the packages/ directory.",
     });
 
     return { name, deploy };
   },
   run: async (options) => {
-    const outputDir = options.deploy ? `apps/${options.name}` : `packages/${options.name}`;
+    const outputDir = options.deploy ? `apps` : `packages`;
 
-    createDirs(['.github', `${outputDir}`, `${outputDir}/src`]);
+    createDirs(['.github', `${outputDir}/${options.name}`, `${outputDir}/${options.name}/src`]);
 
-    writeJson(`${outputDir}/package.json`, {
+    writeJson(`${outputDir}/${options.name}/package.json`, {
       "name": options.name,
       "type": "module",
       "version": "0.0.0",
@@ -51,7 +51,7 @@ export const tsLibProfile: Profile = {
       }
     })
 
-    writeJson(`${outputDir}/tsconfig.json`, {
+    writeJson(`${outputDir}/${options.name}/tsconfig.json`, {
       "compilerOptions": {
         "outDir": "./dist",
         "module": "nodenext",
@@ -73,21 +73,19 @@ export const tsLibProfile: Profile = {
       }
     })
 
-    copyTemplate('ts/vitest.config.ts.ejs', `${outputDir}/vitest.config.ts`);
+    copyTemplate('ts_lib/vitest.config.ts.ejs', `${outputDir}/${options.name}/vitest.config.ts`);
 
     createFiles([
-      { path: `${outputDir}/src/index.ts`, content: null },
-      { path: `${outputDir}/src/index.test.ts`, content: null }
+      { path: `${outputDir}/${options.name}/src/index.ts`, content: null },
+      { path: `${outputDir}/${options.name}/src/index.test.ts`, content: null }
     ])
 
-    if (options.deploy) {
-      copyTemplate('ts/release.yaml.ejs', `.github/workflows/release_apps_${makeSlug(options.name)}.yaml`, { name: options.name });
-    }
+    copyTemplate('ts_lib/release.yaml.ejs', `.github/workflows/release_${outputDir}_${makeSlug(options.name)}.yaml`, { outputDir: outputDir, name: options.name });
 
-    copyTemplate('ts/tests.yaml.ejs', `.github/workflows/tests_apps_${makeSlug(options.name)}.yaml`, { name: options.name });
+    copyTemplate('ts_lib/tests.yaml.ejs', `.github/workflows/tests_${outputDir}_${makeSlug(options.name)}.yaml`, { name: options.name });
 
-    createFiles([{ path: 'pnpm-workspace.yaml', content: null }]);
-    mergeYaml(`pnpm-workspace.yaml`, { 'packages': [`apps/${options.name}/`] });
+    writeYaml('pnpm-workspace.yaml', { packages: [] });
+    mergeYaml(`pnpm-workspace.yaml`, { 'packages': [`${outputDir}/${options.name}/`] });
 
     runCommand('pnpm', ['install'])
   }
