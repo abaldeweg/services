@@ -4,7 +4,7 @@ import { makeSlug } from '../helpers/makeSlug.js';
 import type { Profile } from '../types/types.js';
 
 /**
- * Creates a notebook in packages/.
+ * Creates a notebook in notebooks/.
  */
 export const notebookProfile: Profile = {
   id: 'notebookProfile',
