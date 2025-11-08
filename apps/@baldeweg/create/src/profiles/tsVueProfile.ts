@@ -92,34 +92,34 @@ export const tsVueProfile: Profile = {
         "test": "vitest"
       },
       "dependencies": {
-        "vue": "3.5.22",
+        "vue": "3.5.24",
         "vue-router": "4.6.3"
       },
       "devDependencies": {
         "@baldeweg/ui": "0.18.1",
         "@tsconfig/node24": "24.0.1",
         "@types/jsdom": "27.0.0",
-        "@types/node": "24.8.1",
+        "@types/node": "24.10.0",
         "@unhead/vue": "2.0.19",
         "@vitejs/plugin-vue": "6.0.1",
-        "@vitest/eslint-plugin": "1.3.23",
+        "@vitest/eslint-plugin": "1.4.1",
         "@vue/eslint-config-prettier": "10.2.0",
         "@vue/eslint-config-typescript": "14.6.0",
         "@vue/test-utils": "2.4.6",
         "@vue/tsconfig": "0.8.1",
-        "axios": "1.12.2",
-        "eslint": "9.38.0",
+        "axios": "1.13.2",
+        "eslint": "9.39.1",
         "eslint-plugin-vue": "10.5.1",
         "jiti": "2.6.1",
-        "jsdom": "27.0.1",
+        "jsdom": "27.1.0",
         "prettier": "3.6.2",
         "typescript": "5.9.3",
-        "vite": "7.1.10",
+        "vite": "7.2.2",
         "vite-plugin-pwa": "1.1.0",
         "vite-plugin-webfont-dl": "3.11.1",
-        "vitest": "3.2.4",
+        "vitest": "4.0.8",
         "vue-i18n": "11.1.12",
-        "vue-tsc": "3.1.1"
+        "vue-tsc": "3.1.3"
       },
       "license": options.license || undefined
     }
