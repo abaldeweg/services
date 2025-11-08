@@ -1,5 +1,5 @@
-import { log, text } from '@clack/prompts';
-import { copyFile, copyTemplate, createDirs, createFiles, mergeYaml, runCommand, writeJson, makeSlug } from '../helpers/index.js';
+import { text } from '@clack/prompts';
+import { copyFile, copyTemplate, createDirs, createFiles, mergeYaml, runCommand, writeJson, makeSlug, writeYaml } from '../helpers/index.js';
 import type { Profile } from '../types/types.js';
 
 /**
@@ -255,7 +255,7 @@ export const tsVueProfile: Profile = {
 
     copyTemplate('ts_vue/tests.yaml.ejs', `.github/workflows/tests_apps_${makeSlug(options.name)}.yaml`, { name: options.name });
 
-    createFiles([{ path: 'pnpm-workspace.yaml', content: null }]);
+    writeYaml('pnpm-workspace.yaml', { packages: [] });
     mergeYaml(`pnpm-workspace.yaml`, { 'packages': [`apps/${options.name}/`] });
 
     runCommand('pnpm', ['install'])
