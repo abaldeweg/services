@@ -107,8 +107,8 @@ export const goModuleProfile: Profile = {
 
     if (!existsSync('go.work')) {
       runCommand('go', ['work', 'init', `${outputDir}/${options.name}`]);
-    } else {
-      runCommand('go', ['work', 'use', `${outputDir}/${options.name}`]);
     }
+
+    runCommand('go', ['work', 'use', `${outputDir}/${options.name}`]);
   }
 };
