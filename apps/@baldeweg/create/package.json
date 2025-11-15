@@ -1,6 +1,6 @@
 {
   "name": "@baldeweg/create",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A simple project generator.",
   "main": "dist/cli.js",
   "bin": {
@@ -14,14 +14,14 @@
     "deepmerge": "4.3.1",
     "ejs": "3.1.10",
     "fs-extra": "11.3.2",
-    "js-yaml": "4.1.0",
+    "js-yaml": "4.1.1",
     "yaml": "2.8.1"
   },
   "devDependencies": {
     "@types/ejs": "3.1.5",
     "@types/fs-extra": "11.0.4",
     "@types/js-yaml": "4.0.9",
-    "@types/node": "24.10.0",
+    "@types/node": "24.10.1",
     "typescript": "5.9.3"
   },
   "type": "module",
