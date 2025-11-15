@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
+import { readFile, writeFile, mkdir } from "fs/promises";
 import { dirname } from "path";
 import ejs from "ejs";
 import { log } from "@clack/prompts";
@@ -7,29 +7,32 @@ import { getSourcePath, getTargetPath } from "./utils.js";
 /**
  * Copies a template file to target location with variable substitution.
  */
-export function copyTemplate(
+export async function copyTemplate(
   templateName: string,
   targetPath: string,
   variables: Record<string, any> = {}
-): void {
+): Promise<void> {
   const absTemplatePath: string = getSourcePath(templateName);
   const absTargetPath = getTargetPath(targetPath);
   const parentDir = dirname(absTargetPath);
 
-  if (existsSync(absTargetPath)) {
-    log.warn(`File already exists, skipping: ${targetPath}`);
-    return;
-  }
+  await mkdir(parentDir, { recursive: true });
 
   let templateContent: string;
   try {
-    templateContent = readFileSync(absTemplatePath, "utf8");
+    templateContent = await readFile(absTemplatePath, "utf8");
   } catch (error) {
-    throw new Error(`Template file not found: ${absTemplatePath}`);
+    throw new Error(`Error reading template file ${absTemplatePath}: ${error}`);
   }
 
   const renderedContent = ejs.render(templateContent, variables);
-
-  mkdirSync(parentDir, { recursive: true });
-  writeFileSync(absTargetPath, renderedContent);
+  try {
+    await writeFile(absTargetPath, renderedContent, { encoding: "utf8", flag: "wx" });
+  } catch (error: any) {
+    if (error && error.code === "EEXIST") {
+      log.warn(`File exists, skipping: ${absTargetPath}`);
+      return;
+    }
+    throw new Error(`Error writing file to ${absTargetPath}: ${error}`);
+  }
 }

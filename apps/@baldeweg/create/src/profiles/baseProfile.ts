@@ -69,9 +69,9 @@ export const baseProfile: Profile = {
       }
     })
 
-    copyTemplate('base/.gitignore.ejs', '.gitignore');
+    await copyTemplate('base/.gitignore.ejs', '.gitignore');
 
-    copyTemplate('base/.editorconfig.ejs', '.editorconfig');
+    await copyTemplate('base/.editorconfig.ejs', '.editorconfig');
 
     writeYaml('pnpm-workspace.yaml', {
       packages: []

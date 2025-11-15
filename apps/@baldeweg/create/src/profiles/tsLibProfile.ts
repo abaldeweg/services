@@ -73,7 +73,7 @@ export const tsLibProfile: Profile = {
       }
     })
 
-    copyTemplate('ts_lib/vitest.config.ts.ejs', `${outputDir}/${options.name}/vitest.config.ts`);
+    await copyTemplate('ts_lib/vitest.config.ts.ejs', `${outputDir}/${options.name}/vitest.config.ts`);
 
     createFiles([
       { path: `${outputDir}/${options.name}/src/index.ts`, content: null },
@@ -84,9 +84,9 @@ export const tsLibProfile: Profile = {
 
     createFiles([{ path: `${outputDir}/${options.name}/CHANGELOG.md`, content: `# Changelog\n\n` }]);
 
-    copyTemplate('ts_lib/release.yaml.ejs', `.github/workflows/release_${outputDir}_${makeSlug(options.name)}.yaml`, { outputDir: outputDir, name: options.name });
+    await copyTemplate('ts_lib/release.yaml.ejs', `.github/workflows/release_${outputDir}_${makeSlug(options.name)}.yaml`, { outputDir: outputDir, name: options.name });
 
-    copyTemplate('ts_lib/tests.yaml.ejs', `.github/workflows/tests_${outputDir}_${makeSlug(options.name)}.yaml`, { name: options.name });
+    await copyTemplate('ts_lib/tests.yaml.ejs', `.github/workflows/tests_${outputDir}_${makeSlug(options.name)}.yaml`, { name: options.name });
 
     writeYaml('pnpm-workspace.yaml', { packages: [] });
     mergeYaml(`pnpm-workspace.yaml`, { 'packages': [`${outputDir}/${options.name}/`] });

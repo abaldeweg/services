@@ -73,13 +73,13 @@ export const tsVueProfile: Profile = {
       "printWidth": 80
     });
 
-    copyTemplate('ts_vue/Dockerfile.ejs', `apps/${options.name}/Dockerfile`, { name: options.name });
+    await copyTemplate('ts_vue/Dockerfile.ejs', `apps/${options.name}/Dockerfile`, { name: options.name });
 
-    copyTemplate('ts_vue/env.d.ts.ejs', `apps/${options.name}/env.d.ts`);
+    await copyTemplate('ts_vue/env.d.ts.ejs', `apps/${options.name}/env.d.ts`);
 
-    copyTemplate('ts_vue/eslint.config.ts.ejs', `apps/${options.name}/eslint.config.ts`);
+    await copyTemplate('ts_vue/eslint.config.ts.ejs', `apps/${options.name}/eslint.config.ts`);
 
-    copyTemplate('ts_vue/index.html.ejs', `apps/${options.name}/index.html`, { name: options.name, color: options.color, description: options.description });
+    await copyTemplate('ts_vue/index.html.ejs', `apps/${options.name}/index.html`, { name: options.name, color: options.color, description: options.description });
 
     writeJson(`apps/${options.name}/package.json`, {
       "name": options.name,
@@ -197,24 +197,24 @@ export const tsVueProfile: Profile = {
       }
     });
 
-    copyTemplate('ts_vue/vite.config.ts.ejs', `apps/${options.name}/vite.config.ts`, { name: options.name, color: options.color, description: options.description, short_name: options.shortName })
+    await copyTemplate('ts_vue/vite.config.ts.ejs', `apps/${options.name}/vite.config.ts`, { name: options.name, color: options.color, description: options.description, short_name: options.shortName })
 
-    copyTemplate('ts_vue/cloudbuild.yaml.ejs', `apps/${options.name}/cloudbuild.yaml`, { name: options.name });
+    await copyTemplate('ts_vue/cloudbuild.yaml.ejs', `apps/${options.name}/cloudbuild.yaml`, { name: options.name });
 
     createFiles([{ path: `apps/${options.name}/README.md`, content: `# ${options.name}\n\n` }]);
 
     createFiles([{ path: `apps/${options.name}/CHANGELOG.md`, content: `# Changelog\n\n` }]);
 
     // src
-    copyTemplate('ts_vue/App.vue.ejs', `apps/${options.name}/src/App.vue`);
+    await copyTemplate('ts_vue/App.vue.ejs', `apps/${options.name}/src/App.vue`);
 
-    copyTemplate('ts_vue/main.ts.ejs', `apps/${options.name}/src/main.ts`, { name: options.name });
+    await copyTemplate('ts_vue/main.ts.ejs', `apps/${options.name}/src/main.ts`, { name: options.name });
 
-    copyTemplate('ts_vue/unit.setup.ts.ejs', `apps/${options.name}/src/unit.setup.ts`);
+    await copyTemplate('ts_vue/unit.setup.ts.ejs', `apps/${options.name}/src/unit.setup.ts`);
 
-    copyTemplate('ts_vue/HomeWelcome.test.ts.ejs', `apps/${options.name}/src/components/HomeWelcome.test.ts`);
+    await copyTemplate('ts_vue/HomeWelcome.test.ts.ejs', `apps/${options.name}/src/components/HomeWelcome.test.ts`);
 
-    copyTemplate('ts_vue/HomeWelcome.vue.ejs', `apps/${options.name}/src/components/HomeWelcome.vue`);
+    await copyTemplate('ts_vue/HomeWelcome.vue.ejs', `apps/${options.name}/src/components/HomeWelcome.vue`);
 
     writeJson(`apps/${options.name}/src/i18n/locales/de.json`, {
       "welcome": "Willkommen"
@@ -224,15 +224,15 @@ export const tsVueProfile: Profile = {
       "welcome": "Welcome"
     });
 
-    copyTemplate('ts_vue/i18n_index.ts.ejs', `apps/${options.name}/src/i18n/index.ts`);
+    await copyTemplate('ts_vue/i18n_index.ts.ejs', `apps/${options.name}/src/i18n/index.ts`);
 
-    copyTemplate('ts_vue/DefaultLayout.vue', `apps/${options.name}/src/layouts/DefaultLayout.vue`);
+    await copyTemplate('ts_vue/DefaultLayout.vue', `apps/${options.name}/src/layouts/DefaultLayout.vue`);
 
-    copyTemplate('ts_vue/router_index.ts.ejs', `apps/${options.name}/src/router/index.ts`);
+    await copyTemplate('ts_vue/router_index.ts.ejs', `apps/${options.name}/src/router/index.ts`);
 
-    copyTemplate('ts_vue/baldeweg-ui.d.ts.ejs', `apps/${options.name}/src/types/baldeweg-ui.d.ts`);
+    await copyTemplate('ts_vue/baldeweg-ui.d.ts.ejs', `apps/${options.name}/src/types/baldeweg-ui.d.ts`);
 
-    copyTemplate('ts_vue/HomeView.vue.ejs', `apps/${options.name}/src/views/HomeView.vue`);
+    await copyTemplate('ts_vue/HomeView.vue.ejs', `apps/${options.name}/src/views/HomeView.vue`);
 
     // public
     await copyFile('ts_vue/android-chrome-192x192.png', `apps/${options.name}/public/android-chrome-192x192.png`);
@@ -245,15 +245,15 @@ export const tsVueProfile: Profile = {
 
     await copyFile('ts_vue/favicon.svg', `apps/${options.name}/public/favicon.svg`);
 
-    copyTemplate('ts_vue/robots.txt.ejs', `apps/${options.name}/public/robots.txt`);
+    await copyTemplate('ts_vue/robots.txt.ejs', `apps/${options.name}/public/robots.txt`);
 
     // docker
-    copyTemplate('ts_vue/httpd.conf.ejs', `apps/${options.name}/docker/httpd.conf`);
+    await copyTemplate('ts_vue/httpd.conf.ejs', `apps/${options.name}/docker/httpd.conf`);
 
     // ci
-    copyTemplate('ts_vue/release.yaml.ejs', `.github/workflows/release_apps_${makeSlug(options.name)}.yaml`, { name: options.name });
+    await copyTemplate('ts_vue/release.yaml.ejs', `.github/workflows/release_apps_${makeSlug(options.name)}.yaml`, { name: options.name });
 
-    copyTemplate('ts_vue/tests.yaml.ejs', `.github/workflows/tests_apps_${makeSlug(options.name)}.yaml`, { name: options.name });
+    await copyTemplate('ts_vue/tests.yaml.ejs', `.github/workflows/tests_apps_${makeSlug(options.name)}.yaml`, { name: options.name });
 
     writeYaml('pnpm-workspace.yaml', { packages: [] });
     mergeYaml(`pnpm-workspace.yaml`, { 'packages': [`apps/${options.name}/`] });

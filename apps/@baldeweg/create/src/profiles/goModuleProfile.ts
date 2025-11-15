@@ -43,7 +43,7 @@ export const goModuleProfile: Profile = {
 
     createDirs(['.github', `${outputDir}/${options.name}`, `${outputDir}/${options.name}/cmd`, `${outputDir}/${options.name}/internal`]);
 
-    copyTemplate('go/main.go.ejs', `${outputDir}/${options.name}/main.go`);
+    await copyTemplate('go/main.go.ejs', `${outputDir}/${options.name}/main.go`);
 
     createFiles([{ path: `${outputDir}/${options.name}/README.md`, content: `# ${options.name}\n\n` }]);
 
@@ -92,17 +92,17 @@ export const goModuleProfile: Profile = {
     createFiles([{ path: `${outputDir}/${options.name}/go.sum`, content: null }]);
 
     if (options.deploy) {
-      copyTemplate('go/Dockerfile.ejs', `${outputDir}/${options.name}/Dockerfile`, { name: options.name });
+      await copyTemplate('go/Dockerfile.ejs', `${outputDir}/${options.name}/Dockerfile`, { name: options.name });
     }
 
-    copyTemplate(
+    await copyTemplate(
       'go/release.yaml.ejs', `.github/workflows/release_${outputDir}_${options.name}.yaml`, { name: options.name }
     );
 
-    copyTemplate('go/tests.yaml.ejs', `.github/workflows/tests_${outputDir}_${options.name}.yaml`, { outputDir: outputDir, name: options.name });
+    await copyTemplate('go/tests.yaml.ejs', `.github/workflows/tests_${outputDir}_${options.name}.yaml`, { outputDir: outputDir, name: options.name });
 
     if (options.deploy) {
-      copyTemplate('go/cloudbuild.yaml.ejs', `${outputDir}/${options.name}/cloudbuild.yaml`, { name: options.name });
+      await copyTemplate('go/cloudbuild.yaml.ejs', `${outputDir}/${options.name}/cloudbuild.yaml`, { name: options.name });
     }
 
     if (!existsSync('go.work')) {
