@@ -206,15 +206,15 @@ export const tsVueProfile: Profile = {
     createFiles([{ path: `apps/${options.name}/CHANGELOG.md`, content: `# Changelog\n\n` }]);
 
     // src
-    copyTemplate('ts_vue/src/App.vue.ejs', `apps/${options.name}/src/App.vue`);
+    copyTemplate('ts_vue/App.vue.ejs', `apps/${options.name}/src/App.vue`);
 
-    copyTemplate('ts_vue/src/main.ts.ejs', `apps/${options.name}/src/main.ts`, { name: options.name });
+    copyTemplate('ts_vue/main.ts.ejs', `apps/${options.name}/src/main.ts`, { name: options.name });
 
-    copyTemplate('ts_vue/src/unit.setup.ts.ejs', `apps/${options.name}/src/unit.setup.ts`);
+    copyTemplate('ts_vue/unit.setup.ts.ejs', `apps/${options.name}/src/unit.setup.ts`);
 
-    copyTemplate('ts_vue/src/components/HomeWelcome.test.ts.ejs', `apps/${options.name}/src/components/HomeWelcome.test.ts`);
+    copyTemplate('ts_vue/HomeWelcome.test.ts.ejs', `apps/${options.name}/src/components/HomeWelcome.test.ts`);
 
-    copyTemplate('ts_vue/src/components/HomeWelcome.vue.ejs', `apps/${options.name}/src/components/HomeWelcome.vue`);
+    copyTemplate('ts_vue/HomeWelcome.vue.ejs', `apps/${options.name}/src/components/HomeWelcome.vue`);
 
     writeJson(`apps/${options.name}/src/i18n/locales/de.json`, {
       "welcome": "Willkommen"
@@ -224,31 +224,31 @@ export const tsVueProfile: Profile = {
       "welcome": "Welcome"
     });
 
-    copyTemplate('ts_vue/src/i18n/index.ts.ejs', `apps/${options.name}/src/i18n/index.ts`);
+    copyTemplate('ts_vue/i18n_index.ts.ejs', `apps/${options.name}/src/i18n/index.ts`);
 
-    copyTemplate('ts_vue/src/layouts/DefaultLayout.vue', `apps/${options.name}/src/layouts/DefaultLayout.vue`);
+    copyTemplate('ts_vue/DefaultLayout.vue', `apps/${options.name}/src/layouts/DefaultLayout.vue`);
 
-    copyTemplate('ts_vue/src/router/index.ts.ejs', `apps/${options.name}/src/router/index.ts`);
+    copyTemplate('ts_vue/router_index.ts.ejs', `apps/${options.name}/src/router/index.ts`);
 
-    copyTemplate('ts_vue/src/types/baldeweg-ui.d.ts.ejs', `apps/${options.name}/src/types/baldeweg-ui.d.ts`);
+    copyTemplate('ts_vue/baldeweg-ui.d.ts.ejs', `apps/${options.name}/src/types/baldeweg-ui.d.ts`);
 
-    copyTemplate('ts_vue/src/views/HomeView.vue.ejs', `apps/${options.name}/src/views/HomeView.vue`);
+    copyTemplate('ts_vue/HomeView.vue.ejs', `apps/${options.name}/src/views/HomeView.vue`);
 
     // public
-    copyFile('ts_vue/public/android-chrome-192x192.png', `apps/${options.name}/public/android-chrome-192x192.png`);
+    copyFile('ts_vue/android-chrome-192x192.png', `apps/${options.name}/public/android-chrome-192x192.png`);
 
-    copyFile('ts_vue/public/android-chrome-512x512.png', `apps/${options.name}/public/android-chrome-512x512.png`);
+    copyFile('ts_vue/android-chrome-512x512.png', `apps/${options.name}/public/android-chrome-512x512.png`);
 
-    copyFile('ts_vue/public/apple-touch-icon.png', `apps/${options.name}/public/apple-touch-icon.png`);
+    copyFile('ts_vue/apple-touch-icon.png', `apps/${options.name}/public/apple-touch-icon.png`);
 
-    copyFile('ts_vue/public/favicon.ico', `apps/${options.name}/public/favicon.ico`);
+    copyFile('ts_vue/favicon.ico', `apps/${options.name}/public/favicon.ico`);
 
-    copyFile('ts_vue/public/favicon.svg', `apps/${options.name}/public/favicon.svg`);
+    copyFile('ts_vue/favicon.svg', `apps/${options.name}/public/favicon.svg`);
 
-    copyTemplate('ts_vue/public/robots.txt.ejs', `apps/${options.name}/public/robots.txt`);
+    copyTemplate('ts_vue/robots.txt.ejs', `apps/${options.name}/public/robots.txt`);
 
     // docker
-    copyTemplate('ts_vue/docker/httpd.conf.ejs', `apps/${options.name}/docker/httpd.conf`);
+    copyTemplate('ts_vue/httpd.conf.ejs', `apps/${options.name}/docker/httpd.conf`);
 
     // ci
     copyTemplate('ts_vue/release.yaml.ejs', `.github/workflows/release_apps_${makeSlug(options.name)}.yaml`, { name: options.name });
