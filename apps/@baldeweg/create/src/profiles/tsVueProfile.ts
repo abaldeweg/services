@@ -235,15 +235,15 @@ export const tsVueProfile: Profile = {
     copyTemplate('ts_vue/HomeView.vue.ejs', `apps/${options.name}/src/views/HomeView.vue`);
 
     // public
-    copyFile('ts_vue/android-chrome-192x192.png', `apps/${options.name}/public/android-chrome-192x192.png`);
+    await copyFile('ts_vue/android-chrome-192x192.png', `apps/${options.name}/public/android-chrome-192x192.png`);
 
-    copyFile('ts_vue/android-chrome-512x512.png', `apps/${options.name}/public/android-chrome-512x512.png`);
+    await copyFile('ts_vue/android-chrome-512x512.png', `apps/${options.name}/public/android-chrome-512x512.png`);
 
-    copyFile('ts_vue/apple-touch-icon.png', `apps/${options.name}/public/apple-touch-icon.png`);
+    await copyFile('ts_vue/apple-touch-icon.png', `apps/${options.name}/public/apple-touch-icon.png`);
 
-    copyFile('ts_vue/favicon.ico', `apps/${options.name}/public/favicon.ico`);
+    await copyFile('ts_vue/favicon.ico', `apps/${options.name}/public/favicon.ico`);
 
-    copyFile('ts_vue/favicon.svg', `apps/${options.name}/public/favicon.svg`);
+    await copyFile('ts_vue/favicon.svg', `apps/${options.name}/public/favicon.svg`);
 
     copyTemplate('ts_vue/robots.txt.ejs', `apps/${options.name}/public/robots.txt`);
 

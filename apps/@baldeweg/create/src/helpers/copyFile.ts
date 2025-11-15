@@ -1,27 +1,25 @@
-import { copyFileSync, existsSync } from 'fs';
+import { mkdir, copyFile as copyFileAsync } from 'fs/promises';
+import { constants } from 'fs';
 import { dirname } from 'path';
-import { mkdirSync } from 'fs';
 import { getSourcePath, getTargetPath } from './utils.js';
 import { log } from '@clack/prompts';
 
 /**
  * Copies a file to specified dir. Useful for binary files, like images.
  */
-export function copyFile(sourcePath: string, targetPath: string): void {
+export async function copyFile(sourcePath: string, targetPath: string): Promise<void> {
   const absSource = getSourcePath(sourcePath);
   const absTarget = getTargetPath(targetPath);
-
-  if (existsSync(absTarget)) {
-    console.warn(`File already exists, skipping: ${targetPath}`);
-    return;
-  }
-
   const parentDir = dirname(absTarget);
-  mkdirSync(parentDir, { recursive: true });
 
   try {
-    copyFileSync(absSource, absTarget);
+    await mkdir(parentDir, { recursive: true });
+    await copyFileAsync(absSource, absTarget, constants.COPYFILE_EXCL);
   } catch (err: any) {
+    if (err?.code === 'EEXIST') {
+      log.warn(`File already exists, skipping: ${targetPath}`);
+      return;
+    }
     log.error(`Failed to copy file from ${absSource} to ${absTarget}: ${err?.message || err}`);
   }
 }
