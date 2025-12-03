@@ -10,7 +10,7 @@ RUN go mod download && go mod verify
 RUN go build -v -o /app/apps/dist/<%= name %> ./apps/<%= name %>/app/main.go
 
 # Production stage
-FROM alpine:3.22 AS prod
+FROM alpine:3.23 AS prod
 
 RUN adduser -D -u 10001 appuser
 
