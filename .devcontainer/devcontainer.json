@@ -26,7 +26,8 @@
         "vitest.explorer",
         "mrmlnc.vscode-apache",
         "redhat.vscode-yaml",
-        "golang.go"
+        "golang.go",
+        "timonwong.shellcheck"
       ]
     }
   }
