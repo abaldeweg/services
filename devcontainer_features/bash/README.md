@@ -7,7 +7,7 @@ Loads custom bash configurations into devcontainer.
 
 ```json
 "features": {
-    "ghcr.io/abaldeweg/devcontainer_features/bash:0.1.0": {}
+    "ghcr.io/abaldeweg/services/bash:0": {}
 }
 ```
 
@@ -17,4 +17,4 @@ Loads custom bash configurations into devcontainer.
 
 ---
 
-_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/abaldeweg/devcontainer_features/blob/main/src/bash/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
+_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/abaldeweg/services/blob/main/devcontainer_features/bash/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
