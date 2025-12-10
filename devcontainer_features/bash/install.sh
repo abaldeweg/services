@@ -12,7 +12,6 @@ git config --global pull.rebase false
 alias ll='ls -alF'
 
 alias push='git push origin --follow-tags'
-alias ws="pnpm -F"
 
 function tag()
 {
@@ -42,38 +41,6 @@ function tag()
       echo "Set tag ${subpackage}v${tag}"
 
       git tag -a "${subpackage}v${tag}" -m "${subpackage}v${tag}"
-  fi
-}
-
-function dev()
-{
-  if [ -f yarn.lock ]
-    then
-      yarn dev
-  fi
-  if [ -f composer.json ]
-    then
-      symfony server:start --no-tls
-  fi
-  if [ -f package-lock.json ]
-    then
-      npm run dev
-  fi
-  if [ -f docker-compose.yml ]
-    then
-      sudo docker-compose up
-  fi
-  if [ -f go.sum ]
-    then
-      go run ./
-  fi
-  if [ -f hugo.yaml ]
-    then
-      hugo server
-  fi
-  if [ -f pnpm-lock.yaml ]
-    then
-      pnpm dev
   fi
 }
 EOF
