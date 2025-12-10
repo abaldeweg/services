@@ -7,7 +7,7 @@ Installs ansible
 
 ```json
 "features": {
-    "ghcr.io/abaldeweg/devcontainer_features/ansible:1": {}
+    "ghcr.io/abaldeweg/devcontainer_features/ansible:0.1.0": {}
 }
 ```
 

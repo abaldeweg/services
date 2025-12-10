@@ -1,0 +1,6 @@
+{
+  "name": "ansible",
+  "id": "ansible",
+  "version": "0.1.0",
+  "description": "Installs ansible"
+}
