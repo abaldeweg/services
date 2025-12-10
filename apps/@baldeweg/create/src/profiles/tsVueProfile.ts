@@ -256,7 +256,7 @@ export const tsVueProfile: Profile = {
     await copyTemplate('ts_vue/tests.yaml.ejs', `.github/workflows/tests_apps_${makeSlug(options.name)}.yaml`, { name: options.name });
 
     writeYaml('pnpm-workspace.yaml', { packages: [] });
-    mergeYaml(`pnpm-workspace.yaml`, { 'packages': [`apps/${options.name}/`] });
+    await mergeYaml(`pnpm-workspace.yaml`, { 'packages': [`apps/${options.name}/`] });
 
     runCommand('pnpm', ['install'])
   }
