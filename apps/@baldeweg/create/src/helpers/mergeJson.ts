@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { readFile, writeFile, access } from 'fs/promises';
 import { log } from '@clack/prompts';
 import deepmerge from 'deepmerge';
 import { getTargetPath } from './utils.js';
@@ -6,16 +6,23 @@ import { getTargetPath } from './utils.js';
 /**
  * Merges data into an existing JSON file.
  */
-export function mergeJson(filePath: string, data: object): void {
+export async function mergeJson(filePath: string, data: object): Promise<void> {
   const absFilePath = getTargetPath(filePath);
 
   let fileContent: any = {};
-  if (existsSync(absFilePath)) {
-    fileContent = JSON.parse(readFileSync(absFilePath, 'utf8'));
-  } else {
-    log.warn(`File ${filePath} does not exist. Skipping merge.`);
+  try {
+    await access(absFilePath);
+    const raw = await readFile(absFilePath, 'utf8');
+    fileContent = JSON.parse(raw);
+  } catch (err: any) {
+    if (err?.code === 'ENOENT') {
+      log.warn(`File ${filePath} does not exist. Skipping merge.`);
+    } else {
+      throw err;
+    }
   }
+
   const merged = deepmerge(fileContent, data);
 
-  writeFileSync(absFilePath, JSON.stringify(merged, null, 2) + '\n');
+  await writeFile(absFilePath, JSON.stringify(merged, null, 2) + '\n', 'utf8');
 }

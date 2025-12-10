@@ -131,7 +131,7 @@ await createFiles([
 ]);
 ```
 
-#### `mergeJson(filePath: string, data: object): void`
+#### `mergeJson(filePath: string, data: object): Promise<void>`
 
 Merges a JSON object into an existing JSON file at the specified path.
 
@@ -140,7 +140,7 @@ Merges a JSON object into an existing JSON file at the specified path.
 ```typescript
 import { mergeJson } from './src/helpers';
 
-mergeJson(
+await mergeJson(
     'package.json',
     { dependencies: { '@baldeweg/create': '1.0.0' } }
 );
