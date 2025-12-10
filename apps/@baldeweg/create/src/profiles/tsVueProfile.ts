@@ -258,6 +258,6 @@ export const tsVueProfile: Profile = {
     writeYaml('pnpm-workspace.yaml', { packages: [] });
     await mergeYaml(`pnpm-workspace.yaml`, { 'packages': [`apps/${options.name}/`] });
 
-    runCommand('pnpm', ['install'])
+    await runCommand('pnpm', ['install'])
   }
 };

@@ -38,9 +38,9 @@ export const notebookProfile: Profile = {
       }
     ]);
 
-    runCommand('python', ['-m', 'venv', '.venv'], `notebooks/${options.name}`);
-    runCommand('.venv/bin/pip', ['install', '-r', 'requirements.txt'], `notebooks/${options.name}`);
-    runCommand('.venv/bin/pip', ['install', 'ipykernel'], `notebooks/${options.name}`);
-    runCommand('.venv/bin/python', ['-m', 'ipykernel', 'install', '--user', `--name=${makeSlug(options.name)}-venv`, `--display-name='${options.name} Venv'`], `notebooks/${options.name}`);
+    await runCommand('python', ['-m', 'venv', '.venv'], `notebooks/${options.name}`);
+    await runCommand('.venv/bin/pip', ['install', '-r', 'requirements.txt'], `notebooks/${options.name}`);
+    await runCommand('.venv/bin/pip', ['install', 'ipykernel'], `notebooks/${options.name}`);
+    await runCommand('.venv/bin/python', ['-m', 'ipykernel', 'install', '--user', `--name=${makeSlug(options.name)}-venv`, `--display-name='${options.name} Venv'`], `notebooks/${options.name}`);
   }
 };

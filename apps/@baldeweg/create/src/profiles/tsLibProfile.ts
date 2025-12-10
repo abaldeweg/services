@@ -91,6 +91,6 @@ export const tsLibProfile: Profile = {
     writeYaml('pnpm-workspace.yaml', { packages: [] });
     await mergeYaml(`pnpm-workspace.yaml`, { 'packages': [`${outputDir}/${options.name}/`] });
 
-    runCommand('pnpm', ['install'])
+    await runCommand('pnpm', ['install'])
   }
 };

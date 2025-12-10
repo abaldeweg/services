@@ -87,7 +87,7 @@ export const goModuleProfile: Profile = {
       });
     }
 
-    runCommand('go', ['mod', 'init', options.importPath], `${outputDir}/${options.name}`);
+    await runCommand('go', ['mod', 'init', options.importPath], `${outputDir}/${options.name}`);
 
     await createFiles([{ path: `${outputDir}/${options.name}/go.sum`, content: null }]);
 
@@ -106,9 +106,9 @@ export const goModuleProfile: Profile = {
     }
 
     if (!existsSync('go.work')) {
-      runCommand('go', ['work', 'init', `${outputDir}/${options.name}`]);
+      await runCommand('go', ['work', 'init', `${outputDir}/${options.name}`]);
     }
 
-    runCommand('go', ['work', 'use', `${outputDir}/${options.name}`]);
+    await runCommand('go', ['work', 'use', `${outputDir}/${options.name}`]);
   }
 };
