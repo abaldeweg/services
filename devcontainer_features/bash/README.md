@@ -1,5 +1,4 @@
-
-# bash (bash)
+# bash
 
 Loads custom bash configurations into devcontainer.
 
@@ -11,10 +10,6 @@ Loads custom bash configurations into devcontainer.
 }
 ```
 
-
-
-
-
 ---
 
-_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/abaldeweg/services/blob/main/devcontainer_features/bash/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
+_This file was auto-generated from the [devcontainer-feature.json](https://github.com/abaldeweg/services/blob/main/devcontainer_features/bash/devcontainer-feature.json)._
