@@ -84,6 +84,6 @@ export const devcontainerProfile: Profile = {
 
     devcontainer.customizations.vscode.extensions = [...new Set(devcontainer.customizations.vscode.extensions)];
 
-    writeJson('.devcontainer/devcontainer.json', devcontainer)
+    await writeJson('.devcontainer/devcontainer.json', devcontainer)
   }
 };

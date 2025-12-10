@@ -34,7 +34,7 @@ export const tsLibProfile: Profile = {
 
     await createDirs(['.github', `${outputDir}/${options.name}`, `${outputDir}/${options.name}/src`]);
 
-    writeJson(`${outputDir}/${options.name}/package.json`, {
+    await writeJson(`${outputDir}/${options.name}/package.json`, {
       "name": options.name,
       "type": "module",
       "version": "0.0.0",
@@ -51,7 +51,7 @@ export const tsLibProfile: Profile = {
       }
     })
 
-    writeJson(`${outputDir}/${options.name}/tsconfig.json`, {
+    await writeJson(`${outputDir}/${options.name}/tsconfig.json`, {
       "compilerOptions": {
         "outDir": "./dist",
         "module": "nodenext",

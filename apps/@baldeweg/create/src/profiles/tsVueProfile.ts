@@ -66,7 +66,7 @@ export const tsVueProfile: Profile = {
     // root
     await createFiles([{ path: `apps/${options.name}/.env`, content: 'VITE_BASE_URL=/\n' }]);
 
-    writeJson(`apps/${options.name}/.prettierrc.json`, {
+    await writeJson(`apps/${options.name}/.prettierrc.json`, {
       "$schema": "https://json.schemastore.org/prettierrc",
       "semi": false,
       "singleQuote": true,
@@ -81,7 +81,7 @@ export const tsVueProfile: Profile = {
 
     await copyTemplate('ts_vue/index.html.ejs', `apps/${options.name}/index.html`, { name: options.name, color: options.color, description: options.description });
 
-    writeJson(`apps/${options.name}/package.json`, {
+    await writeJson(`apps/${options.name}/package.json`, {
       "name": options.name,
       "version": "0.0.0",
       "type": "module",
@@ -125,7 +125,7 @@ export const tsVueProfile: Profile = {
     }
     );
 
-    writeJson(`apps/${options.name}/tsconfig.app.json`, {
+    await writeJson(`apps/${options.name}/tsconfig.app.json`, {
       "extends": "@vue/tsconfig/tsconfig.dom.json",
       "include": [
         "env.d.ts",
@@ -146,7 +146,7 @@ export const tsVueProfile: Profile = {
     }
     );
 
-    writeJson(`apps/${options.name}/tsconfig.json`, {
+    await writeJson(`apps/${options.name}/tsconfig.json`, {
       "files": [],
       "references": [
         {
@@ -161,7 +161,7 @@ export const tsVueProfile: Profile = {
       ]
     });
 
-    writeJson(`apps/${options.name}/tsconfig.node.json`, {
+    await writeJson(`apps/${options.name}/tsconfig.node.json`, {
       "extends": "@tsconfig/node24/tsconfig.json",
       "include": [
         "vite.config.*",
@@ -179,7 +179,7 @@ export const tsVueProfile: Profile = {
       }
     });
 
-    writeJson(`apps/${options.name}/tsconfig.vitest.json`, {
+    await writeJson(`apps/${options.name}/tsconfig.vitest.json`, {
       "extends": "./tsconfig.app.json",
       "include": [
         "src/**/*.test.ts",
@@ -216,11 +216,11 @@ export const tsVueProfile: Profile = {
 
     await copyTemplate('ts_vue/HomeWelcome.vue.ejs', `apps/${options.name}/src/components/HomeWelcome.vue`);
 
-    writeJson(`apps/${options.name}/src/i18n/locales/de.json`, {
+    await writeJson(`apps/${options.name}/src/i18n/locales/de.json`, {
       "welcome": "Willkommen"
     });
 
-    writeJson(`apps/${options.name}/src/i18n/locales/en.json`, {
+    await writeJson(`apps/${options.name}/src/i18n/locales/en.json`, {
       "welcome": "Welcome"
     });
 

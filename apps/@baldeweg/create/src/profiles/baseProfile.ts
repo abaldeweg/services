@@ -38,7 +38,7 @@ export const baseProfile: Profile = {
 
     await createFiles([{ path: 'README.md', content: `# ${options.name}` }]);
 
-    writeJson('renovate.json', {
+    await writeJson('renovate.json', {
       "extends": [
         "config:base",
         ":disableDependencyDashboard"
@@ -59,7 +59,7 @@ export const baseProfile: Profile = {
     await createFiles([{ path: 'LICENSE', content: null }]);
     log.info('Created LICENSE file, please update it with the correct license text. https://opensource.org/licenses');
 
-    writeJson('package.json', {
+    await writeJson('package.json', {
       "name": "root",
       "version": "0.0.0",
       "description": options.description,
