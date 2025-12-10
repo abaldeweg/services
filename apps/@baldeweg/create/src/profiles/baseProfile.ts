@@ -34,7 +34,7 @@ export const baseProfile: Profile = {
     return { name, description, license };
   },
   run: async (options) => {
-    createDirs(['apps', 'packages', 'notebooks', 'scripts']);
+    await createDirs(['apps', 'packages', 'notebooks', 'scripts']);
 
     createFiles([{ path: 'README.md', content: `# ${options.name}` }]);
 

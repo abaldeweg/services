@@ -26,7 +26,7 @@ export const notebookProfile: Profile = {
     return { name };
   },
   run: async (options) => {
-    createDirs([`notebooks/${options.name}`, `notebooks/${options.name}/data`, `notebooks/${options.name}/export`, `notebooks/${options.name}/lib`]);
+    await createDirs([`notebooks/${options.name}`, `notebooks/${options.name}/data`, `notebooks/${options.name}/export`, `notebooks/${options.name}/lib`]);
 
     createFiles([{ path: `notebooks/${options.name}/README.md`, content: '# Notebook' }]);
 

@@ -32,7 +32,7 @@ export const tsLibProfile: Profile = {
   run: async (options) => {
     const outputDir = options.deploy ? `apps` : `packages`;
 
-    createDirs(['.github', `${outputDir}/${options.name}`, `${outputDir}/${options.name}/src`]);
+    await createDirs(['.github', `${outputDir}/${options.name}`, `${outputDir}/${options.name}/src`]);
 
     writeJson(`${outputDir}/${options.name}/package.json`, {
       "name": options.name,

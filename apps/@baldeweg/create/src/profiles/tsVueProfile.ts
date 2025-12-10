@@ -61,7 +61,7 @@ export const tsVueProfile: Profile = {
     return { name, shortName, license, color, description };
   },
   run: async (options) => {
-    createDirs(['.github', `apps/${options.name}`, `apps/${options.name}/src`, `apps/${options.name}/src/i18n/locales`, `apps/${options.name}/public`, `apps/${options.name}/docker`, `apps/${options.name}/src/composables/`]);
+    await createDirs(['.github', `apps/${options.name}`, `apps/${options.name}/src`, `apps/${options.name}/src/i18n/locales`, `apps/${options.name}/public`, `apps/${options.name}/docker`, `apps/${options.name}/src/composables/`]);
 
     // root
     createFiles([{ path: `apps/${options.name}/.env`, content: 'VITE_BASE_URL=/\n' }]);
