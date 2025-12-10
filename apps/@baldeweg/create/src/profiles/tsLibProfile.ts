@@ -88,7 +88,7 @@ export const tsLibProfile: Profile = {
 
     await copyTemplate('ts_lib/tests.yaml.ejs', `.github/workflows/tests_${outputDir}_${makeSlug(options.name)}.yaml`, { name: options.name });
 
-    writeYaml('pnpm-workspace.yaml', { packages: [] });
+    await writeYaml('pnpm-workspace.yaml', { packages: [] });
     await mergeYaml(`pnpm-workspace.yaml`, { 'packages': [`${outputDir}/${options.name}/`] });
 
     await runCommand('pnpm', ['install'])

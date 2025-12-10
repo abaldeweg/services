@@ -50,7 +50,7 @@ export const goModuleProfile: Profile = {
     await createFiles([{ path: `${outputDir}/${options.name}/CHANGELOG.md`, content: `# Changelog\n\n` }]);
 
     if (options.deploy) {
-      writeYaml(`${outputDir}/${options.name}/openapi.yaml`, {
+      await writeYaml(`${outputDir}/${options.name}/openapi.yaml`, {
         openapi: '3.0.0',
         info: {
           title: options.name,

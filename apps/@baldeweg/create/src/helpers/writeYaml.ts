@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync, existsSync } from 'fs';
+import { access, mkdir, writeFile } from 'fs/promises';
 import { dirname } from 'path';
 import { log } from '@clack/prompts';
 import yaml from 'yaml';
@@ -11,10 +11,11 @@ export async function writeYaml(path: string, data: unknown): Promise<void> {
   const filePath = getTargetPath(path);
   const parentDir = dirname(filePath);
 
-  if (!existsSync(filePath)) {
-    mkdirSync(parentDir, { recursive: true });
-    writeFileSync(filePath, yaml.stringify(data) + '\n');
-  } else {
+  try {
+    await access(filePath);
     log.warning(`File ${filePath} already exists. Skipping creation.`);
+  } catch (err) {
+    await mkdir(parentDir, { recursive: true });
+    await writeFile(filePath, yaml.stringify(data) + '\n', 'utf8');
   }
 }

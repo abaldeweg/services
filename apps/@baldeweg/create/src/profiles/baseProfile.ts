@@ -73,7 +73,7 @@ export const baseProfile: Profile = {
 
     await copyTemplate('base/.editorconfig.ejs', '.editorconfig');
 
-    writeYaml('pnpm-workspace.yaml', {
+    await writeYaml('pnpm-workspace.yaml', {
       packages: []
     })
   }
