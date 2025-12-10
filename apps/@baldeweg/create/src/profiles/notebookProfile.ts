@@ -28,13 +28,15 @@ export const notebookProfile: Profile = {
   run: async (options) => {
     await createDirs([`notebooks/${options.name}`, `notebooks/${options.name}/data`, `notebooks/${options.name}/export`, `notebooks/${options.name}/lib`]);
 
-    createFiles([{ path: `notebooks/${options.name}/README.md`, content: '# Notebook' }]);
+    await createFiles([{ path: `notebooks/${options.name}/README.md`, content: '# Notebook' }]);
 
-    createFiles([{ path: `notebooks/${options.name}/notebook.ipynb`, content: null }]);
+    await createFiles([{ path: `notebooks/${options.name}/notebook.ipynb`, content: null }]);
 
-    createFiles([{
-      path: `notebooks/${options.name}/requirements.txt`, content: 'ipywidgets==8.1.7\nmatplotlib==3.10.7\npandas == 2.3.3'
-    }]);
+    await createFiles([
+      {
+        path: `notebooks/${options.name}/requirements.txt`, content: 'ipywidgets==8.1.7\nmatplotlib==3.10.7\npandas == 2.3.3'
+      }
+    ]);
 
     runCommand('python', ['-m', 'venv', '.venv'], `notebooks/${options.name}`);
     runCommand('.venv/bin/pip', ['install', '-r', 'requirements.txt'], `notebooks/${options.name}`);

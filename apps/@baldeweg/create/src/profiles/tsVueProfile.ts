@@ -64,7 +64,7 @@ export const tsVueProfile: Profile = {
     await createDirs(['.github', `apps/${options.name}`, `apps/${options.name}/src`, `apps/${options.name}/src/i18n/locales`, `apps/${options.name}/public`, `apps/${options.name}/docker`, `apps/${options.name}/src/composables/`]);
 
     // root
-    createFiles([{ path: `apps/${options.name}/.env`, content: 'VITE_BASE_URL=/\n' }]);
+    await createFiles([{ path: `apps/${options.name}/.env`, content: 'VITE_BASE_URL=/\n' }]);
 
     writeJson(`apps/${options.name}/.prettierrc.json`, {
       "$schema": "https://json.schemastore.org/prettierrc",
@@ -201,9 +201,9 @@ export const tsVueProfile: Profile = {
 
     await copyTemplate('ts_vue/cloudbuild.yaml.ejs', `apps/${options.name}/cloudbuild.yaml`, { name: options.name });
 
-    createFiles([{ path: `apps/${options.name}/README.md`, content: `# ${options.name}\n\n` }]);
+    await createFiles([{ path: `apps/${options.name}/README.md`, content: `# ${options.name}\n\n` }]);
 
-    createFiles([{ path: `apps/${options.name}/CHANGELOG.md`, content: `# Changelog\n\n` }]);
+    await createFiles([{ path: `apps/${options.name}/CHANGELOG.md`, content: `# Changelog\n\n` }]);
 
     // src
     await copyTemplate('ts_vue/App.vue.ejs', `apps/${options.name}/src/App.vue`);

@@ -75,14 +75,14 @@ export const tsLibProfile: Profile = {
 
     await copyTemplate('ts_lib/vitest.config.ts.ejs', `${outputDir}/${options.name}/vitest.config.ts`);
 
-    createFiles([
+    await createFiles([
       { path: `${outputDir}/${options.name}/src/index.ts`, content: null },
       { path: `${outputDir}/${options.name}/src/index.test.ts`, content: null }
     ])
 
-    createFiles([{ path: `${outputDir}/${options.name}/README.md`, content: `# ${options.name}\n\n` }]);
+    await createFiles([{ path: `${outputDir}/${options.name}/README.md`, content: `# ${options.name}\n\n` }]);
 
-    createFiles([{ path: `${outputDir}/${options.name}/CHANGELOG.md`, content: `# Changelog\n\n` }]);
+    await createFiles([{ path: `${outputDir}/${options.name}/CHANGELOG.md`, content: `# Changelog\n\n` }]);
 
     await copyTemplate('ts_lib/release.yaml.ejs', `.github/workflows/release_${outputDir}_${makeSlug(options.name)}.yaml`, { outputDir: outputDir, name: options.name });
 

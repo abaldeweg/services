@@ -36,7 +36,7 @@ export const baseProfile: Profile = {
   run: async (options) => {
     await createDirs(['apps', 'packages', 'notebooks', 'scripts']);
 
-    createFiles([{ path: 'README.md', content: `# ${options.name}` }]);
+    await createFiles([{ path: 'README.md', content: `# ${options.name}` }]);
 
     writeJson('renovate.json', {
       "extends": [
@@ -56,7 +56,7 @@ export const baseProfile: Profile = {
       ]
     })
 
-    createFiles([{ path: 'LICENSE', content: null }]);
+    await createFiles([{ path: 'LICENSE', content: null }]);
     log.info('Created LICENSE file, please update it with the correct license text. https://opensource.org/licenses');
 
     writeJson('package.json', {

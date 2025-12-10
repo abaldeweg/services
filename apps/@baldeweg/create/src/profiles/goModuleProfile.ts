@@ -45,9 +45,9 @@ export const goModuleProfile: Profile = {
 
     await copyTemplate('go/main.go.ejs', `${outputDir}/${options.name}/main.go`);
 
-    createFiles([{ path: `${outputDir}/${options.name}/README.md`, content: `# ${options.name}\n\n` }]);
+    await createFiles([{ path: `${outputDir}/${options.name}/README.md`, content: `# ${options.name}\n\n` }]);
 
-    createFiles([{ path: `${outputDir}/${options.name}/CHANGELOG.md`, content: `# Changelog\n\n` }]);
+    await createFiles([{ path: `${outputDir}/${options.name}/CHANGELOG.md`, content: `# Changelog\n\n` }]);
 
     if (options.deploy) {
       writeYaml(`${outputDir}/${options.name}/openapi.yaml`, {
@@ -89,7 +89,7 @@ export const goModuleProfile: Profile = {
 
     runCommand('go', ['mod', 'init', options.importPath], `${outputDir}/${options.name}`);
 
-    createFiles([{ path: `${outputDir}/${options.name}/go.sum`, content: null }]);
+    await createFiles([{ path: `${outputDir}/${options.name}/go.sum`, content: null }]);
 
     if (options.deploy) {
       await copyTemplate('go/Dockerfile.ejs', `${outputDir}/${options.name}/Dockerfile`, { name: options.name });
