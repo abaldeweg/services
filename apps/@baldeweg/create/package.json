@@ -7,7 +7,8 @@
     "baldeweg-create": "dist/cli.js"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "vitest"
   },
   "dependencies": {
     "@clack/prompts": "0.11.0",
@@ -22,7 +23,8 @@
     "@types/fs-extra": "11.0.4",
     "@types/js-yaml": "4.0.9",
     "@types/node": "24.10.2",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vitest": "3.2.4"
   },
   "type": "module",
   "publishConfig": {

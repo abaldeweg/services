@@ -42,7 +42,7 @@ export const tsLibProfile: Profile = {
       "types": "dist/index.d.ts",
       "scripts": {
         "build": "tsc",
-        "test": "jest"
+        "test": "vitest"
       },
       "devDependencies": {
         "@types/node": "24.8.1",
