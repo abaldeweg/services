@@ -3,7 +3,7 @@ import { writeFile, mkdir, rm, readFile } from 'fs/promises';
 import { join, dirname } from 'path';
 import { copyFile } from './copyFile.js';
 
-const templatesDir = join(__dirname, '..', '..', 'templates', '__test_assets__');
+const templatesDir = 'templates/__test_assets__';
 const sourceRel = '__test_assets__/source.txt';
 const targetRelBase = `__test_output__/target`;
 
