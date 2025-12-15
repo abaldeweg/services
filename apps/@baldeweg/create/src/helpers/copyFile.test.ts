@@ -22,7 +22,7 @@ describe('copyFile', () => {
     const targetRel = `${targetRelBase}.txt`;
     await copyFile(sourceRel, targetRel);
 
-    const copied = await readFile(join(process.cwd(), targetRel), 'utf-8');
+    const copied = await readFile(join(targetRel), 'utf-8');
     expect(copied).toBe('copy');
   });
 
