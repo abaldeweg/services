@@ -10,6 +10,7 @@ const targetRelBase = `__test_output__/target`;
 describe('copyFile', () => {
   afterEach(async () => {
     await rm(join(process.cwd(), `${targetRelBase}.txt`), { force: true, recursive: true });
+    await rm(join(templatesDir, 'source.txt'), { force: true, recursive: true });
     await rm(templatesDir, { force: true, recursive: true });
   });
 
