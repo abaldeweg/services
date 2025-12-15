@@ -7,7 +7,7 @@ const targetRelBase = '__test_output__/createDirs';
 
 describe('createDirs', () => {
   afterEach(async () => {
-    await rm(join(process.cwd(), '__test_output__'), { force: true, recursive: true });
+    await rm(join(process.cwd(), targetRelBase), { force: true, recursive: true });
   });
 
   it('creates directories recursively when missing', async () => {
