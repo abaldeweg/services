@@ -51,6 +51,10 @@ Use `types/` directory in the project root for shared types and declarations. It
 
 Organize code thematically within the existing technical folders: create per-feature subfolders inside components, composables, or views (e.g. components/product/, components/order/). This approach preserves the technical separation and grouping related code.
 
+### Trusted Publishing
+
+All npm packages are ready for trusted publishing using GitHub Actions.
+
 ## Profiles
 
 ### Write a profile
