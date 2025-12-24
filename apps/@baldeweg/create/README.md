@@ -24,7 +24,7 @@ The CLI will prompt you to select one or more profiles to run. This will display
 baldeweg-create
 ```
 
-## Monorepo Structure
+## Monorepo-Structure
 
 This structure organizes your codebase around self-contained modules, promoting code reuse.
 
@@ -44,6 +44,12 @@ We try to find new, unique names for each package to avoid conflicts. For JavaSc
 The goal is to avoid renaming or moving packages later by choosing unique and descriptive names from the start.
 
 We do not use a subdirectory for every language. This is because if you have a JavaScript library called `auth` and, a few years later, you want to add a Go package with the same name, you would have to move the existing JS package, which is disruptive.
+
+### Reccommendations for VueJS
+
+Use `types/` directory in the project root for shared types and declarations. It's also possible to organize types in a modularized style — for example placing type definitions under the `src/modules/product/types/` directory. Try to place types as close as possible to where they are used, to keep context clear.
+
+Organize code thematically within the existing technical folders: create per-feature subfolders inside components, composables, or views (e.g. components/product/, components/order/). This approach preserves the technical separation and grouping related code.
 
 ## Profiles
 
