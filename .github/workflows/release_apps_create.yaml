@@ -55,7 +55,7 @@ jobs:
             - name: Install pnpm
               run: npm install -g pnpm
             - name: Install dependencies
-              run: pnpm install
+              run: pnpm install --frozen-lockfile
             - name: Build package
               run: pnpm -F @baldeweg/create build
             - name: Publish @baldeweg/create to NPM
