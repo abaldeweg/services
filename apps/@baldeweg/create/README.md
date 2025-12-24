@@ -53,7 +53,7 @@ Organize code thematically within the existing technical folders: create per-fea
 
 ### Trusted Publishing
 
-All npm packages are ready for trusted publishing using GitHub Actions.
+All npm packages are ready for trusted publishing using GitHub Actions. You need to configure it on npm. For more info have a look at <https://docs.npmjs.com/trusted-publishers>.
 
 ## Profiles
 
