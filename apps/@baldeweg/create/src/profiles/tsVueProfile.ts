@@ -46,6 +46,15 @@ export const tsVueProfile: Profile = {
       initialValue: '',
     });
 
+    const repo = await text({
+      message: 'What\'s the repository URL of the app?',
+      placeholder: 'Repository URL',
+      initialValue: 'https://github.com/abaldeweg/services.git',
+      validate(value) {
+        if (value.length === 0) return `Value is required!`;
+      },
+    });
+
     const color = await text({
       message: "Which theme color should be used (hex code)?",
       placeholder: "Hex color, e.g. #d31e27",
@@ -58,7 +67,7 @@ export const tsVueProfile: Profile = {
       },
     });
 
-    return { name, shortName, license, color, description };
+    return { name, shortName, license, repo, color, description };
   },
   run: async (options) => {
     await createDirs(['.github', `apps/${options.name}`, `apps/${options.name}/src`, `apps/${options.name}/src/i18n/locales`, `apps/${options.name}/public`, `apps/${options.name}/docker`, `apps/${options.name}/src/composables/`]);
@@ -121,7 +130,11 @@ export const tsVueProfile: Profile = {
         "vue-i18n": "11.1.12",
         "vue-tsc": "3.1.3"
       },
-      "license": options.license || undefined
+      "license": options.license || undefined,
+      "repository": {
+        "type": "git",
+        "url": options.repo
+      }
     }
     );
 

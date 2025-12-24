@@ -23,11 +23,20 @@ export const tsLibProfile: Profile = {
       },
     });
 
+    const repo = await text({
+      message: 'What\'s the repository URL of the library?',
+      placeholder: 'Repository URL',
+      initialValue: 'https://github.com/abaldeweg/services.git',
+      validate(value) {
+        if (value.length === 0) return `Value is required!`;
+      },
+    });
+
     const deploy = await confirm({
       message: "Do you plan to deploy your package? This will create your package into the apps/ directory. Otherwise it will be created into the packages/ directory.",
     });
 
-    return { name, deploy };
+    return { name, repo, deploy };
   },
   run: async (options) => {
     const outputDir = options.deploy ? `apps` : `packages`;
@@ -48,6 +57,10 @@ export const tsLibProfile: Profile = {
         "@types/node": "24.8.1",
         "typescript": "5.9.3",
         "vitest": "3.2.4"
+      },
+      "repository": {
+        "type": "git",
+        "url": options.repo
       }
     })
 
