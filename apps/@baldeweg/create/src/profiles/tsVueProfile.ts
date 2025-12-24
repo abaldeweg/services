@@ -138,6 +138,8 @@ export const tsVueProfile: Profile = {
     }
     );
 
+    await copyTemplate('ts_vue/npmrc.ejs', `apps/${options.name}/.npmrc`);
+
     await writeJson(`apps/${options.name}/tsconfig.app.json`, {
       "extends": "@vue/tsconfig/tsconfig.dom.json",
       "include": [

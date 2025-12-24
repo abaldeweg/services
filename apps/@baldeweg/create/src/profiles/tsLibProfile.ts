@@ -64,6 +64,8 @@ export const tsLibProfile: Profile = {
       }
     })
 
+    await copyTemplate('ts_vue/npmrc.ejs', `apps/${options.name}/.npmrc`);
+
     await writeJson(`${outputDir}/${options.name}/tsconfig.json`, {
       "compilerOptions": {
         "outDir": "./dist",
