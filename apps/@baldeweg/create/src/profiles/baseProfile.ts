@@ -36,6 +36,8 @@ export const baseProfile: Profile = {
   run: async (options) => {
     await createDirs(['apps', 'packages', 'notebooks', 'scripts']);
 
+    await copyTemplate('base/ci.yml.ejs', '.github/workflows/ci.yml');
+
     await createFiles([{ path: 'README.md', content: `# ${options.name}` }]);
 
     await writeJson('renovate.json', {
@@ -56,6 +58,21 @@ export const baseProfile: Profile = {
       ]
     })
 
+    await writeJson('knip.json', {
+      "$schema": "https://unpkg.com/knip@5/schema.json",
+      "workspaces": {
+        "apps/**": {},
+        "packages/**": {}
+      },
+      "ignoreDependencies": [
+        "vue=tsc"
+      ],
+      "ignoreFiles": [
+        "**/env.d.ts",
+        "**/baldeweg-ui.d.ts"
+      ]
+    });
+
     await createFiles([{ path: 'LICENSE', content: null }]);
     log.info('Created LICENSE file, please update it with the correct license text. https://opensource.org/licenses');
 
@@ -63,9 +80,15 @@ export const baseProfile: Profile = {
       "name": "root",
       "version": "0.0.0",
       "description": options.description,
+      "scripts": {
+        "knip": "knip"
+      },
       "license": options.license,
       "devDependencies": {
         "@baldeweg/create": "0.3.0",
+        "@types/node": "24.10.4",
+        "knip": "5.77.1",
+        "typescript": "5.9.3"
       }
     })
 
