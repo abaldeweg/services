@@ -3,7 +3,13 @@
   "version": "0.0.0",
   "description": "Collection of useful services.",
   "scripts": {
-    "dev:cli": "pnpm -F @baldeweg/create build && node ./apps/@baldeweg/create/dist/cli.js"
+    "dev:cli": "pnpm -F @baldeweg/create build && node ./apps/@baldeweg/create/dist/cli.js",
+    "knip": "knip"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "24.10.4",
+    "knip": "5.77.1",
+    "typescript": "5.9.3"
+  }
 }
