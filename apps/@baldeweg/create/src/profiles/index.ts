@@ -9,7 +9,7 @@ import type { Profile } from './../types/types.js';
 /**
  * Registry of available profiles.
  */
-export const profiles: Record<string, Profile> = {
+const profiles: Record<string, Profile> = {
   baseProfile,
   devcontainerProfile,
   tsVueProfile,
