@@ -4,12 +4,20 @@
   "description": "Collection of useful services.",
   "scripts": {
     "dev:cli": "pnpm -F @baldeweg/create build && node ./apps/@baldeweg/create/dist/cli.js",
-    "knip": "knip"
+    "knip": "knip",
+    "lint": "eslint --fix"
   },
   "license": "MIT",
   "devDependencies": {
+    "@eslint/js": "9.39.2",
     "@types/node": "24.10.4",
+    "@vitest/eslint-plugin": "1.4.1",
+    "@vue/eslint-config-typescript": "14.6.0",
+    "eslint": "9.39.2",
+    "eslint-plugin-vue": "10.5.1",
+    "globals": "16.5.0",
     "knip": "5.78.0",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.50.1"
   }
 }
