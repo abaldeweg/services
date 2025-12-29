@@ -81,16 +81,27 @@ export const baseProfile: Profile = {
       "version": "0.0.0",
       "description": options.description,
       "scripts": {
-        "knip": "knip"
+        "knip": "knip",
+        "lint": "eslint",
+        "lint:fix": "eslint --fix"
       },
       "license": options.license,
       "devDependencies": {
         "@baldeweg/create": "0.3.0",
+        "@eslint/js": "9.39.2",
         "@types/node": "24.10.4",
-        "knip": "5.77.1",
-        "typescript": "5.9.3"
+        "@vitest/eslint-plugin": "1.4.1",
+        "@vue/eslint-config-typescript": "14.6.0",
+        "eslint": "9.39.2",
+        "eslint-plugin-vue": "10.5.1",
+        "globals": "16.5.0",
+        "knip": "5.78.0",
+        "typescript": "5.9.3",
+        "typescript-eslint": "8.50.1"
       }
     })
+
+    await copyTemplate('base/eslint.config.ts.ejs', `eslint.config.ts`);
 
     await copyTemplate('base/.gitignore.ejs', '.gitignore');
 

@@ -5,7 +5,8 @@
   "scripts": {
     "dev:cli": "pnpm -F @baldeweg/create build && node ./apps/@baldeweg/create/dist/cli.js",
     "knip": "knip",
-    "lint": "eslint --fix"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   },
   "license": "MIT",
   "devDependencies": {

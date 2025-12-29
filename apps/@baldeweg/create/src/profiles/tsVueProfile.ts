@@ -86,8 +86,6 @@ export const tsVueProfile: Profile = {
 
     await copyTemplate('ts_vue/env.d.ts.ejs', `apps/${options.name}/env.d.ts`);
 
-    await copyTemplate('ts_vue/eslint.config.ts.ejs', `apps/${options.name}/eslint.config.ts`);
-
     await copyTemplate('ts_vue/index.html.ejs', `apps/${options.name}/index.html`, { name: options.name, color: options.color, description: options.description });
 
     await writeJson(`apps/${options.name}/package.json`, {
