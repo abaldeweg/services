@@ -65,7 +65,7 @@ export const baseProfile: Profile = {
         "packages/**": {}
       },
       "ignoreDependencies": [
-        "vue=tsc"
+        "vue-tsc"
       ],
       "ignoreFiles": [
         "**/env.d.ts",
