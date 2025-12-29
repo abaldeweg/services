@@ -23,7 +23,7 @@ export const devcontainerProfile: Profile = {
   },
   run: async (options) => {
     // base
-    let devcontainer: Devcontainer = {
+    const devcontainer: Devcontainer = {
       "name": "Monorepo",
       "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
       "features": {
