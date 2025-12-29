@@ -9,13 +9,13 @@ import { getTargetPath } from './utils.js';
 export async function mergeJson(filePath: string, data: object): Promise<void> {
   const absFilePath = getTargetPath(filePath);
 
-  let fileContent: any = {};
+  let fileContent: object = {};
   try {
     await access(absFilePath);
     const raw = await readFile(absFilePath, 'utf8');
     fileContent = JSON.parse(raw);
-  } catch (err: any) {
-    if (err?.code === 'ENOENT') {
+  } catch (err: unknown) {
+    if ((err as NodeJS.ErrnoException)?.code === 'ENOENT') {
       log.warn(`File ${filePath} does not exist. Skipping merge.`);
     } else {
       throw err;

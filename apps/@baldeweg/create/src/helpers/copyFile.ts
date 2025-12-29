@@ -15,11 +15,11 @@ export async function copyFile(sourcePath: string, targetPath: string): Promise<
   try {
     await mkdir(parentDir, { recursive: true });
     await copyFileAsync(absSource, absTarget, constants.COPYFILE_EXCL);
-  } catch (err: any) {
-    if (err?.code === 'EEXIST') {
+  } catch (err: unknown) {
+    if ((err as NodeJS.ErrnoException)?.code === 'EEXIST') {
       log.warn(`File already exists, skipping: ${targetPath}`);
       return;
     }
-    log.error(`Failed to copy file from ${absSource} to ${absTarget}: ${err?.message || err}`);
+    log.error(`Failed to copy file from ${absSource} to ${absTarget}: ${(err as Error)?.message || err}`);
   }
 }

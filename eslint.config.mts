@@ -15,16 +15,6 @@ export default defineConfig([
         plugins: { js },
         extends: ["js/recommended"],
         languageOptions: { globals: { ...globals.browser, ...globals.node } },
-        rules: {
-            "no-useless-escape": "off",
-            "@typescript-eslint/no-explicit-any": "off",
-            "@typescript-eslint/no-empty-interface": "off",
-            "@typescript-eslint/no-empty-object-type": "off",
-            "@typescript-eslint/no-unused-vars": "off",
-            "@typescript-eslint/no-explicit-any": "off",
-            "@typescript-eslint/no-empty-object-type": "off",
-            "@typescript-eslint/no-unused-vars": "off"
-        },
     },
     {
         name: 'app/files-to-ignore',
@@ -42,13 +32,5 @@ export default defineConfig([
                 files: ["src/**/*.test.ts"],
             },
         ],
-    },
-    {
-        files: ["**/*.ts"],
-        rules: {
-            "@typescript-eslint/no-explicit-any": "off",
-            "@typescript-eslint/no-empty-object-type": "off",
-            "@typescript-eslint/no-unused-vars": "off"
-        }
     },
 ]);

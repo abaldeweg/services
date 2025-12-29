@@ -10,7 +10,7 @@ import { getSourcePath, getTargetPath } from "./utils.js";
 export async function copyTemplate(
   templateName: string,
   targetPath: string,
-  variables: Record<string, any> = {}
+  variables: Record<string, unknown> = {}
 ): Promise<void> {
   const absTemplatePath: string = getSourcePath(templateName);
   const absTargetPath = getTargetPath(targetPath);
@@ -28,8 +28,8 @@ export async function copyTemplate(
   const renderedContent = ejs.render(templateContent, variables);
   try {
     await writeFile(absTargetPath, renderedContent, { encoding: "utf8", flag: "wx" });
-  } catch (error: any) {
-    if (error && error.code === "EEXIST") {
+  } catch (error: unknown) {
+    if (error instanceof Error && (error as NodeJS.ErrnoException).code === "EEXIST") {
       log.warn(`File exists, skipping: ${absTargetPath}`);
       return;
     }

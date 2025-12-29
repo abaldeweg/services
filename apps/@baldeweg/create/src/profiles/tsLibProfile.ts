@@ -17,7 +17,7 @@ export const tsLibProfile: Profile = {
       initialValue: 'ts_library',
       validate(value) {
         if (value.length === 0) return `Value is required!`;
-        if (!/^[a-zA-Z0-9_@\/-]+$/.test(value)) {
+        if (!/^[a-zA-Z0-9_@/-]+$/.test(value)) {
           return 'Name must only contain letters, numbers, hyphens (-), underscores (_), at (@), and slash (/).';
         }
       },

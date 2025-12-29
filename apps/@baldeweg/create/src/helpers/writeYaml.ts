@@ -14,7 +14,7 @@ export async function writeYaml(path: string, data: unknown): Promise<void> {
   try {
     await access(filePath);
     log.warning(`File ${filePath} already exists. Skipping creation.`);
-  } catch (err) {
+  } catch {
     await mkdir(parentDir, { recursive: true });
     await writeFile(filePath, yaml.stringify(data) + '\n', 'utf8');
   }

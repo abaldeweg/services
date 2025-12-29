@@ -16,7 +16,7 @@ export const tsVueProfile: Profile = {
       initialValue: 'ts_vue',
       validate(value) {
         if (value.length === 0) return `Value is required!`;
-        if (!/^[a-zA-Z0-9_@\/-]+$/.test(value)) {
+        if (!/^[a-zA-Z0-9_@/-]+$/.test(value)) {
           return 'Name must only contain letters, numbers, hyphens (-), underscores (_), at (@), and slash (/).';
         }
       },
