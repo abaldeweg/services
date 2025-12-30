@@ -9,13 +9,23 @@ import {
 } from "@vue/eslint-config-typescript"
 import pluginVitest from "@vitest/eslint-plugin"
 import eslintConfigPrettier from "eslint-config-prettier/flat"
+import eslintPluginImport from "eslint-plugin-import"
 
 export default defineConfig([
     {
         files: ["**/*.{js,mjs,cjs,ts,mts,cts,vue}"],
-        plugins: { js },
+        plugins: { js, import: eslintPluginImport },
         extends: ["js/recommended"],
         languageOptions: { globals: { ...globals.browser, ...globals.node } },
+        rules: {
+            "import/order": [
+                "error",
+                {
+                    "newlines-between": "never",
+                    alphabetize: { order: "asc", caseInsensitive: true },
+                },
+            ],
+        },
     },
     {
         name: "app/files-to-ignore",
