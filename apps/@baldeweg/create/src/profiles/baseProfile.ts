@@ -3,8 +3,7 @@ import {
   copyTemplate,
   createDirs,
   createFiles,
-  writeJson,
-  writeYaml,
+  writeJson, writeYaml,
 } from "../helpers/index.js"
 import type { Profile } from "../types/types.js"
 
@@ -91,6 +90,7 @@ export const baseProfile: Profile = {
         "@vitest/eslint-plugin": "1.4.1",
         "@vue/eslint-config-typescript": "14.6.0",
         eslint: "9.39.2",
+        "eslint-config-prettier": "10.1.8",
         "eslint-plugin-vue": "10.5.1",
         globals: "16.5.0",
         knip: "5.78.0",
