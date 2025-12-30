@@ -6,7 +6,8 @@
     "dev:cli": "pnpm -F @baldeweg/create build && node ./apps/@baldeweg/create/dist/cli.js",
     "knip": "knip",
     "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "prettier": "prettier --write ."
   },
   "license": "MIT",
   "devDependencies": {
@@ -18,6 +19,7 @@
     "eslint-plugin-vue": "10.6.2",
     "globals": "16.5.0",
     "knip": "5.78.0",
+    "prettier": "3.7.4",
     "typescript": "5.9.3",
     "typescript-eslint": "8.50.1"
   }

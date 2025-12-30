@@ -4,11 +4,6 @@
     "apps/**": {},
     "packages/**": {}
   },
-  "ignoreDependencies": [
-    "vue-tsc"
-  ],
-  "ignoreFiles": [
-    "**/env.d.ts",
-    "**/baldeweg-ui.d.ts"
-  ]
+  "ignoreDependencies": ["vue-tsc"],
+  "ignoreFiles": ["**/env.d.ts", "**/baldeweg-ui.d.ts"]
 }

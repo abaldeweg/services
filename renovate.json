@@ -1,17 +1,10 @@
 {
-  "extends": [
-    "config:base",
-    ":disableDependencyDashboard"
-  ],
+  "extends": ["config:base", ":disableDependencyDashboard"],
   "packageRules": [
     {
-      "updateTypes": [
-        "patch"
-      ],
+      "updateTypes": ["patch"],
       "automerge": true,
-      "requiredStatusChecks": [
-        "ci/tests"
-      ]
+      "requiredStatusChecks": ["ci/tests"]
     }
   ]
 }
