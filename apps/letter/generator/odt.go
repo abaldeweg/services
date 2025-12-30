@@ -4,6 +4,7 @@ import (
 	"archive/zip"
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
 	"os"
 	"path/filepath"
@@ -36,7 +37,12 @@ func (odtGenerator *ODTGenerator) GenerateODT() error {
 	if err != nil {
 		return err
 	}
-	defer ottFile.Close()
+	defer func() {
+		if err := ottFile.Close(); err != nil {
+			// Handle the error, e.g., log it
+			fmt.Printf("Error closing ottFile: %v\n", err)
+		}
+	}()
 
 	if err := odtGenerator.createDir(); err != nil {
 		return err
@@ -81,7 +87,12 @@ func (odtGenerator *ODTGenerator) writeFile(ottReader *zip.Reader) error {
 		}
 
 		content, err := io.ReadAll(rc)
-		rc.Close()
+		defer func() {
+			if err := rc.Close(); err != nil {
+				// Handle the error, e.g., log it
+				fmt.Printf("Error closing rc: %v\n", err)
+			}
+		}()
 		if err != nil {
 			return err
 		}
