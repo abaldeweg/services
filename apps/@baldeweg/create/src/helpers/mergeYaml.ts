@@ -1,7 +1,7 @@
 import { readFile, writeFile } from "fs/promises"
-import yaml from "js-yaml"
 import { log } from "@clack/prompts"
 import deepmerge from "deepmerge"
+import yaml from "js-yaml"
 import { getTargetPath } from "./utils.js"
 
 /**

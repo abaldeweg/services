@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest"
 import { join } from "path"
+import { describe, it, expect } from "vitest"
 import { getSourcePath, getTargetPath } from "./utils.js"
 
 describe("utils", () => {

@@ -1,8 +1,8 @@
 import { mkdir, writeFile, access } from "fs/promises"
 import { dirname } from "path"
 import { log } from "@clack/prompts"
-import { getTargetPath } from "./utils.js"
 import type { FileObject } from "../types/types.js"
+import { getTargetPath } from "./utils.js"
 
 /**
  * Creates files at the given path. If parent directories do not exist, they are created.

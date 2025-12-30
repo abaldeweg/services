@@ -1,6 +1,6 @@
-import { log } from "@clack/prompts"
-import { access, mkdir } from "fs/promises"
 import { constants } from "fs"
+import { access, mkdir } from "fs/promises"
+import { log } from "@clack/prompts"
 import { getTargetPath } from "./utils.js"
 
 /**

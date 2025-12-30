@@ -1,6 +1,6 @@
-import { describe, it, expect, afterEach } from "vitest"
 import { writeFile, mkdir, rm, readFile } from "fs/promises"
 import { join, dirname } from "path"
+import { describe, it, expect, afterEach } from "vitest"
 import { copyTemplate } from "./copyTemplate.js"
 
 const templatesDir = join(__dirname, "..", "..", "templates", "__test_assets__")

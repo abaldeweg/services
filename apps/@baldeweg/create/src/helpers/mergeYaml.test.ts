@@ -1,6 +1,6 @@
-import { describe, it, expect, afterEach } from "vitest"
 import { mkdir, rm, readFile, writeFile } from "fs/promises"
 import { join, dirname } from "path"
+import { describe, it, expect, afterEach } from "vitest"
 import yaml from "yaml"
 import { mergeYaml } from "./mergeYaml.js"
 

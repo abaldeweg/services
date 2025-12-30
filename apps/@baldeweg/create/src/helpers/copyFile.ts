@@ -1,8 +1,8 @@
-import { mkdir, copyFile as copyFileAsync } from "fs/promises"
 import { constants } from "fs"
+import { mkdir, copyFile as copyFileAsync } from "fs/promises"
 import { dirname } from "path"
-import { getSourcePath, getTargetPath } from "./utils.js"
 import { log } from "@clack/prompts"
+import { getSourcePath, getTargetPath } from "./utils.js"
 
 /**
  * Copies a file to specified dir. Useful for binary files, like images.

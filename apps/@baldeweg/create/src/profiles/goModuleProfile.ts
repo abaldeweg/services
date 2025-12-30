@@ -1,3 +1,4 @@
+import { existsSync } from "fs"
 import { text, confirm } from "@clack/prompts"
 import {
   copyTemplate,
@@ -7,7 +8,6 @@ import {
   writeYaml,
 } from "../helpers/index.js"
 import type { Profile } from "../types/types.js"
-import { existsSync } from "fs"
 
 /**
  * Creates a go module.

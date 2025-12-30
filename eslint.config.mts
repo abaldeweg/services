@@ -1,15 +1,15 @@
 import js from "@eslint/js"
-import globals from "globals"
-import tseslint from "typescript-eslint"
-import { defineConfig } from "eslint/config"
-import pluginVue from "eslint-plugin-vue"
+import pluginVitest from "@vitest/eslint-plugin"
 import {
     defineConfigWithVueTs,
     vueTsConfigs,
 } from "@vue/eslint-config-typescript"
-import pluginVitest from "@vitest/eslint-plugin"
+import { defineConfig } from "eslint/config"
 import eslintConfigPrettier from "eslint-config-prettier/flat"
 import eslintPluginImport from "eslint-plugin-import"
+import pluginVue from "eslint-plugin-vue"
+import globals from "globals"
+import tseslint from "typescript-eslint"
 
 export default defineConfig([
     {

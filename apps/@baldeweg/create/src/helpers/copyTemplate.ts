@@ -1,7 +1,7 @@
 import { readFile, writeFile, mkdir } from "fs/promises"
 import { dirname } from "path"
-import ejs from "ejs"
 import { log } from "@clack/prompts"
+import ejs from "ejs"
 import { getSourcePath, getTargetPath } from "./utils.js"
 
 /**

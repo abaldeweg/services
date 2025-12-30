@@ -1,6 +1,6 @@
+import { log } from "@clack/prompts"
 import { describe, it, expect, vi, afterEach } from "vitest"
 import { runCommand } from "./runCommand.js"
-import { log } from "@clack/prompts"
 
 describe("runCommand", () => {
   afterEach(() => {

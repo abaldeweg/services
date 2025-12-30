@@ -1,6 +1,6 @@
-import { describe, it, expect, afterEach } from "vitest"
 import { writeFile, mkdir, rm, readFile } from "fs/promises"
 import { join, dirname } from "path"
+import { describe, it, expect, afterEach } from "vitest"
 import { createFiles } from "./createFiles.js"
 
 const targetRelBase = "__test_output__/create_test"
