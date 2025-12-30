@@ -79,8 +79,9 @@ export const baseProfile: Profile = {
       scripts: {
         knip: "knip",
         lint: "eslint",
-        "lint:fix": "eslint --fix",
-        prettier: "prettier --write .",
+        "lint-fix": "eslint --fix",
+        prettier: "prettier --check .",
+        "prettier-fix": "prettier --write .",
       },
       license: options.license,
       devDependencies: {
