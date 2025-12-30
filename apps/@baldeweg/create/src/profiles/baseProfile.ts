@@ -3,7 +3,8 @@ import {
   copyTemplate,
   createDirs,
   createFiles,
-  writeJson, writeYaml,
+  writeJson,
+  writeYaml,
 } from "../helpers/index.js"
 import type { Profile } from "../types/types.js"
 
