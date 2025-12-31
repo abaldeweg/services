@@ -132,7 +132,7 @@ export const tsLibProfile: Profile = {
     await copyTemplate(
       "ts_lib/tests.yaml.ejs",
       `.github/workflows/tests_${outputDir}_${makeSlug(options.name)}.yaml`,
-      { name: options.name },
+      { name: options.name, outputDir: outputDir },
     )
 
     await writeYaml("pnpm-workspace.yaml", { packages: [] })

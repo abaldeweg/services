@@ -5,14 +5,14 @@ on:
     branches:
       - main
     paths:
-      - "packages/http_api/**"
-      - ".github/workflows/tests_packages_http_api.yaml"
+      - "<%= outputDir %>/<%= name %>/**"
+      - ".github/workflows/tests_<%= outputDir %>_<%= name %>.yaml"
   pull_request:
     branches:
       - main
     paths:
-      - "packages/http_api/**"
-      - ".github/workflows/tests_packages_http_api.yaml"
+      - "<%= outputDir %>/<%= name %>/**"
+      - ".github/workflows/tests_<%= outputDir %>_<%= name %>.yaml"
 
 permissions:
     contents: read
