@@ -5,13 +5,13 @@ on:
         branches:
             - main
         paths:
-            - "apps/create/**"
+            - "apps/@baldeweg/create/**"
             - ".github/workflows/tests_apps_create.yaml"
     pull_request:
         branches:
             - main
         paths:
-            - "apps/create/**"
+            - "apps/@baldeweg/create/**"
             - ".github/workflows/tests_apps_create.yaml"
 
 permissions:
