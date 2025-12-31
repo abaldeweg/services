@@ -4,9 +4,15 @@ on:
     push:
         branches:
             - main
+        paths:
+            - "packages/http_api/**"
+            - ".github/workflows/tests_packages_http_api.yaml"
     pull_request:
         branches:
             - main
+        paths:
+            - "packages/http_api/**"
+            - ".github/workflows/tests_packages_http_api.yaml"
 
 permissions:
     contents: read

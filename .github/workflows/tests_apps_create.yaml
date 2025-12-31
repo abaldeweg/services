@@ -4,9 +4,15 @@ on:
     push:
         branches:
             - main
+        paths:
+            - "apps/create/**"
+            - ".github/workflows/tests_apps_create.yaml"
     pull_request:
         branches:
             - main
+        paths:
+            - "apps/create/**"
+            - ".github/workflows/tests_apps_create.yaml"
 
 permissions:
     contents: read
