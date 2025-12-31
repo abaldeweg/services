@@ -39,7 +39,6 @@ func (odtGenerator *ODTGenerator) GenerateODT() error {
 	}
 	defer func() {
 		if err := ottFile.Close(); err != nil {
-			// Handle the error, e.g., log it
 			fmt.Printf("Error closing ottFile: %v\n", err)
 		}
 	}()
@@ -89,7 +88,6 @@ func (odtGenerator *ODTGenerator) writeFile(ottReader *zip.Reader) error {
 		content, err := io.ReadAll(rc)
 		defer func() {
 			if err := rc.Close(); err != nil {
-				// Handle the error, e.g., log it
 				fmt.Printf("Error closing rc: %v\n", err)
 			}
 		}()
