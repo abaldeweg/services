@@ -35,6 +35,9 @@ importers:
       globals:
         specifier: 16.5.0
         version: 16.5.0
+      jiti:
+        specifier: 2.6.1
+        version: 2.6.1
       knip:
         specifier: 5.78.0
         version: 5.78.0(@types/node@24.10.4)(typescript@5.9.3)
