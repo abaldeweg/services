@@ -2,9 +2,9 @@
   "name": "@baldeweg/create",
   "version": "0.4.2",
   "description": "A simple project generator.",
-  "main": "dist/cli.js",
+  "main": "dist/src/cli.js",
   "bin": {
-    "baldeweg-create": "dist/cli.js"
+    "baldeweg-create": "dist/src/cli.js"
   },
   "scripts": {
     "build": "tsc",

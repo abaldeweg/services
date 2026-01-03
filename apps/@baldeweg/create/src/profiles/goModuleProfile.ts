@@ -111,7 +111,7 @@ export const goModuleProfile: Profile = {
 
     await runCommand(
       "go",
-      ["mod", "init", options.importPath],
+      ["mod", "init", String(options.importPath)],
       `${outputDir}/${options.name}`,
     )
 

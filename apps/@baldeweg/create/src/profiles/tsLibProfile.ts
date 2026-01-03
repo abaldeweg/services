@@ -125,13 +125,13 @@ export const tsLibProfile: Profile = {
 
     await copyTemplate(
       "ts_lib/release.yaml.ejs",
-      `.github/workflows/release_${outputDir}_${makeSlug(options.name)}.yaml`,
+      `.github/workflows/release_${outputDir}_${makeSlug(String(options.name))}.yaml`,
       { outputDir: outputDir, name: options.name },
     )
 
     await copyTemplate(
       "ts_lib/tests.yaml.ejs",
-      `.github/workflows/tests_${outputDir}_${makeSlug(options.name)}.yaml`,
+      `.github/workflows/tests_${outputDir}_${makeSlug(String(options.name))}.yaml`,
       { name: options.name, outputDir: outputDir },
     )
 

@@ -70,10 +70,10 @@ export const notebookProfile: Profile = {
         "ipykernel",
         "install",
         "--user",
-        `--name=${makeSlug(options.name)}-venv`,
-        `--display-name='${options.name} Venv'`,
+        `--name=${makeSlug(String(options.name))}-venv`,
+        `--display-name='${String(options.name)} Venv'`,
       ],
-      `notebooks/${options.name}`,
+      `notebooks/${String(options.name)}`,
     )
   },
 }

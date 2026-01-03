@@ -22,6 +22,12 @@ export const devcontainerProfile: Profile = {
     return { ecosystems }
   },
   run: async (options) => {
+    type RunOptions = { ecosystems?: string[] }
+    const opts = options as RunOptions | undefined
+    const ecosystems = Array.isArray(opts?.ecosystems)
+      ? (opts.ecosystems as string[])
+      : []
+
     // base
     const devcontainer: Devcontainer = {
       name: "Monorepo",
@@ -43,7 +49,7 @@ export const devcontainerProfile: Profile = {
     }
 
     // js
-    if (options.ecosystems.includes("js")) {
+    if (ecosystems.includes("js")) {
       devcontainer.features["ghcr.io/devcontainers/features/node:1.6.3"] = {
         version: "24",
         installPnpm: "true",
@@ -60,7 +66,7 @@ export const devcontainerProfile: Profile = {
     }
 
     // go
-    if (options.ecosystems.includes("go")) {
+    if (ecosystems.includes("go")) {
       devcontainer.features["ghcr.io/devcontainers/features/go:1.3.2"] = {}
       devcontainer.features["ghcr.io/guiyomh/features/goreleaser:0.1.1"] = {}
       devcontainer.customizations.vscode.extensions.push(
@@ -71,7 +77,7 @@ export const devcontainerProfile: Profile = {
     }
 
     // python
-    if (options.ecosystems.includes("python")) {
+    if (ecosystems.includes("python")) {
       devcontainer.features["ghcr.io/devcontainers/features/python:1.7.1"] = {}
       devcontainer.customizations.vscode.extensions.push(
         "ms-toolsai.jupyter",
