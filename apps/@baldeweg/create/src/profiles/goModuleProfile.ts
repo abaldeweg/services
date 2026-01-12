@@ -48,6 +48,13 @@ export const goModuleProfile: Profile = {
   run: async (options) => {
     const outputDir = options.deploy ? `apps` : `packages`
 
+    if (existsSync(`apps/${String(options.name)}`)) {
+      throw new Error(`Directory apps/${String(options.name)} already exists! can't have have a package with same name in any of the packages dirs.`)
+    }
+    if (existsSync(`packages/${String(options.name)}`)) {
+      throw new Error(`Directory packages/${String(options.name)} already exists! can't have have a package with same name in any of the packages dirs.`)
+    }
+
     await createDirs([
       ".github",
       `${outputDir}/${options.name}`,
@@ -129,13 +136,13 @@ export const goModuleProfile: Profile = {
 
     await copyTemplate(
       "go/release.yaml.ejs",
-      `.github/workflows/release_${outputDir}_${options.name}.yaml`,
+      `.github/workflows/release_${options.name}.yaml`,
       { name: options.name },
     )
 
     await copyTemplate(
       "go/tests.yaml.ejs",
-      `.github/workflows/tests_${outputDir}_${options.name}.yaml`,
+      `.github/workflows/tests_${options.name}.yaml`,
       { outputDir: outputDir, name: options.name },
     )
 

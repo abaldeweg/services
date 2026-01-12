@@ -37,6 +37,10 @@ This structure organizes your codebase around self-contained modules, promoting 
 
 Tests are placed alongside the code they test. For JavaScript/VueJS, this means `.test.js` files and for Go, `*_test.go` files.
 
+### Naming Convention for Packages
+
+To avoid name conflicts, package names must be unique between `apps/` and `packages/`. A package with the same name must not exist in both `apps/` and `packages/` at the same time. If this occurs, please choose a different package name.
+
 ### Dealing with Naming Conflicts
 
 We try to find new, unique names for each package to avoid conflicts. For JavaScript, you can make use of vendor prefixes (e.g., `@baldeweg/auth`) to ensure uniqueness.
