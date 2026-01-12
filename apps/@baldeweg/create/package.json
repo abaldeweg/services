@@ -7,7 +7,7 @@
     "baldeweg-create": "dist/src/cli.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp -a templates dist/templates",
     "test": "vitest"
   },
   "dependencies": {
