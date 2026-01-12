@@ -10,7 +10,9 @@
     },
     "ghcr.io/devcontainers/features/go:1.3.2": {}
   },
-  "postCreateCommand": ["pnpm install"],
+  "postCreateCommand": [
+    "pnpm install"
+  ],
   "customizations": {
     "vscode": {
       "extensions": [
@@ -25,7 +27,8 @@
         "mrmlnc.vscode-apache",
         "redhat.vscode-yaml",
         "golang.go",
-        "timonwong.shellcheck"
+        "timonwong.shellcheck",
+        "webpro.vscode-knip"
       ]
     }
   }
