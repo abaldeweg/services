@@ -145,8 +145,8 @@ export const goModuleProfile: Profile = {
     )
 
     await copyTemplate(
-      "go/tests.yaml.ejs",
-      `.github/workflows/tests_${options.name}.yaml`,
+      "go/ci.yaml.ejs",
+      `.github/workflows/ci_${options.name}.yaml`,
       { outputDir: outputDir, name: options.name },
     )
 

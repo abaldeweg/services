@@ -355,8 +355,8 @@ export const tsVueProfile: Profile = {
     )
 
     await copyTemplate(
-      "ts_vue/tests.yaml.ejs",
-      `.github/workflows/tests_${makeSlug(String(options.name))}.yaml`,
+      "ts_vue/ci.yaml.ejs",
+      `.github/workflows/ci_${makeSlug(String(options.name))}.yaml`,
       { name: options.name },
     )
 
