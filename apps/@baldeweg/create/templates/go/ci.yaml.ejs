@@ -1,35 +1,47 @@
-name: Test <%= name %>
+name: CI <%= name %>
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - "<%= outputDir %>/<%= name %>/**"
-      - ".github/workflows/tests_<%= outputDir %>_<%= name %>.yaml"
-  pull_request:
-    branches:
-      - main
-    paths:
-      - "<%= outputDir %>/<%= name %>/**"
-      - ".github/workflows/tests_<%= outputDir %>_<%= name %>.yaml"
+    push:
+        branches:
+            - main
+        paths:
+            - "<%= outputDir %>/<%= name %>/**"
+            - ".github/workflows/tests_<%= outputDir %>_<%= name %>.yaml"
+    pull_request:
+        branches:
+            - main
+        paths:
+            - "<%= outputDir %>/<%= name %>/**"
+            - ".github/workflows/tests_<%= outputDir %>_<%= name %>.yaml"
 
 permissions:
     contents: read
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v5
-      - name: Set up Go
-        uses: actions/setup-go@v6
-        with:
-          go-version: '1.25'
-      - name: Install dependencies
-        working-directory: ./<%= outputDir %>/<%= name %>
-        run: go mod tidy
-      - name: Run tests
-        working-directory: ./<%= outputDir %>/<%= name %>
-        run: go test ./...
+    golangci-lint:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v6
+            - uses: actions/setup-go@v6
+              with:
+                  go-version: "1.25"
+            - name: Run golangci-lint
+              uses: golangci/golangci-lint-action@v9
+              with:
+                  version: ${{ env.GOLANGCI_LINT_VERSION }}
+                  working-directory: ./<%= outputDir %>/<%= name %>
+    unit-tests:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v5
+            - name: Set up Go
+              uses: actions/setup-go@v6
+              with:
+                  go-version: "1.25"
+            - name: Install dependencies
+              working-directory: ./<%= outputDir %>/<%= name %>
+              run: go mod tidy
+            - name: Run tests
+              working-directory: ./<%= outputDir %>/<%= name %>
+              run: go test ./...

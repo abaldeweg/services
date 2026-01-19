@@ -1,4 +1,4 @@
-name: Test @baldeweg/create
+name: CI @baldeweg/create
 
 on:
     push:
@@ -18,7 +18,75 @@ permissions:
     contents: read
 
 jobs:
-    unit:
+    knip:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v6
+            - name: Setup Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 24
+            - name: Install pnpm
+              run: npm install -g pnpm
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+            - name: Run knip
+              run: pnpm -F @baldeweg/create knip
+    eslint:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v6
+            - name: Setup Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 24
+            - name: Install pnpm
+              run: npm install -g pnpm
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+            - name: Run eslint
+              run: pnpm -F @baldeweg/create lint-fix
+            - name: Commit fixes if needed
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  if [ -n "$(git status --porcelain)" ]; then
+                      git config user.name "github-actions[bot]"
+                      git config user.email "github-actions[bot]@users.noreply.github.com"
+                      git add -A
+                      git commit -m "chore: eslint fix by CI"
+                      git push origin main
+                  fi
+    prettier:
+        runs-on: ubuntu-latest
+        needs: eslint
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v6
+            - name: Setup Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 24
+            - name: Install pnpm
+              run: npm install -g pnpm
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+            - name: Run prettier
+              run: pnpm -F @baldeweg/create prettier-fix
+            - name: Commit fixes if needed
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  if [ -n "$(git status --porcelain)" ]; then
+                      git config user.name "github-actions[bot]"
+                      git config user.email "github-actions[bot]@users.noreply.github.com"
+                      git add -A
+                      git commit -m "chore: prettier fix by CI"
+                      git push origin main
+                  fi
+    unit-tests:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v6
