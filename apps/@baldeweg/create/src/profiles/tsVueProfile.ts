@@ -157,6 +157,7 @@ export const tsVueProfile: Profile = {
         eslint: "9.39.1",
         "eslint-plugin-vue": "10.5.1",
         jiti: "2.6.1",
+        "knip": "5.82.0",
         jsdom: "27.1.0",
         prettier: "3.6.2",
         typescript: "5.9.3",

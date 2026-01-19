@@ -21,9 +21,10 @@
   "devDependencies": {
     "@types/ejs": "3.1.5",
     "@types/js-yaml": "4.0.9",
-    "vitest": "4.0.17",
     "@types/node": "24.10.9",
-    "typescript": "5.9.3"
+    "knip": "5.82.0",
+    "typescript": "5.9.3",
+    "vitest": "4.0.17"
   },
   "type": "module",
   "publishConfig": {

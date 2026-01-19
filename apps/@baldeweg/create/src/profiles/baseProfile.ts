@@ -93,7 +93,6 @@ export const baseProfile: Profile = {
         "eslint-config-prettier": "10.1.8",
         "eslint-plugin-vue": "10.5.1",
         globals: "16.5.0",
-        knip: "5.78.0",
         prettier: "3.7.4",
         typescript: "5.9.3",
         "typescript-eslint": "8.50.1",

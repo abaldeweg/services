@@ -38,9 +38,6 @@ importers:
       jiti:
         specifier: 2.6.1
         version: 2.6.1
-      knip:
-        specifier: 5.82.0
-        version: 5.82.0(@types/node@24.10.9)(typescript@5.9.3)
       prettier:
         specifier: 3.8.0
         version: 3.8.0
@@ -78,6 +75,9 @@ importers:
       '@types/node':
         specifier: 24.10.9
         version: 24.10.9
+      knip:
+        specifier: 5.82.0
+        version: 5.82.0(@types/node@24.10.9)(typescript@5.9.3)
       typescript:
         specifier: 5.9.3
         version: 5.9.3

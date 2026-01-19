@@ -81,6 +81,7 @@ export const tsLibProfile: Profile = {
       },
       devDependencies: {
         "@types/node": "24.8.1",
+        "knip": "5.82.0",
         typescript: "5.9.3",
         vitest: "3.2.4",
       },
