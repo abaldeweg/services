@@ -135,6 +135,7 @@ export const tsVueProfile: Profile = {
         build: "vite build",
         preview: "vite preview",
         test: "vitest",
+        knip: "knip",
       },
       dependencies: {
         vue: "3.5.24",

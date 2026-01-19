@@ -77,7 +77,6 @@ export const baseProfile: Profile = {
       version: "0.0.0",
       description: options.description,
       scripts: {
-        knip: "knip",
         lint: "eslint",
         "lint-fix": "eslint --fix",
         prettier: "prettier --check .",

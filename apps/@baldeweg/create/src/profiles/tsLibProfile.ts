@@ -77,6 +77,7 @@ export const tsLibProfile: Profile = {
       scripts: {
         build: "tsc",
         test: "vitest",
+        knip: "knip",
       },
       devDependencies: {
         "@types/node": "24.8.1",

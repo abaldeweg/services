@@ -4,7 +4,6 @@
   "description": "Collection of useful services.",
   "scripts": {
     "cli": "pnpm -F @baldeweg/create build && node ./apps/@baldeweg/create/dist/src/cli.js",
-    "knip": "knip",
     "lint": "eslint",
     "lint-fix": "eslint --fix",
     "prettier": "prettier --check .",
