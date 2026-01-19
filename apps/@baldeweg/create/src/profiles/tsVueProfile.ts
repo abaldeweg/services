@@ -158,7 +158,6 @@ export const tsVueProfile: Profile = {
         "@vue/test-utils": "2.4.6",
         "@vue/tsconfig": "0.8.1",
         axios: "1.13.2",
-        jiti: "2.6.1",
         jsdom: "27.1.0",
         "knip": "5.82.0",
         prettier: "3.6.2",

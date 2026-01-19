@@ -87,7 +87,6 @@ export const tsLibProfile: Profile = {
         "@types/ejs": "3.1.5",
         "@types/js-yaml": "4.0.9",
         "@types/node": "24.8.1",
-        "jiti": "2.6.1",
         "knip": "5.82.0",
         "prettier": "3.8.0",
         typescript: "5.9.3",
