@@ -164,6 +164,7 @@ export const tsVueProfile: Profile = {
         typescript: "5.9.3",
         vite: "7.2.2",
         "vite-plugin-pwa": "1.1.0",
+        "vite-plugin-vue-devtools": "8.0.5",
         "vite-plugin-webfont-dl": "3.11.1",
         vitest: "4.0.8",
         "vue-i18n": "11.1.12",
