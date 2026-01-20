@@ -42,8 +42,6 @@ export const baseProfile: Profile = {
   run: async (options) => {
     await createDirs(["apps", "packages", "notebooks", "scripts"])
 
-    await copyTemplate("base/ci.yml.ejs", ".github/workflows/ci.yml")
-
     await createFiles([{ path: "README.md", content: `# ${options.name}` }])
 
     await writeJson("renovate.json", {
