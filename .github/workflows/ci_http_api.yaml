@@ -1,6 +1,7 @@
 name: CI http_api
 
 on:
+    workflow_dispatch:
     push:
         branches:
             - main
