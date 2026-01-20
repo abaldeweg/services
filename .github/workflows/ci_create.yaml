@@ -16,7 +16,7 @@ on:
             - ".github/workflows/tests_apps_create.yaml"
 
 permissions:
-    contents: read
+    contents: write
 
 jobs:
     knip:

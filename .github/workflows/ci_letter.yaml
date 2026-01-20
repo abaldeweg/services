@@ -16,7 +16,7 @@ on:
             - ".github/workflows/tests_apps_letter.yaml"
 
 permissions:
-    contents: read
+    contents: write
 
 jobs:
     golangci-lint:
