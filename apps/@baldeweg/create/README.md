@@ -71,10 +71,10 @@ Profiles are defined as objects implementing the `Profile` interface (see `src/t
 
 ```typescript
 export interface Profile {
-    name: string;
-    description: string;
-    ask?: () => Promise<void | Record<string, any>>;
-    run: (options: Record<string, any>) => Promise<void>;
+    name: string
+    description: string
+    ask?: () => Promise<void | Record<string, any>>
+    run: (options: Record<string, any>) => Promise<void>
 }
 ```
 
@@ -86,16 +86,17 @@ export interface Profile {
 Here is a minimal example of a profile that creates a basic directory structure:
 
 ```typescript
-import { createDirs } from '../../helpers/createDirs.js';
-import { Profile } from '../../types/types';
+import { createDirs } from "../../helpers/createDirs.js"
+import { Profile } from "../../types/types"
 
 export const baseAction: Profile = {
-  name: 'base',
-  description: 'Create basic directory structure with apps/ and packages/ directories',
-  run: async (options) => {
-    createDirs(['apps', 'packages']);
-  }
-};
+    name: "base",
+    description:
+        "Create basic directory structure with apps/ and packages/ directories",
+    run: async (options) => {
+        createDirs(["apps", "packages"])
+    },
+}
 ```
 
 To make your profile available add it to the `profiles` object in `src/profiles/registry.ts`.
@@ -115,9 +116,9 @@ Creates directories if they do not exist.
 **Usage:**
 
 ```typescript
-import { createDirs } from './src/helpers';
+import { createDirs } from "./src/helpers"
 
-createDirs(['apps', 'packages']);
+createDirs(["apps", "packages"])
 ```
 
 #### `copyFile(sourcePath: string, targetPath: string): void`
@@ -127,9 +128,9 @@ Copies a file from the templates directory to the specified target location. Use
 **Usage:**
 
 ```typescript
-import { copyFile } from './src/helpers';
+import { copyFile } from "./src/helpers"
 
-copyFile('base/image.png', 'apps/web/public/image.png');
+copyFile("base/image.png", "apps/web/public/image.png")
 ```
 
 #### `createFiles(files: FileObject[]): Promise<void>`
@@ -139,12 +140,12 @@ Creates files at the given paths, creating parent directories as needed. Skips f
 **Usage:**
 
 ```typescript
-import { createFiles } from './src/helpers';
+import { createFiles } from "./src/helpers"
 
 await createFiles([
-    { path: 'apps/api/main.go', content: null },
-    { path: 'README.md', content: '# My Project' }
-]);
+    { path: "apps/api/main.go", content: null },
+    { path: "README.md", content: "# My Project" },
+])
 ```
 
 #### `mergeJson(filePath: string, data: object): Promise<void>`
@@ -154,12 +155,11 @@ Merges a JSON object into an existing JSON file at the specified path.
 **Usage:**
 
 ```typescript
-import { mergeJson } from './src/helpers';
+import { mergeJson } from "./src/helpers"
 
-await mergeJson(
-    'package.json',
-    { dependencies: { '@baldeweg/create': '1.0.0' } }
-);
+await mergeJson("package.json", {
+    dependencies: { "@baldeweg/create": "1.0.0" },
+})
 ```
 
 #### `mergeYaml(filePath: string, data: object): void`
@@ -169,12 +169,9 @@ Merges a JavaScript object into an existing YAML file at the specified path.
 **Usage:**
 
 ```typescript
-import { mergeYaml } from './src/helpers';
+import { mergeYaml } from "./src/helpers"
 
-mergeYaml(
-    'config.yaml',
-    { key: 'value' }
-);
+mergeYaml("config.yaml", { key: "value" })
 ```
 
 #### `copyTemplate(options: TemplateOptions): void`
@@ -184,13 +181,13 @@ Copies a template file to a target location with variable substitution using EJS
 **Usage:**
 
 ```typescript
-import { copyTemplate } from './src/helpers';
+import { copyTemplate } from "./src/helpers"
 
 copyTemplate({
-    templateName: 'package/package.json',
-    targetPath: 'package.json',
-    variables: { name: 'my-package' }
-});
+    templateName: "package/package.json",
+    targetPath: "package.json",
+    variables: { name: "my-package" },
+})
 ```
 
 #### `runCommand(options: CommandOptions): Promise<void>`
@@ -200,9 +197,9 @@ Runs a command in the repository directory.
 **Usage:**
 
 ```typescript
-import { runCommand } from './src/helpers';
+import { runCommand } from "./src/helpers"
 
-await runCommand('pnpm', ['install']);
+await runCommand("pnpm", ["install"])
 ```
 
 #### `makeSlug(term: string): string`
@@ -212,9 +209,9 @@ Replaces special characters in a string to create a slug suitable for filenames.
 **Usage:**
 
 ```typescript
-import { makeSlug } from './src/helpers';
+import { makeSlug } from "./src/helpers"
 
-const slug = makeSlug('my/project name'); // 'my_project_name'
+const slug = makeSlug("my/project name") // 'my_project_name'
 ```
 
 ## Template Engine

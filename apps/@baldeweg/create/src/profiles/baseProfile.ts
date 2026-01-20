@@ -81,11 +81,11 @@ export const baseProfile: Profile = {
         "@eslint/js": "9.39.2",
         "@vitest/eslint-plugin": "1.6.6",
         "@vue/eslint-config-typescript": "14.6.0",
-        "eslint": "9.39.2",
+        eslint: "9.39.2",
         "eslint-config-prettier": "10.1.8",
         "eslint-plugin-import": "2.32.0",
         "eslint-plugin-vue": "10.7.0",
-        "globals": "17.0.0",
+        globals: "17.0.0",
         "typescript-eslint": "8.53.0",
       },
     })

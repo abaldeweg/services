@@ -136,10 +136,10 @@ export const tsVueProfile: Profile = {
         preview: "vite preview",
         test: "vitest",
         knip: "knip",
-        "lint": "eslint",
+        lint: "eslint",
         "lint-fix": "eslint --fix",
-        "prettier": "prettier --check .",
-        "prettier-fix": "prettier --write ."
+        prettier: "prettier --check .",
+        "prettier-fix": "prettier --write .",
       },
       dependencies: {
         vue: "3.5.24",
@@ -159,7 +159,7 @@ export const tsVueProfile: Profile = {
         "@vue/tsconfig": "0.8.1",
         axios: "1.13.2",
         jsdom: "27.1.0",
-        "knip": "5.82.0",
+        knip: "5.82.0",
         prettier: "3.6.2",
         typescript: "5.9.3",
         vite: "7.2.2",

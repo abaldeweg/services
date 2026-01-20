@@ -78,17 +78,17 @@ export const tsLibProfile: Profile = {
         build: "tsc",
         test: "vitest",
         knip: "knip",
-        "lint": "eslint",
+        lint: "eslint",
         "lint-fix": "eslint --fix",
-        "prettier": "prettier --check .",
-        "prettier-fix": "prettier --write ."
+        prettier: "prettier --check .",
+        "prettier-fix": "prettier --write .",
       },
       devDependencies: {
         "@types/ejs": "3.1.5",
         "@types/js-yaml": "4.0.9",
         "@types/node": "24.8.1",
-        "knip": "5.82.0",
-        "prettier": "3.8.0",
+        knip: "5.82.0",
+        prettier: "3.8.0",
         typescript: "5.9.3",
         vitest: "3.2.4",
       },
@@ -98,7 +98,10 @@ export const tsLibProfile: Profile = {
       },
     })
 
-    await copyTemplate("ts_lib/npmrc.ejs", `${outputDir}/${options.name}/.npmrc`)
+    await copyTemplate(
+      "ts_lib/npmrc.ejs",
+      `${outputDir}/${options.name}/.npmrc`,
+    )
 
     await writeJson(`${outputDir}/${options.name}/tsconfig.json`, {
       compilerOptions: {
