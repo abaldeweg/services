@@ -1,4 +1,3 @@
-import { existsSync } from "fs"
 import { text } from "@clack/prompts"
 import {
   copyFile,
@@ -10,6 +9,7 @@ import {
   writeJson,
   makeSlug,
   writeYaml,
+  canCreatePackage,
 } from "../helpers/index.js"
 import type { Profile } from "../types/types.js"
 
@@ -82,14 +82,9 @@ export const tsVueProfile: Profile = {
     return { name, shortName, license, repo, color, description }
   },
   run: async (options) => {
-    if (existsSync(`apps/${String(options.name)}`)) {
+    if (await canCreatePackage(String(options.name)) === false) {
       throw new Error(
-        `Directory apps/${String(options.name)} already exists! can't have have a package with same name in any of the packages dirs.`,
-      )
-    }
-    if (existsSync(`packages/${String(options.name)}`)) {
-      throw new Error(
-        `Directory packages/${String(options.name)} already exists! can't have have a package with same name in any of the packages dirs.`,
+        `A package with the name ${String(options.name)} already exists! Can't have have a package with same name in any of the packages dirs.`,
       )
     }
 

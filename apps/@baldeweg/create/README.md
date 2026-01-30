@@ -214,6 +214,33 @@ import { makeSlug } from "./src/helpers"
 const slug = makeSlug("my/project name") // 'my_project_name'
 ```
 
+#### `listPackageDirs(rootDir: string): Promise<string[]>`
+
+Lists top-level package directories found in the repository. The helper always includes `apps` and `packages` by default and adds any directories that start with `packages-` (e.g. `packages-private`).
+
+**Usage:**
+
+```typescript
+import { listPackageDirs } from "./src/helpers"
+
+const packageDirs = await listPackageDirs('.')
+// e.g. ['apps', 'packages', 'packages-private']
+```
+
+#### `canCreatePackage(packageName: string): Promise<boolean>`
+
+Checks whether a package with the given name already exists inside any top-level package directory (`apps`, `packages`, or `packages-*`). Returns `true` when the name is available and `false` if a conflict is found.
+
+**Usage:**
+
+```typescript
+import { canCreatePackage } from "./src/helpers"
+
+if (await canCreatePackage('auth')) {
+    // safe to create package 'auth'
+}
+```
+
 ## Template Engine
 
 This project uses EJS for template rendering. You can use EJS syntax in your templates, including variables and logic such as if statements and loops.

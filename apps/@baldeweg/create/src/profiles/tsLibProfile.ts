@@ -1,9 +1,10 @@
-import { existsSync } from "fs"
-import { text, confirm } from "@clack/prompts"
+import { text, select } from "@clack/prompts"
 import {
+  canCreatePackage,
   copyTemplate,
   createDirs,
   createFiles,
+  listPackageDirs,
   mergeYaml,
   runCommand,
   writeJson,
@@ -41,24 +42,21 @@ export const tsLibProfile: Profile = {
       },
     })
 
-    const deploy = await confirm({
+    const packageDirs = await listPackageDirs('.')
+    const pkgDir = await select({
       message:
-        "Do you plan to deploy your package? This will create your package into the apps/ directory. Otherwise it will be created into the packages/ directory.",
+        "Which package directory should the module be created in?",
+      options: packageDirs.map((d) => ({ value: d, label: d })),
     })
 
-    return { name, repo, deploy }
+    return { name, repo, pkgDir }
   },
   run: async (options) => {
-    const outputDir = options.deploy ? `apps` : `packages`
+    const outputDir = options.pkgDir
 
-    if (existsSync(`apps/${String(options.name)}`)) {
+    if (await canCreatePackage('.', String(options.name)) === false) {
       throw new Error(
-        `Directory apps/${String(options.name)} already exists! can't have have a package with same name in any of the packages dirs.`,
-      )
-    }
-    if (existsSync(`packages/${String(options.name)}`)) {
-      throw new Error(
-        `Directory packages/${String(options.name)} already exists! can't have have a package with same name in any of the packages dirs.`,
+        `A package with the name ${String(options.name)} already exists! Can't have have a package with same name in any of the packages dirs.`,
       )
     }
 
