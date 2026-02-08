@@ -43,6 +43,7 @@ export const devcontainerProfile: Profile = {
             "EditorConfig.EditorConfig",
             "DavidAnson.vscode-markdownlint",
             "christian-kohler.path-intellisense",
+            "docker.docker",
           ],
         },
       },
