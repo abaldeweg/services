@@ -42,10 +42,9 @@ export const tsLibProfile: Profile = {
       },
     })
 
-    const packageDirs = await listPackageDirs('.')
+    const packageDirs = await listPackageDirs(".")
     const pkgDir = await select({
-      message:
-        "Which package directory should the module be created in?",
+      message: "Which package directory should the module be created in?",
       options: packageDirs.map((d) => ({ value: d, label: d })),
     })
 
@@ -54,7 +53,7 @@ export const tsLibProfile: Profile = {
   run: async (options) => {
     const outputDir = options.pkgDir
 
-    if (await canCreatePackage('.', String(options.name)) === false) {
+    if ((await canCreatePackage(".", String(options.name))) === false) {
       throw new Error(
         `A package with the name ${String(options.name)} already exists! Can't have have a package with same name in any of the packages dirs.`,
       )
