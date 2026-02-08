@@ -1,6 +1,6 @@
 import { readdir } from "fs/promises"
-import { getTargetPath } from "./utils.js"
 import { join } from "path"
+import { getTargetPath } from "./utils.js"
 
 // Lists all package directories in the given root directory.
 export async function listPackageDirs(rootDir: string): Promise<string[]> {
