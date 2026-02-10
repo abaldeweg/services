@@ -25,7 +25,7 @@
   "devDependencies": {
     "@types/ejs": "3.1.5",
     "@types/js-yaml": "4.0.9",
-    "@types/node": "24.10.12",
+    "@types/node": "24.10.13",
     "eslint": "9.39.2",
     "knip": "5.82.1",
     "prettier": "3.8.1",
