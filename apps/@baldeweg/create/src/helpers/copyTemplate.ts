@@ -22,7 +22,9 @@ export async function copyTemplate(
   try {
     templateContent = await readFile(absTemplatePath, "utf8")
   } catch (error) {
-    throw new Error(`Error reading template file ${absTemplatePath}: ${error}`)
+    throw new Error(`Error reading template file ${absTemplatePath}`, {
+      cause: error as unknown,
+    })
   }
 
   const renderedContent = ejs.render(templateContent, variables)
@@ -39,6 +41,8 @@ export async function copyTemplate(
       log.warn(`File exists, skipping: ${absTargetPath}`)
       return
     }
-    throw new Error(`Error writing file to ${absTargetPath}: ${error}`)
+    throw new Error(`Error writing file to ${absTargetPath}`, {
+      cause: error,
+    })
   }
 }
