@@ -223,7 +223,7 @@ Lists top-level package directories found in the repository. The helper always i
 ```typescript
 import { listPackageDirs } from "./src/helpers"
 
-const packageDirs = await listPackageDirs('.')
+const packageDirs = await listPackageDirs(".")
 // e.g. ['apps', 'packages', 'packages-private']
 ```
 
@@ -236,7 +236,7 @@ Checks whether a package with the given name already exists inside any top-level
 ```typescript
 import { canCreatePackage } from "./src/helpers"
 
-if (await canCreatePackage('auth')) {
+if (await canCreatePackage("auth")) {
     // safe to create package 'auth'
 }
 ```

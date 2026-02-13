@@ -82,7 +82,7 @@ export const tsVueProfile: Profile = {
     return { name, shortName, license, repo, color, description }
   },
   run: async (options) => {
-    if (await canCreatePackage(String(options.name)) === false) {
+    if ((await canCreatePackage(String(options.name))) === false) {
       throw new Error(
         `A package with the name ${String(options.name)} already exists! Can't have have a package with same name in any of the packages dirs.`,
       )

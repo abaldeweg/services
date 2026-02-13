@@ -5,7 +5,7 @@ import { getTargetPath } from "./utils.js"
 // Lists all package directories in the given root directory.
 export async function listPackageDirs(rootDir: string): Promise<string[]> {
   const dirPath = getTargetPath(rootDir)
-  const results: string[] = ['apps', 'packages']
+  const results: string[] = ["apps", "packages"]
   try {
     const entries = await readdir(dirPath, { withFileTypes: true })
     const pkgPattern = /^packages-.+$/
@@ -22,7 +22,10 @@ export async function listPackageDirs(rootDir: string): Promise<string[]> {
 }
 
 // Checks if a package with the given name can be created.
-export async function canCreatePackage(rootDir: string, packageName: string): Promise<boolean> {
+export async function canCreatePackage(
+  rootDir: string,
+  packageName: string,
+): Promise<boolean> {
   if (!packageName) return false
 
   try {
