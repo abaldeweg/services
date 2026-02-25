@@ -23,7 +23,7 @@ export async function copyTemplate(
     templateContent = await readFile(absTemplatePath, "utf8")
   } catch (error) {
     throw new Error(`Error reading template file ${absTemplatePath}`, {
-      cause: error as unknown,
+      cause: error,
     })
   }
 
