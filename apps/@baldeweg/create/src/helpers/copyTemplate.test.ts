@@ -3,8 +3,9 @@ import { join, dirname } from "path"
 import { describe, it, expect, afterEach } from "vitest"
 import { copyTemplate } from "./copyTemplate.js"
 
-const templatesDir = join(__dirname, "..", "..", "templates", "__test_assets__")
-const templateRel = "__test_assets__/test.ejs"
+const templateSubDir = "__test_assets__/copy_template"
+const templatesDir = join(__dirname, "..", "..", "templates", templateSubDir)
+const templateRel = `${templateSubDir}/test.ejs`
 const targetRelBase = `__test_output__/test`
 
 describe("copyTemplate", () => {
