@@ -26,7 +26,7 @@ export const tsVueProfile: Profile = {
       placeholder: "Package Name",
       initialValue: "ts_vue",
       validate(value) {
-        if (value.length === 0) return `Value is required!`
+        if (!value || value.length === 0) return `Value is required!`
         if (!/^[a-zA-Z0-9_@/-]+$/.test(value)) {
           return "Name must only contain letters, numbers, hyphens (-), underscores (_), at (@), and slash (/)."
         }
@@ -39,7 +39,7 @@ export const tsVueProfile: Profile = {
       placeholder: "Short Package Name",
       initialValue: "ts_vue",
       validate(value) {
-        if (value.length === 0) return `Value is required!`
+        if (!value || value.length === 0) return `Value is required!`
         if (!/^[a-zA-Z0-9_-]+$/.test(value)) {
           return "Name must only contain letters, numbers, hyphens (-) and underscores (_)."
         }
@@ -63,7 +63,7 @@ export const tsVueProfile: Profile = {
       placeholder: "Repository URL",
       initialValue: "https://github.com/abaldeweg/services.git",
       validate(value) {
-        if (value.length === 0) return `Value is required!`
+        if (!value || value.length === 0) return `Value is required!`
       },
     })
 
@@ -71,8 +71,8 @@ export const tsVueProfile: Profile = {
       message: "Which theme color should be used (hex code)?",
       placeholder: "Hex color, e.g. #d31e27",
       initialValue: "#d31e27",
-      validate(value: string) {
-        if (value.length === 0) return `Value is required!`
+      validate(value) {
+        if (!value || value.length === 0) return `Value is required!`
         if (!/^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/.test(value)) {
           return "Enter a valid hex color (e.g. #d31e27 or #f00)"
         }
@@ -82,7 +82,7 @@ export const tsVueProfile: Profile = {
     return { name, shortName, license, repo, color, description }
   },
   run: async (options) => {
-    if ((await canCreatePackage(String(options.name))) === false) {
+    if ((await canCreatePackage(".", String(options.name))) === false) {
       throw new Error(
         `A package with the name ${String(options.name)} already exists! Can't have have a package with same name in any of the packages dirs.`,
       )

@@ -24,7 +24,7 @@ export const goModuleProfile: Profile = {
       placeholder: "Name of the module",
       initialValue: "go_module",
       validate(value) {
-        if (value.length === 0) return `Value is required!`
+        if (!value || value.length === 0) return `Value is required!`
         if (!/^[a-zA-Z0-9_-]+$/.test(value)) {
           return "Name must only contain letters, numbers, hyphens (-), and underscores (_)."
         }
@@ -36,7 +36,7 @@ export const goModuleProfile: Profile = {
       placeholder: "Path",
       initialValue: "github.com/abaldeweg/services",
       validate(value) {
-        if (value.length === 0) return `Value is required!`
+        if (!value || value.length === 0) return `Value is required!`
       },
     })
 

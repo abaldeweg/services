@@ -20,8 +20,8 @@ export const baseProfile: Profile = {
       message: "What's the name of the project?",
       placeholder: "Name",
       initialValue: "My Project",
-      validate(value) {
-        if (value.length === 0) return `Value is required!`
+      validate(value: string | undefined) {
+        if (!value || value.length === 0) return `Value is required!`
       },
     })
 

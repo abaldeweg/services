@@ -26,7 +26,7 @@ export const tsLibProfile: Profile = {
       placeholder: "Library Name",
       initialValue: "ts_library",
       validate(value) {
-        if (value.length === 0) return `Value is required!`
+        if (!value || value.length === 0) return `Value is required!`
         if (!/^[a-zA-Z0-9_@/-]+$/.test(value)) {
           return "Name must only contain letters, numbers, hyphens (-), underscores (_), at (@), and slash (/)."
         }
@@ -38,7 +38,7 @@ export const tsLibProfile: Profile = {
       placeholder: "Repository URL",
       initialValue: "https://github.com/abaldeweg/services.git",
       validate(value) {
-        if (value.length === 0) return `Value is required!`
+        if (!value || value.length === 0) return `Value is required!`
       },
     })
 
