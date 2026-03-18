@@ -102,7 +102,7 @@ The field only exists if at least one key with a revision is assigned to the rec
 }
 ```
 
-## RecordRevision Schema
+## Revision Schema
 
 ### `version`
 
@@ -210,7 +210,7 @@ Implementations MAY enforce limits on maximum number of assets per revision. If 
 
 A recommended default limit is 128 assets per revision.
 
-### RecordRevision JSON Schema
+### Revision JSON Schema
 
 ```json
 {
@@ -267,7 +267,7 @@ A recommended default limit is 128 assets per revision.
 }
 ```
 
-## RecordRevision Example
+## Revision Example
 
 ```json
 {
