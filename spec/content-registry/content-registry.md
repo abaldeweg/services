@@ -480,7 +480,6 @@ The following error codes are defined:
 - `NOT_FOUND`
 - `CONFLICT`
 - `INVALID_ARGUMENT`
-- `FORBIDDEN`
 
 Records are permanent. The registry does not provide record deletion. This decision may be revisited in a future version.
 
