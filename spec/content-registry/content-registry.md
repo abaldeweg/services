@@ -51,7 +51,7 @@ Label names MUST be 1 to 64 characters long and use only `a-z`, `0-9`, `-`, `_`,
 
 Each label points to the hash of the current head revision of that label. Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`.
 
-The field only exists if at least one key with a revision is assigned to the record. Every label must have a revision assigned to it; otherwise, the label MUST NOT be created or MUST be removed.
+The field only exists if at least one key with a revision is assigned to the record. Every label MUST have a revision assigned to it; otherwise, the label MUST NOT be created or MUST be removed.
 
 ### Record JSON Schema
 
@@ -118,7 +118,7 @@ Uses a SemVer-inspired two-part version number (`major.minor`), for example `1.2
 | ------ | -------- | ------- |
 | String | Yes      | -       |
 
-The ID is a hash consisting of `version`, `parent`, `created_at`, `meta`, `document`, and `assets`; other keys, especially the `id` itself, must not be present. Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`. To guarantee identical IDs across different platforms, the revision MUST be brought into a canonical JSON form before hashing using the JSON Canonicalization Scheme (JCS) according to RFC 8785.
+The ID is a hash consisting of `version`, `parent`, `created_at`, `meta`, `document`, and `assets`; other keys, especially the `id` itself, MUST NOT be present. Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`. To guarantee identical IDs across different platforms, the revision MUST be brought into a canonical JSON form before hashing using the JSON Canonicalization Scheme (JCS) according to RFC 8785.
 
 `created_at` is part of the revision and therefore included in the revision hash. Two revisions with identical document content but different timestamps are considered distinct revisions. This value MUST only be calculated by the Content Registry.
 
