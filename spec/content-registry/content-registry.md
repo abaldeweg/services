@@ -488,6 +488,12 @@ Returns `true` on success.
 
 If the `namespace` already exists, the request is rejected.
 
+### `getRecord(namespace) -> Record`
+
+Retrieves a specific record by `namespace`.
+
+If the `namespace` does not exist, the request is rejected.
+
 ### `deleteLabel(namespace, label) -> Boolean`
 
 Removes a label.
