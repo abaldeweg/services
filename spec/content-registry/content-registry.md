@@ -580,3 +580,7 @@ If the `namespace` does not exist, or the `label` does not exist in the namespac
 ## Security Considerations
 
 This specification does not define authentication or authorization. Consumers MUST ensure that only authorized actors can perform write and read operations.
+
+Implementations SHOULD consider rate limiting to reduce abuse and service exhaustion.
+
+Higher-level systems like CMSs are responsible for validating `meta`, `document`, `assets`, and `namespace` before calling the API to prevent code injection or other issues.
