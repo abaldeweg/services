@@ -464,6 +464,8 @@ The implementation is responsible for defining provider names and their configur
 
 ## Programmatic API
 
+This specification describes an API. How it is exposed (e.g. HTTP, gRPC) is not defined here.
+
 All write operations MUST be executed atomically.
 
 Records are permanent. The registry does not provide record deletion. This decision may be revisited in a future version.
