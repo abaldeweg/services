@@ -492,7 +492,7 @@ If the `namespace` already exists, the request is rejected.
 
 Removes a label.
 
-If the `namespace` does not exist or the `label` does not exist in the namespace, the request is considered successful.
+If the `namespace` does not exist or the `label` does not exist in the namespace, the request is considered successful — the label is already gone, so no deletion is needed.
 
 ### `setLabel(namespace, label, revision_id) -> Boolean`
 
