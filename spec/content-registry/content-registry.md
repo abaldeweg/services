@@ -494,6 +494,8 @@ Removes a label.
 
 If the `namespace` does not exist or the `label` does not exist in the namespace, the request is considered successful — the label is already gone, so no deletion is needed.
 
+This method is idempotent.
+
 ### `setLabel(namespace, label, revision_id) -> Boolean`
 
 Sets the label pointer directly to any existing revision.
