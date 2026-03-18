@@ -154,7 +154,7 @@ The Content Registry is responsible for storing the data, but the further proces
 
 Implementations MAY enforce limits on maximum meta size. If limits are exceeded, the operation MUST fail.
 
-A recommended default limit is 64 KiB for `meta`.
+The limit MUST be read from `limits.meta_max_bytes` in the configuration.
 
 ### `document`
 
@@ -168,7 +168,7 @@ The Content Registry is responsible for storing the data, but the further proces
 
 Implementations MAY enforce limits on maximum document size. If limits are exceeded, the operation MUST fail.
 
-A recommended default limit is 1 MiB for `document.content`.
+The limit MUST be read from `limits.document_content_max_bytes` in the configuration.
 
 ### `document.format`
 
@@ -208,7 +208,7 @@ The Content Registry stores only the reference metadata in the revision, not the
 
 Implementations MAY enforce limits on maximum number of assets per revision. If limits are exceeded, the operation MUST fail.
 
-A recommended default limit is 128 assets per revision.
+The limit MUST be read from `limits.assets_max_count` in the configuration.
 
 ### Revision JSON Schema
 
@@ -286,6 +286,178 @@ A recommended default limit is 128 assets per revision.
   },
   "assets": {
     "hero-image-architecture.webp": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
+```
+
+## Configuration
+
+The Content Registry MUST expose a configuration object with sensible defaults.
+
+Higher-level systems (e.g., CMS) MAY override these values.
+
+### Configuration Schema
+
+#### `limits`
+
+| Type             | Required | Default |
+| ---------------- | -------- | ------- |
+| Object           | Yes      | -       |
+
+Defines various limits for the Content Registry.
+
+Implementations MUST enforce these limits and reject operations that exceed them.
+
+#### `limits.meta_max_bytes`
+
+| Type             | Required | Default |
+| ---------------- | -------- | ------- |
+| Integer          | Yes      | 65536   |
+
+Defines the maximum allowed byte size for the `meta` field in a revision.
+
+If the size of the `meta` field exceeds this limit, the operation MUST be rejected.
+
+#### `limits.document_content_max_bytes`
+
+| Type             | Required | Default |
+| ---------------- | -------- | ------- |
+| Integer          | Yes      | 1048576 |
+
+Defines the maximum allowed byte size for the `document.content` field in a revision.
+
+If the size of the `document.content` field exceeds this limit, the operation MUST be rejected.
+
+#### `limits.assets_max_count`
+
+| Type             | Required | Default |
+| ---------------- | -------- | ------- |
+| Integer          | Yes      | 128     |
+
+Defines the maximum allowed number of assets in a revision.
+
+If the number of assets exceeds this limit, the operation MUST be rejected.
+
+#### `storage`
+
+| Type             | Required | Default |
+| ---------------- | -------- | ------- |
+| Object           | Yes      | -       |
+
+Object containing selected storage provider and a list of available providers with their configuration.
+
+#### `storage.db.type`
+
+| Type             | Required | Default |
+| ---------------- | -------- | ------- |
+| String           | Yes      | -       |
+
+Allowed values MUST match one of the keys defined under `storage.db.providers`.
+
+Because this is a cross-field key reference, standard JSON Schema cannot enforce this constraint. Implementations MUST validate this relation at runtime.
+
+#### `storage.db.providers`
+
+| Type             | Required | Default |
+| ---------------- | -------- | ------- |
+| Object           | Yes      | -       |
+
+Defines the set of allowed storage providers.
+
+The implementation is responsible for defining provider names and their configuration fields.
+
+### Configuration JSON Schema
+
+```json
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["limits", "storage"],
+  "properties": {
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "meta_max_bytes",
+        "document_content_max_bytes",
+        "assets_max_count"
+      ],
+      "properties": {
+        "meta_max_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 65536
+        },
+        "document_content_max_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1048576
+        },
+        "assets_max_count": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 128
+        }
+      }
+    },
+    "storage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["db"],
+      "properties": {
+        "db": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "providers"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "minLength": 1
+            },
+            "providers": {
+              "type": "object",
+              "minProperties": 1,
+              "propertyNames": {
+                "type": "string",
+                "minLength": 1
+              },
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### Configuration Example
+
+```json
+{
+  "limits": {
+    "meta_max_bytes": 65536,
+    "document_content_max_bytes": 1048576,
+    "assets_max_count": 128
+  },
+  "storage": {
+    "db": {
+        "type": "filesystem",
+        "providers": {
+            "filesystem": {
+                "path": "./data/content-registry"
+            },
+            "sqlite": {
+                "path": "./data",
+                "filename": "content-registry.db"
+            },
+            "mongodb": {
+                "uri": "mongodb://localhost:27017/content_registry"
+            }
+        }
+    }
   }
 }
 ```
