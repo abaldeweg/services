@@ -316,7 +316,7 @@ Implementations MUST enforce these limits and reject operations that exceed them
 
 Defines the maximum allowed byte size for the `meta` field in a revision.
 
-If the size of the `meta` field exceeds this limit, the operation MUST be rejected.
+If the size of the `meta` field exceeds this limit, the operation MUST fail with error code `INVALID_ARGUMENT`.
 
 #### `limits.document_content_max_bytes`
 
@@ -326,7 +326,7 @@ If the size of the `meta` field exceeds this limit, the operation MUST be reject
 
 Defines the maximum allowed byte size for the `document.content` field in a revision.
 
-If the size of the `document.content` field exceeds this limit, the operation MUST be rejected.
+If the size of the `document.content` field exceeds this limit, the operation MUST fail with error code `INVALID_ARGUMENT`.
 
 #### `limits.assets_max_count`
 
@@ -336,7 +336,7 @@ If the size of the `document.content` field exceeds this limit, the operation MU
 
 Defines the maximum allowed number of assets in a revision.
 
-If the number of assets exceeds this limit, the operation MUST be rejected.
+If the number of assets exceeds this limit, the operation MUST fail with error code `INVALID_ARGUMENT`.
 
 #### `storage`
 
@@ -468,6 +468,16 @@ This specification describes an API. How it is exposed (e.g. HTTP, gRPC) is not 
 
 All write operations MUST be executed atomically.
 
+On failure, methods MUST return an error code. The representation of the error response is implementation-defined and MAY follow the conventions of the target language ecosystem.
+
+The following error codes are defined:
+
+- `ALREADY_EXISTS`
+- `NOT_FOUND`
+- `CONFLICT`
+- `INVALID_ARGUMENT`
+- `FORBIDDEN`
+
 Records are permanent. The registry does not provide record deletion. This decision may be revisited in a future version.
 
 ### `listRecords(limit: 100, cursor?) -> { "items": "Array<Record>", "next_cursor": "String | null", "has_more": "Boolean" }`
@@ -488,13 +498,13 @@ The created record is empty (no labels, no revisions).
 
 Returns `true` on success.
 
-If the `namespace` already exists, the request is rejected.
+If the `namespace` already exists, the method MUST fail with error code `ALREADY_EXISTS`.
 
 ### `getRecord(namespace) -> Record`
 
 Retrieves a specific record by `namespace`.
 
-If the `namespace` does not exist, the request is rejected.
+If the `namespace` does not exist, the method MUST fail with error code `NOT_FOUND`.
 
 ### `deleteLabel(namespace, label) -> Boolean`
 
@@ -514,7 +524,7 @@ This allows the calling system (e.g., a CMS) to perform merges, rollbacks, or hi
 
 The registry is intentionally not responsible for content-level merge logic.
 
-If the `namespace` or the `revision_id` do not exist, the request is rejected.
+If the `namespace` or the `revision_id` do not exist, the method MUST fail with error code `NOT_FOUND`.
 
 If the `label` does not exist in the namespace, it is newly created.
 
@@ -530,7 +540,7 @@ This method is therefore the lazy-creation path: the first successful commit MAY
 
 Use `createRecord` when a namespace SHOULD be reserved before the first revision exists.
 
-Optionally, the expected `parent` can be specified. This prevents a revision from being overwritten unnoticed. If two users are editing a revision at the same time, one revision could overwrite the other unnoticed. The user MUST consciously agree to the overwrite and, if necessary, be given the option for a manual merge. Therefore, the request is rejected if the `expected_parent` does not match.
+Optionally, the expected `parent` can be specified. This prevents a revision from being overwritten unnoticed. If two users are editing a revision at the same time, one revision could overwrite the other unnoticed. The user MUST consciously agree to the overwrite and, if necessary, be given the option for a manual merge. Therefore, the method MUST fail with error code `CONFLICT` if the `expected_parent` does not match.
 
 The registry does not validate the physical existence of files. It is RECOMMENDED that calling systems (e.g., a CMS) check whether all referenced asset hashes are available in the target storage before a `commitRevision`.
 
@@ -538,7 +548,7 @@ The registry does not validate the physical existence of files. It is RECOMMENDE
 
 Retrieves a specific revision.
 
-If the `revision_id` does not exist, the request is rejected.
+If the `revision_id` does not exist, the method MUST fail with error code `NOT_FOUND`.
 
 ### `restoreRevision(namespace, label, revision_id) -> String`
 
@@ -552,9 +562,9 @@ The new revision uses the current label head as its parent, receives a new `crea
 
 The original revision remains unchanged.
 
-If the `namespace` or the `label` do not exist, the request is rejected.
+If the `namespace` or the `label` do not exist, the method MUST fail with error code `NOT_FOUND`.
 
-If the `revision_id` does not exist or is not part of the current history of the specified `label`, the request is rejected.
+If the `revision_id` does not exist or is not part of the current history of the specified `label`, the method MUST fail with error code `NOT_FOUND`.
 
 ### `getRevisions(namespace, label, limit: 20, cursor?) -> { "items": "Array<Revision>", "next_cursor": "String | null", "has_more": "Boolean" }`
 
@@ -564,7 +574,7 @@ The revisions are returned in reverse chronological order (from newest to oldest
 
 The `cursor` represents the revision hash (`id`) of the last returned revision. The next page starts with the parent of this hash. If the end of the history is reached (the parent is `null`), `next_cursor` is `null` and `has_more` is `false`.
 
-If the `namespace` does not exist, or the `label` does not exist in the namespace, the request is rejected.
+If the `namespace` does not exist, or the `label` does not exist in the namespace, the method MUST fail with error code `NOT_FOUND`.
 
 ## Security Considerations
 
