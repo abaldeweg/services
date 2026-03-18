@@ -480,6 +480,10 @@ If no records are found, `items` is an empty array and `next_cursor` is `null`.
 
 Creates a new record.
 
+This method is intended for explicit pre-registration of a namespace before any content exists.
+
+The created record is empty (no labels, no revisions).
+
 Returns `true` on success.
 
 If the `namespace` already exists, the request is rejected.
@@ -509,6 +513,10 @@ Creates a new revision of a record, updates the label's head pointer to the new 
 The registry autonomously sets `version` to the latest supported version, sets `created_at`, and calculates the `id`. The `parent` is automatically taken from the current state of the `label`.
 
 If the `namespace` or the `label` do not exist, they are newly created.
+
+This method is therefore the lazy-creation path: the first successful commit MAY create the record and its initial label in one atomic operation.
+
+Use `createRecord` when a namespace should be reserved before the first revision exists.
 
 Optionally, the expected `parent` can be specified. This prevents a revision from being overwritten unnoticed. If two users are editing a revision at the same time, one revision could overwrite the other unnoticed. The user must consciously agree to the overwrite and, if necessary, be given the option for a manual merge. Therefore, the request is rejected if the `expected_parent` does not match.
 
