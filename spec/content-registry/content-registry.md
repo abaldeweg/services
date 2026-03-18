@@ -32,7 +32,7 @@ For the Content Registry, it is merely an ID; higher-level systems can add seman
 
 Allowed characters MUST only be `0-9`, `a-z`, `-`, `_`, `.` and `/`. The `namespace` MUST NOT exceed a length of 255 characters.
 
-It allows having multiple projects, e.g., websites with different collections like a landing page or a blog or differentiate an article between multiple languages.
+It allows having multiple projects, e.g., websites with different collections like a landing page or a blog, or differentiating an article between multiple languages.
 
 Examples:
 
@@ -138,7 +138,7 @@ This value MUST only be set or changed by the Content Registry.
 
 | Type            | Required | Default |
 | --------------- | -------- | ------- |
-| iso-8601-string | Yes      | now     |
+| ISO 8601 String | Yes      | now     |
 
 This value MUST be encoded as ISO 8601 strings in UTC using the `Z` suffix and MUST only be set or changed by the Content Registry.
 
