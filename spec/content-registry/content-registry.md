@@ -14,11 +14,11 @@ The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", and "MA
 
 ### `version`
 
-| Type   | Required | Default |
-| ------ | -------- | ------- |
-| String | Yes      | `1.0`   |
+| Type    | Required | Default |
+| ------- | -------- | ------- |
+| Integer | Yes      | `1`     |
 
-Uses a SemVer-inspired two-part version number (`major.minor`), for example `1.2`. This value is always set by the Content Registry to the latest supported version.
+If a calling system provides a version, the Content Registry MUST use that value. If it is omitted, the Content Registry MUST set it to the latest supported version.
 
 ### `namespace`
 
@@ -62,8 +62,9 @@ The field only exists if at least one key with a revision is assigned to the rec
   "required": ["version", "namespace"],
   "properties": {
     "version": {
-      "type": "string",
-      "pattern": "^[0-9]+\\.[0-9]+$"
+      "type": "integer",
+      "minimum": 1,
+      "default": 1
     },
     "namespace": {
       "type": "string",
@@ -93,7 +94,7 @@ The field only exists if at least one key with a revision is assigned to the rec
 
 ```json
 {
-  "version": "1.0",
+  "version": 1,
   "namespace": "project/collection/article/en",
   "labels": {
     "main": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -106,11 +107,11 @@ The field only exists if at least one key with a revision is assigned to the rec
 
 ### `version`
 
-| Type   | Required | Default |
-| ------ | -------- | ------- |
-| String | Yes      | `1.0`   |
+| Type    | Required | Default |
+| ------- | -------- | ------- |
+| Integer | Yes      | `1`     |
 
-Uses a SemVer-inspired two-part version number (`major.minor`), for example `1.2`. This value is always set by the Content Registry to the latest supported version.
+If a calling system provides a version, the Content Registry MUST use that value. If it is omitted, the Content Registry MUST set it to the latest supported version.
 
 ### `id`
 
@@ -219,8 +220,9 @@ The limit MUST be read from `limits.assets_max_count` in the configuration.
   "required": ["version", "id", "parent", "created_at"],
   "properties": {
     "version": {
-      "type": "string",
-      "pattern": "^[0-9]+\\.[0-9]+$"
+      "type": "integer",
+      "minimum": 1,
+      "default": 1
     },
     "id": {
       "type": "string",
@@ -271,7 +273,7 @@ The limit MUST be read from `limits.assets_max_count` in the configuration.
 
 ```json
 {
-  "version": "1.0",
+  "version": 1,
   "id": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
   "parent": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
   "created_at": "2026-03-12T14:30:00Z",
@@ -528,11 +530,11 @@ If the `namespace` or the `revision_id` do not exist, the method MUST fail with 
 
 If the `label` does not exist in the namespace, it is newly created.
 
-### `commitRevision(namespace, label, meta: null, document: null, assets: null, expected_parent?) -> String`
+### `commitRevision(namespace, label, meta: null, document: null, assets: null, expected_parent?, version?) -> String`
 
 Creates a new revision of a record, updates the label's head pointer to the new revision, and returns the new revision `id`.
 
-The registry autonomously sets `version` to the latest supported version, sets `created_at`, and calculates the `id`. The `parent` is automatically taken from the current state of the `label`.
+If a `version` is provided, the registry MUST use that value. If it is omitted, the registry MUST set it to the latest supported version. It also sets `created_at` and calculates the `id`. The `parent` is automatically taken from the current state of the `label`.
 
 If the `namespace` or the `label` do not exist, they are newly created.
 
