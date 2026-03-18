@@ -83,10 +83,10 @@ The field only exists if at least one key with a revision is assigned to the rec
         "maxLength": 64,
         "pattern": "^[a-z0-9._-]+$"
       },
-      "additionalProperties": {
-        "type": "string",
-        "pattern": "^[a-z0-9]+:[A-Fa-f0-9]+$"
-      }
+        "additionalProperties": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+:[a-f0-9]+$"
+        }
     }
   }
 }
@@ -228,11 +228,11 @@ The limit MUST be read from `limits.assets_max_count` in the configuration.
     },
     "id": {
       "type": "string",
-      "pattern": "^[a-z0-9]+:[A-Fa-f0-9]+$"
+      "pattern": "^[a-z0-9]+:[a-f0-9]+$"
     },
     "parent": {
       "anyOf": [
-        { "type": "string", "pattern": "^[a-z0-9]+:[A-Fa-f0-9]+$" },
+        { "type": "string", "pattern": "^[a-z0-9]+:[a-f0-9]+$" },
         { "type": "null" }
       ]
     },
@@ -264,7 +264,7 @@ The limit MUST be read from `limits.assets_max_count` in the configuration.
       "type": "object",
       "additionalProperties": {
         "type": "string",
-        "pattern": "^[a-z0-9]+:[A-Fa-f0-9]+$"
+        "pattern": "^[a-z0-9]+:[a-f0-9]+$"
       }
     }
   }
