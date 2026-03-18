@@ -8,7 +8,7 @@ The registry delivers pure raw data. Therefore, it only provides the interface t
 
 ## Normative Rules
 
-The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT", and "MAY" are to be interpreted as described in RFC 2119.
+The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", and "MAY" are to be interpreted as described in RFC 2119.
 
 ## Record Schema
 
@@ -516,11 +516,11 @@ If the `namespace` or the `label` do not exist, they are newly created.
 
 This method is therefore the lazy-creation path: the first successful commit MAY create the record and its initial label in one atomic operation.
 
-Use `createRecord` when a namespace should be reserved before the first revision exists.
+Use `createRecord` when a namespace SHOULD be reserved before the first revision exists.
 
-Optionally, the expected `parent` can be specified. This prevents a revision from being overwritten unnoticed. If two users are editing a revision at the same time, one revision could overwrite the other unnoticed. The user must consciously agree to the overwrite and, if necessary, be given the option for a manual merge. Therefore, the request is rejected if the `expected_parent` does not match.
+Optionally, the expected `parent` can be specified. This prevents a revision from being overwritten unnoticed. If two users are editing a revision at the same time, one revision could overwrite the other unnoticed. The user MUST consciously agree to the overwrite and, if necessary, be given the option for a manual merge. Therefore, the request is rejected if the `expected_parent` does not match.
 
-The registry does not validate the physical existence of files. It is recommended that calling systems (e.g., a CMS) check whether all referenced asset hashes are available in the target storage before a `commitRevision`.
+The registry does not validate the physical existence of files. It is RECOMMENDED that calling systems (e.g., a CMS) check whether all referenced asset hashes are available in the target storage before a `commitRevision`.
 
 ### `getRevision(revision_id) -> Revision`
 
