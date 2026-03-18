@@ -27,7 +27,7 @@
     "@types/js-yaml": "4.0.9",
     "@types/node": "24.12.0",
     "eslint": "10.0.3",
-    "knip": "5.86.0",
+    "knip": "5.88.0",
     "prettier": "3.8.1",
     "typescript": "5.9.3",
     "vitest": "4.1.0"
