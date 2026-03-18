@@ -498,6 +498,8 @@ If the `namespace` does not exist or the `label` does not exist in the namespace
 
 Sets the label pointer directly to any existing revision.
 
+The `revision_id` is namespace-independent and MAY reference a revision originally created under any namespace.
+
 This allows the calling system (e.g., a CMS) to perform merges, rollbacks, or history rewrites on the application level and then commit the result as a regular revision before pointing the label to it.
 
 The registry is intentionally not responsible for content-level merge logic.
@@ -532,13 +534,17 @@ If the `revision_id` does not exist, the request is rejected.
 
 Creates a new revision using the content of the specified `revision_id` and updates the label's head pointer to the new revision.
 
+The `revision_id` MUST be part of the current history of the specified `namespace` and `label`.
+
 Returns the new revision `id`.
 
 The new revision uses the current label head as its parent, receives a new `created_at` timestamp and receives a new revision id (hash).
 
 The original revision remains unchanged.
 
-If the `namespace`, the `label` or the `revision_id` do not exist, the request is rejected.
+If the `namespace` or the `label` do not exist, the request is rejected.
+
+If the `revision_id` does not exist or is not part of the current history of the specified `label`, the request is rejected.
 
 ### `getRevisions(namespace, label, limit: 20, cursor?) -> { "items": "Array<Revision>", "next_cursor": "String | null", "has_more": "Boolean" }`
 
