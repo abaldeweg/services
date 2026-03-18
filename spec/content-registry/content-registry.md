@@ -565,3 +565,7 @@ The revisions are returned in reverse chronological order (from newest to oldest
 The `cursor` represents the revision hash (`id`) of the last returned revision. The next page starts with the parent of this hash. If the end of the history is reached (the parent is `null`), `next_cursor` is `null` and `has_more` is `false`.
 
 If the `namespace` does not exist, or the `label` does not exist in the namespace, the request is rejected.
+
+## Security Considerations
+
+This specification does not define authentication or authorization. Consumers MUST ensure that only authorized actors can perform write and read operations.
