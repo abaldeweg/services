@@ -520,11 +520,11 @@ Retrieves a specific revision.
 
 If the `revision_id` does not exist, the request is rejected.
 
-### `restoreRevision(namespace, label, revision_id) -> Boolean`
+### `restoreRevision(namespace, label, revision_id) -> String`
 
 Creates a new revision using the content of the specified `revision_id` and updates the label's head pointer to the new revision.
 
-Returns `true` on success.
+Returns the new revision `id`.
 
 The new revision uses the current label head as its parent, receives a new `created_at` timestamp and receives a new revision id (hash).
 
