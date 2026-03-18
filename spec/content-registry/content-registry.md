@@ -1,0 +1,371 @@
+# Content Registry
+
+The Content Registry is designed as a central, technology-neutral library. It serves as a "Single Source of Truth" for digital content intended to be delivered across various channels.
+
+The Content Registry is intended for blogs, wikis, landing pages, news, knowledge bases, podcasts, microblogs, newsletters, and more.
+
+The registry delivers pure raw data. Therefore, it only provides the interface through which external systems (CMS, web frontends, mobile apps) can retrieve the content in a predictable format. The library does not make any decisions regarding rendering (HTML, app view, print), handles no user management, no access control, and does not store asset files. The registry only stores asset references inside revisions.
+
+## Normative Rules
+
+The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT", and "MAY" are to be interpreted as described in RFC 2119.
+
+## Record Schema
+
+### `version`
+
+| Type   | Required | Default |
+| ------ | -------- | ------- |
+| String | Yes      | `1.0`   |
+
+Uses a SemVer-inspired two-part version number (`major.minor`), for example `1.2`. This value is always set by the Content Registry to the latest supported version.
+
+### `namespace`
+
+| Type   | Required | Default |
+| ------ | -------- | ------- |
+| String | Yes      | -       |
+
+A unique custom defined identifier for the Record.
+
+For the Content Registry, it is merely an ID; higher-level systems can add semantics.
+
+Allowed characters MUST only be `0-9`, `a-z`, `-`, `_`, `.` and `/`. The `namespace` MUST NOT exceed a length of 255 characters.
+
+It allows having multiple projects, e.g., websites with different collections like a landing page or a blog or differentiate an article between multiple languages.
+
+Examples:
+
+- `project/collection/article/en`
+- `project/collection/article/de`
+
+### `labels`
+
+| Type   | Required | Default |
+| ------ | -------- | ------- |
+| Object | No       | -       |
+
+An object consisting of freely definable labels.
+
+Label names MUST be 1 to 64 characters long and use only `a-z`, `0-9`, `-`, `_`, and `.`.
+
+Each label points to the hash of the current head revision of that label. Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`.
+
+The field only exists if at least one key with a revision is assigned to the record. Every label must have a revision assigned to it; otherwise, the label MUST NOT be created or MUST be removed.
+
+### Record JSON Schema
+
+```json
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "namespace"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "namespace": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9a-z._/-]+$"
+    },
+    "labels": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64,
+        "pattern": "^[a-z0-9._-]+$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+:[A-Fa-f0-9]+$"
+      }
+    }
+  }
+}
+```
+
+### Record Example
+
+```json
+{
+  "version": "1.0",
+  "namespace": "project/collection/article/en",
+  "labels": {
+    "main": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "draft": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
+```
+
+## RecordRevision Schema
+
+### `version`
+
+| Type   | Required | Default |
+| ------ | -------- | ------- |
+| String | Yes      | `1.0`   |
+
+Uses a SemVer-inspired two-part version number (`major.minor`), for example `1.2`. This value is always set by the Content Registry to the latest supported version.
+
+### `id`
+
+| Type   | Required | Default |
+| ------ | -------- | ------- |
+| String | Yes      | -       |
+
+The ID is a hash consisting of `version`, `parent`, `created_at`, `meta`, `document`, and `assets`; other keys, especially the `id` itself, must not be present. Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`. To guarantee identical IDs across different platforms, the revision MUST be brought into a canonical JSON form before hashing using the JSON Canonicalization Scheme (JCS) according to RFC 8785.
+
+`created_at` is part of the revision and therefore included in the revision hash. Two revisions with identical document content but different timestamps are considered distinct revisions. This value MUST only be calculated by the Content Registry.
+
+### `parent`
+
+| Type           | Required | Default |
+| -------------- | -------- | ------- |
+| String \| null | Yes      | `null`  |
+
+A hash acting as a reference to the previous revision. Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`.
+
+If `parent` is `null`, it marks the beginning of a history.
+
+This value MUST only be set or changed by the Content Registry.
+
+### `created_at`
+
+| Type            | Required | Default |
+| --------------- | -------- | ------- |
+| iso-8601-string | Yes      | now     |
+
+This value MUST be encoded as ISO 8601 strings in UTC using the `Z` suffix and MUST only be set or changed by the Content Registry.
+
+### `meta`
+
+| Type   | Required | Default |
+| ------ | -------- | ------- |
+| Object | No       | -       |
+
+Variable data that describes the article in more detail.
+
+The Content Registry is responsible for storing the data, but the further processing, validation, and sanitization are solely up to the higher-level systems.
+
+Implementations MAY enforce limits on maximum meta size. If limits are exceeded, the operation MUST fail.
+
+A recommended default limit is 64 KiB for `meta`.
+
+### `document`
+
+| Type   | Required | Default |
+| ------ | -------- | ------- |
+| Object | No       | -       |
+
+Encapsulation of the actual content.
+
+The Content Registry is responsible for storing the data, but the further processing, validation, and sanitization are solely up to the higher-level systems.
+
+Implementations MAY enforce limits on maximum document size. If limits are exceeded, the operation MUST fail.
+
+A recommended default limit is 1 MiB for `document.content`.
+
+### `document.format`
+
+| Type   | Required | Default |
+| ------ | -------- | ------- |
+| String | No       | -       |
+
+Technical type of the content (e.g., Markdown, HTML, TipTap JSON, Plain Text, Structured JSON).
+
+A version number SHOULD be appended to the key, e.g., `markdown-v2`.
+
+### `document.content`
+
+| Type             | Required | Default |
+| ---------------- | -------- | ------- |
+| String \| Object | No       | -       |
+
+The actual payload.
+
+If either `document.format` or `document.content` is present, the other MUST also be present.
+
+### `assets`
+
+| Type   | Required | Default |
+| ------ | -------- | ------- |
+| Object | No       | -       |
+
+Map of linked media files.
+
+It is a key-value map. The key MUST be unique within the object and contains the filename including the extension. The asset key corresponds to the filename referenced inside the document content. The value is a hash reference; hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`.
+
+Asset keys MUST be normalized to lowercase to prevent collisions across calling systems.
+
+If an asset is changed, the old version remains referenced by previous revisions.
+
+The Content Registry stores only the reference metadata in the revision, not the physical file. Validation, sanitization, storage, and delivery of the physical asset are solely up to the higher-level systems.
+
+Implementations MAY enforce limits on maximum number of assets per revision. If limits are exceeded, the operation MUST fail.
+
+A recommended default limit is 128 assets per revision.
+
+### RecordRevision JSON Schema
+
+```json
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "id", "parent", "created_at"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+:[A-Fa-f0-9]+$"
+    },
+    "parent": {
+      "anyOf": [
+        { "type": "string", "pattern": "^[a-z0-9]+:[A-Fa-f0-9]+$" },
+        { "type": "null" }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "meta": {
+      "type": "object"
+    },
+    "document": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "format": {
+          "type": "string",
+          "minLength": 1
+        },
+        "content": {
+          "type": ["string", "object"]
+        }
+      },
+      "dependentRequired": {
+        "format": ["content"],
+        "content": ["format"]
+      }
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+:[A-Fa-f0-9]+$"
+      }
+    }
+  }
+}
+```
+
+## RecordRevision Example
+
+```json
+{
+  "version": "1.0",
+  "id": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "parent": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "created_at": "2026-03-12T14:30:00Z",
+  "meta": {
+    "title": "Title",
+    "author": "Author",
+    "published_at": "2026-03-12T12:00:00Z"
+  },
+  "document": {
+    "format": "markdown",
+    "content": "# Title\n\n![Architecture](hero-image-architecture.webp)\n\nContent"
+  },
+  "assets": {
+    "hero-image-architecture.webp": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
+```
+
+## Programmatic API
+
+All write operations MUST be executed atomically.
+
+Records are permanent. The registry does not provide record deletion. This decision may be revisited in a future version.
+
+### `listRecords(limit: 100, cursor?) -> { "items": "Array<Record>", "next_cursor": "String | null", "has_more": "Boolean" }`
+
+Returns a paginated list of records sorted alphabetically by `namespace`.
+
+The cursor corresponds to the `namespace` of the last returned record; the following page begins immediately after this value.
+
+If no records are found, `items` is an empty array and `next_cursor` is `null`.
+
+### `createRecord(namespace) -> Boolean`
+
+Creates a new record.
+
+Returns `true` on success.
+
+If the `namespace` already exists, the request is rejected.
+
+### `deleteLabel(namespace, label) -> Boolean`
+
+Method to remove a label.
+
+If the `namespace` does not exist or the `label` does not exist in the namespace, the request is considered successful.
+
+### `setLabel(namespace, label, revision_id) -> Boolean`
+
+Sets the label pointer directly to any existing revision.
+
+This allows the calling system (e.g., a CMS) to perform merges, rollbacks, or history rewrites on the application level and then commit the result as a regular revision before pointing the label to it.
+
+The registry is intentionally not responsible for content-level merge logic.
+
+If the `namespace` or the `revision_id` do not exist, the request is rejected.
+
+If the `label` does not exist in the namespace, it is newly created.
+
+### `commitRevision(namespace, label, meta: null, document: null, assets: null, expected_parent?) -> String`
+
+Creates a new revision of a record, updates the label's head pointer to the new revision, and returns the new revision `id`.
+
+The registry autonomously sets `version` to the latest supported version, sets `created_at`, and calculates the `id`. The `parent` is automatically taken from the current state of the `label`.
+
+If the `namespace` or the `label` do not exist, they are newly created.
+
+Optionally, the expected `parent` can be specified. This prevents a revision from being overwritten unnoticed. If two users are editing a revision at the same time, one revision could overwrite the other unnoticed. The user must consciously agree to the overwrite and, if necessary, be given the option for a manual merge. Therefore, the request is rejected if the `expected_parent` does not match.
+
+The registry does not validate the physical existence of files. It is recommended that calling systems (e.g., a CMS) check whether all referenced asset hashes are available in the target storage before a `commitRevision`.
+
+### `getRevision(revision_id) -> Revision`
+
+Retrieves a specific revision.
+
+If the `revision_id` does not exist, the request is rejected.
+
+### `restoreRevision(namespace, label, revision_id) -> Boolean`
+
+Creates a new revision using the content of the specified `revision_id` and updates the label's head pointer to the new revision.
+
+Returns `true` on success.
+
+The new revision uses the current label head as its parent, receives a new `created_at` timestamp and receives a new revision id (hash).
+
+The original revision remains unchanged.
+
+If the `namespace`, the `label` or the `revision_id` do not exist, the request is rejected.
+
+### `getRevisions(namespace, label, limit: 20, cursor?) -> { "items": "Array<Revision>", "next_cursor": "String | null", "has_more": "Boolean" }`
+
+Returns a paginated list of revisions for a specific label's history.
+
+The revisions are returned in reverse chronological order (from newest to oldest), starting from the current head of the label and recursively following the `parent` hashes.
+
+The `cursor` represents the revision hash (`id`) of the last returned revision. The next page starts with the parent of this hash. If the end of the history is reached (the parent is `null`), `next_cursor` is `null` and `has_more` is `false`.
+
+If the `namespace` does not exist, or the `label` does not exist in the namespace, the request is rejected.
