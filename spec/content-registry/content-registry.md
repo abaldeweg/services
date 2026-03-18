@@ -514,9 +514,7 @@ If the `namespace` does not exist, the method MUST fail with error code `NOT_FOU
 
 Removes a label.
 
-If the `namespace` does not exist or the `label` does not exist in the namespace, the request is considered successful — the label is already gone, so no deletion is needed.
-
-This method is idempotent.
+If the `namespace` does not exist or the `label` does not exist in the namespace, the request is considered successful.
 
 ### `setLabel(namespace, label, revision_id) -> Boolean`
 
