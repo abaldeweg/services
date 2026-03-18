@@ -47,6 +47,8 @@ Examples:
 
 An object consisting of freely definable labels.
 
+A record maps labels to immutable revisions. Revisions contain all content and metadata.
+
 Label names MUST be 1 to 64 characters long and use only `a-z`, `0-9`, `-`, `_`, and `.`.
 
 Each label points to the hash of the current head revision of that label. Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`.
