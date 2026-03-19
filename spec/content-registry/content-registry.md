@@ -575,6 +575,10 @@ If the `namespace` does not exist, or the `label` does not exist in the namespac
 
 This specification does not define authentication or authorization. Consumers MUST ensure that only authorized actors can perform write and read operations.
 
+Higher-level systems MAY treat `namespace` as an access-control boundary when defining authorization rules and content isolation.
+
+For hash references, SHA-256 is RECOMMENDED to keep implementations interoperable and aligned with the examples in this specification.
+
 Implementations SHOULD consider rate limiting to reduce abuse and service exhaustion.
 
 Higher-level systems like CMSs are responsible for validating `meta`, `document`, `assets`, and `namespace` before calling the API to prevent code injection or other issues.
