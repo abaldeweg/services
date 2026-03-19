@@ -579,7 +579,7 @@ This specification does not define authentication or authorization. Consumers MU
 
 Higher-level systems MAY treat `namespace` as an access-control boundary when defining authorization rules and content isolation.
 
-For hash references, SHA-256 is RECOMMENDED to keep implementations interoperable and aligned with the examples in this specification.
+Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value. SHA-256 is RECOMMENDED, but other algorithms MAY be used as long as they follow the same format, for example `blake2b:abc123`.
 
 Implementations SHOULD consider rate limiting to reduce abuse and service exhaustion.
 
