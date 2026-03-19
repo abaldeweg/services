@@ -51,7 +51,7 @@ A record maps labels to immutable revisions. Revisions contain all content and m
 
 Label names MUST be 1 to 64 characters long and use only `a-z`, `0-9`, `-`, `_`, and `.`.
 
-Each label points to the hash of the current head revision of that label. Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`.
+Each label points to the hash of the current head revision of that label. Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`. Hash values MUST use lowercase hexadecimal encoding.
 
 The field only exists if at least one key with a revision is assigned to the record. Every label MUST have a revision assigned to it; otherwise, the label MUST NOT be created or MUST be removed.
 
@@ -121,7 +121,7 @@ If a calling system provides a version, the Content Registry MUST use that value
 | ------ | -------- | ------- |
 | String | Yes      | -       |
 
-The ID is a hash consisting of `version`, `parent`, `created_at`, `meta`, `document`, and `assets`; other keys, especially the `id` itself, MUST NOT be present. Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`. To guarantee identical IDs across different platforms, the revision MUST be brought into a canonical JSON form before hashing using the JSON Canonicalization Scheme (JCS) according to RFC 8785.
+The ID is a hash consisting of `version`, `parent`, `created_at`, `meta`, `document`, and `assets`; other keys, especially the `id` itself, MUST NOT be present. Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`. Hash values MUST use lowercase hexadecimal encoding. To guarantee identical IDs across different platforms, the revision MUST be brought into a canonical JSON form before hashing using the JSON Canonicalization Scheme (JCS) according to RFC 8785.
 
 `created_at` is part of the revision and therefore included in the revision hash. Two revisions with identical document content but different timestamps are considered distinct revisions. This value MUST only be calculated by the Content Registry.
 
@@ -131,7 +131,7 @@ The ID is a hash consisting of `version`, `parent`, `created_at`, `meta`, `docum
 | -------------- | -------- | ------- |
 | String \| null | Yes      | `null`  |
 
-A hash acting as a reference to the previous revision. Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`.
+A hash acting as a reference to the previous revision. Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`. Hash values MUST use lowercase hexadecimal encoding.
 
 If `parent` is `null`, it marks the beginning of a history.
 
@@ -201,7 +201,7 @@ If either `document.format` or `document.content` is present, the other MUST als
 
 Map of linked media files.
 
-It is a key-value map. The key MUST be unique within the object and contains the filename including the extension. The asset key corresponds to the filename referenced inside the document content. The value is a hash reference; hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`.
+It is a key-value map. The key MUST be unique within the object and contains the filename including the extension. The asset key corresponds to the filename referenced inside the document content. The value is a hash reference; hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`. Hash values MUST use lowercase hexadecimal encoding.
 
 Asset keys MUST be normalized to lowercase to prevent collisions across calling systems.
 
