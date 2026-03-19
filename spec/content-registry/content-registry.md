@@ -20,6 +20,8 @@ The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", and "MA
 
 If a calling system provides a version, the Content Registry MUST use that value. If it is omitted, the Content Registry MUST set it to the latest supported version.
 
+The provided value MUST be one of the supported versions listed in this specification.
+
 ### `namespace`
 
 | Type   | Required | Default |
@@ -65,7 +67,7 @@ The field only exists if at least one key with a revision is assigned to the rec
   "properties": {
     "version": {
       "type": "integer",
-      "minimum": 1,
+      "enum": [1],
       "default": 1
     },
     "namespace": {
@@ -114,6 +116,8 @@ The field only exists if at least one key with a revision is assigned to the rec
 | Integer | Yes      | `1`     |
 
 If a calling system provides a version, the Content Registry MUST use that value. If it is omitted, the Content Registry MUST set it to the latest supported version.
+
+The provided value MUST be one of the supported versions listed in this specification.
 
 ### `id`
 
@@ -223,7 +227,7 @@ The limit MUST be read from `limits.assets_max_count` in the configuration.
   "properties": {
     "version": {
       "type": "integer",
-      "minimum": 1,
+      "enum": [1],
       "default": 1
     },
     "id": {
