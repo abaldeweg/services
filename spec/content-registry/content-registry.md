@@ -491,15 +491,13 @@ The cursor corresponds to the `namespace` of the last returned record; the follo
 
 If no records are found, `items` is an empty array and `next_cursor` is `null`.
 
-### `createRecord(namespace) -> Boolean`
+### `createRecord(namespace) -> String`
 
 Creates a new record.
 
-This method is intended for explicit pre-registration of a namespace before any content exists.
-
 The created record is empty (no labels, no revisions).
 
-Returns `true` on success.
+Returns the `namespace` of the created record on success.
 
 If the `namespace` already exists, the method MUST fail with error code `ALREADY_EXISTS`.
 
@@ -521,27 +519,19 @@ Sets the label pointer directly to any existing revision.
 
 The `revision_id` is namespace-independent and MAY reference a revision originally created under any namespace.
 
-This allows the calling system (e.g., a CMS) to perform merges, rollbacks, or history rewrites on the application level and then commit the result as a regular revision before pointing the label to it.
+If the `namespace` or the revision `id` do not exist, the method MUST fail with error code `NOT_FOUND`.
 
 The registry is intentionally not responsible for content-level merge logic.
 
-If the `namespace` or the `label` do not exist, they are newly created.
-
-If the `revision_id` does not exist, the method MUST fail with error code `NOT_FOUND`.
-
 ### `commitRevision(namespace, label, meta: null, document: null, assets: null, expected_parent?, version?) -> String`
 
-Creates a new revision of a record, updates the label's head pointer to the new revision, and returns the new revision `id`.
+Creates a new revision of an existing record, updates the label's head pointer to the new revision, and returns the new `revision_id`.
+
+If the `namespace` or the `label` do not exist, the method MUST fail with error code `NOT_FOUND`.
+
+Optionally, the expected `parent` can be specified. This prevents a revision from being overwritten unnoticed. If two users are editing a revision at the same time, one revision could overwrite the other unnoticed. Therefore, the method MUST fail with error code `CONFLICT` if the `expected_parent` does not match. If two clients commit concurrently with the same `expected_parent`, one will succeed, the other receives `CONFLICT`.
 
 If a `version` is provided, the registry MUST use that value. If it is omitted, the registry MUST set it to the latest supported version. It also sets `created_at` and calculates the `id`. The `parent` is automatically taken from the current state of the `label`.
-
-If the `namespace` or the `label` do not exist, they are newly created.
-
-This method is therefore the lazy-creation path: the first successful commit MAY create the record and its initial label in one atomic operation.
-
-Use `createRecord` when a namespace SHOULD be reserved before the first revision exists.
-
-Optionally, the expected `parent` can be specified. This prevents a revision from being overwritten unnoticed. If two users are editing a revision at the same time, one revision could overwrite the other unnoticed. The user MUST consciously agree to the overwrite and, if necessary, be given the option for a manual merge. Therefore, the method MUST fail with error code `CONFLICT` if the `expected_parent` does not match. If two clients commit concurrently with the same expected_parent, one will succeed, the other receives CONFLICT.
 
 The registry does not validate the physical existence of files. It is RECOMMENDED that calling systems (e.g., a CMS) check whether all referenced asset hashes are available in the target storage before a `commitRevision`.
 
@@ -555,13 +545,11 @@ If the `revision_id` does not exist, the method MUST fail with error code `NOT_F
 
 Creates a new revision using the content of the specified `revision_id` and updates the label's head pointer to the new revision.
 
-The `revision_id` MUST be part of the current history of the specified `namespace` and `label`.
-
 Returns the new revision `id`.
 
-The new revision uses the current label head as its parent, receives a new `created_at` timestamp and receives a new revision id (hash).
+The `revision_id` MUST be part of the current history of the specified `namespace` and `label`.
 
-The original revision remains unchanged.
+The new revision uses the current label head as its parent, receives a new `created_at` timestamp and receives a new revision `id` (hash). The original revision remains unchanged.
 
 If the `namespace` or the `label` do not exist, the method MUST fail with error code `NOT_FOUND`.
 
@@ -569,7 +557,7 @@ If the `revision_id` does not exist or is not part of the current history of the
 
 ### `getRevisions(namespace, label, limit: 20, cursor?) -> { "items": "Array<Revision>", "next_cursor": "String | null", "has_more": "Boolean" }`
 
-Returns a paginated list of revisions for a specific label's history.
+Returns a paginated list of revisions for a specific `label`'s history.
 
 The revisions are returned in reverse chronological order (from newest to oldest), starting from the current head of the label and recursively following the `parent` hashes.
 
