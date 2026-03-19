@@ -531,6 +531,8 @@ If the `namespace` or the `label` do not exist, the method MUST fail with error 
 
 Optionally, the expected `parent` can be specified. This prevents a revision from being overwritten unnoticed. If two users are editing a revision at the same time, one revision could overwrite the other unnoticed. Therefore, the method MUST fail with error code `CONFLICT` if the `expected_parent` does not match. If two clients commit concurrently with the same `expected_parent`, one will succeed, the other receives `CONFLICT`.
 
+If a revision with the same hash already exists, the operation MUST succeed and return the existing revision `id`.
+
 If a `version` is provided, the registry MUST use that value. If it is omitted, the registry MUST set it to the latest supported version. It also sets `created_at` and calculates the `id`. The `parent` is automatically taken from the current state of the `label`.
 
 The registry does not validate the physical existence of files. It is RECOMMENDED that calling systems (e.g., a CMS) check whether all referenced asset hashes are available in the target storage before a `commitRevision`.
