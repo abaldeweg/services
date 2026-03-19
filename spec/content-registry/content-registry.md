@@ -525,9 +525,9 @@ This allows the calling system (e.g., a CMS) to perform merges, rollbacks, or hi
 
 The registry is intentionally not responsible for content-level merge logic.
 
-If the `namespace` or the `revision_id` do not exist, the method MUST fail with error code `NOT_FOUND`.
+If the `namespace` or the `label` do not exist, they are newly created.
 
-If the `label` does not exist in the namespace, it is newly created.
+If the `revision_id` does not exist, the method MUST fail with error code `NOT_FOUND`.
 
 ### `commitRevision(namespace, label, meta: null, document: null, assets: null, expected_parent?, version?) -> String`
 
@@ -541,7 +541,7 @@ This method is therefore the lazy-creation path: the first successful commit MAY
 
 Use `createRecord` when a namespace SHOULD be reserved before the first revision exists.
 
-Optionally, the expected `parent` can be specified. This prevents a revision from being overwritten unnoticed. If two users are editing a revision at the same time, one revision could overwrite the other unnoticed. The user MUST consciously agree to the overwrite and, if necessary, be given the option for a manual merge. Therefore, the method MUST fail with error code `CONFLICT` if the `expected_parent` does not match.
+Optionally, the expected `parent` can be specified. This prevents a revision from being overwritten unnoticed. If two users are editing a revision at the same time, one revision could overwrite the other unnoticed. The user MUST consciously agree to the overwrite and, if necessary, be given the option for a manual merge. Therefore, the method MUST fail with error code `CONFLICT` if the `expected_parent` does not match. If two clients commit concurrently with the same expected_parent, one will succeed, the other receives CONFLICT.
 
 The registry does not validate the physical existence of files. It is RECOMMENDED that calling systems (e.g., a CMS) check whether all referenced asset hashes are available in the target storage before a `commitRevision`.
 
