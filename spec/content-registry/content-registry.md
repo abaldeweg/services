@@ -10,6 +10,12 @@ The registry delivers pure raw data. Therefore, it only provides the interface t
 
 The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", and "MAY" are to be interpreted as described in RFC 2119.
 
+## Supported Versions
+
+The following schema versions are supported by the Content Registry:
+
+- `1`
+
 ## Record Schema
 
 ### `version`
@@ -20,7 +26,7 @@ The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", and "MA
 
 If a calling system provides a version, the Content Registry MUST use that value. If it is omitted, the Content Registry MUST set it to the latest supported version.
 
-The provided value MUST be one of the supported versions listed in this specification.
+The provided value MUST be one of the supported versions listed in the [Supported Versions](#supported-versions) section.
 
 ### `namespace`
 
@@ -117,7 +123,7 @@ The field only exists if at least one key with a revision is assigned to the rec
 
 If a calling system provides a version, the Content Registry MUST use that value. If it is omitted, the Content Registry MUST set it to the latest supported version.
 
-The provided value MUST be one of the supported versions listed in this specification.
+The provided value MUST be one of the supported versions listed in the [Supported Versions](#supported-versions) section.
 
 ### `id`
 
