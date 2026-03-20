@@ -583,7 +583,7 @@ This specification does not define authentication or authorization. Consumers MU
 
 Higher-level systems MAY treat `namespace` as an access-control boundary when defining authorization rules and content isolation.
 
-Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value (for example `sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`). Hash values MUST use lowercase hexadecimal encoding. Implementations SHOULD validate and enforce this format. SHA-256 is RECOMMENDED; other algorithms MAY be used if they follow the same format.
+Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value (for example `sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`). Hash values MUST use lowercase hexadecimal encoding. Implementations MUST validate and enforce this format. SHA-256 is RECOMMENDED; other algorithms MAY be used if they follow the same format.
 
 Implementations SHOULD consider rate limiting to reduce abuse and service exhaustion.
 
