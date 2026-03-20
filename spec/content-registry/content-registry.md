@@ -63,7 +63,7 @@ A record maps labels to immutable revisions. Revisions contain all content and m
 
 Label names MUST be 1 to 64 characters long and use only `a-z`, `0-9`, `-`, `_`, and `.`.
 
-Each label points to the hash of the current head revision of that label. Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`. Hash values MUST use lowercase hexadecimal encoding.
+Each label points to the hash of the current head revision of that label (see [Security Considerations](#security-considerations)).
 
 The field only exists if at least one key with a revision is assigned to the record. Every label MUST have a revision assigned to it; otherwise, the label MUST NOT be created or MUST be removed.
 
@@ -135,7 +135,7 @@ The provided value MUST be one of the supported versions listed in the [Supporte
 | ------ | -------- | ------- |
 | String | Yes      | -       |
 
-The ID is a hash consisting of `version`, `parent`, `created_at`, `attributes`, `document`, and `assets`; other keys, especially the `id` itself, MUST NOT be present. Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`. Hash values MUST use lowercase hexadecimal encoding. To guarantee identical IDs across different platforms, the revision MUST be brought into a canonical JSON form before hashing using the JSON Canonicalization Scheme (JCS) according to RFC 8785.
+The ID is a hash consisting of `version`, `parent`, `created_at`, `attributes`, `document`, and `assets`; other keys, especially the `id` itself, MUST NOT be present (see [Security Considerations](#security-considerations)). To guarantee identical IDs across different platforms, the revision MUST be brought into a canonical JSON form before hashing using the JSON Canonicalization Scheme (JCS) according to RFC 8785.
 
 `created_at` is part of the revision and therefore included in the revision hash. Two revisions with identical document content but different timestamps are considered distinct revisions. This value MUST only be calculated by the Content Registry.
 
@@ -145,7 +145,7 @@ The ID is a hash consisting of `version`, `parent`, `created_at`, `attributes`, 
 | -------------- | -------- | ------- |
 | String \| null | Yes      | `null`  |
 
-A hash acting as a reference to the previous revision. Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`. Hash values MUST use lowercase hexadecimal encoding.
+A hash acting as a reference to the previous revision (see [Security Considerations](#security-considerations)).
 
 If `parent` is `null`, it marks the beginning of a history.
 
@@ -211,7 +211,7 @@ If either `document.format` or `document.content` is present, the other MUST als
 
 Map of linked media files.
 
-It is a key-value map. The key MUST be unique within the object and contains the filename including the extension. The asset key corresponds to the filename referenced inside the document content. The value is a hash reference; hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`. Hash values MUST use lowercase hexadecimal encoding.
+It is a key-value map. The key MUST be unique within the object and contains the filename including the extension. The asset key corresponds to the filename referenced inside the document content. The value is a hash reference (see [Security Considerations](#security-considerations)).
 
 Asset keys MUST be normalized to lowercase to prevent collisions across calling systems.
 
@@ -583,7 +583,7 @@ This specification does not define authentication or authorization. Consumers MU
 
 Higher-level systems MAY treat `namespace` as an access-control boundary when defining authorization rules and content isolation.
 
-Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value. SHA-256 is RECOMMENDED, but other algorithms MAY be used as long as they follow the same format, for example `blake2b:abc123`.
+Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value (for example `sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`). Hash values MUST use lowercase hexadecimal encoding. Implementations SHOULD validate and enforce this format. SHA-256 is RECOMMENDED; other algorithms MAY be used if they follow the same format.
 
 Implementations SHOULD consider rate limiting to reduce abuse and service exhaustion.
 
