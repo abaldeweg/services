@@ -6,7 +6,9 @@ The Content Registry is designed as a central, technology-neutral library. It se
 
 The Content Registry is intended for blogs, wikis, landing pages, news, knowledge bases, podcasts, microblogs, newsletters, and more.
 
-The registry delivers pure raw data. Therefore, it only provides the interface through which external systems (CMS, web frontends, mobile apps) can retrieve the content in a predictable format. The library does not make any decisions regarding rendering (HTML, app view, print), handles no user management, no access control, and does not store asset files. The registry only stores asset references inside revisions.
+The registry delivers pure raw data. Therefore, it only provides the interface through which external systems (CMS, web frontends, mobile apps) can retrieve the content in a predictable format. The Content Registry stores records, revisions, labels, and asset references (metadata only).
+
+The library does not make any decisions regarding rendering (HTML, app view, print), handles no user management, no access control, and does not store physical asset files. The registry only stores asset references inside revisions.
 
 ## Normative Rules
 
@@ -165,8 +167,6 @@ This value MUST be encoded as ISO 8601 strings in UTC using the `Z` suffix and M
 
 Variable data that describes the article in more detail.
 
-The Content Registry is responsible for storing the data, but the further processing, validation, and sanitization are solely up to the higher-level systems.
-
 Implementations MAY enforce limits on maximum attributes size. If limits are exceeded, the operation MUST fail.
 
 The limit MUST be read from `limits.attributes_max_bytes` in the configuration.
@@ -178,8 +178,6 @@ The limit MUST be read from `limits.attributes_max_bytes` in the configuration.
 | Object | No       | -       |
 
 Encapsulation of the actual content.
-
-The Content Registry is responsible for storing the data, but the further processing, validation, and sanitization are solely up to the higher-level systems.
 
 Implementations MAY enforce limits on maximum document size. If limits are exceeded, the operation MUST fail.
 
@@ -218,8 +216,6 @@ It is a key-value map. The key MUST be unique within the object and contains the
 Asset keys MUST be normalized to lowercase to prevent collisions across calling systems.
 
 If an asset is changed, the old version remains referenced by previous revisions.
-
-The Content Registry stores only the reference metadata in the revision, not the physical file. Validation, sanitization, storage, and delivery of the physical asset are solely up to the higher-level systems.
 
 Implementations MAY enforce limits on maximum number of assets per revision. If limits are exceeded, the operation MUST fail.
 
