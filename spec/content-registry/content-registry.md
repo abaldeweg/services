@@ -1,5 +1,7 @@
 # Content Registry
 
+**Note: This specification is a draft and may change without comment.**
+
 The Content Registry is designed as a central, technology-neutral library. It serves as a "Single Source of Truth" for digital content intended to be delivered across various channels.
 
 The Content Registry is intended for blogs, wikis, landing pages, news, knowledge bases, podcasts, microblogs, newsletters, and more.
