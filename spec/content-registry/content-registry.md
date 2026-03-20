@@ -131,7 +131,7 @@ The provided value MUST be one of the supported versions listed in the [Supporte
 | ------ | -------- | ------- |
 | String | Yes      | -       |
 
-The ID is a hash consisting of `version`, `parent`, `created_at`, `meta`, `document`, and `assets`; other keys, especially the `id` itself, MUST NOT be present. Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`. Hash values MUST use lowercase hexadecimal encoding. To guarantee identical IDs across different platforms, the revision MUST be brought into a canonical JSON form before hashing using the JSON Canonicalization Scheme (JCS) according to RFC 8785.
+The ID is a hash consisting of `version`, `parent`, `created_at`, `attributes`, `document`, and `assets`; other keys, especially the `id` itself, MUST NOT be present. Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value, for example `sha256:abc123`. Hash values MUST use lowercase hexadecimal encoding. To guarantee identical IDs across different platforms, the revision MUST be brought into a canonical JSON form before hashing using the JSON Canonicalization Scheme (JCS) according to RFC 8785.
 
 `created_at` is part of the revision and therefore included in the revision hash. Two revisions with identical document content but different timestamps are considered distinct revisions. This value MUST only be calculated by the Content Registry.
 
@@ -155,7 +155,7 @@ This value MUST only be set or changed by the Content Registry.
 
 This value MUST be encoded as ISO 8601 strings in UTC using the `Z` suffix and MUST only be set or changed by the Content Registry.
 
-### `meta`
+### `attributes`
 
 | Type   | Required | Default |
 | ------ | -------- | ------- |
@@ -165,9 +165,9 @@ Variable data that describes the article in more detail.
 
 The Content Registry is responsible for storing the data, but the further processing, validation, and sanitization are solely up to the higher-level systems.
 
-Implementations MAY enforce limits on maximum meta size. If limits are exceeded, the operation MUST fail.
+Implementations MAY enforce limits on maximum attributes size. If limits are exceeded, the operation MUST fail.
 
-The limit MUST be read from `limits.meta_max_bytes` in the configuration.
+The limit MUST be read from `limits.attributes_max_bytes` in the configuration.
 
 ### `document`
 
@@ -250,7 +250,7 @@ The limit MUST be read from `limits.assets_max_count` in the configuration.
       "type": "string",
       "format": "date-time"
     },
-    "meta": {
+    "attributes": {
       "type": "object"
     },
     "document": {
@@ -289,7 +289,7 @@ The limit MUST be read from `limits.assets_max_count` in the configuration.
   "id": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
   "parent": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
   "created_at": "2026-03-12T14:30:00Z",
-  "meta": {
+  "attributes": {
     "title": "Title",
     "author": "Author",
     "published_at": "2026-03-12T12:00:00Z"
@@ -322,15 +322,15 @@ Defines various limits for the Content Registry.
 
 Implementations MUST enforce these limits and reject operations that exceed them.
 
-#### `limits.meta_max_bytes`
+#### `limits.attributes_max_bytes`
 
 | Type             | Required | Default |
 | ---------------- | -------- | ------- |
 | Integer          | Yes      | 65536   |
 
-Defines the maximum allowed byte size for the `meta` field in a revision.
+Defines the maximum allowed byte size for the `attributes` field in a revision.
 
-If the size of the `meta` field exceeds this limit, the operation MUST fail with error code `INVALID_ARGUMENT`.
+If the size of the `attributes` field exceeds this limit, the operation MUST fail with error code `INVALID_ARGUMENT`.
 
 #### `limits.document_content_max_bytes`
 
@@ -392,12 +392,12 @@ The implementation is responsible for defining provider names and their configur
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "meta_max_bytes",
+        "attributes_max_bytes",
         "document_content_max_bytes",
         "assets_max_count"
       ],
       "properties": {
-        "meta_max_bytes": {
+        "attributes_max_bytes": {
           "type": "integer",
           "minimum": 1,
           "default": 65536
@@ -452,7 +452,7 @@ The implementation is responsible for defining provider names and their configur
 ```json
 {
   "limits": {
-    "meta_max_bytes": 65536,
+    "attributes_max_bytes": 65536,
     "document_content_max_bytes": 1048576,
     "assets_max_count": 128
   },
@@ -535,7 +535,7 @@ If the `namespace` or the revision `id` do not exist, the method MUST fail with 
 
 The registry is intentionally not responsible for content-level merge logic.
 
-### `commitRevision(namespace, label, meta: null, document: null, assets: null, expected_parent?, version?) -> String`
+### `commitRevision(namespace, label, attributes: null, document: null, assets: null, expected_parent?, version?) -> String`
 
 Creates a new revision of an existing record, updates the label's head pointer to the new revision, and returns the new `revision_id`.
 
@@ -589,4 +589,4 @@ Hash references MUST include the hashing algorithm as a lowercase prefix followe
 
 Implementations SHOULD consider rate limiting to reduce abuse and service exhaustion.
 
-Higher-level systems like CMSs are responsible for validating `meta`, `document`, `assets` before calling the API to prevent code injection or other issues.
+Higher-level systems like CMSs are responsible for validating `attributes`, `document`, `assets` before calling the API to prevent code injection or other issues.
