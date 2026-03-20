@@ -1,6 +1,6 @@
 # Content Registry
 
-**Note: This specification is a draft and may change without comment.**
+⚠️ **Draft:** This specification is not yet stable and may change at any time without prior notice. Do not use as a basis for production implementations.
 
 The Content Registry is designed as a central, technology-neutral library. It serves as a "Single Source of Truth" for digital content intended to be delivered across various channels.
 
