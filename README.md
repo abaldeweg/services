@@ -6,4 +6,4 @@ Collection of useful services.
 - [create](apps/@baldeweg/create/README.md): A simple project generator with profile-based configuration for creating a monorepo.
 - [http_api](packages/http_api/README.md): http_api offers a simple abstraction around existing tools to run an HTTP API server, with router and CORS.
 - [devcontainer_features](packages/devcontainer_features/README.md): Personal and opinionated collection of features for devcontainer. This feature should work on Debian/Ubuntu-based distributions with apt and bash.
-- [specs](https://github.com/abaldeweg/services/tree/main/spec/content-registry): Place for developing specifications.
+- [spec](https://github.com/abaldeweg/services/tree/main/spec/): Place for developing specifications.
