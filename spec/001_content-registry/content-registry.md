@@ -14,11 +14,21 @@ The library does not make any decisions regarding rendering (HTML, app view, pri
 
 The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", and "MAY" are to be interpreted as described in RFC 2119.
 
-## Supported Versions
+## Schema Versioning
 
-The following schema versions are supported by the Content Registry:
+This section centralizes the rules for `version` fields used across `Record`, `Revision` and write operations (e.g. `commitRevision`).
+
+The `version` field appears in `Record`, `Revision` and in API operations that create or mutate revisions. Implementations MUST validate the provided `version` against the supported versions and apply the defaulting rules when omitted.
+
+### Supported schema versions
 
 - `1`
+
+### Defaulting and validation
+
+- If a calling system provides a `version`, the Content Registry MUST use that value.
+- If the `version` is omitted, the Content Registry MUST set it to the latest supported version.
+- The provided value MUST be one of the supported versions listed above.
 
 ## Record Schema
 
@@ -28,9 +38,7 @@ The following schema versions are supported by the Content Registry:
 | ------- | -------- | ------- |
 | Integer | Yes      | `1`     |
 
-If a calling system provides a version, the Content Registry MUST use that value. If it is omitted, the Content Registry MUST set it to the latest supported version.
-
-The provided value MUST be one of the supported versions listed in the [Supported Versions](#supported-versions) section.
+See [Schema Versioning](#schema-versioning) for supported values and defaulting.
 
 ### `namespace`
 
@@ -125,9 +133,7 @@ The field only exists if at least one key with a revision is assigned to the rec
 | ------- | -------- | ------- |
 | Integer | Yes      | `1`     |
 
-If a calling system provides a version, the Content Registry MUST use that value. If it is omitted, the Content Registry MUST set it to the latest supported version.
-
-The provided value MUST be one of the supported versions listed in the [Supported Versions](#supported-versions) section.
+See [Schema Versioning](#schema-versioning) for supported values and defaulting.
 
 ### `id`
 
@@ -166,6 +172,7 @@ This value MUST be encoded as ISO 8601 strings in UTC using the `Z` suffix and M
 | Object | No       | -       |
 
 Variable data that describes the article in more detail.
+The Content Registry does not enforce any structure or required fields within attributes.
 
 Implementations MAY enforce limits on maximum attributes size. If limits are exceeded, the operation MUST fail.
 
@@ -543,7 +550,7 @@ Optionally, the expected `parent` can be specified. This prevents a revision fro
 
 If a revision with the same hash already exists, the operation MUST succeed and return the existing revision `id`.
 
-If a `version` is provided, the registry MUST use that value. If it is omitted, the registry MUST set it to the latest supported version. It also sets `created_at` and calculates the `id`. The `parent` is automatically taken from the current state of the `label`.
+See [Schema Versioning](#schema-versioning) for supported values and defaulting. The method also sets `created_at` and calculates the `id`. The `parent` is automatically taken from the current state of the `label`.
 
 The registry does not validate the physical existence of files. It is RECOMMENDED that calling systems (e.g., a CMS) check whether all referenced asset hashes are available in the target storage before a `commitRevision`.
 
