@@ -595,3 +595,5 @@ Hash references MUST include the hashing algorithm as a lowercase prefix followe
 Implementations SHOULD consider rate limiting to reduce abuse and service exhaustion.
 
 Higher-level systems like CMSs are responsible for validating `attributes`, `document`, `assets` before calling the API to prevent code injection or other issues.
+
+## Changelog
