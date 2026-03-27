@@ -72,13 +72,11 @@ project/collection/article/de
 | ------ | -------- | ------- |
 | Object | No       | -       |
 
-An object consisting of freely definable labels. A record maps labels to immutable revisions. Revisions contain all content and metadata.
+An object consisting of freely definable labels. A record maps labels to immutable revisions; a label's value MAY also be `null` to indicate an unassigned label. Revisions contain all content and metadata.
 
 Label names MUST be 1 to 64 characters long and use only `a-z`, `0-9`, `-`, `_`, and `.`.
 
-Each label points to the hash of the current head revision of that label (see [Section 7](#7-security-considerations)).
-
-The field only exists if at least one key with a revision is assigned to the record. Every label MUST have a revision assigned to it; otherwise, the label MUST NOT be created or MUST be removed.
+Each label's value is either the hash of the current head revision of that label or `null` (see [Section 7](#7-security-considerations)).
 
 ### 3.2. JSON Schema
 
@@ -109,8 +107,13 @@ The field only exists if at least one key with a revision is assigned to the rec
         "pattern": "^[a-z0-9._-]+$"
       },
       "additionalProperties": {
-        "type": "string",
-        "pattern": "^[a-z0-9]+:[a-f0-9]+$"
+        "anyOf": [
+          {
+            "type": "string",
+            "pattern": "^[a-z0-9]+:[a-f0-9]+$"
+          },
+          { "type": "null" }
+        ]
       }
     }
   }
@@ -544,15 +547,37 @@ The revision history remains intact and will not be removed.
 
 If the `namespace` does not exist or the `label` does not exist in the namespace, the request is considered successful. Removing a non-existent label MUST be treated as a no-op.
 
+#### `createLabel`
+
+```text
+createLabel(namespace, label, revision_id?) -> Boolean
+```
+
+Creates a new label in the specified `namespace`.
+
+If `revision_id` is provided, it MUST reference an existing revision; otherwise, the label is created with the value `null`.
+
+If the `namespace` does not exist, the method MUST fail with error code `NOT_FOUND`.
+
+If the `label` already exists in the namespace, the method MUST fail with error code `ALREADY_EXISTS`.
+
+If a `revision_id` is provided but does not exist, the method MUST fail with error code `NOT_FOUND`.
+
+On success, the method returns `true`.
+
 #### `setLabel`
 
 ```text
-setLabel(namespace, label, revision_id) -> Boolean
+setLabel(namespace, label, revision_id?) -> Boolean
 ```
 
-Sets the label pointer directly to any existing revision. The `revision_id` is namespace-independent and MAY reference a revision originally created under any namespace.
+Sets the label pointer directly to a revision or to `null` to mark the label as unassigned.
 
-If the `namespace` or the revision `id` do not exist, the method MUST fail with error code `NOT_FOUND`.
+The `revision_id` is namespace-independent and MAY reference a revision originally created under any namespace.
+
+If the `namespace` does not exist, or the `label` does not exist in the namespace, the method MUST fail with error code `NOT_FOUND`.
+
+If a non-`null` `revision_id` is provided but the revision does not exist, the method MUST fail with error code `NOT_FOUND`.
 
 The registry is intentionally not responsible for content-level merge logic.
 
