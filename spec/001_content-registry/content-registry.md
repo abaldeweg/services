@@ -324,8 +324,10 @@ Higher-level systems (e.g., CMS) MAY override these values.
 | Object           | Yes      | -       |
 
 Defines various limits for the Content Registry.
-
+ 
 Implementations MUST enforce these limits and reject operations that exceed them.
+
+The order in which limits are validated is implementation-defined.
 
 #### `limits.attributes_max_bytes`
 
