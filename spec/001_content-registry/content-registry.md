@@ -2,80 +2,85 @@
 
 ⚠️ **Draft:** This specification is not yet stable and may change at any time without prior notice. Do not use as a basis for production implementations.
 
-The Content Registry is designed as a central, technology-neutral library. It serves as a "Single Source of Truth" for digital content intended to be delivered across various channels.
+| Field   | Value |
+|---------|-------|
+| Status  | Draft |
+| Version | 1.0.0 |
 
-The Content Registry is intended for blogs, wikis, landing pages, news, knowledge bases, podcasts, microblogs, newsletters, and more.
+## Abstract
 
-The registry delivers pure raw data. Therefore, it only provides the interface through which external systems (CMS, web frontends, mobile apps) can retrieve the content in a predictable format. The Content Registry stores records, revisions, labels, and asset references (metadata only).
+The Content Registry is a central, technology-neutral library serving as a Single Source of Truth for digital content intended for delivery across various channels, including blogs, wikis, landing pages, news, knowledge bases, podcasts, microblogs, newsletters, and more.
 
-The library does not make any decisions regarding rendering (HTML, app view, print), handles no user management, no access control, and does not store physical asset files. The registry only stores asset references inside revisions.
+The registry delivers pure raw data and provides the interface through which external systems - such as CMSs, web frontends, and mobile apps — can retrieve content in a predictable format. The Content Registry stores records, revisions, labels, and asset references.
 
-## Normative Rules
+The library does not make decisions regarding rendering (HTML, app view, print), does not handle user management or access control, and does not store physical asset files. Asset references are stored inside revisions only.
 
-The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", and "MAY" are to be interpreted as described in RFC 2119.
+## 1. Normative Language
 
-## Schema Versioning
+The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", and "MAY" in this document are to be interpreted as described in RFC 2119.
 
-This section centralizes the rules for `version` fields used across `Record`, `Revision` and write operations (e.g. `commitRevision`).
+## 2. Schema Versioning
 
-The `version` field appears in `Record`, `Revision` and in API operations that create or mutate revisions. Implementations MUST validate the provided `version` against the supported versions and apply the defaulting rules when omitted.
+The `version` field appears in `Record`, `Revision`, and in API operations that create or mutate revisions. Implementations MUST validate the provided `version` against the supported versions.
 
-### Supported schema versions
+### 2.1. Supported Schema Versions
 
 - `1`
 
-### Defaulting and validation
+### 2.2. Defaulting and Validation
 
-- If a calling system provides a `version`, the Content Registry MUST use that value.
-- If the `version` is omitted, the Content Registry MUST set it to the latest supported version.
-- The provided value MUST be one of the supported versions listed above.
+If a calling system provides a `version`, the Content Registry MUST use that value.
 
-## Record Schema
+If `version` is omitted, the Content Registry MUST set it to the latest supported version. The provided value MUST be one of the supported versions listed in Section 2.1.
 
-### `version`
+## 3. Record Schema
+
+### 3.1. Fields
+
+#### `version`
 
 | Type    | Required | Default |
 | ------- | -------- | ------- |
 | Integer | Yes      | `1`     |
 
-See [Schema Versioning](#schema-versioning) for supported values and defaulting.
+See [Section 2](#2-schema-versioning) for supported values and defaulting.
 
-### `namespace`
+#### `namespace`
 
 | Type   | Required | Default |
 | ------ | -------- | ------- |
 | String | Yes      | -       |
 
-A unique custom defined identifier for the Record.
+A unique, custom-defined identifier for the record. For the Content Registry, it is merely an ID; higher-level systems may add semantics.
 
-For the Content Registry, it is merely an ID; higher-level systems can add semantics.
+Allowed characters MUST only be `0-9`, `a-z`, `-`, `_`, `.`, and `/`.
 
-Allowed characters MUST only be `0-9`, `a-z`, `-`, `_`, `.` and `/`. The `namespace` MUST NOT exceed a length of 255 characters.
+The `namespace` MUST NOT exceed 255 characters in length.
 
-It allows having multiple projects, e.g., websites with different collections like a landing page or a blog, or differentiating an article between multiple languages.
+*It allows having multiple projects - for example, websites with different collections such as a landing page or a blog - or differentiating an article between multiple languages.*
 
 Examples:
 
-- `project/collection/article/en`
-- `project/collection/article/de`
+```text
+project/collection/article/en
+project/collection/article/de
+```
 
-### `labels`
+#### `labels`
 
 | Type   | Required | Default |
 | ------ | -------- | ------- |
 | Object | No       | -       |
 
-An object consisting of freely definable labels.
-
-A record maps labels to immutable revisions. Revisions contain all content and metadata.
+An object consisting of freely definable labels. A record maps labels to immutable revisions. Revisions contain all content and metadata.
 
 Label names MUST be 1 to 64 characters long and use only `a-z`, `0-9`, `-`, `_`, and `.`.
 
-Each label points to the hash of the current head revision of that label (see [Security Considerations](#security-considerations)).
+Each label points to the hash of the current head revision of that label (see [Section 7](#7-security-considerations)).
 
 The field only exists if at least one key with a revision is assigned to the record. Every label MUST have a revision assigned to it; otherwise, the label MUST NOT be created or MUST be removed.
 
-### Record JSON Schema
+### 3.2. JSON Schema
 
 ```json
 {
@@ -103,16 +108,16 @@ The field only exists if at least one key with a revision is assigned to the rec
         "maxLength": 64,
         "pattern": "^[a-z0-9._-]+$"
       },
-        "additionalProperties": {
-          "type": "string",
-          "pattern": "^[a-z0-9]+:[a-f0-9]+$"
-        }
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+:[a-f0-9]+$"
+      }
     }
   }
 }
 ```
 
-### Record Example
+### 3.3. Example
 
 ```json
 {
@@ -125,60 +130,63 @@ The field only exists if at least one key with a revision is assigned to the rec
 }
 ```
 
-## Revision Schema
+## 4. Revision Schema
 
-### `version`
+### 4.1. Fields
+
+#### `version`
 
 | Type    | Required | Default |
 | ------- | -------- | ------- |
 | Integer | Yes      | `1`     |
 
-See [Schema Versioning](#schema-versioning) for supported values and defaulting.
+See [Section 2](#2-schema-versioning) for supported values and defaulting.
 
-### `id`
+#### `id`
 
 | Type   | Required | Default |
 | ------ | -------- | ------- |
 | String | Yes      | -       |
 
-The ID is a hash consisting of `version`, `parent`, `created_at`, `attributes`, `document`, and `assets`; other keys, especially the `id` itself, MUST NOT be present (see [Security Considerations](#security-considerations)). To guarantee identical IDs across different platforms, the revision MUST be brought into a canonical JSON form before hashing using the JSON Canonicalization Scheme (JCS) according to RFC 8785. The order of keys for hashing is determined by JCS, so the list above is descriptive but not normative for key ordering.
+The ID is a hash computed from `version`, `parent`, `created_at`, `attributes`, `document`, and `assets`. Other keys - especially `id` itself - MUST NOT be present during hash computation (see [Section 7](#7-security-considerations)).
 
-`created_at` is part of the revision and therefore included in the revision hash. Two revisions with identical document content but different timestamps are considered distinct revisions. This value MUST only be calculated by the Content Registry.
+To guarantee identical IDs across different platforms, the revision MUST be brought into canonical JSON form before hashing, using the JSON Canonicalization Scheme (JCS) as specified in RFC 8785. The order of keys for hashing is determined by JCS.
 
-### `parent`
+`created_at` is part of the revision and is therefore included in the revision hash. Two revisions with identical document content but different timestamps are considered distinct revisions.
+
+This value MUST only be calculated by the Content Registry.
+
+#### `parent`
 
 | Type           | Required | Default |
 | -------------- | -------- | ------- |
 | String \| null | Yes      | `null`  |
 
-A hash acting as a reference to the previous revision (see [Security Considerations](#security-considerations)).
+A hash acting as a reference to the previous revision (see [Section 7](#7-security-considerations)).
 
 If `parent` is `null`, it marks the beginning of a history.
 
 This value MUST only be set or changed by the Content Registry.
 
-### `created_at`
+#### `created_at`
 
 | Type            | Required | Default |
 | --------------- | -------- | ------- |
 | ISO 8601 String | Yes      | now     |
 
-This value MUST be encoded as ISO 8601 strings in UTC using the `Z` suffix and MUST only be set or changed by the Content Registry.
+This value MUST be encoded as an ISO 8601 string in UTC using the `Z` suffix and MUST only be set or changed by the Content Registry.
 
-### `attributes`
+#### `attributes`
 
 | Type   | Required | Default |
 | ------ | -------- | ------- |
 | Object | No       | -       |
 
-Variable data that describes the article in more detail.
-The Content Registry does not enforce any structure or required fields within attributes.
+Variable data that describes the article in more detail. The Content Registry does not enforce any structure or required fields within `attributes`.
 
-Implementations MAY enforce limits on maximum attributes size. If limits are exceeded, the operation MUST fail.
+Implementations MUST enforce limits on maximum attributes size. If limits are exceeded, the operation MUST fail. The limit MUST be read from `limits.attributes_max_bytes` in the configuration.
 
-The limit MUST be read from `limits.attributes_max_bytes` in the configuration.
-
-### `document`
+#### `document`
 
 | Type   | Required | Default |
 | ------ | -------- | ------- |
@@ -186,49 +194,41 @@ The limit MUST be read from `limits.attributes_max_bytes` in the configuration.
 
 Encapsulation of the actual content.
 
-Implementations MAY enforce limits on maximum document size. If limits are exceeded, the operation MUST fail.
+Implementations MUST enforce limits on maximum document size. If limits are exceeded, the operation MUST fail. The limit MUST be read from `limits.document_content_max_bytes` in the configuration.
 
-The limit MUST be read from `limits.document_content_max_bytes` in the configuration.
-
-### `document.format`
+#### `document.format`
 
 | Type   | Required | Default |
 | ------ | -------- | ------- |
 | String | No       | -       |
 
-Technical type of the content (e.g., Markdown, HTML, TipTap JSON, Plain Text, Structured JSON).
+Technical type of the content (e.g., Markdown, HTML, JSON, Plain Text). A version number SHOULD be appended to the value, e.g., `markdown-v2`.
 
-A version number SHOULD be appended to the key, e.g., `markdown-v2`.
-
-### `document.content`
+#### `document.content`
 
 | Type             | Required | Default |
 | ---------------- | -------- | ------- |
 | String \| Object | No       | -       |
 
-The actual payload.
+The actual payload. If either `document.format` or `document.content` is present, the other MUST also be present.
 
-If either `document.format` or `document.content` is present, the other MUST also be present.
-
-### `assets`
+#### `assets`
 
 | Type   | Required | Default |
 | ------ | -------- | ------- |
 | Object | No       | -       |
 
-Map of linked media files.
+A key-value map of linked media files.
 
-It is a key-value map. The key MUST be unique within the object and contains the filename including the extension. The asset key corresponds to the filename referenced inside the document content. The value is a hash reference (see [Security Considerations](#security-considerations)).
+The key MUST be unique within the object and contains the filename including the extension. The asset key corresponds to the filename referenced inside the document content. The value is a hash reference (see [Section 7](#7-security-considerations)).
 
 Asset keys MUST be normalized to lowercase to prevent collisions across calling systems.
 
 If an asset is changed, the old version remains referenced by previous revisions.
 
-Implementations MAY enforce limits on maximum number of assets per revision. If limits are exceeded, the operation MUST fail.
+Implementations MUST enforce limits on the maximum number of assets per revision. If limits are exceeded, the operation MUST fail. The limit MUST be read from `limits.assets_max_count` in the configuration.
 
-The limit MUST be read from `limits.assets_max_count` in the configuration.
-
-### Revision JSON Schema
+### 4.2. JSON Schema
 
 ```json
 {
@@ -286,7 +286,7 @@ The limit MUST be read from `limits.assets_max_count` in the configuration.
 }
 ```
 
-## Revision Example
+### 4.3. Example
 
 ```json
 {
@@ -309,85 +309,71 @@ The limit MUST be read from `limits.assets_max_count` in the configuration.
 }
 ```
 
-## Configuration
+## 5. Configuration
 
-The Content Registry MUST expose a configuration object with sensible defaults.
+The Content Registry MUST expose a configuration object with sensible defaults. Higher-level systems (e.g., a CMS) MAY override these values.
 
-Higher-level systems (e.g., CMS) MAY override these values.
-
-### Configuration Schema
+### 5.1. Fields
 
 #### `limits`
 
-| Type             | Required | Default |
-| ---------------- | -------- | ------- |
-| Object           | Yes      | -       |
+| Type   | Required | Default |
+| ------ | -------- | ------- |
+| Object | Yes      | -       |
 
-Defines various limits for the Content Registry.
- 
-Implementations MUST enforce these limits and reject operations that exceed them.
-
-The order in which limits are validated is implementation-defined.
+Defines various limits for the Content Registry. Implementations MUST enforce these limits and reject operations that exceed them. The order in which limits are validated is implementation-defined.
 
 #### `limits.attributes_max_bytes`
 
-| Type             | Required | Default |
-| ---------------- | -------- | ------- |
-| Integer          | Yes      | 65536   |
+| Type    | Required | Default |
+| ------- | -------- | ------- |
+| Integer | Yes      | 65536   |
 
-Defines the maximum allowed byte size for the `attributes` field in a revision.
-
-If the size of the `attributes` field exceeds this limit, the operation MUST fail with error code `INVALID_ARGUMENT`.
+Defines the maximum allowed byte size for the `attributes` field in a revision. If the size of the `attributes` field exceeds this limit, the operation MUST fail with error code `INVALID_ARGUMENT`.
 
 #### `limits.document_content_max_bytes`
 
-| Type             | Required | Default |
-| ---------------- | -------- | ------- |
-| Integer          | Yes      | 1048576 |
+| Type    | Required | Default |
+| ------- | -------- | ------- |
+| Integer | Yes      | 1048576 |
 
-Defines the maximum allowed byte size for the `document.content` field in a revision.
-
-If the size of the `document.content` field exceeds this limit, the operation MUST fail with error code `INVALID_ARGUMENT`.
+Defines the maximum allowed byte size for the `document.content` field in a revision. If the size of the `document.content` field exceeds this limit, the operation MUST fail with error code `INVALID_ARGUMENT`.
 
 #### `limits.assets_max_count`
 
-| Type             | Required | Default |
-| ---------------- | -------- | ------- |
-| Integer          | Yes      | 128     |
+| Type    | Required | Default |
+| ------- | -------- | ------- |
+| Integer | Yes      | 128     |
 
-Defines the maximum allowed number of assets in a revision.
-
-If the number of assets exceeds this limit, the operation MUST fail with error code `INVALID_ARGUMENT`.
+Defines the maximum allowed number of assets in a revision. If the number of assets exceeds this limit, the operation MUST fail with error code `INVALID_ARGUMENT`.
 
 #### `storage`
 
-| Type             | Required | Default |
-| ---------------- | -------- | ------- |
-| Object           | Yes      | -       |
+| Type   | Required | Default |
+| ------ | -------- | ------- |
+| Object | Yes      | -       |
 
-Object containing selected storage provider and a list of available providers with their configuration.
+Object containing the selected storage provider and a list of available providers with their configuration.
 
 #### `storage.db.type`
 
-| Type             | Required | Default |
-| ---------------- | -------- | ------- |
-| String           | Yes      | -       |
+| Type   | Required | Default |
+| ------ | -------- | ------- |
+| String | Yes      | -       |
 
-Allowed values MUST match one of the keys defined under `storage.db.providers`.
+Allowed values MUST match one of the keys defined under `storage.db.providers`. Because this is a cross-field key reference, standard JSON Schema cannot enforce this constraint.
 
-Because this is a cross-field key reference, standard JSON Schema cannot enforce this constraint. Implementations MUST validate this relation at runtime.
+Implementations MUST validate this relation at runtime.
 
 #### `storage.db.providers`
 
-| Type             | Required | Default |
-| ---------------- | -------- | ------- |
-| Object           | Yes      | -       |
+| Type   | Required | Default |
+| ------ | -------- | ------- |
+| Object | Yes      | -       |
 
-Defines the set of allowed storage providers.
+Defines the set of allowed storage providers. The implementation is responsible for defining provider names and their configuration fields.
 
-The implementation is responsible for defining provider names and their configuration fields.
-
-### Configuration JSON Schema
+### 5.2. JSON Schema
 
 ```json
 {
@@ -454,7 +440,7 @@ The implementation is responsible for defining provider names and their configur
 }
 ```
 
-### Configuration Example
+### 5.3. Example
 
 ```json
 {
@@ -465,42 +451,58 @@ The implementation is responsible for defining provider names and their configur
   },
   "storage": {
     "db": {
-        "type": "filesystem",
-        "providers": {
-            "filesystem": {
-                "path": "./data/content-registry"
-            },
-            "sqlite": {
-                "path": "./data",
-                "filename": "content-registry.db"
-            },
-            "mongodb": {
-                "uri": "mongodb://localhost:27017/content_registry"
-            }
+      "type": "filesystem",
+      "providers": {
+        "filesystem": {
+          "path": "./data/content-registry"
+        },
+        "sqlite": {
+          "path": "./data",
+          "filename": "content-registry.db"
+        },
+        "mongodb": {
+          "uri": "mongodb://localhost:27017/content_registry"
         }
+      }
     }
   }
 }
 ```
 
-## Programmatic API
+## 6. Programmatic API
 
-This specification describes an API. How it is exposed (e.g. HTTP, gRPC) is not defined here.
+This specification describes an API. How it is exposed (e.g., HTTP, gRPC) is not defined here.
 
 All write operations MUST be executed atomically.
 
-On failure, methods MUST return an error code. The representation of the error response is implementation-defined and MAY follow the conventions of the target language ecosystem.
+On failure, methods MUST return an error code. The representation of the error response is implementation-defined.
+
+### 6.1. Error Codes
 
 The following error codes are defined:
 
-- `ALREADY_EXISTS`
-- `NOT_FOUND`
-- `CONFLICT`
-- `INVALID_ARGUMENT`
+| Code               | Description                                      |
+| ------------------ | ------------------------------------------------ |
+| `ALREADY_EXISTS`   | The resource already exists.                     |
+| `NOT_FOUND`        | The requested resource could not be found.       |
+| `CONFLICT`         | A concurrent modification conflict was detected. |
+| `INVALID_ARGUMENT` | A provided argument is invalid.                  |
+
+### 6.2. Record Permanence
 
 Records are permanent. The registry does not provide record deletion. This decision may be revisited in a future version.
 
-### `listRecords(limit: 100, cursor?) -> { "items": "Array<Record>", "next_cursor": "String | null", "has_more": "Boolean" }`
+### 6.3. Methods
+
+#### `listRecords`
+
+```text
+listRecords(limit: 100, cursor?) -> {
+  "items": Array<Record>,
+  "next_cursor": String | null,
+  "has_more": Boolean
+}
+```
 
 Returns a paginated list of records sorted alphabetically by `namespace`.
 
@@ -508,23 +510,33 @@ The cursor corresponds to the `namespace` of the last returned record; the follo
 
 If no records are found, `items` is an empty array and `next_cursor` is `null`.
 
-### `createRecord(namespace) -> String`
+#### `createRecord`
+
+```text
+createRecord(namespace) -> String
+```
 
 Creates a new record.
 
-The created record is empty (no labels, no revisions).
-
-Returns the `namespace` of the created record on success.
+The created record is empty (no labels, no revisions). Returns the `namespace` of the created record on success.
 
 If the `namespace` already exists, the method MUST fail with error code `ALREADY_EXISTS`.
 
-### `getRecord(namespace) -> Record`
+#### `getRecord`
+
+```text
+getRecord(namespace) -> Record
+```
 
 Retrieves a specific record by `namespace`.
 
 If the `namespace` does not exist, the method MUST fail with error code `NOT_FOUND`.
 
-### `deleteLabel(namespace, label) -> Boolean`
+#### `deleteLabel`
+
+```text
+deleteLabel(namespace, label) -> Boolean
+```
 
 Removes a label.
 
@@ -532,37 +544,59 @@ The revision history remains intact and will not be removed.
 
 If the `namespace` does not exist or the `label` does not exist in the namespace, the request is considered successful. Removing a non-existent label MUST be treated as a no-op.
 
-### `setLabel(namespace, label, revision_id) -> Boolean`
+#### `setLabel`
 
-Sets the label pointer directly to any existing revision.
+```text
+setLabel(namespace, label, revision_id) -> Boolean
+```
 
-The `revision_id` is namespace-independent and MAY reference a revision originally created under any namespace.
+Sets the label pointer directly to any existing revision. The `revision_id` is namespace-independent and MAY reference a revision originally created under any namespace.
 
 If the `namespace` or the revision `id` do not exist, the method MUST fail with error code `NOT_FOUND`.
 
 The registry is intentionally not responsible for content-level merge logic.
 
-### `commitRevision(namespace, label, attributes: null, document: null, assets: null, expected_parent?, version?) -> String`
+#### `commitRevision`
+
+```text
+commitRevision(
+  namespace,
+  label,
+  attributes: null,
+  document: null,
+  assets: null,
+  expected_parent?,
+  version?
+) -> String
+```
 
 Creates a new revision of an existing record, updates the label's head pointer to the new revision, and returns the new `revision_id`.
 
 If the `namespace` or the `label` do not exist, the method MUST fail with error code `NOT_FOUND`.
 
-Optionally, the expected `parent` can be specified. This prevents a revision from being overwritten unnoticed. If two users are editing a revision at the same time, one revision could overwrite the other unnoticed. Therefore, the method MUST fail with error code `CONFLICT` if the `expected_parent` does not match. If two clients commit concurrently with the same `expected_parent`, one will succeed, the other receives `CONFLICT`.
+The `expected_parent` parameter is optional. It prevents a revision from being overwritten unnoticed. If two users are editing a revision at the same time, one revision could overwrite the other unnoticed. Therefore, the method MUST fail with error code `CONFLICT` if `expected_parent` does not match the current head. If two clients commit concurrently with the same `expected_parent`, one will succeed; the other receives `CONFLICT`.
 
 If a revision with the same hash already exists, the operation MUST succeed and return the existing revision `id`.
 
-See [Schema Versioning](#schema-versioning) for supported values and defaulting. The method also sets `created_at` and calculates the `id`. The `parent` is automatically taken from the current state of the `label`.
+See [Section 2](#2-schema-versioning) for supported values and defaulting of the `version` parameter. The method also sets `created_at` and calculates the `id`. The `parent` is automatically taken from the current state of the `label`.
 
-The registry does not validate the physical existence of files. It is RECOMMENDED that calling systems (e.g., a CMS) check whether all referenced asset hashes are available in the target storage before a `commitRevision`.
+The registry does not validate the physical existence of files. It is RECOMMENDED that calling systems (e.g., a CMS) verify that all referenced asset hashes are available in the target storage before calling `commitRevision`.
 
-### `getRevision(revision_id) -> Revision`
+#### `getRevision`
+
+```text
+getRevision(revision_id) -> Revision
+```
 
 Retrieves a specific revision.
 
 If the `revision_id` does not exist, the method MUST fail with error code `NOT_FOUND`.
 
-### `restoreRevision(namespace, label, revision_id) -> String`
+#### `restoreRevision`
+
+```text
+restoreRevision(namespace, label, revision_id) -> String
+```
 
 Creates a new revision using the content of the specified `revision_id` and updates the label's head pointer to the new revision.
 
@@ -570,32 +604,40 @@ Returns the new revision `id`.
 
 The `revision_id` MUST be part of the current history of the specified `namespace` and `label`.
 
-The new revision uses the current label head as its parent, receives a new `created_at` timestamp and receives a new revision `id` (hash). The original revision remains unchanged.
+The new revision uses the current label head as its parent, receives a new `created_at` timestamp, and receives a new revision `id` (hash). The original revision remains unchanged.
 
 If the `namespace` or the `label` do not exist, the method MUST fail with error code `NOT_FOUND`.
 
 If the `revision_id` does not exist or is not part of the current history of the specified `label`, the method MUST fail with error code `NOT_FOUND`.
 
-### `getRevisions(namespace, label, limit: 20, cursor?) -> { "items": "Array<Revision>", "next_cursor": "String | null", "has_more": "Boolean" }`
+#### `getRevisions`
 
-Returns a paginated list of revisions for a specific `label`'s history.
+```text
+getRevisions(namespace, label, limit: 20, cursor?) -> {
+  "items": Array<Revision>,
+  "next_cursor": String | null,
+  "has_more": Boolean
+}
+```
 
-The revisions are returned in reverse chronological order (from newest to oldest), starting from the current head of the label and recursively following the `parent` hashes.
+Returns a paginated list of revisions for a specific label's history.
 
-The `cursor` represents the revision hash (`id`) of the last returned revision. The next page starts with the parent of this hash. If the end of the history is reached (the parent is `null`), `next_cursor` is `null` and `has_more` is `false`.
+Revisions are returned in reverse chronological order (newest to oldest), starting from the current head of the label and recursively following the `parent` hashes.
+
+The `cursor` represents the revision hash (`id`) of the last returned revision. The next page starts with the parent of this revision. If the end of the history is reached (i.e., `parent` is `null`), `next_cursor` is `null` and `has_more` is `false`.
 
 If the `namespace` does not exist, or the `label` does not exist in the namespace, the method MUST fail with error code `NOT_FOUND`.
 
-## Security Considerations
+## 7. Security Considerations
 
 This specification does not define authentication or authorization. Consumers MUST ensure that only authorized actors can perform write and read operations.
 
 Higher-level systems MAY treat `namespace` as an access-control boundary when defining authorization rules and content isolation.
 
-Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value (for example `sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`). Hash values MUST use lowercase hexadecimal encoding. Implementations MUST validate and enforce this format. SHA-256 is RECOMMENDED; other algorithms MAY be used if they follow the same format.
+Hash references MUST include the hashing algorithm as a lowercase prefix followed by `:` and the hash value (e.g., `sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`). Hash values MUST use lowercase hexadecimal encoding. Implementations MUST validate and enforce this format. SHA-256 is RECOMMENDED; other algorithms MAY be used if they follow the same format.
 
 Implementations SHOULD consider rate limiting to reduce abuse and service exhaustion.
 
-Higher-level systems like CMSs are responsible for validating `attributes`, `document`, `assets` before calling the API to prevent code injection or other issues.
+Higher-level systems such as CMSs are responsible for validating `attributes`, `document`, and `assets` before calling the API, in order to prevent code injection or other security issues.
 
-## Changelog
+## 8. Changelog
