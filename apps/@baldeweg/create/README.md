@@ -103,13 +103,13 @@ To make your profile available add it to the `profiles` object in `src/profiles/
 
 ### Helpers
 
-Helpers should create as much as possible e.g. if creating a file also create the directories.
+Helpers should create as much as possible (e.g., create parent directories when writing files).
 
 Nothing should be overwritten. If a file already exists, it should be skipped with a notice.
 
 The following helper functions are available for use in profiles.
 
-#### `createDirs(dirs: string[]): void`
+#### `createDirs(dirs: string[]): Promise<void>`
 
 Creates directories if they do not exist.
 
@@ -118,10 +118,10 @@ Creates directories if they do not exist.
 ```typescript
 import { createDirs } from "./src/helpers"
 
-createDirs(["apps", "packages"])
+await createDirs(["apps", "packages"])
 ```
 
-#### `copyFile(sourcePath: string, targetPath: string): void`
+#### `copyFile(sourcePath: string, targetPath: string): Promise<void>`
 
 Copies a file from the templates directory to the specified target location. Useful for binary files, like images. If the target file already exists, it is skipped with a notice.
 
@@ -130,7 +130,7 @@ Copies a file from the templates directory to the specified target location. Use
 ```typescript
 import { copyFile } from "./src/helpers"
 
-copyFile("base/image.png", "apps/web/public/image.png")
+await copyFile("base/image.png", "apps/web/public/image.png")
 ```
 
 #### `createFiles(files: FileObject[]): Promise<void>`
@@ -162,7 +162,7 @@ await mergeJson("package.json", {
 })
 ```
 
-#### `mergeYaml(filePath: string, data: object): void`
+#### `mergeYaml(filePath: string, data: object): Promise<void>`
 
 Merges a JavaScript object into an existing YAML file at the specified path.
 
@@ -171,10 +171,10 @@ Merges a JavaScript object into an existing YAML file at the specified path.
 ```typescript
 import { mergeYaml } from "./src/helpers"
 
-mergeYaml("config.yaml", { key: "value" })
+await mergeYaml("config.yaml", { key: "value" })
 ```
 
-#### `copyTemplate(options: TemplateOptions): void`
+#### `copyTemplate(templateName: string, targetPath: string, variables?: Record<string, unknown>): Promise<void>`
 
 Copies a template file to a target location with variable substitution using EJS.
 
@@ -183,16 +183,12 @@ Copies a template file to a target location with variable substitution using EJS
 ```typescript
 import { copyTemplate } from "./src/helpers"
 
-copyTemplate({
-    templateName: "package/package.json",
-    targetPath: "package.json",
-    variables: { name: "my-package" },
-})
+await copyTemplate("package/package.json", "package.json", { name: "package" })
 ```
 
-#### `runCommand(options: CommandOptions): Promise<void>`
+#### `runCommand(command: string, args?: string[], workingDir?: string): Promise<void>`
 
-Runs a command in the repository directory.
+Runs a command in the repository directory. The function accepts the command, optional args array, and an optional working directory (defaults to `.`).
 
 **Usage:**
 
@@ -200,6 +196,30 @@ Runs a command in the repository directory.
 import { runCommand } from "./src/helpers"
 
 await runCommand("pnpm", ["install"])
+```
+
+#### `writeJson(path: string, data: unknown): Promise<void>`
+
+Writes a JSON object to disk at the given path. If parent directories do not exist, they are created. Skips file creation if the target already exists.
+
+**Usage:**
+
+```typescript
+import { writeJson } from "./src/helpers"
+
+await writeJson("package.json", { name: "my-project" })
+```
+
+#### `writeYaml(path: string, data: unknown): Promise<void>`
+
+Writes a YAML object to disk at the given path. If parent directories do not exist, they are created. Skips file creation if the target already exists.
+
+**Usage:**
+
+```typescript
+import { writeYaml } from "./src/helpers"
+
+await writeYaml(".github/workflows/ci.yaml", { name: "ci" })
 ```
 
 #### `makeSlug(term: string): string`
@@ -227,16 +247,16 @@ const packageDirs = await listPackageDirs(".")
 // e.g. ['apps', 'packages', 'packages-private']
 ```
 
-#### `canCreatePackage(packageName: string): Promise<boolean>`
+#### `canCreatePackage(rootDir: string, packageName: string): Promise<boolean>`
 
-Checks whether a package with the given name already exists inside any top-level package directory (`apps`, `packages`, or `packages-*`). Returns `true` when the name is available and `false` if a conflict is found.
+Checks whether a package with the given name already exists inside any top-level package directory (`apps`, `packages`, or `packages-*`). Returns `true` when the name is available and `false` if a conflict is found. Note the `rootDir` parameter is required (use `"."` for the current project).
 
 **Usage:**
 
 ```typescript
 import { canCreatePackage } from "./src/helpers"
 
-if (await canCreatePackage("auth")) {
+if (await canCreatePackage(".", "auth")) {
     // safe to create package 'auth'
 }
 ```
