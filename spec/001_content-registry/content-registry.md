@@ -141,7 +141,7 @@ See [Schema Versioning](#schema-versioning) for supported values and defaulting.
 | ------ | -------- | ------- |
 | String | Yes      | -       |
 
-The ID is a hash consisting of `version`, `parent`, `created_at`, `attributes`, `document`, and `assets`; other keys, especially the `id` itself, MUST NOT be present (see [Security Considerations](#security-considerations)). To guarantee identical IDs across different platforms, the revision MUST be brought into a canonical JSON form before hashing using the JSON Canonicalization Scheme (JCS) according to RFC 8785.
+The ID is a hash consisting of `version`, `parent`, `created_at`, `attributes`, `document`, and `assets`; other keys, especially the `id` itself, MUST NOT be present (see [Security Considerations](#security-considerations)). To guarantee identical IDs across different platforms, the revision MUST be brought into a canonical JSON form before hashing using the JSON Canonicalization Scheme (JCS) according to RFC 8785. The order of keys for hashing is determined by JCS, so the list above is descriptive but not normative for key ordering.
 
 `created_at` is part of the revision and therefore included in the revision hash. Two revisions with identical document content but different timestamps are considered distinct revisions. This value MUST only be calculated by the Content Registry.
 
