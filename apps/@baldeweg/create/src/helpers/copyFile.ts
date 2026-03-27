@@ -1,5 +1,5 @@
 import { constants } from "fs"
-import { mkdir, copyFile as copyFileAsync } from "fs/promises"
+import { mkdir, copyFile as copyFileAsync } from "node:fs/promises"
 import { dirname } from "path"
 import { log } from "@clack/prompts"
 import { getSourcePath, getTargetPath } from "./utils.js"

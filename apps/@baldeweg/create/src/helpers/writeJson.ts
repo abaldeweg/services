@@ -1,4 +1,4 @@
-import { mkdir, writeFile, access } from "fs/promises"
+import { mkdir, writeFile, access } from "node:fs/promises"
 import { dirname } from "path"
 import { log } from "@clack/prompts"
 import { getTargetPath } from "./utils.js"

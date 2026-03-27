@@ -1,5 +1,5 @@
 import { constants } from "fs"
-import { access, mkdir } from "fs/promises"
+import { access, mkdir } from "node:fs/promises"
 import { log } from "@clack/prompts"
 import { getTargetPath } from "./utils.js"
 

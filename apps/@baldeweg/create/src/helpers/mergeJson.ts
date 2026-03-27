@@ -1,4 +1,4 @@
-import { readFile, writeFile, access } from "fs/promises"
+import { readFile, writeFile, access } from "node:fs/promises"
 import { log } from "@clack/prompts"
 import deepmerge from "deepmerge"
 import { getTargetPath } from "./utils.js"

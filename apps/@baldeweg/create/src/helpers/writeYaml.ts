@@ -1,4 +1,4 @@
-import { access, mkdir, writeFile } from "fs/promises"
+import { access, mkdir, writeFile } from "node:fs/promises"
 import { dirname } from "path"
 import { log } from "@clack/prompts"
 import yaml from "yaml"

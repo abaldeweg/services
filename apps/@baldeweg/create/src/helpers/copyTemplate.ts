@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir } from "fs/promises"
+import { readFile, writeFile, mkdir } from "node:fs/promises"
 import { dirname } from "path"
 import { log } from "@clack/prompts"
 import ejs from "ejs"

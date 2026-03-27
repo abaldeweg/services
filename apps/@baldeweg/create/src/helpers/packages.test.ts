@@ -1,4 +1,4 @@
-import { mkdir, rm } from "fs/promises"
+import { mkdir, rm } from "node:fs/promises"
 import { join } from "path"
 import { describe, it, expect, afterAll } from "vitest"
 import { listPackageDirs, canCreatePackage } from "./packages.js"

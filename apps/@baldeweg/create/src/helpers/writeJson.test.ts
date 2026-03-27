@@ -1,4 +1,4 @@
-import { mkdir, rm, readFile, writeFile } from "fs/promises"
+import { mkdir, rm, readFile, writeFile } from "node:fs/promises"
 import { join, dirname } from "path"
 import { describe, it, expect, afterEach } from "vitest"
 import { writeJson } from "./writeJson.js"

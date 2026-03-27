@@ -1,4 +1,4 @@
-import { mkdir, rm, stat } from "fs/promises"
+import { mkdir, rm, stat } from "node:fs/promises"
 import { join } from "path"
 import { describe, it, expect, afterEach } from "vitest"
 import { createDirs } from "./createDirs.js"
