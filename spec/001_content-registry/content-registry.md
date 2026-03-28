@@ -637,6 +637,8 @@ The new revision uses the current label head as its parent, receives a new `crea
 
 If the `namespace` or the `label` do not exist, the method MUST fail with error code `NOT_FOUND`.
 
+If the label has no assigned revision (i.e., its value is `null`), the method MUST fail with error code `NOT_FOUND`.
+
 If the `revision_id` does not exist or is not part of the current history of the specified `label`, the method MUST fail with error code `NOT_FOUND`.
 
 #### `getRevisions`
