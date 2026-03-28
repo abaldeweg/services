@@ -189,7 +189,7 @@ This value MUST be encoded as an ISO 8601 string in UTC using the `Z` suffix and
 
 Variable data that describes the article in more detail. The Content Registry does not enforce any structure or required fields within `attributes`.
 
-Implementations MUST enforce limits on maximum attributes size. If limits are exceeded, the operation MUST fail. The limit MUST be read from `limits.attributes_max_bytes` in the configuration.
+Subject to `limits.attributes_max_bytes` (see [Section 5.1](#51-fields)).
 
 #### `document`
 
@@ -199,7 +199,7 @@ Implementations MUST enforce limits on maximum attributes size. If limits are ex
 
 Encapsulation of the actual content.
 
-Implementations MUST enforce limits on maximum document size. If limits are exceeded, the operation MUST fail. The limit MUST be read from `limits.document_content_max_bytes` in the configuration.
+Subject to `limits.document_content_max_bytes` (see [Section 5.1](#51-fields)).
 
 #### `document.format`
 
@@ -231,7 +231,7 @@ Asset keys MUST be normalized to lowercase to prevent collisions across calling 
 
 If an asset is changed, the old version remains referenced by previous revisions.
 
-Implementations MUST enforce limits on the maximum number of assets per revision. If limits are exceeded, the operation MUST fail. The limit MUST be read from `limits.assets_max_count` in the configuration.
+Subject to `limits.assets_max_count` (see [Section 5.1](#51-fields)).
 
 ### 4.2. JSON Schema
 
