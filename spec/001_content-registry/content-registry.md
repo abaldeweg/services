@@ -545,7 +545,9 @@ Removes a label.
 
 The revision history remains intact and will not be removed.
 
-If the `namespace` does not exist or the `label` does not exist in the namespace, the request is considered successful. Removing a non-existent label MUST be treated as a no-op.
+If the `namespace` does not exist or the `label` does not exist in the namespace, the request is considered successful.
+
+Removing a non-existent label MUST be treated as a no-op. `deleteLabel` is intentionally idempotent — deleting a missing label is a safe no-op that simplifies cleanup. `setLabel` and `getRecord` return `NOT_FOUND` to explicitly surface missing resources.
 
 #### `createLabel`
 
