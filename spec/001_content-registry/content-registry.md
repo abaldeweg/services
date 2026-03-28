@@ -171,6 +171,8 @@ A hash acting as a reference to the previous revision (see [Section 7](#7-securi
 
 If `parent` is `null`, it marks the beginning of a history.
 
+If the label has no assigned revision (i.e., its value is `null`), the new revision MUST use `null` as its parent, thereby starting a new revision history.
+
 This value MUST only be set or changed by the Content Registry.
 
 #### `created_at`
