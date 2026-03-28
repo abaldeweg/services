@@ -523,6 +523,8 @@ The cursor corresponds to the `namespace` of the last returned record; the follo
 
 If no records are found, `items` is an empty array and `next_cursor` is `null`.
 
+The `limit` parameter MUST be an integer between 1 and 1000 (inclusive). Any value outside this range MUST result in error code `INVALID_ARGUMENT`.
+
 #### `createRecord`
 
 ```text
@@ -668,6 +670,8 @@ The `cursor` represents the revision hash (`id`) of the last returned revision. 
 If the `namespace` does not exist, or the `label` does not exist in the namespace, the method MUST fail with error code `NOT_FOUND`.
 
 If the label exists but has no assigned revision (i.e., its value is null), the method MUST return an empty result set.
+
+The `limit` parameter MUST be an integer between 1 and 1000 (inclusive). Any value outside this range MUST result in error code `INVALID_ARGUMENT`.
 
 ## 7. Security Considerations
 
