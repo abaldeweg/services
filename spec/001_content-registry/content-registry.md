@@ -23,6 +23,12 @@ The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", and "MA
 
 ## 2. Schema Versioning
 
+This document uses semantic versioning to track changes to the specification itself.
+
+The schema version (see [Section 2](#2-schema-versioning)) is independent and applies to data structures such as Record and Revision.
+
+A change to the specification version does not necessarily imply a change to the schema version.
+
 The `version` field appears in `Record`, `Revision`, and in API operations that create or mutate revisions. Implementations MUST validate the provided `version` against the supported versions.
 
 ### 2.1. Supported Schema Versions
