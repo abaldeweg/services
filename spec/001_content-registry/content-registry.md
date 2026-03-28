@@ -661,6 +661,8 @@ The `cursor` represents the revision hash (`id`) of the last returned revision. 
 
 If the `namespace` does not exist, or the `label` does not exist in the namespace, the method MUST fail with error code `NOT_FOUND`.
 
+If the label exists but has no assigned revision (i.e., its value is null), the method MUST return an empty result set.
+
 ## 7. Security Considerations
 
 This specification does not define authentication or authorization. Consumers MUST ensure that only authorized actors can perform write and read operations.
