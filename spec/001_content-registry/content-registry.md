@@ -17,7 +17,7 @@ The registry delivers pure raw data and provides the interface through which ext
 
 The library does not make decisions regarding rendering (HTML, app view, print), does not handle user management or access control, and does not store physical asset files. Asset references are stored inside revisions only.
 
-## 1. Normative Language
+## 1. Terminology
 
 The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", and "MAY" in this document are to be interpreted as described in RFC 2119.
 
