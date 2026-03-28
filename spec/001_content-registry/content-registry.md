@@ -7,6 +7,8 @@
 | Status  | Draft |
 | Version | 1.0.0 |
 
+## Changelog
+
 ## Abstract
 
 The Content Registry is a central, technology-neutral library serving as a Single Source of Truth for digital content intended for delivery across various channels, including blogs, wikis, landing pages, news, knowledge bases, podcasts, microblogs, newsletters, and more.
@@ -666,5 +668,3 @@ Hash references MUST include the hashing algorithm as a lowercase prefix followe
 Implementations SHOULD consider rate limiting to reduce abuse and service exhaustion.
 
 Higher-level systems such as CMSs are responsible for validating `attributes`, `document`, and `assets` before calling the API, in order to prevent code injection or other security issues.
-
-## 8. Changelog
