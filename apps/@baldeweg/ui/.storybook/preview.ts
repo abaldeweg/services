@@ -1,4 +1,4 @@
-import type { Preview } from "@storybook/vue3-vite"
+import type { Preview, StoryFn, StoryContext } from "@storybook/vue3-vite"
 import { setup } from '@storybook/vue3-vite';
 import { createRouter, createMemoryHistory } from 'vue-router';
 import BApp from '../src/components/BApp/BApp.vue';
@@ -42,18 +42,18 @@ const preview: Preview = {
 }
 
 export const decorators = [
-  (story: () => any) => ({
+  (story: StoryFn) => ({
     components: { story, BApp },
     template: '<BApp><story /></BApp>',
   }),
-  (story: () => any, context: Record<string, any>) => {
+  (story: StoryFn, context: StoryContext<Record<string, unknown>>) => {
     setTimeout(() => {
       document.body.setAttribute('data-theme', 'light');
       if (context?.globals?.backgrounds?.value === 'dark') {
         document.body.setAttribute('data-theme', 'dark');
       }
     }, 100);
-    return story();
+    return story(context.args as any, context);
   },
 ];
 
