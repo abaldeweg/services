@@ -25,6 +25,7 @@
     "@storybook/vue3-vite": "10.3.5",
     "@tailwindcss/vite": "4.2.2",
     "@tsconfig/node24": "24.0.4",
+    "@types/jsdom": "28.0.1",
     "@types/node": "24.10.0",
     "@vitejs/plugin-vue": "6.0.5",
     "@vue/eslint-config-prettier": "10.2.0",
