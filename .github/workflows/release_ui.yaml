@@ -26,12 +26,12 @@ jobs:
           node-version: 24.x
       - name: Set version in package.json
         run: |
-          sed -i 's/"version": "[^"]*"/"version": "${{ inputs.tag_name }}"/g' apps/ui/package.json
+          sed -i 's/"version": "[^"]*"/"version": "${{ inputs.tag_name }}"/g' apps/@baldeweg/ui/package.json
       - name: Commit Version Changes
         uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: "chore: update version"
-          file_pattern: apps/ui/package.json
+          file_pattern: apps/@baldeweg/ui/package.json
       - name: Push Changes
         run: git push origin HEAD
       - name: Tag the commit

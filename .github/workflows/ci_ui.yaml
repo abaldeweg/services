@@ -6,14 +6,14 @@ on:
         branches:
             - main
         paths:
-            - "apps/ui/**"
-            - ".github/workflows/tests_apps_ui.yaml"
+            - "apps/@baldeweg/ui/**"
+            - ".github/workflows/ci_ui.yaml"
     pull_request:
         branches:
             - main
         paths:
-            - "apps/ui/**"
-            - ".github/workflows/tests_apps_ui.yaml"
+            - "apps/@baldeweg/ui/**"
+            - ".github/workflows/ci_ui.yaml"
 
 permissions:
     contents: write
