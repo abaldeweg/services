@@ -1,83 +1,111 @@
-<script setup>
-defineProps({
-  route: Object,
-  mediaSize: {
-    type: String,
-    default: 'landscape',
-    validator: (value) => ['landscape', 'portrait', 'avatar'].includes(value),
-  },
-  textWidth: {
-    type: String,
-    default: '200px',
-  },
-  controlsWidth: {
-    type: String,
-    default: '50px',
-  },
-  divider: {
-    type: Boolean,
-    default: false,
-  },
-  hover: {
-    type: Boolean,
-    default: false,
-  },
+<script setup lang="ts">
+import { computed, useSlots } from "vue"
+import { useRoute, useRouter } from "vue-router"
+import type { RouteLocationRaw } from "vue-router"
+
+interface Props {
+  route?: RouteLocationRaw
+  mediaSize?: "landscape" | "portrait" | "avatar"
+  textWidth?: string
+  controlsWidth?: string
+  divider?: boolean
+  hover?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  mediaSize: "landscape",
+  textWidth: "200px",
+  controlsWidth: "50px",
+  divider: false,
+  hover: false,
 })
+
+const router = useRouter()
+const currentRoute = useRoute()
+
+const active = computed(() => {
+  if (!props.route) return false
+  const resolved = router.resolve(props.route as RouteLocationRaw)
+  return resolved.fullPath === currentRoute.fullPath
+})
+
+const slots = useSlots()
 </script>
 
 <template>
-  <div class="list" :class="{
-    list_hasHover: hover,
-    list_isActive: active,
-  }">
-    <div v-if="$slots.media" class="list_media" :class="{
+  <div
+    class="list"
+    :class="{
       list_hasHover: hover,
       list_isActive: active,
-      list_mediaSize_landscape: mediaSize === 'landscape',
-      list_mediaSize_portrait: mediaSize === 'portrait',
-      list_mediaSize_avatar: mediaSize === 'avatar',
-    }" :style="{ width: mediaSize }">
+    }"
+  >
+    <div
+      v-if="slots.media"
+      class="list_media"
+      :class="{
+        list_hasHover: hover,
+        list_isActive: active,
+        list_mediaSize_landscape: mediaSize === 'landscape',
+        list_mediaSize_portrait: mediaSize === 'portrait',
+        list_mediaSize_avatar: mediaSize === 'avatar',
+      }"
+      :style="{ width: mediaSize }"
+    >
       <slot name="media" />
     </div>
 
-    <div class="list_content" :class="{
-      list_hasDivider: divider,
-    }">
+    <div
+      class="list_content"
+      :class="{
+        list_hasDivider: divider,
+      }"
+    >
       <RouterLink :to="route" v-if="route">
-        <h3 v-if="$slots.title">
+        <h3 v-if="slots.title">
           <slot name="title" />
         </h3>
         <p>
-          <span v-if="$slots.subtitle" class="list_subtitle">
+          <span v-if="slots.subtitle" class="list_subtitle">
             <slot name="subtitle" />
           </span>
-          <span v-if="$slots.subtitle && $slots.default"> - </span>
+          <span v-if="slots.subtitle && slots.default"> - </span>
           <slot />
         </p>
       </RouterLink>
       <div v-else>
-        <h3 v-if="$slots.title">
+        <h3 v-if="slots.title">
           <slot name="title" />
         </h3>
         <p>
-          <span v-if="$slots.subtitle" class="list_subtitle">
+          <span v-if="slots.subtitle" class="list_subtitle">
             <slot name="subtitle" />
           </span>
-          <span v-if="$slots.subtitle && $slots.default"> - </span>
+          <span v-if="slots.subtitle && slots.default"> - </span>
           <slot />
         </p>
       </div>
     </div>
 
-    <div v-if="$slots.text" class="list_text" :class="{
-      list_hasDivider: divider,
-    }" :style="{ width: textWidth }">
+    <div
+      v-if="slots.text"
+      class="list_text"
+      :class="{
+        list_hasDivider: divider,
+      }"
+      :style="{ width: textWidth }"
+    >
       <slot name="text" />
     </div>
 
-    <div v-if="$slots.controls" class="list_controls" :class="{
-      list_hasDivider: divider,
-    }" :style="{ width: controlsWidth }">
+    <div
+      v-if="slots.controls"
+      class="list_controls"
+      :class="{
+        list_hasDivider: divider,
+      }"
+      :style="{ width: controlsWidth }"
+    >
       <slot name="controls" />
     </div>
   </div>

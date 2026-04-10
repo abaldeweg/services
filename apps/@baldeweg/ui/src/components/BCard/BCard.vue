@@ -1,14 +1,15 @@
-<script setup>
-defineProps({
-  route: Object,
-  outlined: {
-    type: Boolean,
-    default: false,
-  },
-  filled: {
-    type: Boolean,
-    default: false,
-  },
+<script setup lang="ts">
+import type { RouteLocationRaw } from "vue-router"
+
+interface Props {
+  route?: RouteLocationRaw
+  outlined?: boolean
+  filled?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  outlined: false,
+  filled: false,
 })
 </script>
 

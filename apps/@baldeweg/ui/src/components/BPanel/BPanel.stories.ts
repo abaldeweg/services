@@ -46,7 +46,7 @@ const Template = (args) => ({
         <button @click="args.modelValue = true">Open Panel</button>
       </div>
     </div>
-    <BPanel v-bind="args">
+    <BPanel v-bind="args" @update:modelValue="args.modelValue = $event">
       <template #header v-if="args.showHeader">
         <div style="padding: 1rem;">
           <h2>Panel Header</h2>

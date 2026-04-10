@@ -1,36 +1,47 @@
-<script setup>
-import { ref, computed } from 'vue'
+<script setup lang="ts">
+import { ref, computed } from "vue"
 
-const props = defineProps({
-  type: {
-    type: String,
-    validator: (value) => ['info', 'danger', 'warning', 'success'].includes(value),
-    default: 'info',
-  },
-  closable: {
-    type: Boolean,
-    default: false
-  },
+interface Props {
+  type?: "info" | "danger" | "warning" | "success"
+  closable?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  type: "info",
+  closable: false,
 })
 
-const showAlert = ref(false)
-const alertClass = computed(() => {
-  return {
-    alert_info: props.type === 'info',
-    alert_danger: props.type === 'danger',
-    alert_warning: props.type === 'warning',
-    alert_success: props.type === 'success',
-  }
-})
+const showAlert = ref<boolean>(false)
+const alertClass = computed<Record<string, boolean>>(
+  (): Record<string, boolean> => {
+    return {
+      alert_info: props.type === "info",
+      alert_danger: props.type === "danger",
+      alert_warning: props.type === "warning",
+      alert_success: props.type === "success",
+    }
+  },
+)
 </script>
 
 <template>
-  <div class="alert u:flex u:gap-xl u:rounded-xl u:border u:border-neutral-800 u:bg-neutral-100 u:p-xl u:my-l u:box-border" :class="alertClass" v-if="!showAlert">
+  <div
+    class="alert u:flex u:gap-xl u:rounded-xl u:border u:border-neutral-800 u:bg-neutral-100 u:p-xl u:my-l u:box-border"
+    :class="alertClass"
+    v-if="!showAlert"
+  >
     <BMaterialIcon :size="20" class="alert_icon">info</BMaterialIcon>
     <div class="alert-content u:flex-1">
       <slot />
     </div>
-    <BMaterialIcon :size="20" @click="showAlert = true" hover class="alert_close" v-if="closable">close</BMaterialIcon>
+    <BMaterialIcon
+      :size="20"
+      @click="showAlert = true"
+      hover
+      class="alert_close"
+      v-if="closable"
+      >close</BMaterialIcon
+    >
   </div>
 </template>
 
@@ -42,7 +53,7 @@ const alertClass = computed(() => {
 /* Type */
 .alert_info {
   border-color: var(--color-accent-blue-10);
-  color: var(--color-accent-blue-10)
+  color: var(--color-accent-blue-10);
 }
 
 .alert_info a,
@@ -64,7 +75,7 @@ const alertClass = computed(() => {
 
 .alert_warning {
   border-color: var(--color-accent-yellow-10);
-  color: var(--color-accent-yellow-10)
+  color: var(--color-accent-yellow-10);
 }
 
 .alert_warning a,
@@ -75,7 +86,7 @@ const alertClass = computed(() => {
 
 .alert_success {
   border-color: var(--color-accent-green-10);
-  color: var(--color-accent-green-10)
+  color: var(--color-accent-green-10);
 }
 
 .alert_success a,

@@ -1,35 +1,29 @@
-<script setup>
-defineProps({
-  size: {
-    type: String,
-    default: 'l',
-    validator(value) {
-      return ['l', 'm', 's'].includes(value)
-    },
-  },
-  align: {
-    type: String,
-    default: 'left',
-    validator(value) {
-      return ['left', 'right', 'center'].includes(value)
-    },
-  },
-  highlight: {
-    type: Boolean,
-    default: false,
-  },
+<script setup lang="ts">
+interface Props {
+  size?: "l" | "m" | "s"
+  align?: "left" | "right" | "center"
+  highlight?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  size: "l",
+  align: "left",
+  highlight: false,
 })
 </script>
 
 <template>
-  <section class="container u:clear-both u:px-xl u:mx-auto u:box-border" :class="{
-    container_size_l: size === 'l',
-    container_size_m: size === 'm',
-    container_size_s: size === 's',
-    container_align_right: align === 'right',
-    container_align_center: align === 'center',
-    container_hasHighlight: highlight,
-  }">
+  <section
+    class="u:clear-both u:px-xl u:mx-auto u:box-border container"
+    :class="{
+      container_size_l: size === 'l',
+      container_size_m: size === 'm',
+      container_size_s: size === 's',
+      container_align_right: align === 'right',
+      container_align_center: align === 'center',
+      container_hasHighlight: highlight,
+    }"
+  >
     <slot />
   </section>
 </template>
@@ -40,7 +34,7 @@ defineProps({
 }
 
 .container::after {
-  content: '';
+  content: "";
   display: table;
   clear: both;
 }

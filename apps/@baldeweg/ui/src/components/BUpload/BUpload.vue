@@ -1,28 +1,51 @@
-<script setup>
-import { ref } from 'vue'
+<script setup lang="ts">
+import { ref } from "vue"
 
-defineProps({
-  id: String,
-  text: String,
-  accept: String,
-  modelValue: {
-    type: Boolean,
-    default: false,
-  },
+interface Props {
+  id?: string
+  text?: string
+  accept?: string
+  modelValue?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: false,
 })
 
-const emits = defineEmits(["update:modelValue"])
+const emit = defineEmits<{
+  "update:modelValue": [file: File | null]
+}>()
 
-const isDragging = ref(false)
+const isDragging = ref<boolean>(false)
 </script>
 
 <template>
   <div class="upload" :class="{ upload_isDragging: isDragging }">
     <p class="upload_text">{{ text }}</p>
-    <div class="upload_dropzone" @dragover="isDragging = true" @dragenter="isDragging = true"
-      @dragleave="isDragging = false" @dragend="isDragging = false" @drop="isDragging = false">
-      <BInput type="file" class="upload_input" event :id="id" :accept="accept"
-        @change="emits('update:modelValue', $event.target.files[0])" aria-label="Upload" />
+    <div
+      class="upload_dropzone"
+      @dragover="isDragging = true"
+      @dragenter="isDragging = true"
+      @dragleave="isDragging = false"
+      @dragend="isDragging = false"
+      @drop="isDragging = false"
+    >
+      <BInput
+        type="file"
+        class="upload_input"
+        event
+        :id="id"
+        :accept="accept"
+        @change="
+          emit(
+            'update:modelValue',
+            $event.target.files && $event.target.files.length
+              ? $event.target.files[0]
+              : null,
+          )
+        "
+        aria-label="Upload"
+      />
     </div>
   </div>
 </template>

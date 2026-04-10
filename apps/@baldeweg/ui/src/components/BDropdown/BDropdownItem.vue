@@ -1,19 +1,21 @@
-<script setup>
-defineProps({
-  bold: {
-    type: Boolean,
-    default: false,
-  },
-  noHover: {
-    type: Boolean,
-    default: false,
-  },
-  icon: String,
+<script setup lang="ts">
+interface Props {
+  bold?: boolean
+  noHover?: boolean
+  icon?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  bold: false,
+  noHover: false,
 })
 </script>
 
 <template>
-  <li class="dropdown_item" :class="{ dropdown_isBold: bold, dropdown_canHover: !noHover }">
+  <li
+    class="dropdown_item"
+    :class="{ dropdown_isBold: bold, dropdown_canHover: !noHover }"
+  >
     <div class="dropdown_icon" v-if="icon">
       <BMaterialIcon :type="icon" :size="15">{{ icon }}</BMaterialIcon>
     </div>

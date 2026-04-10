@@ -1,42 +1,46 @@
-<script setup>
-const props = defineProps({
-  design: {
-    type: String,
-    default: 'primary',
-    validator: (value) =>
-      [
-        'primary',
-        'primary_danger',
-        'primary_wide',
-        'outline',
-        'outline_danger',
-        'outline_wide',
-        'text',
-        'text_danger',
-      ].includes(value),
-  },
+<script setup lang="ts">
+interface Props {
+  design?:
+    | "primary"
+    | "primary_danger"
+    | "primary_wide"
+    | "outline"
+    | "outline_danger"
+    | "outline_wide"
+    | "text"
+    | "text_danger"
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  design: "primary",
 })
 
-const emit = defineEmits(['click'])
+const emit = defineEmits<{
+  (e: 'click'): void
+}>()
 </script>
 
 <template>
-  <button class="u:inline-block u:relative u:rounded-xl u:font-sans u:text-m u:m-0 u:text-center u:no-underline u:cursor-pointer u:overflow-hidden" :class="{
-    btn_primary:
-      design === 'primary' ||
-      design === 'primary_danger' ||
-      design === 'primary_wide',
-    btn_primary_danger: design === 'primary_danger',
-    btn_primary_wide: design === 'primary_wide',
-    btn_outline:
-      design === 'outline' ||
-      design === 'outline_danger' ||
-      design === 'outline_wide',
-    btn_outline_danger: design === 'outline_danger',
-    btn_outline_wide: design === 'outline_wide',
-    btn_text: design === 'text' || design === 'text_danger',
-    btn_text_danger: design === 'text_danger',
-  }" @click="emit('click')">
+  <button
+    class="u:inline-block u:relative u:rounded-xl u:font-sans u:text-m u:m-0 u:text-center u:no-underline u:cursor-pointer u:overflow-hidden"
+    :class="{
+      btn_primary:
+        design === 'primary' ||
+        design === 'primary_danger' ||
+        design === 'primary_wide',
+      btn_primary_danger: design === 'primary_danger',
+      btn_primary_wide: design === 'primary_wide',
+      btn_outline:
+        design === 'outline' ||
+        design === 'outline_danger' ||
+        design === 'outline_wide',
+      btn_outline_danger: design === 'outline_danger',
+      btn_outline_wide: design === 'outline_wide',
+      btn_text: design === 'text' || design === 'text_danger',
+      btn_text_danger: design === 'text_danger',
+    }"
+    @click="emit('click')"
+  >
     <slot />
   </button>
 </template>

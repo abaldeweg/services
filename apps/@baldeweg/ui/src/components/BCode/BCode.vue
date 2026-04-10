@@ -1,5 +1,7 @@
 <template>
-  <pre class="code u:rounded-xl u:p-xl u:overflow-auto"><code class="code_body"><slot/></code></pre>
+  <pre
+    class="code u:rounded-xl u:p-xl u:overflow-auto"
+  ><code class="code_body"><slot/></code></pre>
 </template>
 
 <style>

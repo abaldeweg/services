@@ -1,50 +1,49 @@
-<script setup>
-import { useSlots } from 'vue'
+<script setup lang="ts">
+import { useSlots } from "vue"
 
-const props = defineProps({
-  modelValue: {
-    type: Boolean,
-    default: false
-  },
-  position: {
-    type: String,
-    default: 'left',
-    validator(value) {
-      return ['left', 'right'].includes(value)
-    },
-  },
-  width: {
-    type: String,
-    default: '300px'
-  },
-  permanent: {
-    type: Boolean,
-    default: false
-  }
+interface Props {
+  modelValue?: boolean
+  position?: "left" | "right"
+  width?: string
+  permanent?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: false,
+  position: "left",
+  width: "300px",
+  permanent: false,
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits<{
+  "update:modelValue": [value: boolean]
+}>()
 
 const slots = useSlots()
-
-const close = () => {
-  emit('update:modelValue', false)
-}
 </script>
 
 <template>
   <Transition name="panel_overlay" v-if="!props.permanent">
-    <div class="panel_overlay" @click="close" v-if="modelValue" />
+    <div
+      class="panel_overlay"
+      @click="emit('update:modelValue', false)"
+      v-if="modelValue"
+    />
   </Transition>
 
   <Transition name="panel_container">
-    <div class="panel_container" :class="{
-      panel_position_left: position === 'left',
-      panel_position_right: position === 'right',
-      panel_permanent: permanent,
-    }" v-if="modelValue" :style="{
-      maxWidth: width
-    }">
+    <div
+      class="panel_container"
+      :class="{
+        panel_position_left: position === 'left',
+        panel_position_right: position === 'right',
+        panel_permanent: permanent,
+      }"
+      v-if="modelValue"
+      :style="{
+        maxWidth: width,
+      }"
+    >
       <div class="panel_header" v-if="slots.header">
         <slot name="header" />
       </div>
@@ -141,7 +140,6 @@ const close = () => {
 }
 
 @media print {
-
   .panel_overlay,
   .panel_container {
     display: none;

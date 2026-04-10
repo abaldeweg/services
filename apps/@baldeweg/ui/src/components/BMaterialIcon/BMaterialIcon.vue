@@ -1,31 +1,28 @@
-<script setup>
-import { computed } from 'vue'
+<script setup lang="ts">
+import { computed } from "vue"
 
-const props = defineProps({
-  size: {
-    type: Number,
-    default: 24,
-  },
-  color: {
-    type: String,
-    default: 'inherit',
-  },
-  hover: {
-    type: Boolean,
-    default: false,
-  },
+interface Props {
+  size?: number
+  color?: string
+  hover?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  size: 24,
+  color: "inherit",
+  hover: false,
 })
 
-const iconClasses = computed(() => [
-  'icon',
-  'material-symbols-outlined',
-  'u:align-middle',
+const iconClasses = computed<Array<string | Record<string, boolean>>>(() => [
+  "icon",
+  "material-symbols-outlined",
+  "u:align-middle",
   { canHover: props.hover },
 ])
 
-const iconStyle = computed(() => ({
+const iconStyle = computed<Record<string, string>>(() => ({
   fontSize: `${props.size}px`,
-  color: props.color,
+  color: String(props.color),
 }))
 </script>
 
@@ -48,9 +45,9 @@ const iconStyle = computed(() => ({
 
 .material-symbols-outlined {
   font-variation-settings:
-    'FILL' 0,
-    'wght' 300,
-    'GRAD' 0,
-    'opsz' 35;
+    "FILL" 0,
+    "wght" 300,
+    "GRAD" 0,
+    "opsz" 35;
 }
 </style>

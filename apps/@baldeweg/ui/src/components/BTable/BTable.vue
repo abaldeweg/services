@@ -1,14 +1,15 @@
-<script setup>
-defineProps({
-  hover: {
-    type: Boolean,
-    default: false,
-  },
+<script setup lang="ts">
+interface Props {
+  hover?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  hover: false,
 })
 </script>
 
 <template>
-  <div class="table u:overflow-auto" :class="{ canHover: hover }">
+  <div class="u:overflow-auto table" :class="{ canHover: hover }">
     <slot />
   </div>
 </template>

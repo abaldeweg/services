@@ -1,23 +1,21 @@
-<script setup>
-import { computed } from 'vue'
+<script setup lang="ts">
+import { computed } from "vue"
 
-const props = defineProps({
-  position: {
-    type: String,
-    validator(value) {
-      return ['top', 'bottom', 'left', 'right'].includes(value)
-    },
-    default: 'top'
-  },
-  text: String,
+interface Props {
+  position?: "top" | "bottom" | "left" | "right"
+  text?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  position: "top",
 })
 
-const positionClass = computed(() => {
+const positionClass = computed<Record<string, boolean>>(() => {
   return {
-    'tooltip_position_top': props.position === 'top',
-    'tooltip_position_bottom': props.position === 'bottom',
-    'tooltip_position_left': props.position === 'left',
-    'tooltip_position_right': props.position === 'right',
+    tooltip_position_top: props.position === "top",
+    tooltip_position_bottom: props.position === "bottom",
+    tooltip_position_left: props.position === "left",
+    tooltip_position_right: props.position === "right",
   }
 })
 </script>
@@ -43,7 +41,7 @@ const positionClass = computed(() => {
   text-align: center;
   line-height: initial;
   opacity: 0;
-  transition: opacity .3s;
+  transition: opacity 0.3s;
   visibility: hidden;
 }
 

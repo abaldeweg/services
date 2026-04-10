@@ -1,44 +1,79 @@
-<script setup>
-defineProps({
-  placeholder: String,
-  modelValue: String,
-  filter: {
-    type: Boolean,
-    default: false
-  },
-  branded: {
-    type: Boolean,
-    default: false
-  },
-  focus: {
-    type: Boolean,
-    default: false
-  },
-  reset: {
-    type: Boolean,
-    default: false
-  },
-  resetLabel: String,
-  filterLabel: String,
-  searchLabel: String
+<script setup lang="ts">
+interface Props {
+  placeholder?: string
+  modelValue?: string
+  filter?: boolean
+  branded?: boolean
+  focus?: boolean
+  reset?: boolean
+  resetLabel?: string
+  filterLabel?: string
+  searchLabel?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  filter: false,
+  branded: false,
+  focus: false,
+  reset: false,
 })
 
-defineEmits(['reset', 'input', 'update:modelValue', 'submit', 'filter'])
+const emit = defineEmits<{
+  reset: []
+  input: [value: string]
+  "update:modelValue": [value: string]
+  submit: [event: SubmitEvent]
+  filter: []
+}>()
 </script>
 
 <template>
-  <form class="search" :class="{ 'search_isBranded': branded }" @submit.prevent="$emit('submit', $event)">
-    <input type="search" class="search_input" :placeholder="placeholder" :value="modelValue" :autofocus="focus"
-      @input="$emit('update:modelValue', $event.target.value)" aria-label="Search" />
+  <form
+    class="search"
+    :class="{ search_isBranded: branded }"
+    @submit.prevent="emit('submit', $event)"
+  >
+    <input
+      type="search"
+      class="search_input"
+      :placeholder="placeholder"
+      :value="modelValue"
+      :autofocus="focus"
+      @input="
+        emit('update:modelValue', ($event.target as HTMLInputElement).value)
+      "
+      aria-label="Search"
+    />
     <div class="search_buttons">
-      <button type="reset" class="search_button" @click="$emit('reset')" v-if="reset">
-        <BMaterialIcon :size="22" :aria-label="resetLabel" hover>close</BMaterialIcon>
+      <button
+        type="reset"
+        class="search_button"
+        @click="emit('reset')"
+        v-if="reset"
+      >
+        <BMaterialIcon :size="22" :aria-label="resetLabel" hover>
+          close
+        </BMaterialIcon>
       </button>
-      <button type="button" class="search_button" @click="$emit('filter')" v-if="filter">
-        <BMaterialIcon :size="22" :aria-label="filterLabel" hover>filter_alt</BMaterialIcon>
+      <button
+        type="button"
+        class="search_button"
+        @click="emit('filter')"
+        v-if="filter"
+      >
+        <BMaterialIcon :size="22" :aria-label="filterLabel" hover>
+          filter_alt
+        </BMaterialIcon>
       </button>
       <button class="search_button">
-        <BMaterialIcon :size="22" :isPrimary="branded" :aria-label="searchLabel" hover>search</BMaterialIcon>
+        <BMaterialIcon
+          :size="22"
+          :isPrimary="branded"
+          :aria-label="searchLabel"
+          hover
+        >
+          search
+        </BMaterialIcon>
       </button>
     </div>
   </form>
@@ -89,7 +124,7 @@ defineEmits(['reset', 'input', 'update:modelValue', 'submit', 'filter'])
   -webkit-appearance: none;
 }
 
-input[type='search']::-ms-clear {
+input[type="search"]::-ms-clear {
   display: none;
   width: 0;
   height: 0;

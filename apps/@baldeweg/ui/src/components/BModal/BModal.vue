@@ -1,43 +1,44 @@
-<script setup>
-import { onBeforeUnmount, onMounted } from 'vue'
+<script setup lang="ts">
+import { onBeforeUnmount, onMounted, useSlots } from "vue"
 
-const props = defineProps({
-  modelValue: {
-    type: Boolean,
-    default: false,
-  },
-  width: {
-    type: Number,
-    default: 600,
-  },
-  closeButton: {
-    type: Boolean,
-    default: true
-  },
-})
-
-const emit = defineEmits(['update:modelValue'])
-
-const close = () => {
-  emit('update:modelValue', false)
-  document.body.classList.remove('isModalOpen')
+interface Props {
+  modelValue?: boolean
+  width?: number
+  closeButton?: boolean
 }
 
-const handleKeydown = (event) => {
-  if (event.key === 'Escape' && props.modelValue) {
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: false,
+  width: 600,
+  closeButton: true,
+})
+
+const emit = defineEmits<{
+  "update:modelValue": [value: boolean]
+}>()
+
+const close = (): void => {
+  emit("update:modelValue", false)
+  document.body.classList.remove("isModalOpen")
+}
+
+const handleKeydown = (event: KeyboardEvent): void => {
+  if (event.key === "Escape" && props.modelValue) {
     close()
   }
 }
 
-onMounted(() => {
-  document.body.classList.add('isModalOpen')
-  document.addEventListener('keydown', handleKeydown)
+onMounted((): void => {
+  document.body.classList.add("isModalOpen")
+  document.addEventListener("keydown", handleKeydown)
 })
 
-onBeforeUnmount(() => {
-  document.body.classList.remove('isModalOpen')
-  document.removeEventListener('keydown', handleKeydown)
+onBeforeUnmount((): void => {
+  document.body.classList.remove("isModalOpen")
+  document.removeEventListener("keydown", handleKeydown)
 })
+
+const slots = useSlots()
 </script>
 
 <template>
@@ -46,7 +47,7 @@ onBeforeUnmount(() => {
 
     <div class="modal_inner" :style="{ maxWidth: width + 'px' }">
       <div class="modal_header">
-        <h2 class="modal_title" v-if="$slots.title">
+        <h2 class="modal_title" v-if="slots.title">
           <slot name="title" />
         </h2>
         <span class="modal_close" @click="close" v-if="closeButton">
@@ -58,7 +59,7 @@ onBeforeUnmount(() => {
         <slot />
       </div>
 
-      <div class="modal_footer" v-if="$slots.footer">
+      <div class="modal_footer" v-if="slots.footer">
         <slot name="footer" />
       </div>
     </div>
@@ -66,6 +67,10 @@ onBeforeUnmount(() => {
 </template>
 
 <style>
+body.isModalOpen {
+  overflow: hidden;
+}
+
 .modal {
   position: fixed;
   top: 0;
@@ -124,11 +129,5 @@ onBeforeUnmount(() => {
 .modal_footer {
   border-top: 1px solid var(--color-neutral-02);
   padding: 20px;
-}
-</style>
-
-<style>
-body.isModalOpen {
-  overflow: hidden;
 }
 </style>

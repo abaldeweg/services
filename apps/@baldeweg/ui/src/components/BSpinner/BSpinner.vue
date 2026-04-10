@@ -1,20 +1,22 @@
-<script setup>
-defineProps({
-  size: {
-    default: 'l',
-    validator(value) {
-      return ['l', 'm', 's'].includes(value)
-    },
-  },
+<script setup lang="ts">
+interface Props {
+  size?: "l" | "m" | "s"
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  size: "l",
 })
 </script>
 
 <template>
-  <div class="spinner" :class="{
-    spinner_size_l: size === 'l',
-    spinner_size_m: size === 'm',
-    spinner_size_s: size === 's',
-  }" />
+  <div
+    class="spinner"
+    :class="{
+      spinner_size_l: size === 'l',
+      spinner_size_m: size === 'm',
+      spinner_size_s: size === 's',
+    }"
+  />
 </template>
 
 <style>

@@ -1,23 +1,27 @@
-<script setup>
-defineProps({
-  modelValue: {
-    type: Boolean,
-    default: false,
-  },
-  label: {
-    type: String,
-    required: true,
-  },
+<script setup lang="ts">
+interface Props {
+  modelValue?: boolean
+  label: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: false,
 })
 
-const emits = defineEmits(['update:modelValue'])
+const emit = defineEmits<{
+  "update:modelValue": [value: boolean]
+}>()
 </script>
 
 <template>
   <div class="switch">
-    <button class="switch_indicator" :class="{ isActive: modelValue }" @click="emits('update:modelValue', !modelValue)"
-      :aria-label="label" />
-    <div class="switch_label" @click="emits('update:modelValue', !modelValue)">
+    <button
+      class="switch_indicator"
+      :class="{ isActive: modelValue }"
+      @click="emit('update:modelValue', !modelValue)"
+      :aria-label="label"
+    />
+    <div class="switch_label" @click="emit('update:modelValue', !modelValue)">
       {{ label }}
     </div>
   </div>
@@ -47,7 +51,7 @@ const emits = defineEmits(['update:modelValue'])
 }
 
 .switch_indicator::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 5px;
   left: 5px;

@@ -1,49 +1,74 @@
-<script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import BMaterialIcon from '../BMaterialIcon/BMaterialIcon.vue'
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from "vue"
+import BMaterialIcon from "../BMaterialIcon/BMaterialIcon.vue"
 
-const slider = ref(null)
+const slider = ref<HTMLElement | null>(null)
 
-// Updates the visibility of the slider arrows based on the scroll position
+/**
+ * Updates the visibility of the slider arrows based on the scroll position
+ */
 const updateSliderEdges = () => {
-  if (!slider.value || !slider.value.querySelector('.slider_body')) return
-  const body = slider.value.querySelector('.slider_body')
+  if (!slider.value) return
+  const body = slider.value.querySelector<HTMLElement>(".slider_body")
+  if (!body) return
   const isStart = body.scrollLeft === 0
   const isEnd = body.scrollLeft + body.clientWidth >= body.scrollWidth - 1
-  slider.value.querySelector('.slider_arrow_left').classList.toggle('isVisible', !isStart)
-  slider.value.querySelector('.slider_arrow_right').classList.toggle('isVisible', !isEnd)
+  const left = slider.value.querySelector<HTMLElement>(".slider_arrow_left")
+  const right = slider.value.querySelector<HTMLElement>(".slider_arrow_right")
+  left?.classList.toggle("isVisible", !isStart)
+  right?.classList.toggle("isVisible", !isEnd)
 }
 
-// Scrolls the slider by a specified number of pixels
-const scroll = (pixels) => {
-  if (!slider.value || !slider.value.querySelector('.slider_body')) return
-  slider.value.querySelector('.slider_body').scrollBy({ left: pixels, behavior: 'smooth' })
+/**
+ * Scrolls the slider by a specified number of pixels
+ */
+const scroll = (pixels: number) => {
+  if (!slider.value) return
+  const body = slider.value.querySelector<HTMLElement>(".slider_body")
+  if (!body) return
+  body.scrollBy({ left: pixels, behavior: "smooth" })
 }
 
 onMounted(() => {
-  if (!slider.value || !slider.value.querySelector('.slider_body')) return
-  const body = slider.value.querySelector('.slider_body')
-  body.addEventListener('scroll', updateSliderEdges)
+  if (!slider.value) return
+  const body = slider.value.querySelector<HTMLElement>(".slider_body")
+  if (!body) return
+  body.addEventListener("scroll", updateSliderEdges)
   updateSliderEdges()
 })
 
 onUnmounted(() => {
-  if (!slider.value || !slider.value.querySelector('.slider_body')) return
-  const body = slider.value.querySelector('.slider_body')
-  body.removeEventListener('scroll', updateSliderEdges)
+  if (!slider.value) return
+  const body = slider.value.querySelector<HTMLElement>(".slider_body")
+  if (!body) return
+  body.removeEventListener("scroll", updateSliderEdges)
 })
 </script>
 
 <template>
   <div class="slider" ref="slider">
-    <BMaterialIcon class="slider_arrow_left" color="var(--color-neutral-00)" :size="40" hover @click="scroll(-200)"
-      aria-hidden="true">chevron_left
+    <BMaterialIcon
+      class="slider_arrow_left"
+      color="var(--color-neutral-00)"
+      :size="40"
+      hover
+      @click="scroll(-200)"
+      aria-hidden="true"
+    >
+      chevron_left
     </BMaterialIcon>
     <div class="slider_body" tabindex="0">
       <slot />
     </div>
-    <BMaterialIcon class="slider_arrow_right" color="var(--color-neutral-00)" :size="40" hover @click="scroll(200)"
-      aria-hidden="true">chevron_right
+    <BMaterialIcon
+      class="slider_arrow_right"
+      color="var(--color-neutral-00)"
+      :size="40"
+      hover
+      @click="scroll(200)"
+      aria-hidden="true"
+    >
+      chevron_right
     </BMaterialIcon>
   </div>
 </template>

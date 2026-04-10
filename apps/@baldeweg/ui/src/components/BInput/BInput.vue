@@ -1,42 +1,60 @@
-<script setup>
-defineProps({
-  modelValue: String,
-  type: {
-    type: String,
-    default: 'text',
-    validator: (value) => ['date', 'color', 'datetime-local', 'email', 'month', 'number', 'password', 'range', 'search', 'tel', 'text', 'time', 'url', 'week', 'file'].includes(value),
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  id: {
-    type: String,
-    required: true,
-  },
-  label: String,
-  help: String,
-  hideLabel: {
-    type: Boolean,
-    default: false,
-  },
+<script setup lang="ts">
+interface Props {
+  modelValue?: string
+  type?:
+    | "date"
+    | "color"
+    | "datetime-local"
+    | "email"
+    | "month"
+    | "number"
+    | "password"
+    | "range"
+    | "search"
+    | "tel"
+    | "text"
+    | "time"
+    | "url"
+    | "week"
+    | "file"
+  name: string
+  id: string
+  label?: string
+  help?: string
+  hideLabel?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  type: "text",
+  hideLabel: false,
 })
 
 defineOptions({
   inheritAttrs: false,
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits<{
+  "update:modelValue": [value: string]
+}>()
 </script>
 
 <template>
   <div class="input_group u:mb-xl">
     <div :class="['u:py-m input_item', { 'u:sr-only': hideLabel }]">
-      <label :for=id>{{ label }}</label>
+      <label :for="id">{{ label }}</label>
     </div>
     <div class="u:py-m">
-      <input class="u:border u:border-neutral-400 u:bg-neutral-100 u:box-border u:rounded-xl u:w-full u:px-m u:py-m u:m-0 u:text-m u:text-neutral-950 input_input" v-bind="$attrs" :type="type" :value="modelValue" :name="name" :id="id"
-        @input="emit('update:modelValue', $event.target.value)" />
+      <input
+        class="u:border u:border-neutral-400 u:bg-neutral-100 u:box-border u:rounded-xl u:w-full u:px-m u:py-m u:m-0 u:text-m u:text-neutral-950 input_input"
+        v-bind="$attrs"
+        :type="type"
+        :value="modelValue"
+        :name="name"
+        :id="id"
+        @input="
+          emit('update:modelValue', ($event.target as HTMLInputElement).value)
+        "
+      />
     </div>
     <p v-if="help" class="input_helpline">
       {{ help }}

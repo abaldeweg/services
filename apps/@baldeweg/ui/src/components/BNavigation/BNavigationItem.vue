@@ -1,68 +1,61 @@
-<script setup>
-import { computed } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-import BMaterialIcon from '../BMaterialIcon/BMaterialIcon.vue'
+<script setup lang="ts">
+import { computed } from "vue"
+import { useRouter, useRoute } from "vue-router"
+import type { RouteLocationRaw } from "vue-router"
+import BMaterialIcon from "../BMaterialIcon/BMaterialIcon.vue"
 
-const props = defineProps({
-  border: {
-    type: String,
-    default: 'none',
-    validator: (value) => ['none', 'primary', 'neutral'].includes(value),
-  },
-  background: {
-    type: String,
-    default: 'none',
-    validator: (value) => ['none', 'primary', 'neutral'].includes(value),
-  },
-  direction: {
-    type: String,
-    default: 'horizontal',
-    validator: (value) => ['horizontal', 'vertical'].includes(value),
-  },
-  route: {
-    type: [String, Object],
-    default: undefined,
-  },
-  icon: {
-    type: String,
-    default: undefined,
-    validator: (value) => value === undefined || /^[a-z0-9_]+$/.test(value),
-  },
-  badge: {
-    type: String,
-    default: undefined,
-  },
+interface Props {
+  border?: "none" | "primary" | "neutral"
+  background?: "none" | "primary" | "neutral"
+  direction?: "horizontal" | "vertical"
+  route?: string | RouteLocationRaw
+  icon?: string
+  badge?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  border: "none",
+  background: "none",
+  direction: "horizontal",
 })
 
 const router = useRouter()
 const currentRoute = useRoute()
 
-const href = computed(() => {
-  if (typeof props.route === 'string') return props.route
-  if (typeof props.route === 'object') return router.resolve(props.route).href
+const href = computed<string | undefined>(() => {
+  if (typeof props.route === "string") return props.route
+  if (typeof props.route === "object") return router.resolve(props.route).href
   return undefined
 })
 
-const isActive = computed(() => {
-  if (typeof props.route !== 'object' || props.route === null) return false
+const isActive = computed<boolean>(() => {
+  if (typeof props.route !== "object" || props.route === null) return false
   return currentRoute.path === router.resolve(props.route).path
 })
 
-const handleNavigation = (event) => {
-  if (typeof props.route !== 'object' || props.route === null) return
+const handleNavigation = (event: Event): void => {
+  if (typeof props.route !== "object" || props.route === null) return
   event.preventDefault()
   router.push(props.route)
 }
 </script>
 
 <template>
-  <li class="navigation_item" :class="[
-    border !== 'none' && `navigation_item_border_${border}`,
-    background !== 'none' && `navigation_item_background_${background}`,
-    direction === 'vertical' && 'navigation_item_vertical',
-    isActive && 'isActive',
-  ]">
-    <a :href="href" @click="handleNavigation" class="navigation_link" rel="noopener noreferrer">
+  <li
+    class="navigation_item"
+    :class="[
+      border !== 'none' && `navigation_item_border_${border}`,
+      background !== 'none' && `navigation_item_background_${background}`,
+      direction === 'vertical' && 'navigation_item_vertical',
+      isActive && 'isActive',
+    ]"
+  >
+    <a
+      :href="href"
+      @click="handleNavigation"
+      class="navigation_link"
+      rel="noopener noreferrer"
+    >
       <span class="navigation_icon" v-if="icon">
         <BMaterialIcon :size="18">{{ icon }}</BMaterialIcon>
       </span>

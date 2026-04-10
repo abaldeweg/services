@@ -1,12 +1,10 @@
-<script setup>
-defineProps({
-  size: {
-    type: String,
-    default: 'm',
-    validator(value) {
-      return ['xs', 's', 'm', 'l', 'xl'].includes(value)
-    },
-  },
+<script setup lang="ts">
+interface Props {
+  size?: "xs" | "s" | "m" | "l" | "xl"
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  size: "m",
 })
 </script>
 

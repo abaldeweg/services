@@ -1,10 +1,10 @@
-<script setup>
-import { onMounted } from 'vue';
+<script setup lang="ts">
+import { onMounted } from "vue"
 
-onMounted(() => {
-  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
-});
+onMounted((): void => {
+  const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+  document.body.setAttribute("data-theme", isDark ? "dark" : "light")
+})
 </script>
 
 <template>
@@ -27,26 +27,26 @@ body {
   --color-neutral-02: #d6d6d6;
   --color-neutral-00: #ffffff;
   /* Primary */
-  --color-primary-10: #C1571A;
+  --color-primary-10: #c1571a;
   --color-primary-05: #e9915d;
-  --color-primary-00: #F3C2A5;
+  --color-primary-00: #f3c2a5;
   /* Accent */
-  --color-accent-red-10: #ED0C0C;
+  --color-accent-red-10: #ed0c0c;
   --color-accent-red-05: #ff7373;
-  --color-accent-red-00: #F65A5A;
-  --color-accent-green-10: #008A00;
+  --color-accent-red-00: #f65a5a;
+  --color-accent-green-10: #008a00;
   --color-accent-green-05: #8bff8b;
-  --color-accent-green-00: #60F060;
-  --color-accent-yellow-10: #774B06;
+  --color-accent-green-00: #60f060;
+  --color-accent-yellow-10: #774b06;
   --color-accent-yellow-05: #f8eb8c;
-  --color-accent-yellow-00: #CCCC00;
-  --color-accent-blue-10: #0074D9;
-  --color-accent-blue-05: #85B4FF;
-  --color-accent-blue-00: #1793FF;
+  --color-accent-yellow-00: #cccc00;
+  --color-accent-blue-10: #0074d9;
+  --color-accent-blue-05: #85b4ff;
+  --color-accent-blue-00: #1793ff;
   /* Font */
-  --font-sans: 'Open Sans', 'Liberation Sans', 'Helvetica Neue', Arial;
-  --font-serif: Georgia, Constantia, 'DejaVu Serif', 'Times New Roman';
-  --font-monospace: Consolas, 'Liberation Mono', 'Lucida Console';
+  --font-sans: "Open Sans", "Liberation Sans", "Helvetica Neue", Arial;
+  --font-serif: Georgia, Constantia, "DejaVu Serif", "Times New Roman";
+  --font-monospace: Consolas, "Liberation Mono", "Lucida Console";
   /* Misc */
   --masthead-top-height: 50px;
   --bottom-nav-height: 70px;
@@ -58,24 +58,24 @@ body {
   scrollbar-gutter: stable;
 }
 
-body[data-theme='dark'] {
+body[data-theme="dark"] {
   /* Primary */
-  --color-primary-10: #F3C2A5;
+  --color-primary-10: #f3c2a5;
   --color-primary-05: #e9915d;
-  --color-primary-00: #C1571A;
+  --color-primary-00: #c1571a;
   /* Accent */
-  --color-accent-red-10: #F65A5A;
+  --color-accent-red-10: #f65a5a;
   --color-accent-red-05: #ff7373;
-  --color-accent-red-00: #ED0C0C;
-  --color-accent-green-10: #60F060;
+  --color-accent-red-00: #ed0c0c;
+  --color-accent-green-10: #60f060;
   --color-accent-green-05: #8bff8b;
-  --color-accent-green-00: #008A00;
-  --color-accent-yellow-10: #CCCC00;
+  --color-accent-green-00: #008a00;
+  --color-accent-yellow-10: #cccc00;
   --color-accent-yellow-05: #f8eb8c;
-  --color-accent-yellow-00: #774B06;
-  --color-accent-blue-10: #1793FF;
-  --color-accent-blue-05: #85B4FF;
-  --color-accent-blue-00: #0074D9;
+  --color-accent-yellow-00: #774b06;
+  --color-accent-blue-10: #1793ff;
+  --color-accent-blue-05: #85b4ff;
+  --color-accent-blue-00: #0074d9;
   /* Neutral */
   --color-neutral-10: #ffffff;
   --color-neutral-08: #d6d6d6;

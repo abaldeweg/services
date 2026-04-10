@@ -1,9 +1,9 @@
-<script setup>
-defineProps({
-  legend: {
-    type: String,
-  }
-})
+<script setup lang="ts">
+interface Props {
+  legend?: string
+}
+
+const props = defineProps<Props>()
 </script>
 
 <template>

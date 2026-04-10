@@ -1,29 +1,26 @@
-<script setup>
-defineProps({
-  border: {
-    type: String,
-    default: 'none',
-    validator: (value) => ['none', 'primary', 'neutral'].includes(value),
-  },
-  background: {
-    type: String,
-    default: 'none',
-    validator: (value) => ['none', 'primary', 'neutral'].includes(value),
-  },
-  direction: {
-    type: String,
-    default: 'vertical',
-    validator: (value) => ['horizontal', 'vertical'].includes(value),
-  },
+<script setup lang="ts">
+interface Props {
+  border?: "none" | "primary" | "neutral"
+  background?: "none" | "primary" | "neutral"
+  direction?: "horizontal" | "vertical"
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  border: "none",
+  background: "none",
+  direction: "vertical",
 })
 </script>
 
 <template>
-  <ul class="navigation u:rounded-xl u:flex u:flex-col u:gap-s u:list-none u:p-xl u:m-0" :class="[
-    border !== 'none' && `navigation_border_${border}`,
-    background !== 'none' && `navigation_background_${background}`,
-    direction === 'horizontal' && 'navigation_horizontal',
-  ]">
+  <ul
+    class="navigation u:rounded-xl u:flex u:flex-col u:gap-s u:list-none u:p-xl u:m-0"
+    :class="[
+      border !== 'none' && `navigation_border_${border}`,
+      background !== 'none' && `navigation_background_${background}`,
+      direction === 'horizontal' && 'navigation_horizontal',
+    ]"
+  >
     <slot />
   </ul>
 </template>

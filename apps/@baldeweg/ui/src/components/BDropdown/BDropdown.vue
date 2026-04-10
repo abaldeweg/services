@@ -1,83 +1,85 @@
-<script setup>
-import { ref } from 'vue'
+<script setup lang="ts">
+import { ref, useSlots } from "vue"
 
-const props = defineProps({
-  position: {
-    type: String,
-    default: 'selector',
-    validator(value) {
-      return ['selector', 'mouse', 'bottom'].includes(value)
-    },
-  },
-  keepOpen: {
-    type: Boolean,
-    default: false,
-  },
+interface Props {
+  position?: "selector" | "mouse" | "bottom"
+  keepOpen?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  position: "selector",
+  keepOpen: false,
 })
 
-const show = ref(false)
-const top = ref(0)
-const left = ref(0)
+const show = ref<boolean>(false)
+const top = ref<string>("0px")
+const left = ref<string>("0px")
 
-const selector = ref(null)
-const dropdown = ref(null)
+const selector = ref<HTMLElement | null>(null)
+const dropdown = ref<HTMLElement | null>(null)
 
-const showDropdown = (event) => {
+const showDropdown = (event: MouseEvent): void => {
   show.value = true
-  dropdown.value.style.display = 'block'
+  if (dropdown.value) dropdown.value.style.display = "block"
 
-  const position = selector.value.getBoundingClientRect()
+  const selectorEl = selector.value
+  const dropdownEl = dropdown.value
+  if (!selectorEl || !dropdownEl) return
+
+  const position = selectorEl.getBoundingClientRect()
   const selectorY = position.y
   const selectorX = position.x
-  const selectorWidth = selector.value.offsetWidth
-  const selectorHeight = selector.value.offsetHeight
+  const selectorWidth = selectorEl.offsetWidth
+  const selectorHeight = selectorEl.offsetHeight
   const clickY = event.clientY
   const clickX = event.clientX
   const clientWidth = window.innerWidth
   const clientHeight = window.innerHeight
-  const dimensionWidth = dropdown.value.offsetWidth
-  const dimensionHeight = dropdown.value.offsetHeight
+  const dimensionWidth = dropdownEl.offsetWidth
+  const dimensionHeight = dropdownEl.offsetHeight
 
-  dropdown.value.style.display = null
+  dropdownEl.style.display = ""
 
-  if ('mouse' === props.position) {
-    left.value = clickX + 'px'
+  if ("mouse" === props.position) {
+    left.value = clickX + "px"
     if (clickX + dimensionWidth > clientWidth) {
-      left.value = clickX - dimensionWidth + 'px'
+      left.value = clickX - dimensionWidth + "px"
     }
-    top.value = clickY + 'px'
+    top.value = clickY + "px"
     if (clickY + dimensionHeight > clientHeight) {
-      top.value = clickY - dimensionHeight + 'px'
+      top.value = clickY - dimensionHeight + "px"
     }
     return
   }
 
-  if ('bottom' === props.position) {
-    left.value = selectorX + 'px'
+  if ("bottom" === props.position) {
+    left.value = selectorX + "px"
     if (selectorX + dimensionWidth > clientWidth) {
-      left.value = selectorX - dimensionWidth + selectorWidth + 'px'
+      left.value = selectorX - dimensionWidth + selectorWidth + "px"
     }
-    top.value = selectorY + selectorHeight + 'px'
+    top.value = selectorY + selectorHeight + "px"
     if (selectorY + dimensionHeight > clientHeight) {
-      top.value = selectorY - dimensionHeight + 'px'
+      top.value = selectorY - dimensionHeight + "px"
     }
     return
   }
 
-  left.value = selectorX + 'px'
+  left.value = selectorX + "px"
   if (selectorX + dimensionWidth > clientWidth) {
-    left.value = selectorX - dimensionWidth + selectorWidth + 'px'
+    left.value = selectorX - dimensionWidth + selectorWidth + "px"
   }
-  top.value = selectorY + 'px'
+  top.value = selectorY + "px"
   if (selectorY + dimensionHeight > clientHeight) {
-    top.value = selectorY - dimensionHeight + selectorHeight + 'px'
+    top.value = selectorY - dimensionHeight + selectorHeight + "px"
   }
 }
+
+const slots = useSlots()
 </script>
 
 <template>
   <article>
-    <span @click="showDropdown" v-if="$slots.selector" ref="selector">
+    <span @click="showDropdown" v-if="slots.selector" ref="selector">
       <slot name="selector" />
     </span>
 

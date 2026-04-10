@@ -1,27 +1,26 @@
-<script setup>
-import { computed } from 'vue'
+<script setup lang="ts">
+import { computed } from "vue"
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits<{ (e: "update:modelValue", value: boolean): void }>()
 
-const props = defineProps({
-  modelValue: {
-    type: Boolean,
-    default: false
-  },
-  canClose: {
-    type: Boolean,
-    default: true
-  }
+interface Props {
+  modelValue?: boolean
+  canClose?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: false,
+  canClose: true,
 })
 
-const visible = computed({
-  get: () => props.modelValue,
-  set: (value) => emit('update:modelValue', value)
+const visible = computed<boolean>({
+  get: (): boolean => !!props.modelValue,
+  set: (value: boolean) => emit("update:modelValue", value),
 })
 
 const close = () => {
   if (!props.canClose) return
-  visible.value = !visible
+  visible.value = false
 }
 </script>
 
