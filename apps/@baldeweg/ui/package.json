@@ -1,0 +1,72 @@
+{
+  "name": "@baldeweg/ui",
+  "version": "0.19.2",
+  "scripts": {
+    "dev": "storybook dev -p 6006 --disable-telemetry",
+    "build": "vite build",
+    "test": "vitest run --environment jsdom",
+    "knip": "knip",
+    "lint": "eslint",
+    "lint-fix": "eslint --fix",
+    "prettier": "prettier --check .",
+    "prettier-fix": "prettier --write .",
+    "docu": "storybook build --disable-telemetry"
+  },
+  "peerDependencies": {
+    "@tailwindcss/vite": "4.2.2",
+    "tailwindcss": "4.2.2",
+    "vue": "3.5.32",
+    "vue-router": "5.0.4"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "1.16.1",
+    "@storybook/addon-a11y": "10.3.5",
+    "@storybook/addon-docs": "10.3.5",
+    "@storybook/vue3-vite": "10.3.5",
+    "@tailwindcss/vite": "4.2.2",
+    "@tsconfig/node24": "24.0.4",
+    "@types/node": "24.10.0",
+    "@vitejs/plugin-vue": "6.0.5",
+    "@vue/eslint-config-prettier": "10.2.0",
+    "@vue/test-utils": "2.4.6",
+    "@vue/tsconfig": "0.9.1",
+    "eslint": "10.2.0",
+    "eslint-plugin-import": "2.32.0",
+    "eslint-plugin-storybook": "10.3.5",
+    "eslint-plugin-vue": "10.8.0",
+    "jsdom": "29.0.2",
+    "knip": "5.82.0",
+    "prettier": "3.8.2",
+    "prettier-plugin-tailwindcss": "0.7.2",
+    "start-server-and-test": "2.1.5",
+    "storybook": "10.3.5",
+    "storybook-addon-tag-badges": "3.1.0",
+    "tailwindcss": "4.2.2",
+    "typescript": "5.9.3",
+    "vite": "7.3.2",
+    "vite-plugin-vue-devtools": "8.0.5",
+    "vite-plugin-webfont-dl": "3.12.0",
+    "vitest": "4.1.4",
+    "vue": "3.5.32",
+    "vue-router": "5.0.4"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/ui.es.js",
+  "module": "./dist/ui.es.js",
+  "exports": {
+    ".": "./dist/ui.es.js",
+    "./styles": "./dist/ui.css"
+  },
+  "author": "André Baldeweg <a@baldeweg.org>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abaldeweg/services.git"
+  },
+  "type": "module"
+}

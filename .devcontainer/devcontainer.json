@@ -29,7 +29,8 @@
         "golang.go",
         "timonwong.shellcheck",
         "webpro.vscode-knip",
-        "docker.docker"
+        "docker.docker",
+        "bradlc.vscode-tailwindcss"
       ]
     }
   }

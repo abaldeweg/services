@@ -1,0 +1,56 @@
+<script setup>
+import { computed } from 'vue'
+
+const props = defineProps({
+  size: {
+    type: Number,
+    default: 24,
+  },
+  color: {
+    type: String,
+    default: 'inherit',
+  },
+  hover: {
+    type: Boolean,
+    default: false,
+  },
+})
+
+const iconClasses = computed(() => [
+  'icon',
+  'material-symbols-outlined',
+  'u:align-middle',
+  { canHover: props.hover },
+])
+
+const iconStyle = computed(() => ({
+  fontSize: `${props.size}px`,
+  color: props.color,
+}))
+</script>
+
+<template>
+  <span :class="iconClasses" :style="iconStyle">
+    <slot />
+  </span>
+</template>
+
+<style>
+.icon {
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.icon:hover.canHover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 300,
+    'GRAD' 0,
+    'opsz' 35;
+}
+</style>

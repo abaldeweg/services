@@ -1,2 +1,3 @@
 packages:
-    - "apps/@baldeweg/create/"
+    - apps/@baldeweg/create/
+    - apps/@baldeweg/ui/
