@@ -1,6 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
 import vue from '@vitejs/plugin-vue'
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig } from 'vite'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import { ViteWebfontDownload } from 'vite-plugin-webfont-dl'
 import path from 'path'
