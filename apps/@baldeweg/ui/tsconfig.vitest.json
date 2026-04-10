@@ -2,7 +2,6 @@
   "extends": "./tsconfig.app.json",
   "include": [
     "src/**/*.test.ts",
-    "env.d.ts"
   ],
   "exclude": [],
   "compilerOptions": {
@@ -11,7 +10,6 @@
     "types": [
       "node",
       "jsdom",
-      "vitest/globals"
     ]
   }
 }
