@@ -70,10 +70,6 @@ html {
 }
 ```
 
-## Components
-
-[Components](https://github.com/abaldeweg/ui/blob/main/packages/%40baldeweg/ui/components.md)
-
 ## Utility Classes
 
 Add the plugin to your Vite config:
