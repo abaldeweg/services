@@ -8,11 +8,6 @@
     "declarationDir": "dist/types",
     "composite": false
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "src/**/*.test.ts",
-    "src/**/*.stories.*",
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.stories.*"]
 }
