@@ -1,37 +1,39 @@
-import BPanel from './BPanel.vue'
+import BPanel from "./BPanel.vue"
 
 export default {
   component: BPanel,
   argTypes: {
     position: {
-      control: { type: 'select', options: ['left', 'right'] },
-      description: 'The position of the panel',
+      control: { type: "select", options: ["left", "right"] },
+      description: "The position of the panel",
     },
     width: {
-      control: { type: 'text' },
-      description: 'The width of the panel',
+      control: { type: "text" },
+      description: "The width of the panel",
     },
     modelValue: {
-      control: { type: 'boolean' },
-      description: 'Controls the visibility of the panel',
+      control: { type: "boolean" },
+      description: "Controls the visibility of the panel",
     },
     permanent: {
-      control: { type: 'boolean' },
-      description: 'If true, panel is always shown, no overlay, and margin is added',
+      control: { type: "boolean" },
+      description:
+        "If true, panel is always shown, no overlay, and margin is added",
     },
-    'update:modelValue': {
-      action: 'update:modelValue',
-      description: 'Event emitted when the panel is closed',
+    "update:modelValue": {
+      action: "update:modelValue",
+      description: "Event emitted when the panel is closed",
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'A sliding panel component that can be positioned on the left or right side of the screen.',
+        component:
+          "A sliding panel component that can be positioned on the left or right side of the screen.",
       },
     },
   },
-  tags: ['experimental'],
+  tags: ["experimental"],
 }
 
 const Template = (args) => ({
@@ -70,8 +72,8 @@ const Template = (args) => ({
 export const LeftPanel = Template.bind({})
 LeftPanel.args = {
   modelValue: false,
-  position: 'left',
-  width: '300px',
+  position: "left",
+  width: "300px",
   showHeader: true,
   showFooter: true,
   permanent: false,
@@ -80,8 +82,8 @@ LeftPanel.args = {
 export const RightPanel = Template.bind({})
 RightPanel.args = {
   modelValue: false,
-  position: 'right',
-  width: '300px',
+  position: "right",
+  width: "300px",
   showHeader: true,
   showFooter: true,
   permanent: false,
@@ -90,8 +92,8 @@ RightPanel.args = {
 export const WithoutHeader = Template.bind({})
 WithoutHeader.args = {
   modelValue: false,
-  position: 'left',
-  width: '300px',
+  position: "left",
+  width: "300px",
   showHeader: false,
   showFooter: true,
   permanent: false,
@@ -100,8 +102,8 @@ WithoutHeader.args = {
 export const WithoutFooter = Template.bind({})
 WithoutFooter.args = {
   modelValue: false,
-  position: 'left',
-  width: '300px',
+  position: "left",
+  width: "300px",
   showHeader: true,
   showFooter: false,
   permanent: false,
@@ -110,8 +112,8 @@ WithoutFooter.args = {
 export const CustomWidth = Template.bind({})
 CustomWidth.args = {
   modelValue: false,
-  position: 'left',
-  width: '500px',
+  position: "left",
+  width: "500px",
   showHeader: true,
   showFooter: true,
   permanent: false,
@@ -120,8 +122,8 @@ CustomWidth.args = {
 export const PermanentPanel = Template.bind({})
 PermanentPanel.args = {
   modelValue: true,
-  position: 'left',
-  width: '300px',
+  position: "left",
+  width: "300px",
   showHeader: true,
   showFooter: true,
   permanent: true,

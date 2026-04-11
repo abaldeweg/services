@@ -1,14 +1,14 @@
-import BSliderItem from './BSliderItem.vue'
+import BSliderItem from "./BSliderItem.vue"
 
 export default {
   component: BSliderItem,
   argTypes: {
     size: {
-      control: { type: 'select' },
-      options: ['xs', 's', 'm', 'l', 'xl'],
+      control: { type: "select" },
+      options: ["xs", "s", "m", "l", "xl"],
     },
   },
-  tags: ['experimental'],
+  tags: ["experimental"],
 }
 
 const Template = (args) => ({
@@ -21,32 +21,32 @@ const Template = (args) => ({
 
 export const Default = Template.bind({})
 Default.args = {
-  size: 'm',
+  size: "m",
 }
 
 export const ExtraSmall = Template.bind({})
 ExtraSmall.args = {
-  size: 'xs',
+  size: "xs",
 }
 
 export const Small = Template.bind({})
 Small.args = {
-  size: 's',
+  size: "s",
 }
 
 export const Medium = Template.bind({})
 Medium.args = {
-  size: 'm',
+  size: "m",
 }
 
 export const Large = Template.bind({})
 Large.args = {
-  size: 'l',
+  size: "l",
 }
 
 export const ExtraLarge = Template.bind({})
 ExtraLarge.args = {
-  size: 'xl',
+  size: "xl",
 }
 
 export const WithCustomContent = (args) => ({
@@ -64,5 +64,5 @@ export const WithCustomContent = (args) => ({
   `,
 })
 WithCustomContent.args = {
-  size: 'm',
+  size: "m",
 }

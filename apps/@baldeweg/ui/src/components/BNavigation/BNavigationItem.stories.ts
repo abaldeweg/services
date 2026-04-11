@@ -1,4 +1,4 @@
-import BNavigationItem from "./BNavigationItem.vue";
+import BNavigationItem from "./BNavigationItem.vue"
 
 export default {
   title: "Components/BNavigation/BNavigationItem",
@@ -58,7 +58,7 @@ export default {
     },
   },
   tags: ["beta"],
-};
+}
 
 export const Default = {
   args: {
@@ -68,7 +68,7 @@ export const Default = {
   render: (args) => ({
     components: { BNavigationItem },
     setup() {
-      return { args };
+      return { args }
     },
     template: `
       <ul class="nav">
@@ -78,7 +78,7 @@ export const Default = {
       </ul>
     `,
   }),
-};
+}
 
 export const IconAndBadge = {
   args: {
@@ -90,7 +90,7 @@ export const IconAndBadge = {
   render: (args) => ({
     components: { BNavigationItem },
     setup() {
-      return { args };
+      return { args }
     },
     template: `
       <ul class="nav">
@@ -100,7 +100,7 @@ export const IconAndBadge = {
       </ul>
     `,
   }),
-};
+}
 
 export const ExternalLink = {
   args: {
@@ -112,7 +112,7 @@ export const ExternalLink = {
   render: (args) => ({
     components: { BNavigationItem },
     setup() {
-      return { args };
+      return { args }
     },
     template: `
       <ul class="nav">
@@ -122,7 +122,7 @@ export const ExternalLink = {
       </ul>
     `,
   }),
-};
+}
 
 export const Border = {
   args: {
@@ -137,7 +137,7 @@ export const Border = {
       BNavigationItem,
     },
     setup() {
-      return { args };
+      return { args }
     },
     template: `
       <ul class="nav">
@@ -147,7 +147,7 @@ export const Border = {
       </ul>
     `,
   }),
-};
+}
 
 export const Background = {
   args: {
@@ -162,7 +162,7 @@ export const Background = {
       BNavigationItem,
     },
     setup() {
-      return { args };
+      return { args }
     },
     template: `
       <ul class="nav">
@@ -172,7 +172,7 @@ export const Background = {
       </ul>
     `,
   }),
-};
+}
 
 export const Direction = {
   args: {
@@ -184,7 +184,7 @@ export const Direction = {
   render: (args) => ({
     components: { BNavigationItem },
     setup() {
-      return { args };
+      return { args }
     },
     template: `
       <ul class="nav">
@@ -194,4 +194,4 @@ export const Direction = {
       </ul>
     `,
   }),
-};
+}

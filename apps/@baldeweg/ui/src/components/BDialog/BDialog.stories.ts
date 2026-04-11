@@ -1,29 +1,30 @@
-import BDialog from './BDialog.vue'
+import BDialog from "./BDialog.vue"
 
 export default {
   component: BDialog,
   argTypes: {
     modelValue: {
-      control: 'boolean',
-      description: 'Controls the visibility of the dialog'
+      control: "boolean",
+      description: "Controls the visibility of the dialog",
     },
     canClose: {
-      control: 'boolean',
-      description: 'Whether the dialog can be closed by clicking the overlay'
+      control: "boolean",
+      description: "Whether the dialog can be closed by clicking the overlay",
     },
-    'update:modelValue': {
-      action: 'update:modelValue',
-      description: 'Event emitted when dialog visibility changes'
-    }
+    "update:modelValue": {
+      action: "update:modelValue",
+      description: "Event emitted when dialog visibility changes",
+    },
   },
   parameters: {
     docs: {
       description: {
-        component: 'A dialog component that can be toggled on/off and contain custom content and actions.'
-      }
-    }
+        component:
+          "A dialog component that can be toggled on/off and contain custom content and actions.",
+      },
+    },
   },
-  tags: ['experimental'],
+  tags: ["experimental"],
 }
 
 const Template = (args) => ({
@@ -45,23 +46,23 @@ const Template = (args) => ({
         </template>
       </BDialog>
     </div>
-  `
+  `,
 })
 
 export const Default = Template.bind({})
 Default.args = {
   modelValue: false,
-  canClose: true
+  canClose: true,
 }
 
 export const NonClosable = Template.bind({})
 NonClosable.args = {
   modelValue: false,
-  canClose: false
+  canClose: false,
 }
 
 export const OpenByDefault = Template.bind({})
 OpenByDefault.args = {
   modelValue: true,
-  canClose: true
+  canClose: true,
 }

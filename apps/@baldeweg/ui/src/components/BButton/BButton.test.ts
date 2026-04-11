@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from "vitest"
 
-import BButton from '../BButton/BButton.vue'
+import BButton from "../BButton/BButton.vue"
 
-describe('BButton', () => {
-  it('shows BButton', () => {
+describe("BButton", () => {
+  it("shows BButton", () => {
     expect(BButton).toBeTruthy()
   })
 })

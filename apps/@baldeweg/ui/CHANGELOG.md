@@ -83,23 +83,23 @@
 
 Props
 
-|Name|Type|Default|Allowed Values|Description
-|----|----|-------|--------------|-----------
-|size |Number|24||
-|color |String|||String (e.g. hex code, custom properties)
-|hover |Boolean|false||
+| Name  | Type    | Default | Allowed Values | Description                               |
+| ----- | ------- | ------- | -------------- | ----------------------------------------- |
+| size  | Number  | 24      |                |
+| color | String  |         |                | String (e.g. hex code, custom properties) |
+| hover | Boolean | false   |                |
 
 Slots
 
-|Name|Description
-|----|-----------
-|default|
+| Name    | Description |
+| ------- | ----------- |
+| default |
 
 ## v0.10.0
 
 - In BSearch its possible to hide the reset button
 - Redesign BAlert <https://github.com/abaldeweg/ui/blob/main/packages/%40baldeweg/ui/docu/components.md#balert>
-  - 3 new CSS vars for the blue info alerts
+    - 3 new CSS vars for the blue info alerts
 - Rework tooltips component
 
 ## v0.9.0
@@ -136,13 +136,13 @@ Slots
 
 ```js
 const i18n = VueI18n.createI18n({
-  legacy: false,
-  allowComposition: true
+    legacy: false,
+    allowComposition: true,
 })
 ```
 
 ```js
-import { useI18n } from 'vue-i18n'
+import { useI18n } from "vue-i18n"
 ```
 
 - Remove `useJWTAuth` and `useGCPAuth` composables
@@ -154,14 +154,14 @@ import { useI18n } from 'vue-i18n'
 - `useGCPAuth` improved
 
 ```js
-import { useRequest, useGCPAuth } from '@baldeweg/ui'
+import { useRequest, useGCPAuth } from "@baldeweg/ui"
 
 const { config, setAuthHeader } = useRequest()
 config.value.baseURL = import.meta.env.VITE_API
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_API_KEY,
-  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
 }
 
 const { login, token } = useGCPAuth(firebaseConfig)
@@ -183,8 +183,8 @@ Example
 // .eslintrc.cjs
 
 module.exports = {
-  root: true,
-  extends: ['@baldeweg/eslint-config'],
+    root: true,
+    extends: ["@baldeweg/eslint-config"],
 }
 ```
 
@@ -193,17 +193,17 @@ module.exports = {
 ```js
 // i18n.js
 
-import { createI18n } from 'vue-i18n'
-import en from '@/../locales/en.json'
-import de from '@/../locales/de.json'
+import { createI18n } from "vue-i18n"
+import en from "@/../locales/en.json"
+import de from "@/../locales/de.json"
 
 export default createI18n({
-  locale: navigator.language,
-  fallbackLocale: 'en',
-  messages: {
-    en,
-    de,
-  },
+    locale: navigator.language,
+    fallbackLocale: "en",
+    messages: {
+        en,
+        de,
+    },
 })
 ```
 
@@ -213,7 +213,7 @@ export default createI18n({
 - New `useJWTAuth` composable. Make sure to set the base url for request.
 
 ```js
-import { useRequest, useJWTAuth } from '@baldeweg/ui'
+import { useRequest, useJWTAuth } from "@baldeweg/ui"
 
 const { config, setAuthHeader } = useRequest()
 config.value.baseURL = import.meta.env.VITE_API
@@ -228,11 +228,11 @@ watchToken()
 - New `useGCPAuth` composable. Set the firebase config while calling the composable.
 
 ```js
-import { useGCPAuth } from '../useGCPAuth.js'
+import { useGCPAuth } from "../useGCPAuth.js"
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_API_KEY,
-  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
 }
 
 const { login } = useGCPAuth(firebaseConfig)
@@ -247,13 +247,13 @@ const { login } = useGCPAuth(firebaseConfig)
 - [ui] Replace `import { request } from '@/api'` with the new composable:
 
 ```js
-import { useRequest } from '@baldeweg/ui'
-import Cookies from 'js-cookie'
+import { useRequest } from "@baldeweg/ui"
+import Cookies from "js-cookie"
 
 const { config, setAuthHeader, request } = useRequest()
 
 config.value.baseURL = import.meta.env.VITE_API
-setAuthHeader(Cookies.get('token'))
+setAuthHeader(Cookies.get("token"))
 ```
 
 - [eslint-config] Recommended lint rules for imports
@@ -280,15 +280,15 @@ rules: {
 - For custom `<title>`'s use `useTitle` composable
 
 ```js
-import { useTitle } from '@baldeweg/ui'
+import { useTitle } from "@baldeweg/ui"
 
-useTitle({ title: 'Title' })
+useTitle({ title: "Title" })
 ```
 
 - Theming needs to be activated
 
 ```js
-import { useTheme } from '@baldeweg/ui'
+import { useTheme } from "@baldeweg/ui"
 
 useTheme()
 ```
@@ -296,7 +296,7 @@ useTheme()
 - Locale needs to be activated
 
 ```js
-import { useLocale } from '@baldeweg/ui'
+import { useLocale } from "@baldeweg/ui"
 
 useLocale()
 ```

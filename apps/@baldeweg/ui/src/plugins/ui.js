@@ -1,3 +1,3 @@
-import { createUi } from "./../ui.js";
+import { createUi } from "./../ui.js"
 
-export default createUi({});
+export default createUi({})

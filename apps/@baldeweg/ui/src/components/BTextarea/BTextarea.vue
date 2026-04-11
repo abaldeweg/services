@@ -33,7 +33,12 @@ const emit = defineEmits<{
         :value="modelValue"
         :name="name"
         :id="id"
-        @input="emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
+        @input="
+          emit(
+            'update:modelValue',
+            ($event.target as HTMLTextAreaElement).value,
+          )
+        "
       ></textarea>
     </div>
     <p v-if="help" class="textarea_helpline">

@@ -1,10 +1,10 @@
-import { fn } from "storybook/test";
+import { fn } from "storybook/test"
 
-import BButton from "./BButton.vue";
+import BButton from "./BButton.vue"
 
 export default {
   component: BButton,
-  tags: ['alpha'],
+  tags: ["alpha"],
   argTypes: {
     design: {
       control: { type: "select" },
@@ -21,60 +21,60 @@ export default {
     },
   },
   args: { onClick: fn() },
-};
+}
 
 export const Primary = {
   args: {
     default: "Send",
     design: "primary",
   },
-};
+}
 
 export const Secondary = {
   args: {
     default: "Send",
     design: "primary_danger",
   },
-};
+}
 
 export const PrimaryWide = {
   args: {
     default: "Send",
     design: "primary_wide",
   },
-};
+}
 
 export const Outline = {
   args: {
     default: "Send",
     design: "outline",
   },
-};
+}
 
 export const OutlineDanger = {
   args: {
     default: "Send",
     design: "outline_danger",
   },
-};
+}
 
 export const OutlineWide = {
   args: {
     default: "Send",
     design: "outline_wide",
   },
-};
+}
 
 export const Text = {
   args: {
     default: "Send",
     design: "text",
   },
-};
+}
 
 export const TextDanger = {
   args: {
     default: "Send",
     design: "text_danger",
   },
-};
+}

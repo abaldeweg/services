@@ -1,4 +1,4 @@
-import BFieldset from "./BFieldset.vue";
+import BFieldset from "./BFieldset.vue"
 
 export default {
   component: BFieldset,
@@ -6,7 +6,7 @@ export default {
     legend: { control: "text" },
   },
   tags: ["beta"],
-};
+}
 
 export const Default = {
   args: {
@@ -15,7 +15,7 @@ export const Default = {
   render: (args) => ({
     components: { BFieldset },
     setup() {
-      return { args };
+      return { args }
     },
     template: `
       <BFieldset v-bind="args">
@@ -23,4 +23,4 @@ export const Default = {
       </BFieldset>
     `,
   }),
-};
+}

@@ -1,4 +1,4 @@
-import BInput from "./BInput.vue";
+import BInput from "./BInput.vue"
 
 export default {
   title: "Components/BInput",
@@ -40,7 +40,7 @@ export default {
     hideLabel: { control: "boolean" },
     "update:modelValue": { action: "updated" },
   },
-};
+}
 
 export const Default = {
   args: {
@@ -51,7 +51,7 @@ export const Default = {
     help: "This is a help text",
     hideLabel: false,
   },
-};
+}
 
 export const Date = {
   args: {
@@ -62,7 +62,7 @@ export const Date = {
     help: "This is a help text",
     hideLabel: false,
   },
-};
+}
 
 export const Color = {
   args: {
@@ -73,7 +73,7 @@ export const Color = {
     help: "This is a help text",
     hideLabel: false,
   },
-};
+}
 
 export const Datetime = {
   args: {
@@ -84,7 +84,7 @@ export const Datetime = {
     help: "This is a help text",
     hideLabel: false,
   },
-};
+}
 
 export const Email = {
   args: {
@@ -95,7 +95,7 @@ export const Email = {
     help: "This is a help text",
     hideLabel: false,
   },
-};
+}
 
 export const Month = {
   args: {
@@ -106,7 +106,7 @@ export const Month = {
     help: "This is a help text",
     hideLabel: false,
   },
-};
+}
 
 export const Number = {
   args: {
@@ -117,7 +117,7 @@ export const Number = {
     help: "This is a help text",
     hideLabel: false,
   },
-};
+}
 
 export const Password = {
   args: {
@@ -128,7 +128,7 @@ export const Password = {
     help: "This is a help text",
     hideLabel: false,
   },
-};
+}
 
 export const Range = {
   args: {
@@ -139,7 +139,7 @@ export const Range = {
     help: "This is a help text",
     hideLabel: false,
   },
-};
+}
 
 export const Search = {
   args: {
@@ -150,7 +150,7 @@ export const Search = {
     help: "This is a help text",
     hideLabel: false,
   },
-};
+}
 
 export const Tel = {
   args: {
@@ -161,7 +161,7 @@ export const Tel = {
     help: "This is a help text",
     hideLabel: false,
   },
-};
+}
 
 export const Time = {
   args: {
@@ -172,7 +172,7 @@ export const Time = {
     help: "This is a help text",
     hideLabel: false,
   },
-};
+}
 
 export const URL = {
   args: {
@@ -183,7 +183,7 @@ export const URL = {
     help: "This is a help text",
     hideLabel: false,
   },
-};
+}
 
 export const Week = {
   args: {
@@ -194,7 +194,7 @@ export const Week = {
     help: "This is a help text",
     hideLabel: false,
   },
-};
+}
 
 export const HiddenLabel = {
   args: {
@@ -205,7 +205,7 @@ export const HiddenLabel = {
     help: "This is a help text",
     hideLabel: true,
   },
-};
+}
 
 export const WithoutHelpline = {
   args: {
@@ -216,4 +216,4 @@ export const WithoutHelpline = {
     help: "",
     hideLabel: false,
   },
-};
+}

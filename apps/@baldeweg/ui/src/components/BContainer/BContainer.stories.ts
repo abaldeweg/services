@@ -1,21 +1,21 @@
-import BContainer from './BContainer.vue'
+import BContainer from "./BContainer.vue"
 
 export default {
   component: BContainer,
   argTypes: {
     size: {
-      control: { type: 'select' },
-      options: ['l', 'm', 's'],
+      control: { type: "select" },
+      options: ["l", "m", "s"],
     },
     align: {
-      control: { type: 'select' },
-      options: ['left', 'right', 'center'],
+      control: { type: "select" },
+      options: ["left", "right", "center"],
     },
     highlight: {
-      control: 'boolean',
+      control: "boolean",
     },
   },
-  tags: ['experimental'],
+  tags: ["experimental"],
 }
 
 const Template = (args) => ({
@@ -32,42 +32,42 @@ const Template = (args) => ({
 
 export const Default = Template.bind({})
 Default.args = {
-  size: 'l',
-  align: 'left',
+  size: "l",
+  align: "left",
   highlight: false,
 }
 
 export const MediumSize = Template.bind({})
 MediumSize.args = {
-  size: 'm',
-  align: 'left',
+  size: "m",
+  align: "left",
   highlight: false,
 }
 
 export const SmallSize = Template.bind({})
 SmallSize.args = {
-  size: 's',
-  align: 'left',
+  size: "s",
+  align: "left",
   highlight: false,
 }
 
 export const CenterAligned = Template.bind({})
 CenterAligned.args = {
-  size: 'l',
-  align: 'center',
+  size: "l",
+  align: "center",
   highlight: false,
 }
 
 export const RightAligned = Template.bind({})
 RightAligned.args = {
-  size: 'l',
-  align: 'right',
+  size: "l",
+  align: "right",
   highlight: false,
 }
 
 export const Highlighted = Template.bind({})
 Highlighted.args = {
-  size: 'l',
-  align: 'left',
+  size: "l",
+  align: "left",
   highlight: true,
 }

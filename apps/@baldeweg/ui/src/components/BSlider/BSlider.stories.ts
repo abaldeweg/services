@@ -1,9 +1,9 @@
-import BSlider from './BSlider.vue'
-import BCard from '../BCard/BCard.vue'
+import BSlider from "./BSlider.vue"
+import BCard from "../BCard/BCard.vue"
 
 export default {
   component: BSlider,
-  tags: ['experimental'],
+  tags: ["experimental"],
 }
 
 const Template = (args) => ({

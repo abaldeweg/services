@@ -1,30 +1,30 @@
-import BList from './BList.vue'
-import placeholderImage from '../../assets/placeholder_16x9.jpg'
+import BList from "./BList.vue"
+import placeholderImage from "../../assets/placeholder_16x9.jpg"
 
 export default {
   component: BList,
   argTypes: {
     mediaSize: {
-      control: 'select',
-      options: ['landscape', 'portrait', 'avatar'],
+      control: "select",
+      options: ["landscape", "portrait", "avatar"],
     },
     divider: {
-      control: 'boolean',
+      control: "boolean",
     },
     hover: {
-      control: 'boolean',
+      control: "boolean",
     },
     route: {
-      control: 'object',
+      control: "object",
     },
     textWidth: {
-      control: 'text',
+      control: "text",
     },
     controlsWidth: {
-      control: 'text',
+      control: "text",
     },
   },
-  tags: ['experimental'],
+  tags: ["experimental"],
 }
 
 export const Basic = {
@@ -65,7 +65,7 @@ export const WithMedia = {
     `,
   }),
   args: {
-    mediaSize: 'landscape',
+    mediaSize: "landscape",
     hover: true,
     divider: false,
   },
@@ -89,7 +89,7 @@ export const WithAvatar = {
     `,
   }),
   args: {
-    mediaSize: 'avatar',
+    mediaSize: "avatar",
     hover: true,
     divider: false,
   },
@@ -111,7 +111,7 @@ export const WithTextColumn = {
     `,
   }),
   args: {
-    textWidth: '150px',
+    textWidth: "150px",
     hover: true,
     divider: true,
   },
@@ -135,7 +135,7 @@ export const WithControls = {
     `,
   }),
   args: {
-    controlsWidth: '80px',
+    controlsWidth: "80px",
     hover: true,
     divider: true,
   },
@@ -164,11 +164,11 @@ export const FullExample = {
     `,
   }),
   args: {
-    mediaSize: 'landscape',
-    textWidth: '100px',
-    controlsWidth: '120px',
+    mediaSize: "landscape",
+    textWidth: "100px",
+    controlsWidth: "120px",
     hover: true,
     divider: true,
-    route: { name: 'example', params: { id: 1 } },
+    route: { name: "example", params: { id: 1 } },
   },
 }
