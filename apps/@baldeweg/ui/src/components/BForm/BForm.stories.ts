@@ -1,10 +1,10 @@
-import BForm from './BForm.vue';
+import BForm from "./BForm.vue"
 
 export default {
-  title: 'Components/BForm',
+  title: "Components/BForm",
   component: BForm,
-  tags: ['beta'],
-};
+  tags: ["beta"],
+}
 
 export const Default = {
   render: () => ({
@@ -19,4 +19,4 @@ export const Default = {
       </BForm>
     `,
   }),
-};
+}

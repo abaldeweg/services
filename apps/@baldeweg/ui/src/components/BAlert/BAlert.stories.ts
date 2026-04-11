@@ -1,4 +1,4 @@
-import BAlert from "./BAlert.vue";
+import BAlert from "./BAlert.vue"
 
 export default {
   component: BAlert,
@@ -18,7 +18,7 @@ export default {
     }),
   ],
   tags: ["beta"],
-};
+}
 
 export const Default = {
   args: {
@@ -28,11 +28,11 @@ export const Default = {
   render: (args) => ({
     components: { BAlert },
     setup() {
-      return { args };
+      return { args }
     },
     template: `<BAlert v-bind="args">This is an alert message. <a href="#">Link</a></BAlert>`,
   }),
-};
+}
 
 export const Info = {
   args: {
@@ -45,11 +45,11 @@ export const Info = {
     },
 
     setup() {
-      return { args };
+      return { args }
     },
     template: `<BAlert v-bind="args">This is an alert message. <a href="#">Link</a></BAlert>`,
   }),
-};
+}
 
 export const Danger = {
   args: {
@@ -62,11 +62,11 @@ export const Danger = {
     },
 
     setup() {
-      return { args };
+      return { args }
     },
     template: `<BAlert v-bind="args">This is an alert message. <a href="#">Link</a></BAlert>`,
   }),
-};
+}
 
 export const Warning = {
   args: {
@@ -79,11 +79,11 @@ export const Warning = {
     },
 
     setup() {
-      return { args };
+      return { args }
     },
     template: `<BAlert v-bind="args">This is an alert message. <a href="#">Link</a></BAlert>`,
   }),
-};
+}
 
 export const Success = {
   args: {
@@ -96,11 +96,11 @@ export const Success = {
     },
 
     setup() {
-      return { args };
+      return { args }
     },
     template: `<BAlert v-bind="args">This is an alert message. <a href="#">Link</a></BAlert>`,
   }),
-};
+}
 
 export const WithoutCloseButton = {
   args: {
@@ -113,8 +113,8 @@ export const WithoutCloseButton = {
     },
 
     setup() {
-      return { args };
+      return { args }
     },
     template: `<BAlert v-bind="args">This is an alert message. <a href="#">Link</a></BAlert>`,
   }),
-};
+}

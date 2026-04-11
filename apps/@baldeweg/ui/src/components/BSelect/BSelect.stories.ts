@@ -1,4 +1,4 @@
-import BSelect from "./BSelect.vue";
+import BSelect from "./BSelect.vue"
 
 export default {
   component: BSelect,
@@ -26,7 +26,7 @@ export default {
     optionsKeyName: { control: "text" },
     optionsValueName: { control: "text" },
   },
-};
+}
 
 export const Default = {
   args: {
@@ -55,7 +55,7 @@ export const Default = {
     label: "Label",
     hideLabel: false,
   },
-};
+}
 
 export const Checkbox = {
   args: {
@@ -70,7 +70,7 @@ export const Checkbox = {
       { key: "option4", value: "Option 4" },
     ],
   },
-};
+}
 
 export const Radio = {
   args: {
@@ -97,7 +97,7 @@ export const Radio = {
       },
     ],
   },
-};
+}
 
 export const WithHelpline = {
   args: {
@@ -125,7 +125,7 @@ export const WithHelpline = {
     ],
     help: "Select one option",
   },
-};
+}
 
 export const WithCustomKeys = {
   args: {
@@ -154,4 +154,4 @@ export const WithCustomKeys = {
     optionsKeyName: "label",
     optionsValueName: "id",
   },
-};
+}

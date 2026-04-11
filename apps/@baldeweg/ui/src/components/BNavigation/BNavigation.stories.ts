@@ -1,5 +1,5 @@
-import BNavigation from "./BNavigation.vue";
-import BNavigationItem from "./BNavigationItem.vue";
+import BNavigation from "./BNavigation.vue"
+import BNavigationItem from "./BNavigationItem.vue"
 
 export default {
   title: "Components/BNavigation",
@@ -20,12 +20,13 @@ export default {
     direction: {
       control: { type: "inline-radio" },
       options: ["horizontal", "vertical"],
-      description: "Navigation direction. The horizontal direction has no effect on screens smaller than 600px.",
+      description:
+        "Navigation direction. The horizontal direction has no effect on screens smaller than 600px.",
       defaultValue: "vertical",
     },
   },
   tags: ["beta"],
-};
+}
 
 export const Default = {
   render: (args) => ({
@@ -34,7 +35,7 @@ export const Default = {
       BNavigationItem,
     },
     setup() {
-      return { args };
+      return { args }
     },
     template: `
     <BNavigation v-bind="args">
@@ -50,7 +51,7 @@ export const Default = {
     </BNavigation>
   `,
   }),
-};
+}
 
 export const Background = {
   args: {
@@ -62,7 +63,7 @@ export const Background = {
       BNavigationItem,
     },
     setup() {
-      return { args };
+      return { args }
     },
     template: `
     <BNavigation v-bind="args">
@@ -78,7 +79,7 @@ export const Background = {
     </BNavigation>
   `,
   }),
-};
+}
 
 export const Border = {
   args: {
@@ -90,7 +91,7 @@ export const Border = {
       BNavigationItem,
     },
     setup() {
-      return { args };
+      return { args }
     },
     template: `
     <BNavigation v-bind="args">
@@ -106,7 +107,7 @@ export const Border = {
     </BNavigation>
   `,
   }),
-};
+}
 
 export const Direction = {
   args: {
@@ -118,7 +119,7 @@ export const Direction = {
       BNavigationItem,
     },
     setup() {
-      return { args };
+      return { args }
     },
     template: `
     <BNavigation v-bind="args">
@@ -134,4 +135,4 @@ export const Direction = {
     </BNavigation>
   `,
   }),
-};
+}

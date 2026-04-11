@@ -1,14 +1,14 @@
-import BModal from './BModal.vue'
-import BMaterialIcon from '../BMaterialIcon/BMaterialIcon.vue'
+import BModal from "./BModal.vue"
+import BMaterialIcon from "../BMaterialIcon/BMaterialIcon.vue"
 
 export default {
   component: BModal,
   argTypes: {
-    modelValue: { control: 'boolean' },
-    width: { control: { type: 'number', min: 200, max: 1000, step: 50 } },
-    closeButton: { control: 'boolean' },
+    modelValue: { control: "boolean" },
+    width: { control: { type: "number", min: 200, max: 1000, step: 50 } },
+    closeButton: { control: "boolean" },
   },
-  tags: ['experimental'],
+  tags: ["experimental"],
 }
 
 export const Default = {

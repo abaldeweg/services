@@ -1,4 +1,4 @@
-import BSpinner from "./BSpinner.vue";
+import BSpinner from "./BSpinner.vue"
 
 export default {
   component: BSpinner,
@@ -10,22 +10,22 @@ export default {
       description: "Controls the size of the spinner",
     },
   },
-};
+}
 
 export const Default = {
   args: {
     size: "l",
   },
-};
+}
 
 export const SizeM = {
   args: {
     size: "m",
   },
-};
+}
 
 export const SizeS = {
   args: {
     size: "s",
   },
-};
+}

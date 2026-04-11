@@ -1,4 +1,4 @@
-import BCode from "./BCode.vue";
+import BCode from "./BCode.vue"
 
 export default {
   component: BCode,
@@ -9,10 +9,10 @@ export default {
       description: "The content to be displayed inside the code block",
     },
   },
-};
+}
 
 export const Default = {
   args: {
     default: 'const example = "test";\nconsole.log(example);',
   },
-};
+}

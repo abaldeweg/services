@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from "vitest"
 
-import BDivider from '../BDivider/BDivider.vue'
+import BDivider from "../BDivider/BDivider.vue"
 
-describe('BDivider', () => {
-  it('shows BDivider', () => {
+describe("BDivider", () => {
+  it("shows BDivider", () => {
     expect(BDivider).toBeTruthy()
   })
 })

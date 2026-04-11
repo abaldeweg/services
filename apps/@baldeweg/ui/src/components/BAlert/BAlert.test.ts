@@ -1,76 +1,76 @@
-import { describe, it, expect } from 'vitest'
-import { mount } from '@vue/test-utils'
-import BAlert from './BAlert.vue'
+import { describe, it, expect } from "vitest"
+import { mount } from "@vue/test-utils"
+import BAlert from "./BAlert.vue"
 
-describe('BAlert', () => {
-  it('shows BAlert', () => {
+describe("BAlert", () => {
+  it("shows BAlert", () => {
     expect(BAlert).toBeTruthy()
   })
 
-  it('sets alert_info class', () => {
+  it("sets alert_info class", () => {
     const wrapper = mount(BAlert, {
       props: {
-        type: 'info'
+        type: "info",
       },
       global: {
         stubs: {
-          BMaterialIcon: true
-        }
-      }
+          BMaterialIcon: true,
+        },
+      },
     })
-    expect(wrapper.classes()).toContain('alert_info')
+    expect(wrapper.classes()).toContain("alert_info")
   })
 
-  it('sets alert_danger class', () => {
+  it("sets alert_danger class", () => {
     const wrapper = mount(BAlert, {
       props: {
-        type: 'danger'
+        type: "danger",
       },
       global: {
         stubs: {
-          BMaterialIcon: true
-        }
-      }
+          BMaterialIcon: true,
+        },
+      },
     })
-    expect(wrapper.classes()).toContain('alert_danger')
+    expect(wrapper.classes()).toContain("alert_danger")
   })
 
-  it('sets alert_warning class', () => {
+  it("sets alert_warning class", () => {
     const wrapper = mount(BAlert, {
       props: {
-        type: 'warning'
+        type: "warning",
       },
       global: {
         stubs: {
-          BMaterialIcon: true
-        }
-      }
+          BMaterialIcon: true,
+        },
+      },
     })
-    expect(wrapper.classes()).toContain('alert_warning')
+    expect(wrapper.classes()).toContain("alert_warning")
   })
 
-  it('sets alert_success class', () => {
+  it("sets alert_success class", () => {
     const wrapper = mount(BAlert, {
       props: {
-        type: 'success'
+        type: "success",
       },
       global: {
         stubs: {
-          BMaterialIcon: true
-        }
-      }
+          BMaterialIcon: true,
+        },
+      },
     })
-    expect(wrapper.classes()).toContain('alert_success')
+    expect(wrapper.classes()).toContain("alert_success")
   })
 
-  it('uses info type by default', () => {
+  it("uses info type by default", () => {
     const wrapper = mount(BAlert, {
       global: {
         stubs: {
-          BMaterialIcon: true
-        }
-      }
+          BMaterialIcon: true,
+        },
+      },
     })
-    expect(wrapper.classes()).toContain('alert_info')
+    expect(wrapper.classes()).toContain("alert_info")
   })
 })

@@ -1,21 +1,21 @@
-import BDropdownItem from './BDropdownItem.vue'
-import BMaterialIcon from '../BMaterialIcon/BMaterialIcon.vue'
+import BDropdownItem from "./BDropdownItem.vue"
+import BMaterialIcon from "../BMaterialIcon/BMaterialIcon.vue"
 
 export default {
   component: BDropdownItem,
-  tags: ['experimental'],
+  tags: ["experimental"],
   argTypes: {
     bold: {
-      control: 'boolean',
-      description: 'Makes the text bold',
+      control: "boolean",
+      description: "Makes the text bold",
     },
     noHover: {
-      control: 'boolean',
-      description: 'Disables hover effect',
+      control: "boolean",
+      description: "Disables hover effect",
     },
     icon: {
-      control: 'text',
-      description: 'Material icon name to display',
+      control: "text",
+      description: "Material icon name to display",
     },
   },
 }
@@ -37,10 +37,11 @@ export const WithIcon = {
     setup() {
       return { args }
     },
-    template: '<BDropdownItem v-bind="args">Dropdown Item with Icon</BDropdownItem>',
+    template:
+      '<BDropdownItem v-bind="args">Dropdown Item with Icon</BDropdownItem>',
   }),
   args: {
-    icon: 'settings',
+    icon: "settings",
   },
 }
 
@@ -63,7 +64,8 @@ export const NoHover = {
     setup() {
       return { args }
     },
-    template: '<BDropdownItem v-bind="args">Dropdown Item without Hover</BDropdownItem>',
+    template:
+      '<BDropdownItem v-bind="args">Dropdown Item without Hover</BDropdownItem>',
   }),
   args: {
     noHover: true,
@@ -76,11 +78,12 @@ export const Combined = {
     setup() {
       return { args }
     },
-    template: '<BDropdownItem v-bind="args">Combined Properties</BDropdownItem>',
+    template:
+      '<BDropdownItem v-bind="args">Combined Properties</BDropdownItem>',
   }),
   args: {
     bold: true,
-    icon: 'star',
+    icon: "star",
     noHover: false,
   },
 }

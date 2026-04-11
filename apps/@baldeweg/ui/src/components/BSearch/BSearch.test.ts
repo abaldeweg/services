@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from "vitest"
 
-import BSearch from '../BSearch/BSearch.vue'
+import BSearch from "../BSearch/BSearch.vue"
 
-describe('BSearch', () => {
-  it('shows BSearch', () => {
+describe("BSearch", () => {
+  it("shows BSearch", () => {
     expect(BSearch).toBeTruthy()
   })
 })

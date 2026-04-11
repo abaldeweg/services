@@ -1,15 +1,16 @@
-import BApp from './BApp.vue'
+import BApp from "./BApp.vue"
 
 export default {
   component: BApp,
-  tags: ['beta'],
+  tags: ["beta"],
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
     docs: {
       description: {
-        component: 'Do not forget to set the attribute `id="app"` here, if not otherwise done.'
-      }
-    }
+        component:
+          'Do not forget to set the attribute `id="app"` here, if not otherwise done.',
+      },
+    },
   },
 }
 

@@ -1,4 +1,4 @@
-import BSwitch from "./BSwitch.vue";
+import BSwitch from "./BSwitch.vue"
 
 export default {
   component: BSwitch,
@@ -7,11 +7,11 @@ export default {
     modelValue: { control: "boolean" },
     label: { control: "text" },
   },
-};
+}
 
 export const Default = {
   args: {
     modelValue: true,
     label: "Label",
   },
-};
+}

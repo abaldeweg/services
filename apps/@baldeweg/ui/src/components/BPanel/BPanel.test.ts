@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from "vitest"
 
-import BPanel from '../BPanel/BPanel.vue'
+import BPanel from "../BPanel/BPanel.vue"
 
-describe('BPanel', () => {
-  it('shows BPanel', () => {
+describe("BPanel", () => {
+  it("shows BPanel", () => {
     expect(BPanel).toBeTruthy()
   })
 })

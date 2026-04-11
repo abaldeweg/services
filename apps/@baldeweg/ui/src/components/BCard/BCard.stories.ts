@@ -1,30 +1,31 @@
-import BCard from './BCard.vue'
-import placeholderImage from '../../assets/placeholder_16x9.jpg'
+import BCard from "./BCard.vue"
+import placeholderImage from "../../assets/placeholder_16x9.jpg"
 
 export default {
   component: BCard,
   argTypes: {
     outlined: {
-      control: 'boolean',
-      description: 'Sets an outline style for the card',
+      control: "boolean",
+      description: "Sets an outline style for the card",
     },
     filled: {
-      control: 'boolean',
-      description: 'Sets a filled background style for the card',
+      control: "boolean",
+      description: "Sets a filled background style for the card",
     },
     route: {
-      control: 'object',
-      description: 'Router link object for clickable card elements',
+      control: "object",
+      description: "Router link object for clickable card elements",
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'A versatile card component that can display various content with different styles.',
+        component:
+          "A versatile card component that can display various content with different styles.",
       },
     },
   },
-  tags: ['experimental'],
+  tags: ["experimental"],
 }
 
 const Template = (args) => ({
@@ -103,5 +104,5 @@ ClickableCard.args = {
   image: true,
   subtitle: true,
   text: true,
-  route: { path: '/' },
+  route: { path: "/" },
 }

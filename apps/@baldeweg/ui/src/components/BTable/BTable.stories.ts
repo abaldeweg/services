@@ -1,4 +1,4 @@
-import BTable from "./BTable.vue";
+import BTable from "./BTable.vue"
 
 export default {
   component: BTable,
@@ -17,7 +17,7 @@ export default {
     },
   },
   tags: ["experimental"],
-};
+}
 
 export const Default = {
   args: {
@@ -26,7 +26,7 @@ export const Default = {
   render: (args) => ({
     components: { BTable },
     setup() {
-      return { args };
+      return { args }
     },
     template: `
     <BTable v-bind="args">
@@ -59,7 +59,7 @@ export const Default = {
     </BTable>
     `,
   }),
-};
+}
 
 export const WithHover = {
   args: {
@@ -71,7 +71,7 @@ export const WithHover = {
     },
 
     setup() {
-      return { args };
+      return { args }
     },
     template: `
     <BTable v-bind="args">
@@ -104,4 +104,4 @@ export const WithHover = {
     </BTable>
     `,
   }),
-};
+}

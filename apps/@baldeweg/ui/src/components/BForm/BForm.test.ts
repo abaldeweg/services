@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from "vitest"
 
-import BForm from '../BForm/BForm.vue'
+import BForm from "../BForm/BForm.vue"
 
-describe('BForm', () => {
-  it('shows BForm', () => {
+describe("BForm", () => {
+  it("shows BForm", () => {
     expect(BForm).toBeTruthy()
   })
 })

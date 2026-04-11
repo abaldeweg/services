@@ -1,4 +1,4 @@
-import BUpload from "./BUpload.vue";
+import BUpload from "./BUpload.vue"
 
 export default {
   component: BUpload,
@@ -33,14 +33,14 @@ export default {
       description: "Event emitted when a file is selected",
     },
   },
-};
+}
 
 export const Default = {
   args: {
     id: "upload",
     text: "Drop a file here or click to upload",
   },
-};
+}
 
 export const PDFUpload = {
   args: {
@@ -48,4 +48,4 @@ export const PDFUpload = {
     text: "Drop a pdf file here or click to upload",
     accept: "application/pdf",
   },
-};
+}

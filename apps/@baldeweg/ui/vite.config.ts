@@ -1,10 +1,10 @@
-import { fileURLToPath, URL } from 'node:url'
-import vue from '@vitejs/plugin-vue'
-import { defineConfig } from 'vite'
-import vueDevTools from 'vite-plugin-vue-devtools'
-import { ViteWebfontDownload } from 'vite-plugin-webfont-dl'
-import path from 'path'
-import tailwindcss from '@tailwindcss/vite'
+import { fileURLToPath, URL } from "node:url"
+import vue from "@vitejs/plugin-vue"
+import { defineConfig } from "vite"
+import vueDevTools from "vite-plugin-vue-devtools"
+import { ViteWebfontDownload } from "vite-plugin-webfont-dl"
+import path from "path"
+import tailwindcss from "@tailwindcss/vite"
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
@@ -12,35 +12,35 @@ export default defineConfig(({ command }) => {
     plugins: [
       vue(),
       vueDevTools(),
-      ...(command === 'serve'
+      ...(command === "serve"
         ? [
-          ViteWebfontDownload([
-            'https://fonts.googleapis.com/css2?family=Open+Sans&display=swap',
-            'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300&display=swap'
-          ]),
-        ]
+            ViteWebfontDownload([
+              "https://fonts.googleapis.com/css2?family=Open+Sans&display=swap",
+              "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300&display=swap",
+            ]),
+          ]
         : []),
       tailwindcss(),
     ],
     resolve: {
       alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url)),
+        "@": fileURLToPath(new URL("./src", import.meta.url)),
       },
     },
     build: {
       copyPublicDir: false,
       lib: {
-        entry: path.resolve(__dirname, 'src/ui.js'),
-        name: 'ui',
-        formats: ['es'],
+        entry: path.resolve(__dirname, "src/ui.js"),
+        name: "ui",
+        formats: ["es"],
         fileName: (format) => `ui.${format}.js`,
       },
       rollupOptions: {
-        external: ['vue', 'vue-router'],
+        external: ["vue", "vue-router"],
       },
     },
     test: {
-      environment: 'jsdom',
+      environment: "jsdom",
       include: ["src/**/*.test.ts"],
     },
   }

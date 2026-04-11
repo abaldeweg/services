@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from "vitest"
 
-import BSpinner from '../BSpinner/BSpinner.vue'
+import BSpinner from "../BSpinner/BSpinner.vue"
 
-describe('BSpinner', () => {
-  it('shows BSpinner', () => {
+describe("BSpinner", () => {
+  it("shows BSpinner", () => {
     expect(BSpinner).toBeTruthy()
   })
 })

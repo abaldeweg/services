@@ -1,15 +1,15 @@
-import BDropdown from './BDropdown.vue'
+import BDropdown from "./BDropdown.vue"
 
 export default {
   component: BDropdown,
-  tags: ['experimental'],
+  tags: ["experimental"],
   argTypes: {
     position: {
-      control: { type: 'select' },
-      options: ['selector', 'mouse', 'bottom'],
+      control: { type: "select" },
+      options: ["selector", "mouse", "bottom"],
     },
     keepOpen: {
-      control: 'boolean',
+      control: "boolean",
     },
   },
 }
@@ -37,24 +37,24 @@ const Template = (args) => ({
 
 export const Default = Template.bind({})
 Default.args = {
-  position: 'selector',
+  position: "selector",
   keepOpen: false,
 }
 
 export const MousePosition = Template.bind({})
 MousePosition.args = {
-  position: 'mouse',
+  position: "mouse",
   keepOpen: false,
 }
 
 export const BottomPosition = Template.bind({})
 BottomPosition.args = {
-  position: 'bottom',
+  position: "bottom",
   keepOpen: false,
 }
 
 export const KeepOpen = Template.bind({})
 KeepOpen.args = {
-  position: 'selector',
+  position: "selector",
   keepOpen: true,
 }
