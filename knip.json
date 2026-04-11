@@ -6,7 +6,8 @@
   },
   "ignoreDependencies": [
     "vue-tsc",
-    "tailwindcss"
+    "tailwindcss",
+    "prettier-plugin-tailwindcss"
   ],
   "ignoreFiles": [
     "**/env.d.ts",
