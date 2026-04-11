@@ -5,7 +5,7 @@ interface Props {
   direction?: "horizontal" | "vertical"
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   border: "none",
   background: "none",
   direction: "vertical",

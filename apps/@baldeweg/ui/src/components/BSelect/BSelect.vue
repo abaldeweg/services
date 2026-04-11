@@ -2,12 +2,12 @@
 import { ref, watch } from "vue"
 
 interface Props {
-  modelValue?: Array<any>
+  modelValue?: string | string[]
   type?: "checkbox" | "radio" | "options"
   name: string
   id: string
   help?: string
-  options?: Array<any>
+  options?: Record<string, string>[]
   optionsKeyName?: string
   optionsValueName?: string
   label?: string
@@ -18,19 +18,26 @@ const props = withDefaults(defineProps<Props>(), {
   type: "checkbox",
   optionsKeyName: "key",
   optionsValueName: "value",
-  modelValue: () => [],
   hideLabel: false,
 })
 
 const emit = defineEmits<{
-  "update:modelValue": [value: Array<any>]
+  "update:modelValue": [value: string | string[]]
 }>()
 
 defineOptions({
   inheritAttrs: false,
 })
 
-const selected = ref<Array<any>>(props.modelValue ?? [])
+const initialSelected =
+  props.type === "checkbox"
+    ? Array.isArray(props.modelValue)
+      ? props.modelValue
+      : []
+    : typeof props.modelValue === "string"
+      ? props.modelValue
+      : ""
+const selected = ref<string | string[]>(initialSelected)
 
 watch(selected, (newValue) => {
   emit("update:modelValue", newValue)
@@ -47,40 +54,42 @@ watch(selected, (newValue) => {
     </div>
 
     <div class="select_item">
-      <div
-        v-if="type === 'checkbox'"
-        v-for="option in options"
-        :key="option[optionsKeyName]"
-        class="select_option"
-      >
-        <input
-          v-model="selected"
-          type="checkbox"
-          :value="option[optionsKeyName]"
-          :name="`${name}-${option[optionsKeyName]}`"
-          :id="`${name}-${option[optionsKeyName]}`"
-        />
-        <label :for="`${name}-${option[optionsKeyName]}`">
-          {{ option[optionsValueName] }}
-        </label>
+      <div v-if="type === 'checkbox'">
+        <div
+          v-for="option in options"
+          :key="option[optionsKeyName]"
+          class="select_option"
+        >
+          <input
+            v-model="selected"
+            type="checkbox"
+            :value="option[optionsKeyName]"
+            :name="`${name}-${option[optionsKeyName]}`"
+            :id="`${name}-${option[optionsKeyName]}`"
+          />
+          <label :for="`${name}-${option[optionsKeyName]}`">
+            {{ option[optionsValueName] }}
+          </label>
+        </div>
       </div>
 
-      <div
-        v-if="type === 'radio'"
-        v-for="option in options"
-        :key="option[optionsKeyName]"
-        class="select_option"
-      >
-        <input
-          v-model="selected"
-          type="radio"
-          :value="option[optionsKeyName]"
-          :name="name"
-          :id="option[optionsKeyName]"
-        />
-        <label :for="option[optionsKeyName]">
-          {{ option[optionsValueName] }}
-        </label>
+      <div v-if="type === 'radio'">
+        <div
+          v-for="option in options"
+          :key="option[optionsKeyName]"
+          class="select_option"
+        >
+          <input
+            v-model="selected"
+            type="radio"
+            :value="option[optionsKeyName]"
+            :name="name"
+            :id="option[optionsKeyName]"
+          />
+          <label :for="option[optionsKeyName]">
+            {{ option[optionsValueName] }}
+          </label>
+        </div>
       </div>
 
       <div v-if="type === 'options'">

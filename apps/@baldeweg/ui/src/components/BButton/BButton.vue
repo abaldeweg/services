@@ -11,12 +11,12 @@ interface Props {
     | "text_danger"
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   design: "primary",
 })
 
 const emit = defineEmits<{
-  (e: 'click'): void
+  (e: "click"): void
 }>()
 </script>
 

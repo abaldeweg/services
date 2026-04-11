@@ -7,7 +7,7 @@ export default {
     layout: 'fullscreen',
     docs: {
       description: {
-        component: 'Do not forget to set the attribute `id=\"app\"` here, if not otherwise done.'
+        component: 'Do not forget to set the attribute `id="app"` here, if not otherwise done.'
       }
     }
   },

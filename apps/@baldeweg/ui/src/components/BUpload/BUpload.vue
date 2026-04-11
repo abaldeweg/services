@@ -8,7 +8,7 @@ interface Props {
   modelValue?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   modelValue: false,
 })
 

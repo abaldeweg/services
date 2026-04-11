@@ -11,7 +11,7 @@ interface Props {
   searchLabel?: string
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   filter: false,
   branded: false,
   focus: false,

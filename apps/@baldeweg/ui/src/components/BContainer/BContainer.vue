@@ -5,7 +5,7 @@ interface Props {
   highlight?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   size: "l",
   align: "left",
   highlight: false,
