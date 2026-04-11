@@ -5,6 +5,7 @@
     "dev": "storybook dev -p 6006 --disable-telemetry",
     "build": "vite build",
     "test": "vitest run --environment jsdom",
+    "build-types": "vue-tsc -p tsconfig.types.json",
     "knip": "knip --config ../../../knip.json",
     "lint": "eslint",
     "lint-fix": "eslint --fix",
@@ -42,7 +43,8 @@
     "vite-plugin-webfont-dl": "3.12.0",
     "vitest": "4.1.4",
     "vue": "3.5.32",
-    "vue-router": "5.0.4"
+    "vue-router": "5.0.4",
+    "vue-tsc": "3.2.6"
   },
   "files": [
     "dist"
@@ -50,7 +52,10 @@
   "main": "./dist/ui.es.js",
   "module": "./dist/ui.es.js",
   "exports": {
-    ".": "./dist/ui.es.js",
+    ".": {
+      "types": "./dist/types/components/index.d.ts",
+      "import": "./dist/ui.es.js"
+    },
     "./styles": "./dist/ui.css"
   },
   "author": "André Baldeweg <a@baldeweg.org>",
