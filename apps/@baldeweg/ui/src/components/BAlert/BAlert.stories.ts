@@ -25,7 +25,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const Type: Story = {
   args: {
     type: "info",
     closable: false,
@@ -39,78 +39,10 @@ export const Default: Story = {
   }),
 }
 
-export const Info: Story = {
+export const Closable: Story = {
   args: {
     type: "info",
     closable: true,
-  },
-  render: (args) => ({
-    components: {
-      BAlert,
-    },
-
-    setup() {
-      return { args }
-    },
-    template: `<BAlert v-bind="args">This is an alert message. <a href="#">Link</a></BAlert>`,
-  }),
-}
-
-export const Danger: Story = {
-  args: {
-    type: "danger",
-    closable: true,
-  },
-  render: (args) => ({
-    components: {
-      BAlert,
-    },
-
-    setup() {
-      return { args }
-    },
-    template: `<BAlert v-bind="args">This is an alert message. <a href="#">Link</a></BAlert>`,
-  }),
-}
-
-export const Warning: Story = {
-  args: {
-    type: "warning",
-    closable: true,
-  },
-  render: (args) => ({
-    components: {
-      BAlert,
-    },
-
-    setup() {
-      return { args }
-    },
-    template: `<BAlert v-bind="args">This is an alert message. <a href="#">Link</a></BAlert>`,
-  }),
-}
-
-export const Success: Story = {
-  args: {
-    type: "success",
-    closable: true,
-  },
-  render: (args) => ({
-    components: {
-      BAlert,
-    },
-
-    setup() {
-      return { args }
-    },
-    template: `<BAlert v-bind="args">This is an alert message. <a href="#">Link</a></BAlert>`,
-  }),
-}
-
-export const WithoutCloseButton: Story = {
-  args: {
-    type: "info",
-    closable: false,
   },
   render: (args) => ({
     components: {
