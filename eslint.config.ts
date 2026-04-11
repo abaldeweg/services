@@ -17,6 +17,10 @@ export default defineConfig([{
   plugins: { js, import: eslintPluginImport },
   extends: ["js/recommended"],
   languageOptions: { globals: { ...globals.browser, ...globals.node } },
+  rules: {},
+}, {
+  files: ["**/*.{js,mjs,cjs}"],
+  plugins: { import: eslintPluginImport },
   rules: {
     "import/order": [
       "error",
@@ -29,7 +33,7 @@ export default defineConfig([{
 }, {
   name: "app/files-to-ignore",
   ignores: ["**/dist/**"],
-}, tseslint.configs.recommended, {
+}, tseslint.configs.recommended as any, {
   files: ["**/*.vue"],
   languageOptions: { parserOptions: { parser: tseslint.parser } },
   extends: [
@@ -39,6 +43,6 @@ export default defineConfig([{
       ...pluginVitest.configs.recommended,
       files: ["src/**/*.test.ts"],
     },
-    "@vue/eslint-config-prettier",
+    eslintConfigPrettier,
   ],
-}, eslintConfigPrettier, ...storybook.configs["flat/recommended"]])
+}, eslintConfigPrettier, ...(storybook.configs["flat/recommended"] as any)])
