@@ -21,7 +21,8 @@ const meta = {
     modelValue: { control: { type: "text" } },
     type: {
       control: {
-        type: "select", options: [
+        type: "select",
+        options: [
           "date",
           "color",
           "datetime-local",
@@ -36,8 +37,8 @@ const meta = {
           "time",
           "url",
           "week",
-        ]
-      }
+        ],
+      },
     },
     name: { control: { type: "text" } },
     id: { control: { type: "text" } },
