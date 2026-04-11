@@ -39,5 +39,6 @@ export default defineConfig([{
       ...pluginVitest.configs.recommended,
       files: ["src/**/*.test.ts"],
     },
+    "@vue/eslint-config-prettier",
   ],
 }, eslintConfigPrettier, ...storybook.configs["flat/recommended"]])
