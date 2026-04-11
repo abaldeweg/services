@@ -1,6 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BDropdown from "./BDropdown.vue"
 
-export default {
+const meta = {
   component: BDropdown,
   tags: ["experimental"],
   argTypes: {
@@ -12,7 +14,10 @@ export default {
       control: "boolean",
     },
   },
-}
+} satisfies Meta<typeof BDropdown>
+
+export default meta
+type Story = StoryObj<typeof meta>
 
 const Template = (args) => ({
   components: { BDropdown },
@@ -35,26 +40,34 @@ const Template = (args) => ({
   `,
 })
 
-export const Default = Template.bind({})
-Default.args = {
-  position: "selector",
-  keepOpen: false,
+export const Default: Story = {
+  args: {
+    position: "selector",
+    keepOpen: false,
+  },
+  render: (args) => Template(args),
 }
 
-export const MousePosition = Template.bind({})
-MousePosition.args = {
-  position: "mouse",
-  keepOpen: false,
+export const MousePosition: Story = {
+  args: {
+    position: "mouse",
+    keepOpen: false,
+  },
+  render: (args) => Template(args),
 }
 
-export const BottomPosition = Template.bind({})
-BottomPosition.args = {
-  position: "bottom",
-  keepOpen: false,
+export const BottomPosition: Story = {
+  args: {
+    position: "bottom",
+    keepOpen: false,
+  },
+  render: (args) => Template(args),
 }
 
-export const KeepOpen = Template.bind({})
-KeepOpen.args = {
-  position: "selector",
-  keepOpen: true,
+export const KeepOpen: Story = {
+  args: {
+    position: "selector",
+    keepOpen: true,
+  },
+  render: (args) => Template(args),
 }

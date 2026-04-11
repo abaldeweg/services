@@ -1,6 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BSelect from "./BSelect.vue"
 
-export default {
+const meta = {
   component: BSelect,
   tags: ["beta"],
   parameters: {
@@ -13,7 +15,7 @@ export default {
   },
   argTypes: {
     modelValue: {
-      control: "array",
+      control: { type: "object" },
     },
     type: {
       control: "select",
@@ -22,13 +24,16 @@ export default {
     name: { control: "text" },
     id: { control: "text" },
     help: { control: "text" },
-    options: { control: "array" },
+    options: { control: { type: "object" } },
     optionsKeyName: { control: "text" },
     optionsValueName: { control: "text" },
   },
-}
+} satisfies Meta<typeof BSelect>
 
-export const Default = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
   args: {
     modelValue: "option1",
     name: "checkbox",
@@ -57,7 +62,7 @@ export const Default = {
   },
 }
 
-export const Checkbox = {
+export const Checkbox: Story = {
   args: {
     modelValue: ["option1", "option3"],
     name: "checkbox",
@@ -72,7 +77,7 @@ export const Checkbox = {
   },
 }
 
-export const Radio = {
+export const Radio: Story = {
   args: {
     modelValue: "option1",
     name: "checkbox",
@@ -99,7 +104,7 @@ export const Radio = {
   },
 }
 
-export const WithHelpline = {
+export const WithHelpline: Story = {
   args: {
     modelValue: ["option1", "option3"],
     name: "checkbox",
@@ -127,7 +132,7 @@ export const WithHelpline = {
   },
 }
 
-export const WithCustomKeys = {
+export const WithCustomKeys: Story = {
   args: {
     modelValue: ["option1", "option3"],
     name: "checkbox",

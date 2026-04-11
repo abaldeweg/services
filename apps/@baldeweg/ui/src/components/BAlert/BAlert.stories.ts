@@ -1,6 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BAlert from "./BAlert.vue"
 
-export default {
+const meta = {
   component: BAlert,
   argTypes: {
     type: {
@@ -18,9 +20,12 @@ export default {
     }),
   ],
   tags: ["beta"],
-}
+} satisfies Meta<typeof BAlert>
 
-export const Default = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
   args: {
     type: "info",
     closable: false,
@@ -34,7 +39,7 @@ export const Default = {
   }),
 }
 
-export const Info = {
+export const Info: Story = {
   args: {
     type: "info",
     closable: true,
@@ -51,7 +56,7 @@ export const Info = {
   }),
 }
 
-export const Danger = {
+export const Danger: Story = {
   args: {
     type: "danger",
     closable: true,
@@ -68,7 +73,7 @@ export const Danger = {
   }),
 }
 
-export const Warning = {
+export const Warning: Story = {
   args: {
     type: "warning",
     closable: true,
@@ -85,7 +90,7 @@ export const Warning = {
   }),
 }
 
-export const Success = {
+export const Success: Story = {
   args: {
     type: "success",
     closable: true,
@@ -102,7 +107,7 @@ export const Success = {
   }),
 }
 
-export const WithoutCloseButton = {
+export const WithoutCloseButton: Story = {
   args: {
     type: "info",
     closable: false,

@@ -1,7 +1,9 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BDropdownItem from "./BDropdownItem.vue"
 import BMaterialIcon from "../BMaterialIcon/BMaterialIcon.vue"
 
-export default {
+const meta = {
   component: BDropdownItem,
   tags: ["experimental"],
   argTypes: {
@@ -18,9 +20,12 @@ export default {
       description: "Material icon name to display",
     },
   },
-}
+} satisfies Meta<typeof BDropdownItem>
 
-export const Default = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
   render: (args) => ({
     components: { BDropdownItem, BMaterialIcon },
     setup() {
@@ -31,7 +36,7 @@ export const Default = {
   args: {},
 }
 
-export const WithIcon = {
+export const WithIcon: Story = {
   render: (args) => ({
     components: { BDropdownItem, BMaterialIcon },
     setup() {
@@ -45,7 +50,7 @@ export const WithIcon = {
   },
 }
 
-export const Bold = {
+export const Bold: Story = {
   render: (args) => ({
     components: { BDropdownItem, BMaterialIcon },
     setup() {
@@ -58,7 +63,7 @@ export const Bold = {
   },
 }
 
-export const NoHover = {
+export const NoHover: Story = {
   render: (args) => ({
     components: { BDropdownItem, BMaterialIcon },
     setup() {
@@ -72,7 +77,7 @@ export const NoHover = {
   },
 }
 
-export const Combined = {
+export const Combined: Story = {
   render: (args) => ({
     components: { BDropdownItem, BMaterialIcon },
     setup() {

@@ -1,12 +1,17 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BForm from "./BForm.vue"
 
-export default {
+const meta = {
   title: "Components/BForm",
   component: BForm,
   tags: ["beta"],
-}
+} satisfies Meta<typeof BForm>
 
-export const Default = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
   render: () => ({
     components: { BForm },
     template: `

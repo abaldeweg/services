@@ -1,8 +1,9 @@
-import { fn } from "storybook/test"
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+import { action } from "storybook/actions"
 
 import BButton from "./BButton.vue"
 
-export default {
+const meta = {
   component: BButton,
   tags: ["alpha"],
   argTypes: {
@@ -20,59 +21,62 @@ export default {
       ],
     },
   },
-  args: { onClick: fn() },
-}
+  args: { onClick: action("clicked") },
+} satisfies Meta<typeof BButton>
 
-export const Primary = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Primary: Story = {
   args: {
     default: "Send",
     design: "primary",
   },
 }
 
-export const Secondary = {
+export const Secondary: Story = {
   args: {
     default: "Send",
     design: "primary_danger",
   },
 }
 
-export const PrimaryWide = {
+export const PrimaryWide: Story = {
   args: {
     default: "Send",
     design: "primary_wide",
   },
 }
 
-export const Outline = {
+export const Outline: Story = {
   args: {
     default: "Send",
     design: "outline",
   },
 }
 
-export const OutlineDanger = {
+export const OutlineDanger: Story = {
   args: {
     default: "Send",
     design: "outline_danger",
   },
 }
 
-export const OutlineWide = {
+export const OutlineWide: Story = {
   args: {
     default: "Send",
     design: "outline_wide",
   },
 }
 
-export const Text = {
+export const Text: Story = {
   args: {
     default: "Send",
     design: "text",
   },
 }
 
-export const TextDanger = {
+export const TextDanger: Story = {
   args: {
     default: "Send",
     design: "text_danger",

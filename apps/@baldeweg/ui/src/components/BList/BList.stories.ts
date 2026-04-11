@@ -1,7 +1,9 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BList from "./BList.vue"
 import placeholderImage from "../../assets/placeholder_16x9.jpg"
 
-export default {
+const meta = {
   component: BList,
   argTypes: {
     mediaSize: {
@@ -25,9 +27,12 @@ export default {
     },
   },
   tags: ["experimental"],
-}
+} satisfies Meta<typeof BList>
 
-export const Basic = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Basic: Story = {
   render: (args) => ({
     components: { BList },
     setup() {
@@ -47,7 +52,7 @@ export const Basic = {
   },
 }
 
-export const WithMedia = {
+export const WithMedia: Story = {
   render: (args) => ({
     components: { BList },
     setup() {
@@ -71,7 +76,7 @@ export const WithMedia = {
   },
 }
 
-export const WithAvatar = {
+export const WithAvatar: Story = {
   render: (args) => ({
     components: { BList },
     setup() {
@@ -95,7 +100,7 @@ export const WithAvatar = {
   },
 }
 
-export const WithTextColumn = {
+export const WithTextColumn: Story = {
   render: (args) => ({
     components: { BList },
     setup() {
@@ -117,7 +122,7 @@ export const WithTextColumn = {
   },
 }
 
-export const WithControls = {
+export const WithControls: Story = {
   render: (args) => ({
     components: { BList },
     setup() {
@@ -141,7 +146,7 @@ export const WithControls = {
   },
 }
 
-export const FullExample = {
+export const FullExample: Story = {
   render: (args) => ({
     components: { BList },
     setup() {

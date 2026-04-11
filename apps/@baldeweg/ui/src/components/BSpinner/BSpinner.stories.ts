@@ -1,6 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BSpinner from "./BSpinner.vue"
 
-export default {
+const meta = {
   component: BSpinner,
   tags: ["beta"],
   argTypes: {
@@ -10,21 +12,24 @@ export default {
       description: "Controls the size of the spinner",
     },
   },
-}
+} satisfies Meta<typeof BSpinner>
 
-export const Default = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
   args: {
     size: "l",
   },
 }
 
-export const SizeM = {
+export const SizeM: Story = {
   args: {
     size: "m",
   },
 }
 
-export const SizeS = {
+export const SizeS: Story = {
   args: {
     size: "s",
   },

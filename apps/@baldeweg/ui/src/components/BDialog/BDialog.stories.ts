@@ -1,19 +1,17 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BDialog from "./BDialog.vue"
 
-export default {
+const meta = {
   component: BDialog,
   argTypes: {
     modelValue: {
-      control: "boolean",
+      control: { type: "boolean" },
       description: "Controls the visibility of the dialog",
     },
     canClose: {
-      control: "boolean",
+      control: { type: "boolean" },
       description: "Whether the dialog can be closed by clicking the overlay",
-    },
-    "update:modelValue": {
-      action: "update:modelValue",
-      description: "Event emitted when dialog visibility changes",
     },
   },
   parameters: {
@@ -23,9 +21,15 @@ export default {
           "A dialog component that can be toggled on/off and contain custom content and actions.",
       },
     },
+    actions: {
+      handles: ["update:modelValue"],
+    },
   },
   tags: ["experimental"],
-}
+} satisfies Meta<typeof BDialog>
+
+export default meta
+type Story = StoryObj<typeof meta>
 
 const Template = (args) => ({
   components: { BDialog },
@@ -49,20 +53,26 @@ const Template = (args) => ({
   `,
 })
 
-export const Default = Template.bind({})
-Default.args = {
-  modelValue: false,
-  canClose: true,
+export const Default: Story = {
+  args: {
+    modelValue: false,
+    canClose: true,
+  },
+  render: (args) => Template(args),
 }
 
-export const NonClosable = Template.bind({})
-NonClosable.args = {
-  modelValue: false,
-  canClose: false,
+export const NonClosable: Story = {
+  args: {
+    modelValue: false,
+    canClose: false,
+  },
+  render: (args) => Template(args),
 }
 
-export const OpenByDefault = Template.bind({})
-OpenByDefault.args = {
-  modelValue: true,
-  canClose: true,
+export const OpenByDefault: Story = {
+  args: {
+    modelValue: true,
+    canClose: true,
+  },
+  render: (args) => Template(args),
 }

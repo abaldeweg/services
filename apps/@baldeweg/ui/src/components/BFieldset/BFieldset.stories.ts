@@ -1,14 +1,19 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BFieldset from "./BFieldset.vue"
 
-export default {
+const meta = {
   component: BFieldset,
   argTypes: {
     legend: { control: "text" },
   },
   tags: ["beta"],
-}
+} satisfies Meta<typeof BFieldset>
 
-export const Default = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
   args: {
     legend: "Label",
   },

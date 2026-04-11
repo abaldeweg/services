@@ -1,7 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
 import BCard from "./BCard.vue"
 import placeholderImage from "../../assets/placeholder_16x9.jpg"
 
-export default {
+const meta = {
   component: BCard,
   argTypes: {
     outlined: {
@@ -26,7 +27,10 @@ export default {
     },
   },
   tags: ["experimental"],
-}
+} satisfies Meta<typeof BCard>
+
+export default meta
+type Story = StoryObj<typeof meta>
 
 const Template = (args) => ({
   components: { BCard },
@@ -49,60 +53,76 @@ const Template = (args) => ({
   `,
 })
 
-export const Default = Template.bind({})
-Default.args = {
-  outlined: false,
-  filled: false,
-  text: true,
+export const Default: Story = {
+  args: {
+    outlined: false,
+    filled: false,
+    text: true,
+  },
+  render: (args) => Template(args),
 }
 
-export const Outlined = Template.bind({})
-Outlined.args = {
-  outlined: true,
-  text: true,
+export const Outlined: Story = {
+  args: {
+    outlined: true,
+    text: true,
+  },
+  render: (args) => Template(args),
 }
 
-export const Filled = Template.bind({})
-Filled.args = {
-  filled: true,
-  text: true,
+export const Filled: Story = {
+  args: {
+    filled: true,
+    text: true,
+  },
+  render: (args) => Template(args),
 }
 
-export const WithImage = Template.bind({})
-WithImage.args = {
-  outlined: true,
-  text: true,
-  image: true,
+export const WithImage: Story = {
+  args: {
+    outlined: true,
+    text: true,
+    image: true,
+  },
+  render: (args) => Template(args),
 }
 
-export const WithSubtitle = Template.bind({})
-WithSubtitle.args = {
-  outlined: true,
-  subtitle: true,
-  text: true,
+export const WithSubtitle: Story = {
+  args: {
+    outlined: true,
+    subtitle: true,
+    text: true,
+  },
+  render: (args) => Template(args),
 }
 
-export const WithActions = Template.bind({})
-WithActions.args = {
-  outlined: true,
-  text: true,
-  actions: true,
+export const WithActions: Story = {
+  args: {
+    outlined: true,
+    text: true,
+    actions: true,
+  },
+  render: (args) => Template(args),
 }
 
-export const CompleteCard = Template.bind({})
-CompleteCard.args = {
-  outlined: true,
-  image: true,
-  subtitle: true,
-  text: true,
-  actions: true,
+export const CompleteCard: Story = {
+  args: {
+    outlined: true,
+    image: true,
+    subtitle: true,
+    text: true,
+    actions: true,
+  },
+  render: (args) => Template(args),
 }
 
-export const ClickableCard = Template.bind({})
-ClickableCard.args = {
-  outlined: true,
-  image: true,
-  subtitle: true,
-  text: true,
-  route: { path: "/" },
+export const ClickableCard: Story = {
+  args: {
+    outlined: true,
+    image: true,
+    subtitle: true,
+    text: true,
+    route: { path: "/" },
+  },
+  render: (args) => Template(args),
 }

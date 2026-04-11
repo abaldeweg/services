@@ -1,10 +1,15 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BSlider from "./BSlider.vue"
 import BCard from "../BCard/BCard.vue"
 
-export default {
+const meta = {
   component: BSlider,
   tags: ["experimental"],
-}
+} satisfies Meta<typeof BSlider>
+
+export default meta
+type Story = StoryObj<typeof meta>
 
 const Template = (args) => ({
   components: { BSlider },
@@ -20,23 +25,28 @@ const Template = (args) => ({
   `,
 })
 
-export const Default = Template.bind({})
-Default.args = {}
+export const Default: Story = {
+  args: {},
+  render: (args) => Template(args),
+}
 
-export const WithCards = () => ({
-  components: { BSlider, BCard },
-  template: `
-    <BSlider>
-      <a href="#" v-for="n in 8" :key="n">
-        <BCard :style="{ width: '200px' }">
-          <template #title>
-            Card {{ n }}
-          </template>
-          <template #subtitle>
-            This is a card component displayed inside a slider for horizontal scrolling.
-          </template>
-        </BCard>
-      </a>
-    </BSlider>
-  `,
-})
+export const WithCards: Story = {
+  args: {},
+  render: () => ({
+    components: { BSlider, BCard },
+    template: `
+      <BSlider>
+        <a href="#" v-for="n in 8" :key="n">
+          <BCard :style="{ width: '200px' }">
+            <template #title>
+              Card {{ n }}
+            </template>
+            <template #subtitle>
+              This is a card component displayed inside a slider for horizontal scrolling.
+            </template>
+          </BCard>
+        </a>
+      </BSlider>
+    `,
+  }),
+}

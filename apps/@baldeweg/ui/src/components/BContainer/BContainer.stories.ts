@@ -1,6 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BContainer from "./BContainer.vue"
 
-export default {
+const meta = {
   component: BContainer,
   argTypes: {
     size: {
@@ -16,7 +18,10 @@ export default {
     },
   },
   tags: ["experimental"],
-}
+} satisfies Meta<typeof BContainer>
+
+export default meta
+type Story = StoryObj<typeof meta>
 
 const Template = (args) => ({
   components: { BContainer },
@@ -30,44 +35,56 @@ const Template = (args) => ({
   `,
 })
 
-export const Default = Template.bind({})
-Default.args = {
-  size: "l",
-  align: "left",
-  highlight: false,
+export const Default: Story = {
+  args: {
+    size: "l",
+    align: "left",
+    highlight: false,
+  },
+  render: (args) => Template(args),
 }
 
-export const MediumSize = Template.bind({})
-MediumSize.args = {
-  size: "m",
-  align: "left",
-  highlight: false,
+export const MediumSize: Story = {
+  args: {
+    size: "m",
+    align: "left",
+    highlight: false,
+  },
+  render: (args) => Template(args),
 }
 
-export const SmallSize = Template.bind({})
-SmallSize.args = {
-  size: "s",
-  align: "left",
-  highlight: false,
+export const SmallSize: Story = {
+  args: {
+    size: "s",
+    align: "left",
+    highlight: false,
+  },
+  render: (args) => Template(args),
 }
 
-export const CenterAligned = Template.bind({})
-CenterAligned.args = {
-  size: "l",
-  align: "center",
-  highlight: false,
+export const CenterAligned: Story = {
+  args: {
+    size: "l",
+    align: "center",
+    highlight: false,
+  },
+  render: (args) => Template(args),
 }
 
-export const RightAligned = Template.bind({})
-RightAligned.args = {
-  size: "l",
-  align: "right",
-  highlight: false,
+export const RightAligned: Story = {
+  args: {
+    size: "l",
+    align: "right",
+    highlight: false,
+  },
+  render: (args) => Template(args),
 }
 
-export const Highlighted = Template.bind({})
-Highlighted.args = {
-  size: "l",
-  align: "left",
-  highlight: true,
+export const Highlighted: Story = {
+  args: {
+    size: "l",
+    align: "left",
+    highlight: true,
+  },
+  render: (args) => Template(args),
 }

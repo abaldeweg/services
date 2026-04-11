@@ -1,6 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BCode from "./BCode.vue"
 
-export default {
+const meta = {
   component: BCode,
   tags: ["beta"],
   argTypes: {
@@ -9,9 +11,12 @@ export default {
       description: "The content to be displayed inside the code block",
     },
   },
-}
+} satisfies Meta<typeof BCode>
 
-export const Default = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
   args: {
     default: 'const example = "test";\nconsole.log(example);',
   },

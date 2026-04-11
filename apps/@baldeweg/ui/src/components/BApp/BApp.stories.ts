@@ -1,6 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BApp from "./BApp.vue"
 
-export default {
+const meta = {
   component: BApp,
   tags: ["beta"],
   parameters: {
@@ -12,9 +14,12 @@ export default {
       },
     },
   },
-}
+} satisfies Meta<typeof BApp>
 
-export const Default = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
   render: (args) => ({
     components: { BApp },
     setup() {

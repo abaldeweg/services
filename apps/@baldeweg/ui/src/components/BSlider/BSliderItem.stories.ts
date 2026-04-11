@@ -1,6 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BSliderItem from "./BSliderItem.vue"
 
-export default {
+const meta = {
   component: BSliderItem,
   argTypes: {
     size: {
@@ -9,7 +11,10 @@ export default {
     },
   },
   tags: ["experimental"],
-}
+} satisfies Meta<typeof BSliderItem>
+
+export default meta
+type Story = StoryObj<typeof meta>
 
 const Template = (args) => ({
   components: { BSliderItem },
@@ -19,50 +24,64 @@ const Template = (args) => ({
   template: '<BSliderItem v-bind="args">Slider Item Content</BSliderItem>',
 })
 
-export const Default = Template.bind({})
-Default.args = {
-  size: "m",
-}
-
-export const ExtraSmall = Template.bind({})
-ExtraSmall.args = {
-  size: "xs",
-}
-
-export const Small = Template.bind({})
-Small.args = {
-  size: "s",
-}
-
-export const Medium = Template.bind({})
-Medium.args = {
-  size: "m",
-}
-
-export const Large = Template.bind({})
-Large.args = {
-  size: "l",
-}
-
-export const ExtraLarge = Template.bind({})
-ExtraLarge.args = {
-  size: "xl",
-}
-
-export const WithCustomContent = (args) => ({
-  components: { BSliderItem },
-  setup() {
-    return { args }
+export const Default: Story = {
+  args: {
+    size: "m",
   },
-  template: `
-    <BSliderItem v-bind="args">
-      <div style="padding: 20px; background-color:rgb(0, 0, 0); border-radius: 4px; text-align: center;">
-        <h3>Custom Content</h3>
-        <p>You can place any content inside the slider item.</p>
-      </div>
-    </BSliderItem>
-  `,
-})
-WithCustomContent.args = {
-  size: "m",
+  render: (args) => Template(args),
+}
+
+export const ExtraSmall: Story = {
+  args: {
+    size: "xs",
+  },
+  render: (args) => Template(args),
+}
+
+export const Small: Story = {
+  args: {
+    size: "s",
+  },
+  render: (args) => Template(args),
+}
+
+export const Medium: Story = {
+  args: {
+    size: "m",
+  },
+  render: (args) => Template(args),
+}
+
+export const Large: Story = {
+  args: {
+    size: "l",
+  },
+  render: (args) => Template(args),
+}
+
+export const ExtraLarge: Story = {
+  args: {
+    size: "xl",
+  },
+  render: (args) => Template(args),
+}
+
+export const WithCustomContent: Story = {
+  args: {
+    size: "m",
+  },
+  render: (args) => ({
+    components: { BSliderItem },
+    setup() {
+      return { args }
+    },
+    template: `
+      <BSliderItem v-bind="args">
+        <div style="padding: 20px; background-color:rgb(0, 0, 0); border-radius: 4px; text-align: center;">
+          <h3>Custom Content</h3>
+          <p>You can place any content inside the slider item.</p>
+        </div>
+      </BSliderItem>
+    `,
+  }),
 }

@@ -1,6 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BInput from "./BInput.vue"
 
-export default {
+const meta = {
   title: "Components/BInput",
   component: BInput,
   tags: ["beta"],
@@ -11,38 +13,44 @@ export default {
           "Not applicable to checkbox and radio. Additional attributes are passed to the underlying input element. For types refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attributes.",
       },
     },
+    actions: {
+      handles: ["update:modelValue"],
+    },
   },
   argTypes: {
-    modelValue: { control: "text" },
+    modelValue: { control: { type: "text" } },
     type: {
-      control: "select",
-      options: [
-        "date",
-        "color",
-        "datetime-local",
-        "email",
-        "month",
-        "number",
-        "password",
-        "range",
-        "search",
-        "tel",
-        "text",
-        "time",
-        "url",
-        "week",
-      ],
+      control: {
+        type: "select", options: [
+          "date",
+          "color",
+          "datetime-local",
+          "email",
+          "month",
+          "number",
+          "password",
+          "range",
+          "search",
+          "tel",
+          "text",
+          "time",
+          "url",
+          "week",
+        ]
+      }
     },
-    name: { control: "text" },
-    id: { control: "text" },
-    label: { control: "text" },
-    help: { control: "text" },
-    hideLabel: { control: "boolean" },
-    "update:modelValue": { action: "updated" },
+    name: { control: { type: "text" } },
+    id: { control: { type: "text" } },
+    label: { control: { type: "text" } },
+    help: { control: { type: "text" } },
+    hideLabel: { control: { type: "boolean" } },
   },
-}
+} satisfies Meta<typeof BInput>
 
-export const Default = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
   args: {
     type: "text",
     name: "input",
@@ -53,7 +61,7 @@ export const Default = {
   },
 }
 
-export const Date = {
+export const Date: Story = {
   args: {
     type: "date",
     name: "input",
@@ -64,7 +72,7 @@ export const Date = {
   },
 }
 
-export const Color = {
+export const Color: Story = {
   args: {
     type: "color",
     name: "input",
@@ -75,7 +83,7 @@ export const Color = {
   },
 }
 
-export const Datetime = {
+export const Datetime: Story = {
   args: {
     type: "datetime-local",
     name: "input",
@@ -86,7 +94,7 @@ export const Datetime = {
   },
 }
 
-export const Email = {
+export const Email: Story = {
   args: {
     type: "email",
     name: "input",
@@ -97,7 +105,7 @@ export const Email = {
   },
 }
 
-export const Month = {
+export const Month: Story = {
   args: {
     type: "month",
     name: "input",
@@ -108,7 +116,7 @@ export const Month = {
   },
 }
 
-export const Number = {
+export const Number: Story = {
   args: {
     type: "number",
     name: "input",
@@ -119,7 +127,7 @@ export const Number = {
   },
 }
 
-export const Password = {
+export const Password: Story = {
   args: {
     type: "password",
     name: "input",
@@ -130,7 +138,7 @@ export const Password = {
   },
 }
 
-export const Range = {
+export const Range: Story = {
   args: {
     type: "range",
     name: "input",
@@ -141,7 +149,7 @@ export const Range = {
   },
 }
 
-export const Search = {
+export const Search: Story = {
   args: {
     type: "search",
     name: "input",
@@ -152,7 +160,7 @@ export const Search = {
   },
 }
 
-export const Tel = {
+export const Tel: Story = {
   args: {
     type: "tel",
     name: "input",
@@ -163,7 +171,7 @@ export const Tel = {
   },
 }
 
-export const Time = {
+export const Time: Story = {
   args: {
     type: "time",
     name: "input",
@@ -174,7 +182,7 @@ export const Time = {
   },
 }
 
-export const URL = {
+export const URL: Story = {
   args: {
     type: "url",
     name: "input",
@@ -185,7 +193,7 @@ export const URL = {
   },
 }
 
-export const Week = {
+export const Week: Story = {
   args: {
     type: "week",
     name: "input",
@@ -196,7 +204,7 @@ export const Week = {
   },
 }
 
-export const HiddenLabel = {
+export const HiddenLabel: Story = {
   args: {
     type: "text",
     name: "input",
@@ -207,7 +215,7 @@ export const HiddenLabel = {
   },
 }
 
-export const WithoutHelpline = {
+export const WithoutHelpline: Story = {
   args: {
     type: "text",
     name: "input",

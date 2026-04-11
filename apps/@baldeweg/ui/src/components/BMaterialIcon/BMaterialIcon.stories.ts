@@ -1,6 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BMaterialIcon from "./BMaterialIcon.vue"
 
-export default {
+const meta = {
   component: BMaterialIcon,
   argTypes: {
     size: {
@@ -18,7 +20,10 @@ export default {
     },
   },
   tags: ["experimental"],
-}
+} satisfies Meta<typeof BMaterialIcon>
+
+export default meta
+type Story = StoryObj<typeof meta>
 
 const Template = (args) => ({
   components: { BMaterialIcon },
@@ -28,30 +33,38 @@ const Template = (args) => ({
   template: `<BMaterialIcon v-bind="args">home</BMaterialIcon>`,
 })
 
-export const Default = Template.bind({})
-Default.args = {
-  size: 24,
-  color: "#ffffff",
-  hover: false,
+export const Default: Story = {
+  args: {
+    size: 24,
+    color: "#ffffff",
+    hover: false,
+  },
+  render: (args) => Template(args),
 }
 
-export const Large = Template.bind({})
-Large.args = {
-  size: 48,
-  color: "#ffffff",
-  hover: false,
+export const Large: Story = {
+  args: {
+    size: 48,
+    color: "#ffffff",
+    hover: false,
+  },
+  render: (args) => Template(args),
 }
 
-export const Colored = Template.bind({})
-Colored.args = {
-  size: 24,
-  color: "#ff0000",
-  hover: false,
+export const Colored: Story = {
+  args: {
+    size: 24,
+    color: "#ff0000",
+    hover: false,
+  },
+  render: (args) => Template(args),
 }
 
-export const WithHoverEffect = Template.bind({})
-WithHoverEffect.args = {
-  size: 24,
-  color: "#ff0000",
-  hover: true,
+export const WithHoverEffect: Story = {
+  args: {
+    size: 24,
+    color: "#ff0000",
+    hover: true,
+  },
+  render: (args) => Template(args),
 }

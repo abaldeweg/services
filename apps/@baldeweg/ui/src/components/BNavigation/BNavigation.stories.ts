@@ -1,7 +1,9 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BNavigation from "./BNavigation.vue"
 import BNavigationItem from "./BNavigationItem.vue"
 
-export default {
+const meta = {
   title: "Components/BNavigation",
   component: BNavigation,
   argTypes: {
@@ -26,9 +28,12 @@ export default {
     },
   },
   tags: ["beta"],
-}
+} satisfies Meta<typeof BNavigation>
 
-export const Default = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
   render: (args) => ({
     components: {
       BNavigation,
@@ -53,7 +58,7 @@ export const Default = {
   }),
 }
 
-export const Background = {
+export const Background: Story = {
   args: {
     background: "primary",
   },
@@ -81,7 +86,7 @@ export const Background = {
   }),
 }
 
-export const Border = {
+export const Border: Story = {
   args: {
     border: "primary",
   },
@@ -109,7 +114,7 @@ export const Border = {
   }),
 }
 
-export const Direction = {
+export const Direction: Story = {
   args: {
     direction: "horizontal",
   },

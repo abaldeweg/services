@@ -1,6 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BNavigationItem from "./BNavigationItem.vue"
 
-export default {
+const meta = {
   title: "Components/BNavigation/BNavigationItem",
   component: BNavigationItem,
   argTypes: {
@@ -58,9 +60,12 @@ export default {
     },
   },
   tags: ["beta"],
-}
+} satisfies Meta<typeof BNavigationItem>
 
-export const Default = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
   args: {
     route: { name: "home" },
     default: "Inbox",
@@ -80,7 +85,7 @@ export const Default = {
   }),
 }
 
-export const IconAndBadge = {
+export const IconAndBadge: Story = {
   args: {
     route: { path: "/inbox" },
     icon: "inbox",
@@ -102,7 +107,7 @@ export const IconAndBadge = {
   }),
 }
 
-export const ExternalLink = {
+export const ExternalLink: Story = {
   args: {
     route: "https://localhost",
     icon: "inbox",
@@ -124,7 +129,7 @@ export const ExternalLink = {
   }),
 }
 
-export const Border = {
+export const Border: Story = {
   args: {
     route: {
       path: "/inbox",
@@ -149,7 +154,7 @@ export const Border = {
   }),
 }
 
-export const Background = {
+export const Background: Story = {
   args: {
     route: {
       path: "/inbox",
@@ -174,7 +179,7 @@ export const Background = {
   }),
 }
 
-export const Direction = {
+export const Direction: Story = {
   args: {
     direction: "vertical",
     route: { path: "/inbox" },

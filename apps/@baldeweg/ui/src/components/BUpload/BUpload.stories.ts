@@ -1,6 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BUpload from "./BUpload.vue"
 
-export default {
+const meta = {
   component: BUpload,
   tags: ["beta"],
   parameters: {
@@ -9,6 +11,9 @@ export default {
         component:
           'Set the enctype of the parent form to `enctype="multipart/form-data"`.',
       },
+    },
+    actions: {
+      handles: ["update:modelValue"],
     },
   },
   argTypes: {
@@ -28,21 +33,20 @@ export default {
       control: "boolean",
       description: "v-model binding",
     },
-    "update:modelValue": {
-      action: "update:modelValue",
-      description: "Event emitted when a file is selected",
-    },
   },
-}
+} satisfies Meta<typeof BUpload>
 
-export const Default = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
   args: {
     id: "upload",
     text: "Drop a file here or click to upload",
   },
 }
 
-export const PDFUpload = {
+export const PDFUpload: Story = {
   args: {
     id: "upload",
     text: "Drop a pdf file here or click to upload",

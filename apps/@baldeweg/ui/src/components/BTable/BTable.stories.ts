@@ -1,6 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BTable from "./BTable.vue"
 
-export default {
+const meta = {
   component: BTable,
   parameters: {
     docs: {
@@ -17,9 +19,12 @@ export default {
     },
   },
   tags: ["experimental"],
-}
+} satisfies Meta<typeof BTable>
 
-export const Default = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
   args: {
     hover: false,
   },
@@ -61,7 +66,7 @@ export const Default = {
   }),
 }
 
-export const WithHover = {
+export const WithHover: Story = {
   args: {
     hover: true,
   },

@@ -1,7 +1,9 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BModal from "./BModal.vue"
 import BMaterialIcon from "../BMaterialIcon/BMaterialIcon.vue"
 
-export default {
+const meta = {
   component: BModal,
   argTypes: {
     modelValue: { control: "boolean" },
@@ -9,9 +11,12 @@ export default {
     closeButton: { control: "boolean" },
   },
   tags: ["experimental"],
-}
+} satisfies Meta<typeof BModal>
 
-export const Default = {
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
   render: (args) => ({
     components: { BModal, BMaterialIcon },
     setup() {
@@ -34,7 +39,7 @@ export const Default = {
   },
 }
 
-export const WithFooter = {
+export const WithFooter: Story = {
   render: (args) => ({
     components: { BModal, BMaterialIcon },
     setup() {
@@ -63,7 +68,7 @@ export const WithFooter = {
   },
 }
 
-export const NoCloseButton = {
+export const NoCloseButton: Story = {
   render: (args) => ({
     components: { BModal, BMaterialIcon },
     setup() {
@@ -89,7 +94,7 @@ export const NoCloseButton = {
   },
 }
 
-export const CustomWidth = {
+export const CustomWidth: Story = {
   render: (args) => ({
     components: { BModal, BMaterialIcon },
     setup() {

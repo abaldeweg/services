@@ -1,6 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/vue3-vite"
+
 import BPanel from "./BPanel.vue"
 
-export default {
+const meta = {
   component: BPanel,
   argTypes: {
     position: {
@@ -20,10 +22,6 @@ export default {
       description:
         "If true, panel is always shown, no overlay, and margin is added",
     },
-    "update:modelValue": {
-      action: "update:modelValue",
-      description: "Event emitted when the panel is closed",
-    },
   },
   parameters: {
     docs: {
@@ -32,9 +30,15 @@ export default {
           "A sliding panel component that can be positioned on the left or right side of the screen.",
       },
     },
+    actions: {
+      handles: ["update:modelValue"],
+    },
   },
   tags: ["experimental"],
-}
+} satisfies Meta<typeof BPanel>
+
+export default meta
+type Story = StoryObj<typeof meta>
 
 const Template = (args) => ({
   components: { BPanel },
@@ -69,62 +73,62 @@ const Template = (args) => ({
   `,
 })
 
-export const LeftPanel = Template.bind({})
-LeftPanel.args = {
-  modelValue: false,
-  position: "left",
-  width: "300px",
-  showHeader: true,
-  showFooter: true,
-  permanent: false,
+export const LeftPanel: Story = {
+  args: {
+    modelValue: false,
+    position: "left",
+    width: "300px",
+    permanent: false,
+  },
+  render: (args) => Template(args),
 }
 
-export const RightPanel = Template.bind({})
-RightPanel.args = {
-  modelValue: false,
-  position: "right",
-  width: "300px",
-  showHeader: true,
-  showFooter: true,
-  permanent: false,
+export const RightPanel: Story = {
+  args: {
+    modelValue: false,
+    position: "right",
+    width: "300px",
+    permanent: false,
+  },
+  render: (args) => Template(args),
 }
 
-export const WithoutHeader = Template.bind({})
-WithoutHeader.args = {
-  modelValue: false,
-  position: "left",
-  width: "300px",
-  showHeader: false,
-  showFooter: true,
-  permanent: false,
+export const WithoutHeader: Story = {
+  args: {
+    modelValue: false,
+    position: "left",
+    width: "300px",
+    permanent: false,
+  },
+  render: (args) => Template(args),
 }
 
-export const WithoutFooter = Template.bind({})
-WithoutFooter.args = {
-  modelValue: false,
-  position: "left",
-  width: "300px",
-  showHeader: true,
-  showFooter: false,
-  permanent: false,
+export const WithoutFooter: Story = {
+  args: {
+    modelValue: false,
+    position: "left",
+    width: "300px",
+    permanent: false,
+  },
+  render: (args) => Template(args),
 }
 
-export const CustomWidth = Template.bind({})
-CustomWidth.args = {
-  modelValue: false,
-  position: "left",
-  width: "500px",
-  showHeader: true,
-  showFooter: true,
-  permanent: false,
+export const CustomWidth: Story = {
+  args: {
+    modelValue: false,
+    position: "left",
+    width: "500px",
+    permanent: false,
+  },
+  render: (args) => Template(args),
 }
 
-export const PermanentPanel = Template.bind({})
-PermanentPanel.args = {
-  modelValue: true,
-  position: "left",
-  width: "300px",
-  showHeader: true,
-  showFooter: true,
-  permanent: true,
+export const PermanentPanel: Story = {
+  args: {
+    modelValue: true,
+    position: "left",
+    width: "300px",
+    permanent: true,
+  },
+  render: (args) => Template(args),
 }
