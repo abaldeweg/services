@@ -7,20 +7,10 @@ defineProps<Props>()
 </script>
 
 <template>
-  <fieldset class="fieldset u:clear-both u:mb-xl u:overflow-auto">
-    <legend class="fieldset_legend">
+  <fieldset class="u:clear-both u:border-0 u:p-none u:m-none">
+    <legend class="u:p-0">
       {{ legend }}
     </legend>
     <slot />
   </fieldset>
 </template>
-
-<style>
-.fieldset:last-child {
-  margin-bottom: 0;
-}
-
-.fieldset_legend {
-  padding: 0;
-}
-</style>

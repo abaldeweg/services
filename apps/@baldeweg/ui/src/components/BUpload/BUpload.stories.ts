@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
+import { action } from "storybook/actions"
 
 import BUpload from "./BUpload.vue"
 
@@ -39,10 +40,11 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const Upload: Story = {
   args: {
     id: "upload",
     text: "Drop a file here or click to upload",
+    'onUpdate:modelValue': action('upload'),
   },
 }
 
@@ -51,5 +53,6 @@ export const PDFUpload: Story = {
     id: "upload",
     text: "Drop a pdf file here or click to upload",
     accept: "application/pdf",
+    'onUpdate:modelValue': action('upload'),
   },
 }

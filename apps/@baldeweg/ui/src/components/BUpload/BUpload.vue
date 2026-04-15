@@ -20,7 +20,7 @@ const isDragging = ref<boolean>(false)
 </script>
 
 <template>
-  <div class="upload" :class="{ upload_isDragging: isDragging }">
+  <div class="upload" :class="{ isDragging: isDragging }">
     <p class="upload_text">{{ text }}</p>
     <div
       class="upload_dropzone"
@@ -59,7 +59,7 @@ const isDragging = ref<boolean>(false)
 }
 
 .upload:hover,
-.upload.upload_isDragging {
+.upload.isDragging {
   border: 1px solid var(--color-primary-10);
 }
 

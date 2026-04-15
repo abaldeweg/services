@@ -22,7 +22,8 @@ const positionClass = computed<Record<string, boolean>>(() => {
 
 <template>
   <div class="tooltip">
-    <slot /><span class="tooltip_text" :class="positionClass">{{ text }}</span>
+    <slot />
+    <span class="tooltip_text" :class="positionClass">{{ text }}</span>
   </div>
 </template>
 

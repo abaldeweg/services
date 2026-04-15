@@ -16,7 +16,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const Full: Story = {
   render: (args) => ({
     components: { BModal, BMaterialIcon },
     setup() {

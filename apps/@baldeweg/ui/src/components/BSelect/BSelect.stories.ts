@@ -33,7 +33,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const Full: Story = {
   args: {
     modelValue: "option1",
     name: "checkbox",
@@ -59,6 +59,7 @@ export const Default: Story = {
     ],
     label: "Label",
     hideLabel: false,
+    help: "Select one option",
   },
 }
 
@@ -101,34 +102,6 @@ export const Radio: Story = {
         value: "Option 4",
       },
     ],
-  },
-}
-
-export const WithHelpline: Story = {
-  args: {
-    modelValue: ["option1", "option3"],
-    name: "checkbox",
-    id: "checkbox",
-    type: "checkbox",
-    options: [
-      {
-        key: "option1",
-        value: "Option 1",
-      },
-      {
-        key: "option2",
-        value: "Option 2",
-      },
-      {
-        key: "option3",
-        value: "Option 3",
-      },
-      {
-        key: "option4",
-        value: "Option 4",
-      },
-    ],
-    help: "Select one option",
   },
 }
 
