@@ -2,27 +2,25 @@
 interface Props {
   size?: "l" | "m" | "s"
   align?: "left" | "right" | "center"
-  highlight?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
   size: "l",
   align: "left",
-  highlight: false,
 })
 </script>
 
 <template>
   <section
     class="u:clear-both u:px-xl u:mx-auto u:box-border container"
-    :class="{
-      container_size_l: size === 'l',
-      container_size_m: size === 'm',
-      container_size_s: size === 's',
-      container_align_right: align === 'right',
-      container_align_center: align === 'center',
-      container_hasHighlight: highlight,
-    }"
+    :class="[
+      size === 'l' ? 'u:w-full' : undefined,
+      size === 'm' ? 'container_size_m' : undefined,
+      size === 's' ? 'container_size_s' : undefined,
+      align === 'left' ? 'u:text-left' : undefined,
+      align === 'right' ? 'u:text-right' : undefined,
+      align === 'center' ? 'u:text-center' : undefined,
+    ]"
   >
     <slot />
   </section>
@@ -39,27 +37,15 @@ withDefaults(defineProps<Props>(), {
   clear: both;
 }
 
-.container_size_l {
-  width: 100%;
+.container_size_s {
+  max-width: 600px;
 }
 
 .container_size_m {
   max-width: 1160px;
 }
 
-.container_size_s {
-  max-width: 600px;
-}
-
-.container_align_right {
-  text-align: right;
-}
-
-.container_align_center {
-  text-align: center;
-}
-
-.container_hasHighlight {
-  background: var(--color-neutral-02);
+.container_size_l {
+  max-width: 100%;
 }
 </style>
