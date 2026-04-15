@@ -267,21 +267,15 @@ th {
   text-align: left;
 }
 
+tr {
+  transition: background 0.3s ease;
+}
+
 th,
 td {
   border-bottom: 1px solid var(--color-neutral-02);
   vertical-align: top;
   padding: 10px;
-}
-
-th:nth-child(1),
-td:nth-child(1) {
-  padding-left: 0;
-}
-
-th:nth-last-child(1),
-td:nth-last-child(1) {
-  padding-right: 0;
 }
 
 @media all and (min-width: 600px) {

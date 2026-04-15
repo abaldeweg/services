@@ -8,7 +8,7 @@ describe("BTable", () => {
     expect(BTable).toBeTruthy()
   })
 
-  it("applies canHover class by default", () => {
+  it("does not apply canHover class by default", () => {
     const wrapper = mount(BTable)
     expect(wrapper.classes()).not.toContain("canHover")
   })

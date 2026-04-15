@@ -17,5 +17,6 @@ withDefaults(defineProps<Props>(), {
 <style>
 .table.canHover tbody tr:hover {
   background: var(--color-neutral-02);
+  transition: background 0.3s ease;
 }
 </style>

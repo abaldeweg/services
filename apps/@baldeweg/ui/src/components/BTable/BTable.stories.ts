@@ -18,13 +18,13 @@ const meta = {
       description: "Enables hover effect on table rows",
     },
   },
-  tags: ["experimental"],
+  tags: ["beta"],
 } satisfies Meta<typeof BTable>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const Full: Story = {
   args: {
     hover: false,
   },
