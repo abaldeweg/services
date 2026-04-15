@@ -14,9 +14,16 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const Full: Story = {
   args: {
     modelValue: true,
     label: "Label",
   },
+  render: (args) => ({
+    components: { BSwitch },
+    setup() {
+      return { args }
+    },
+    template: `<BSwitch v-bind="args" />`,
+  }),
 }

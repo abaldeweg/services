@@ -14,40 +14,26 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="switch">
+  <div class="u:flex u:items-center">
     <button
-      class="switch_indicator"
+      class="switch_indicator u:relative u:border-0 u:rounded-full u:bg-neutral-800 u:p-0 u:cursor-pointer"
       :class="{ isActive: modelValue }"
       @click="emit('update:modelValue', !modelValue)"
       :aria-label="label"
     />
-    <div class="switch_label" @click="emit('update:modelValue', !modelValue)">
+    <div
+      class="u:block u:ml-l u:cursor-pointer"
+      @click="emit('update:modelValue', !modelValue)"
+    >
       {{ label }}
     </div>
   </div>
 </template>
 
 <style>
-.switch {
-  display: flex;
-  align-items: center;
-}
-
-.switch_label {
-  display: block;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
 .switch_indicator {
-  position: relative;
-  border: 0 hidden;
-  border-radius: 50px;
-  background: var(--color-neutral-08);
   height: 30px;
   width: 50px;
-  padding: 0;
-  cursor: pointer;
 }
 
 .switch_indicator::after {

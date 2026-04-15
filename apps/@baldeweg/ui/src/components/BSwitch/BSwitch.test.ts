@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest"
-import BSwitch from "../BSwitch/BSwitch.vue"
+import BSwitch from "./BSwitch.vue"
+import { mount } from "@vue/test-utils"
 
 describe("BSwitch", () => {
   it("shows BSwitch", () => {
@@ -16,10 +17,27 @@ describe("BSwitch", () => {
     })
 
     await wrapper.find(".switch_indicator").trigger("click")
-    expect(wrapper.emitted()["update:modelValue"][0][0]).toBe(true)
+    const emitted = wrapper.emitted()
+    expect(emitted).toHaveProperty("update:modelValue")
+    expect(emitted["update:modelValue"]?.[0]).toEqual([true])
+  })
 
-    await wrapper.setProps({ modelValue: true })
-    await wrapper.find(".switch_indicator").trigger("click")
-    expect(wrapper.emitted()["update:modelValue"][1][0]).toBe(false)
+  it("updates parent modelValue on click", async () => {
+    const Parent = {
+      components: { BSwitch },
+      template: '<BSwitch v-model="value" />',
+      data: () => ({ value: false }),
+    }
+
+    const wrapper = mount(Parent)
+    await wrapper.findComponent(BSwitch).find(".switch_indicator").trigger("click")
+
+    expect(wrapper.vm.value).toBe(true)
+
+    const child = wrapper.findComponent(BSwitch)
+    expect(child.props("modelValue")).toBe(true)
+
+    await wrapper.findComponent(BSwitch).find(".switch_indicator").trigger("click")
+    expect(wrapper.vm.value).toBe(false)
   })
 })
