@@ -8,7 +8,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Additional attributes are passed to the underlying input element.",
+          "Additional attributes are passed to the underlying textarea element.",
       },
     },
   },
@@ -26,36 +26,20 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const Template = (args) => ({
-  components: { BTextarea },
-  setup() {
-    return { args }
-  },
-  template: '<BTextarea v-bind="args" />',
-})
-
-export const Default: Story = {
+export const Full: Story = {
   args: {
     modelValue: "This is some sample text for the textarea.",
     name: "textarea",
     id: "textarea",
     label: "Label",
-  },
-  render: (args) => Template(args),
-}
-
-export const WithHelpText: Story = {
-  args: {
-    ...Default.args,
     help: "This is some help text for the textarea.",
+    hideLabel: false,
   },
-  render: (args) => Template(args),
-}
-
-export const HiddenLabel: Story = {
-  args: {
-    ...Default.args,
-    hideLabel: true,
-  },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BTextarea },
+    setup() {
+      return { args }
+    },
+    template: `<BTextarea v-bind="args" />`,
+  }),
 }

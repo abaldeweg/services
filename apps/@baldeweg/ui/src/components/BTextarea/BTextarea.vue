@@ -39,9 +39,9 @@ const emit = defineEmits<{
             ($event.target as HTMLTextAreaElement).value,
           )
         "
-      ></textarea>
+      />
     </div>
-    <p v-if="help" class="textarea_helpline">
+    <p v-if="help" class="textarea_helpline u:text-neutral-800">
       {{ help }}
     </p>
   </div>
@@ -64,6 +64,5 @@ const emit = defineEmits<{
 
 .textarea_helpline {
   font-size: 0.8rem;
-  color: var(--color-neutral-06);
 }
 </style>
