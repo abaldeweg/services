@@ -17,20 +17,15 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const Size: Story = {
   args: {
     size: "l",
   },
-}
-
-export const SizeM: Story = {
-  args: {
-    size: "m",
-  },
-}
-
-export const SizeS: Story = {
-  args: {
-    size: "s",
-  },
+  render: (args) => ({
+    components: { BSpinner },
+    setup() {
+      return { args }
+    },
+    template: `<BSpinner v-bind="args" />`,
+  }),
 }
