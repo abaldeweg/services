@@ -114,9 +114,12 @@ const slots = useSlots()
 <style>
 .list {
   display: flex;
-  border-bottom: 1px solid var(--color-neutral-02);
   margin: 20px 0;
   transition: background-color 0.3s ease;
+}
+
+.list_hasDivider {
+  border-bottom: 1px solid var(--color-neutral-02);
 }
 
 .list a,
