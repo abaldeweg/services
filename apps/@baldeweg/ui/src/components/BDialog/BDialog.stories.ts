@@ -33,7 +33,7 @@ type Story = StoryObj<typeof meta>
 const dialogTemplate = `
     <div>
       <button @click="args.modelValue = true">Open Dialog</button>
-      <BDialog v-bind="args">
+      <BDialog v-model:modelValue="args.modelValue" :canClose="args.canClose">
         <template #default>
           <h2>Dialog Title</h2>
           <p>This is the content of the dialog. You can put any content here.</p>
