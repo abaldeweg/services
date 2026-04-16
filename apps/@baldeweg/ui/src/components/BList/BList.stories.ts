@@ -173,6 +173,6 @@ export const FullExample: Story = {
     controlsWidth: "120px",
     hover: true,
     divider: true,
-    route: { name: "example", params: { id: 1 } },
+    route: { name: "home", params: { id: 1 } },
   },
 }
