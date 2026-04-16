@@ -47,11 +47,13 @@ const cardTemplate = `
     </BCard>
   `
 
-export const Default: Story = {
+export const Full: Story = {
   args: {
-    outlined: false,
-    filled: false,
+    outlined: true,
+    image: true,
+    subtitle: true,
     text: true,
+    actions: true,
   },
   render: (args) => ({
     components: { BCard },
@@ -123,23 +125,6 @@ export const WithSubtitle: Story = {
 export const WithActions: Story = {
   args: {
     outlined: true,
-    text: true,
-    actions: true,
-  },
-  render: (args) => ({
-    components: { BCard },
-    setup() {
-      return { args, placeholderImage }
-    },
-    template: cardTemplate,
-  }),
-}
-
-export const CompleteCard: Story = {
-  args: {
-    outlined: true,
-    image: true,
-    subtitle: true,
     text: true,
     actions: true,
   },

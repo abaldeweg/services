@@ -65,10 +65,15 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const Full: Story = {
   args: {
     route: { name: "home" },
     default: "Inbox",
+    border: "primary",
+    background: "none",
+    direction: "horizontal",
+    icon: "home",
+    badge: "1",
   },
   render: (args) => ({
     components: { BNavigationItem },

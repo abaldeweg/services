@@ -46,7 +46,7 @@ const dialogTemplate = `
     </div>
   `
 
-export const Default: Story = {
+export const Full: Story = {
   args: {
     modelValue: false,
     canClose: true,

@@ -34,7 +34,7 @@ const dropdownTemplate = `
     </div>
   `
 
-export const Default: Story = {
+export const General: Story = {
   args: {
     position: "selector",
     keepOpen: false,
