@@ -32,12 +32,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const Template = (args) => ({
-  components: { BCard },
-  setup() {
-    return { args, placeholderImage }
-  },
-  template: `
+const cardTemplate = `
     <BCard v-bind="args">
       <template #title>Card Title</template>
       <template #subtitle v-if="args.subtitle">Card Subtitle</template>
@@ -50,8 +45,7 @@ const Template = (args) => ({
         <button>Action 2</button>
       </template>
     </BCard>
-  `,
-})
+  `
 
 export const Default: Story = {
   args: {
@@ -59,7 +53,13 @@ export const Default: Story = {
     filled: false,
     text: true,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BCard },
+    setup() {
+      return { args, placeholderImage }
+    },
+    template: cardTemplate,
+  }),
 }
 
 export const Outlined: Story = {
@@ -67,7 +67,13 @@ export const Outlined: Story = {
     outlined: true,
     text: true,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BCard },
+    setup() {
+      return { args, placeholderImage }
+    },
+    template: cardTemplate,
+  }),
 }
 
 export const Filled: Story = {
@@ -75,7 +81,13 @@ export const Filled: Story = {
     filled: true,
     text: true,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BCard },
+    setup() {
+      return { args, placeholderImage }
+    },
+    template: cardTemplate,
+  }),
 }
 
 export const WithImage: Story = {
@@ -84,7 +96,13 @@ export const WithImage: Story = {
     text: true,
     image: true,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BCard },
+    setup() {
+      return { args, placeholderImage }
+    },
+    template: cardTemplate,
+  }),
 }
 
 export const WithSubtitle: Story = {
@@ -93,7 +111,13 @@ export const WithSubtitle: Story = {
     subtitle: true,
     text: true,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BCard },
+    setup() {
+      return { args, placeholderImage }
+    },
+    template: cardTemplate,
+  }),
 }
 
 export const WithActions: Story = {
@@ -102,7 +126,13 @@ export const WithActions: Story = {
     text: true,
     actions: true,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BCard },
+    setup() {
+      return { args, placeholderImage }
+    },
+    template: cardTemplate,
+  }),
 }
 
 export const CompleteCard: Story = {
@@ -113,7 +143,13 @@ export const CompleteCard: Story = {
     text: true,
     actions: true,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BCard },
+    setup() {
+      return { args, placeholderImage }
+    },
+    template: cardTemplate,
+  }),
 }
 
 export const ClickableCard: Story = {
@@ -124,5 +160,11 @@ export const ClickableCard: Story = {
     text: true,
     route: { path: "/" },
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BCard },
+    setup() {
+      return { args, placeholderImage }
+    },
+    template: cardTemplate,
+  }),
 }

@@ -19,12 +19,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const Template = (args) => ({
-  components: { BDropdown },
-  setup() {
-    return { args }
-  },
-  template: `
+const dropdownTemplate = `
     <div style="height: 300px; padding: 50px;">
       <BDropdown v-bind="args">
         <template #selector>
@@ -37,15 +32,20 @@ const Template = (args) => ({
         <li style="padding: 10px;">Item 3</li>
       </BDropdown>
     </div>
-  `,
-})
+  `
 
 export const Default: Story = {
   args: {
     position: "selector",
     keepOpen: false,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BDropdown },
+    setup() {
+      return { args }
+    },
+    template: dropdownTemplate,
+  }),
 }
 
 export const MousePosition: Story = {
@@ -53,7 +53,13 @@ export const MousePosition: Story = {
     position: "mouse",
     keepOpen: false,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BDropdown },
+    setup() {
+      return { args }
+    },
+    template: dropdownTemplate,
+  }),
 }
 
 export const BottomPosition: Story = {
@@ -61,7 +67,13 @@ export const BottomPosition: Story = {
     position: "bottom",
     keepOpen: false,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BDropdown },
+    setup() {
+      return { args }
+    },
+    template: dropdownTemplate,
+  }),
 }
 
 export const KeepOpen: Story = {
@@ -69,5 +81,11 @@ export const KeepOpen: Story = {
     position: "selector",
     keepOpen: true,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BDropdown },
+    setup() {
+      return { args }
+    },
+    template: dropdownTemplate,
+  }),
 }

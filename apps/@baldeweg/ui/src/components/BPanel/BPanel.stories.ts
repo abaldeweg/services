@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
-
 import BPanel from "./BPanel.vue"
 
 const meta = {
@@ -40,12 +39,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const Template = (args) => ({
-  components: { BPanel },
-  setup() {
-    return { args }
-  },
-  template: `
+const panelTemplate = `
     <div :style="args.modelValue && args.permanent ? { marginLeft: args.position === 'left' ? args.width : undefined, marginRight: args.position === 'right' ? args.width : undefined } : {}">
       <div :style="{margin: 'auto', width: '500px'}">
         <p>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text </p>
@@ -70,8 +64,7 @@ const Template = (args) => ({
         </div>
       </template>
     </BPanel>
-  `,
-})
+  `
 
 export const LeftPanel: Story = {
   args: {
@@ -80,7 +73,13 @@ export const LeftPanel: Story = {
     width: "300px",
     permanent: false,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BPanel },
+    setup() {
+      return { args }
+    },
+    template: panelTemplate,
+  }),
 }
 
 export const RightPanel: Story = {
@@ -90,7 +89,13 @@ export const RightPanel: Story = {
     width: "300px",
     permanent: false,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BPanel },
+    setup() {
+      return { args }
+    },
+    template: panelTemplate,
+  }),
 }
 
 export const WithoutHeader: Story = {
@@ -100,7 +105,13 @@ export const WithoutHeader: Story = {
     width: "300px",
     permanent: false,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BPanel },
+    setup() {
+      return { args }
+    },
+    template: panelTemplate,
+  }),
 }
 
 export const WithoutFooter: Story = {
@@ -110,7 +121,13 @@ export const WithoutFooter: Story = {
     width: "300px",
     permanent: false,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BPanel },
+    setup() {
+      return { args }
+    },
+    template: panelTemplate,
+  }),
 }
 
 export const CustomWidth: Story = {
@@ -120,7 +137,13 @@ export const CustomWidth: Story = {
     width: "500px",
     permanent: false,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BPanel },
+    setup() {
+      return { args }
+    },
+    template: panelTemplate,
+  }),
 }
 
 export const PermanentPanel: Story = {
@@ -130,5 +153,11 @@ export const PermanentPanel: Story = {
     width: "300px",
     permanent: true,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BPanel },
+    setup() {
+      return { args }
+    },
+    template: panelTemplate,
+  }),
 }

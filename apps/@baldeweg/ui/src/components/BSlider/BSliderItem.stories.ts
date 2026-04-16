@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
-
 import BSliderItem from "./BSliderItem.vue"
 
 const meta = {
@@ -16,54 +15,82 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const Template = (args) => ({
-  components: { BSliderItem },
-  setup() {
-    return { args }
-  },
-  template: '<BSliderItem v-bind="args">Slider Item Content</BSliderItem>',
-})
-
 export const Default: Story = {
   args: {
     size: "m",
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BSliderItem },
+    setup() {
+      return { args }
+    },
+    template: '<BSliderItem v-bind="args">Slider Item Content</BSliderItem>',
+  }),
 }
 
 export const ExtraSmall: Story = {
   args: {
     size: "xs",
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BSliderItem },
+    setup() {
+      return { args }
+    },
+    template: '<BSliderItem v-bind="args">Slider Item Content</BSliderItem>',
+  }),
 }
 
 export const Small: Story = {
   args: {
     size: "s",
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BSliderItem },
+    setup() {
+      return { args }
+    },
+    template: '<BSliderItem v-bind="args">Slider Item Content</BSliderItem>',
+  }),
 }
 
 export const Medium: Story = {
   args: {
     size: "m",
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BSliderItem },
+    setup() {
+      return { args }
+    },
+    template: '<BSliderItem v-bind="args">Slider Item Content</BSliderItem>',
+  }),
 }
 
 export const Large: Story = {
   args: {
     size: "l",
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BSliderItem },
+    setup() {
+      return { args }
+    },
+    template: '<BSliderItem v-bind="args">Slider Item Content</BSliderItem>',
+  }),
 }
 
 export const ExtraLarge: Story = {
   args: {
     size: "xl",
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BSliderItem },
+    setup() {
+      return { args }
+    },
+    template: '<BSliderItem v-bind="args">Slider Item Content</BSliderItem>',
+  }),
 }
 
 export const WithCustomContent: Story = {

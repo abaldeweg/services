@@ -1,5 +1,4 @@
 import { describe, it, expect } from "vitest"
-
 import BSelect from "./BSelect.vue"
 
 describe("BSelect", () => {

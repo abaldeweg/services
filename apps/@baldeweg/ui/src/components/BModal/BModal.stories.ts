@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
-
 import BModal from "./BModal.vue"
 import BMaterialIcon from "../BMaterialIcon/BMaterialIcon.vue"
 

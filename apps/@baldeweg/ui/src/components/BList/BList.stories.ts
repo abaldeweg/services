@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
-
 import BList from "./BList.vue"
 import placeholderImage from "../../assets/placeholder_16x9.jpg"
 

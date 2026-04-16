@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
-
 import BSearch from "./BSearch.vue"
 
 const meta = {
@@ -26,21 +25,19 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const Template = (args) => ({
-  components: { BSearch },
-  setup() {
-    return { args }
-  },
-  template: '<BSearch v-bind="args" />',
-})
-
 export const Default: Story = {
   args: {
     placeholder: "Search",
     modelValue: "",
     searchLabel: "Search",
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BSearch },
+    setup() {
+      return { args }
+    },
+    template: '<BSearch v-bind="args" />',
+  }),
 }
 
 export const WithFilter: Story = {
@@ -51,7 +48,13 @@ export const WithFilter: Story = {
     filterLabel: "Show filters",
     searchLabel: "Search",
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BSearch },
+    setup() {
+      return { args }
+    },
+    template: '<BSearch v-bind="args" />',
+  }),
 }
 
 export const WithReset: Story = {
@@ -62,7 +65,13 @@ export const WithReset: Story = {
     resetLabel: "Clear search",
     searchLabel: "Search",
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BSearch },
+    setup() {
+      return { args }
+    },
+    template: '<BSearch v-bind="args" />',
+  }),
 }
 
 export const Branded: Story = {
@@ -72,7 +81,13 @@ export const Branded: Story = {
     branded: true,
     searchLabel: "Search",
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BSearch },
+    setup() {
+      return { args }
+    },
+    template: '<BSearch v-bind="args" />',
+  }),
 }
 
 export const Autofocus: Story = {
@@ -82,7 +97,13 @@ export const Autofocus: Story = {
     focus: true,
     searchLabel: "Search",
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BSearch },
+    setup() {
+      return { args }
+    },
+    template: '<BSearch v-bind="args" />',
+  }),
 }
 
 export const WithAllFeatures: Story = {
@@ -96,5 +117,11 @@ export const WithAllFeatures: Story = {
     filterLabel: "Show filters",
     searchLabel: "Search",
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BSearch },
+    setup() {
+      return { args }
+    },
+    template: '<BSearch v-bind="args" />',
+  }),
 }

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
-
 import BDialog from "./BDialog.vue"
 
 const meta = {
@@ -31,12 +30,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const Template = (args) => ({
-  components: { BDialog },
-  setup() {
-    return { args }
-  },
-  template: `
+const dialogTemplate = `
     <div>
       <button @click="args.modelValue = true">Open Dialog</button>
       <BDialog v-bind="args">
@@ -50,15 +44,20 @@ const Template = (args) => ({
         </template>
       </BDialog>
     </div>
-  `,
-})
+  `
 
 export const Default: Story = {
   args: {
     modelValue: false,
     canClose: true,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BDialog },
+    setup() {
+      return { args }
+    },
+    template: dialogTemplate,
+  }),
 }
 
 export const NonClosable: Story = {
@@ -66,7 +65,13 @@ export const NonClosable: Story = {
     modelValue: false,
     canClose: false,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BDialog },
+    setup() {
+      return { args }
+    },
+    template: dialogTemplate,
+  }),
 }
 
 export const OpenByDefault: Story = {
@@ -74,5 +79,11 @@ export const OpenByDefault: Story = {
     modelValue: true,
     canClose: true,
   },
-  render: (args) => Template(args),
+  render: (args) => ({
+    components: { BDialog },
+    setup() {
+      return { args }
+    },
+    template: dialogTemplate,
+  }),
 }
