@@ -9,6 +9,7 @@
 - Removed `BNav` component, use `BNavigation` instead
 - Removed `BMasthead` component, no replacement
 - Removed `BTabs` component, use `BNavigation` instead
+- Renamed var `--font-monospace` to `--font-mono`
 
 ## v0.19.0
 
@@ -99,7 +100,7 @@ Slots
 
 - In BSearch its possible to hide the reset button
 - Redesign BAlert <https://github.com/abaldeweg/ui/blob/main/packages/%40baldeweg/ui/docu/components.md#balert>
-    - 3 new CSS vars for the blue info alerts
+  - 3 new CSS vars for the blue info alerts
 - Rework tooltips component
 
 ## v0.9.0

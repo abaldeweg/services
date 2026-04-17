@@ -43,10 +43,6 @@ body {
   --color-accent-blue-10: #0074d9;
   --color-accent-blue-05: #85b4ff;
   --color-accent-blue-00: #1793ff;
-  /* Font */
-  --font-sans: "Open Sans", "Liberation Sans", "Helvetica Neue", Arial;
-  --font-serif: Georgia, Constantia, "DejaVu Serif", "Times New Roman";
-  --font-monospace: Consolas, "Liberation Mono", "Lucida Console";
   /* Misc */
   --masthead-top-height: 50px;
   --bottom-nav-height: 70px;
@@ -112,9 +108,9 @@ body[data-theme="dark"] {
   --color-blue-500: var(--color-accent-blue-05);
   --color-blue-100: var(--color-accent-blue-00);
 
-  --font-sans: var(--font-sans);
-  --font-serif: var(--font-serif);
-  --font-mono: var(--font-mono);
+  --font-sans: "Open Sans", "Liberation Sans", "Helvetica Neue", Arial;
+  --font-serif: Georgia, Constantia, "DejaVu Serif", "Times New Roman";
+  --font-mono: Consolas, "Liberation Mono", "Lucida Console";
 
   --spacing-none: 0px;
   --spacing-s: 3px;
