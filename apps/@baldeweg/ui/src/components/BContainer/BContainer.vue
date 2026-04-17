@@ -12,21 +12,21 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <section
-    class="u:clear-both u:px-xl u:mx-auto u:box-border container"
+    class="px-xl clear-both container mx-auto box-border"
     :class="[
-      size === 'l' ? 'u:w-full' : undefined,
+      size === 'l' ? 'w-full' : undefined,
       size === 'm' ? 'container_size_m' : undefined,
       size === 's' ? 'container_size_s' : undefined,
-      align === 'left' ? 'u:text-left' : undefined,
-      align === 'right' ? 'u:text-right' : undefined,
-      align === 'center' ? 'u:text-center' : undefined,
+      align === 'left' ? 'text-left' : undefined,
+      align === 'right' ? 'text-right' : undefined,
+      align === 'center' ? 'text-center' : undefined,
     ]"
   >
     <slot />
   </section>
 </template>
 
-<style>
+<style scoped>
 .container {
   letter-spacing: 0.3px;
 }

@@ -1,19 +1,19 @@
 <template>
-  <main class="content u:block u:clear-both">
+  <main class="content block clear-both">
     <slot />
   </main>
 </template>
 
 <style>
 @layer theme, utilities;
-@import "tailwindcss/theme.css" layer(theme) prefix(u);
-@import "tailwindcss/utilities.css" layer(utilities) prefix(u);
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
 
 body {
   --masthead-top-height: 50px;
 
-  color: var(--u-color-neutral-950);
-  font-family: var(--u-font-sans);
+  color: var(--color-neutral-950);
+  font-family: var(--font-sans);
   padding: 0;
   margin: 0;
   scrollbar-gutter: stable;
@@ -98,47 +98,47 @@ body {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --u-color-neutral-950: #ffffff;
-    --u-color-neutral-800: #d6d6d6;
-    --u-color-neutral-600: #a3a3a3;
-    --u-color-neutral-400: #858585;
-    --u-color-neutral-200: #525252;
-    --u-color-neutral-100: #292929;
+    --color-neutral-950: #ffffff;
+    --color-neutral-800: #d6d6d6;
+    --color-neutral-600: #a3a3a3;
+    --color-neutral-400: #858585;
+    --color-neutral-200: #525252;
+    --color-neutral-100: #292929;
 
-    --u-color-primary-900: #f3c2a5;
-    --u-color-primary-500: #e9915d;
-    --u-color-primary-100: #c1571a;
+    --color-primary-900: #f3c2a5;
+    --color-primary-500: #e9915d;
+    --color-primary-100: #c1571a;
 
-    --u-color-red-900: #f65a5a;
-    --u-color-red-500: #ff7373;
-    --u-color-red-100: #ed0c0c;
-    --u-color-green-900: #60f060;
-    --u-color-green-500: #8bff8b;
-    --u-color-green-100: #008a00;
-    --u-color-yellow-900: #cccc00;
-    --u-color-yellow-500: #f8eb8c;
-    --u-color-yellow-100: #774b06;
-    --u-color-blue-900: #1793ff;
-    --u-color-blue-500: #85b4ff;
-    --u-color-blue-100: #0074d9;
+    --color-red-900: #f65a5a;
+    --color-red-500: #ff7373;
+    --color-red-100: #ed0c0c;
+    --color-green-900: #60f060;
+    --color-green-500: #8bff8b;
+    --color-green-100: #008a00;
+    --color-yellow-900: #cccc00;
+    --color-yellow-500: #f8eb8c;
+    --color-yellow-100: #774b06;
+    --color-blue-900: #1793ff;
+    --color-blue-500: #85b4ff;
+    --color-blue-100: #0074d9;
   }
 }
 
 body {
-  background: var(--u-color-neutral-100);
+  background: var(--color-neutral-100);
   padding: 0;
   margin: 0;
-  accent-color: var(--u-color-primary-900);
+  accent-color: var(--color-primary-900);
 }
 
 ::selection {
-  color: var(--u-color-neutral-100);
-  background: var(--u-color-primary-900);
+  color: var(--color-neutral-100);
+  background: var(--color-primary-900);
 }
 
 ::-moz-selection {
-  color: var(--u-color-neutral-100);
-  background: var(--u-color-primary-900);
+  color: var(--color-neutral-100);
+  background: var(--color-primary-900);
 }
 
 ::-webkit-scrollbar {
@@ -147,17 +147,17 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--u-color-neutral-600);
+  background: var(--color-neutral-600);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--u-color-neutral-800);
+  background: var(--color-neutral-800);
 }
 
 ::-webkit-scrollbar-track-piece {
-  border-left: 1px solid var(--u-color-neutral-200);
-  background: var(--u-color-neutral-100);
+  border-left: 1px solid var(--color-neutral-200);
+  background: var(--color-neutral-100);
 }
 
 .content {
@@ -174,10 +174,10 @@ video {
 
 a,
 a:hover {
-  color: var(--u-color-neutral-950);
+  color: var(--color-neutral-950);
   text-decoration: underline;
   text-underline-offset: 3px;
-  text-decoration-color: var(--u-color-primary-900);
+  text-decoration-color: var(--color-primary-900);
 }
 
 a:hover {
@@ -201,7 +201,7 @@ h5,
 h6 {
   margin: 0;
   margin-bottom: 10px;
-  font-family: var(--u-font-serif);
+  font-family: var(--font-serif);
   word-break: break-all;
 }
 
@@ -235,7 +235,7 @@ tr {
 
 th,
 td {
-  border-bottom: 1px solid var(--u-color-neutral-200);
+  border-bottom: 1px solid var(--color-neutral-200);
   vertical-align: top;
   padding: 10px;
 }

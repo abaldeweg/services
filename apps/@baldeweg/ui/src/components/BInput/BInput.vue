@@ -39,13 +39,13 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="input_group u:mb-xl">
-    <div :class="['u:py-m input_item', { 'u:sr-only': hideLabel }]">
+  <div class="input_group mb-xl">
+    <div :class="['py-m input_item', { 'sr-only': hideLabel }]">
       <label :for="id">{{ label }}</label>
     </div>
-    <div class="u:py-m">
+    <div class="py-m">
       <input
-        class="u:border u:border-neutral-400 u:bg-neutral-100 u:box-border u:rounded-xl u:w-full u:px-m u:py-m u:m-0 u:text-m u:text-neutral-950 input_input"
+        class="px-m py-m text-m input_input m-0 box-border w-full rounded-xl border border-neutral-400 bg-neutral-100 text-neutral-950"
         v-bind="$attrs"
         :type="type"
         :value="modelValue"
@@ -62,14 +62,14 @@ const emit = defineEmits<{
   </div>
 </template>
 
-<style>
+<style scoped>
 .input_group:last-child {
   margin-bottom: 0;
 }
 
 .input_input:hover,
 .input_input:focus {
-  border: 1px solid var(--u-color-primary-900);
+  border: 1px solid var(--color-primary-900);
   outline: none;
 }
 
@@ -84,6 +84,6 @@ input[type="range"].input_input {
 
 .input_helpline {
   font-size: 0.8rem;
-  color: var(--u-color-neutral-800);
+  color: var(--color-neutral-800);
 }
 </style>

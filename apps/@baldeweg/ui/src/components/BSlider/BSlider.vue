@@ -49,7 +49,7 @@ onUnmounted(() => {
   <div class="slider" ref="slider">
     <BMaterialIcon
       class="slider_arrow_left"
-      color="var(--u-color-neutral-100)"
+      color="var(--color-neutral-100)"
       :size="40"
       hover
       @click="scroll(-200)"
@@ -62,7 +62,7 @@ onUnmounted(() => {
     </div>
     <BMaterialIcon
       class="slider_arrow_right"
-      color="var(--u-color-neutral-100)"
+      color="var(--color-neutral-100)"
       :size="40"
       hover
       @click="scroll(200)"
@@ -73,7 +73,7 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .slider {
   position: relative;
   width: 100%;
@@ -96,7 +96,7 @@ onUnmounted(() => {
   justify-content: center;
   width: 40px;
   height: 80px;
-  background: var(--u-color-neutral-800);
+  background: var(--color-neutral-800);
   z-index: 1;
   user-select: none;
   transform: translateY(-50%);
@@ -121,6 +121,6 @@ onUnmounted(() => {
 
 .slider_arrow_left:focus,
 .slider_arrow_right:focus {
-  outline: 3px solid var(--u-color-blue-900);
+  outline: 3px solid var(--color-blue-900);
 }
 </style>

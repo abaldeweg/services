@@ -15,7 +15,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <article
-    class="u:clear-both card"
+    class="card clear-both"
     :class="{
       card_outlined: outlined,
       card_filled: filled,
@@ -43,7 +43,7 @@ withDefaults(defineProps<Props>(), {
         <slot name="subtitle" v-else />
       </div>
 
-      <div class="card_text u:mt-l" v-if="$slots.text">
+      <div class="card_text mt-l" v-if="$slots.text">
         <RouterLink :to="route" v-if="route">
           <slot name="text" />
         </RouterLink>
@@ -51,7 +51,7 @@ withDefaults(defineProps<Props>(), {
       </div>
     </div>
 
-    <div class="card_actions u:mt-xl" v-if="$slots.actions">
+    <div class="card_actions mt-xl" v-if="$slots.actions">
       <slot name="actions" />
     </div>
   </article>
@@ -59,40 +59,40 @@ withDefaults(defineProps<Props>(), {
 
 <style scoped>
 .card_outlined {
-  border: 2px solid var(--u-color-neutral-200);
+  border: 2px solid var(--color-neutral-200);
 }
 .card_filled {
-  background: var(--u-color-neutral-200);
+  background: var(--color-neutral-200);
 }
 .card_image {
-  background: var(--u-color-neutral-200);
+  background: var(--color-neutral-200);
   width: 100%;
   line-height: 0;
 }
 .card_title {
-  font-family: var(--u-font-serif);
+  font-family: var(--font-serif);
   font-size: 1.5rem;
   font-weight: bold;
   margin: 0;
 }
 .card_title,
 .card_title a {
-  color: var(--u-color-neutral-950);
+  color: var(--color-neutral-950);
 }
 .card_title:hover,
 .card_title a:hover {
-  color: var(--u-color-neutral-600);
+  color: var(--color-neutral-600);
 }
 .card_subtitle,
 .card_subtitle a,
 .card_subtitle a:hover {
-  color: var(--u-color-neutral-600);
+  color: var(--color-neutral-600);
   font-size: 1.2rem;
 }
 .card_text,
 .card_text a,
 .card_text a:hover {
-  color: var(--u-color-neutral-950);
+  color: var(--color-neutral-950);
 }
 .card_actions {
   text-align: right;

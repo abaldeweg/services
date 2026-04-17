@@ -111,7 +111,7 @@ const slots = useSlots()
   </div>
 </template>
 
-<style>
+<style scoped>
 .list {
   display: flex;
   margin: 20px 0;
@@ -119,7 +119,7 @@ const slots = useSlots()
 }
 
 .list_hasDivider {
-  border-bottom: 1px solid var(--u-color-neutral-200);
+  border-bottom: 1px solid var(--color-neutral-200);
 }
 
 .list a,
@@ -128,7 +128,7 @@ const slots = useSlots()
 }
 
 .list_hasHover:hover {
-  background: var(--u-color-neutral-200);
+  background: var(--color-neutral-200);
   cursor: pointer;
 }
 
@@ -175,7 +175,7 @@ const slots = useSlots()
 
 .list_content a,
 .list_content a:hover {
-  color: var(--u-color-neutral-950) !important;
+  color: var(--color-neutral-950) !important;
 }
 
 .list_subtitle {
@@ -185,7 +185,7 @@ const slots = useSlots()
 .list_text {
   padding-left: 20px;
   text-align: right;
-  color: var(--u-color-primary-900);
+  color: var(--color-primary-900);
   font-weight: bold;
 }
 

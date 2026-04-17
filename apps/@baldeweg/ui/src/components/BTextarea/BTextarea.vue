@@ -22,13 +22,13 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="textarea_group u:mb-xl">
-    <div :class="['u:py-m textarea_item', { 'u:sr-only': hideLabel }]">
+  <div class="textarea_group mb-xl">
+    <div :class="['py-m textarea_item', { 'sr-only': hideLabel }]">
       <label :for="id">{{ label }}</label>
     </div>
-    <div class="u:py-m">
+    <div class="py-m">
       <textarea
-        class="u:border u:border-neutral-400 u:bg-neutral-100 u:box-border u:rounded-xl u:w-full u:px-m u:py-m u:m-0 u:text-m u:text-neutral-950 textarea_input"
+        class="px-m py-m text-m textarea_input m-0 box-border w-full rounded-xl border border-neutral-400 bg-neutral-100 text-neutral-950"
         v-bind="$attrs"
         :value="modelValue"
         :name="name"
@@ -41,13 +41,13 @@ const emit = defineEmits<{
         "
       />
     </div>
-    <p v-if="help" class="textarea_helpline u:text-neutral-800">
+    <p v-if="help" class="textarea_helpline text-neutral-800">
       {{ help }}
     </p>
   </div>
 </template>
 
-<style>
+<style scoped>
 .textarea_group:last-child {
   margin-bottom: 0;
 }
@@ -58,7 +58,7 @@ const emit = defineEmits<{
 
 .textarea_input:hover,
 .textarea_input:focus {
-  border: 1px solid var(--u-color-primary-900);
+  border: 1px solid var(--color-primary-900);
   outline: none;
 }
 

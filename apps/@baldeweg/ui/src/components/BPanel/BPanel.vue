@@ -57,14 +57,14 @@ const slots = useSlots()
   </Transition>
 </template>
 
-<style>
+<style scoped>
 .panel_overlay {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--u-color-neutral-100);
+  background: var(--color-neutral-100);
   opacity: 0.7;
   z-index: 3;
 }
@@ -75,23 +75,23 @@ const slots = useSlots()
   position: fixed;
   top: 0;
   bottom: 0;
-  background: var(--u-color-neutral-100);
+  background: var(--color-neutral-100);
   width: calc(100% - 20px);
   z-index: 3;
 }
 
 .panel_container.panel_position_left {
   left: 0;
-  border-right: 1px solid var(--u-color-neutral-200);
+  border-right: 1px solid var(--color-neutral-200);
 }
 
 .panel_container.panel_position_right {
   right: 0;
-  border-left: 1px solid var(--u-color-neutral-200);
+  border-left: 1px solid var(--color-neutral-200);
 }
 
 .panel_header {
-  border-bottom: 1px solid var(--u-color-neutral-200);
+  border-bottom: 1px solid var(--color-neutral-200);
 }
 
 .panel_content {
@@ -101,7 +101,7 @@ const slots = useSlots()
 }
 
 .panel_footer {
-  border-top: 1px solid var(--u-color-neutral-200);
+  border-top: 1px solid var(--color-neutral-200);
 }
 
 /* transition overlay */

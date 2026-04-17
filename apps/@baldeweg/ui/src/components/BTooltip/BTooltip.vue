@@ -27,7 +27,7 @@ const positionClass = computed<Record<string, boolean>>(() => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .tooltip {
   position: relative;
   display: inline-block;
@@ -36,9 +36,9 @@ const positionClass = computed<Record<string, boolean>>(() => {
 
 .tooltip_text {
   border-radius: 10px;
-  background: var(--u-color-neutral-200);
+  background: var(--color-neutral-200);
   padding: 10px;
-  color: var(--u-color-neutral-950);
+  color: var(--color-neutral-950);
   text-align: center;
   line-height: initial;
   opacity: 0;
@@ -109,12 +109,12 @@ const positionClass = computed<Record<string, boolean>>(() => {
 
 .tooltip_text.tooltip_position_top::after {
   top: 100%;
-  border-color: var(--u-color-neutral-200) transparent transparent transparent;
+  border-color: var(--color-neutral-200) transparent transparent transparent;
 }
 
 .tooltip_text.tooltip_position_bottom::after {
   bottom: 100%;
-  border-color: transparent transparent var(--u-color-neutral-200) transparent;
+  border-color: transparent transparent var(--color-neutral-200) transparent;
 }
 
 .tooltip_text.tooltip_position_left::after,
@@ -125,12 +125,12 @@ const positionClass = computed<Record<string, boolean>>(() => {
 
 .tooltip_text.tooltip_position_left::after {
   left: 100%;
-  border-color: transparent transparent transparent var(--u-color-neutral-200);
+  border-color: transparent transparent transparent var(--color-neutral-200);
 }
 
 .tooltip_text.tooltip_position_right::after {
   right: 100%;
-  border-color: transparent var(--u-color-neutral-200) transparent transparent;
+  border-color: transparent var(--color-neutral-200) transparent transparent;
 }
 
 .tooltip:hover .tooltip_text {

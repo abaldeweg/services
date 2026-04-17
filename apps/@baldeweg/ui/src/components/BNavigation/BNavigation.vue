@@ -14,7 +14,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <ul
-    class="navigation u:rounded-xl u:flex u:flex-col u:gap-s u:list-none u:p-xl u:m-0"
+    class="navigation gap-s p-xl m-0 flex list-none flex-col rounded-xl"
     :class="[
       border !== 'none' && `navigation_border_${border}`,
       background !== 'none' && `navigation_background_${background}`,
@@ -25,21 +25,21 @@ withDefaults(defineProps<Props>(), {
   </ul>
 </template>
 
-<style>
+<style scoped>
 .navigation_border_primary {
-  border: 1px solid var(--u-color-primary-100);
+  border: 1px solid var(--color-primary-100);
 }
 
 .navigation_border_neutral {
-  border: 1px solid var(--u-color-neutral-200);
+  border: 1px solid var(--color-neutral-200);
 }
 
 .navigation_background_primary {
-  background-color: var(--u-color-primary-100);
+  background-color: var(--color-primary-100);
 }
 
 .navigation_background_neutral {
-  background-color: var(--u-color-neutral-200);
+  background-color: var(--color-neutral-200);
 }
 
 @media (min-width: 600px) {

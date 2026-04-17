@@ -1,3 +1,3 @@
 <template>
-  <hr class="divider u:border-0 u:border-t u:border-neutral-200" />
+  <hr class="divider border-0 border-t border-neutral-200" />
 </template>

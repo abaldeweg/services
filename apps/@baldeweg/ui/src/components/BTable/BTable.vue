@@ -9,14 +9,14 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="u:overflow-auto table" :class="{ canHover: hover }">
+  <div class="table overflow-auto" :class="{ canHover: hover }">
     <slot />
   </div>
 </template>
 
-<style>
+<style scoped>
 .table.canHover tbody tr:hover {
-  background: var(--u-color-neutral-200);
+  background: var(--color-neutral-200);
   transition: background 0.3s ease;
 }
 </style>

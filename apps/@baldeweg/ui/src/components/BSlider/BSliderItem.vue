@@ -23,7 +23,7 @@ withDefaults(defineProps<Props>(), {
   </div>
 </template>
 
-<style>
+<style scoped>
 .slider_item {
   display: block;
   scroll-snap-align: start;

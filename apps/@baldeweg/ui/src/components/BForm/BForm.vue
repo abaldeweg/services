@@ -1,8 +1,8 @@
 <template>
-  <form class="u:box-border u:w-full">
+  <form class="box-border w-full">
     <slot />
     <div
-      class="u:clear-both u:flex u:justify-end u:gap-s u:overflow-auto"
+      class="gap-s clear-both flex justify-end overflow-auto"
       v-if="$slots.buttons"
     >
       <slot name="buttons" />

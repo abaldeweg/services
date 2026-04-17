@@ -39,7 +39,7 @@ const close = () => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .dialog {
   position: fixed;
   top: 0;
@@ -52,7 +52,7 @@ const close = () => {
   position: fixed;
   top: 0;
   left: 0;
-  background: var(--u-color-neutral-100);
+  background: var(--color-neutral-100);
   width: 100%;
   height: 100%;
   opacity: 0.8;
@@ -60,9 +60,9 @@ const close = () => {
 
 .dialog_body {
   position: relative;
-  border: 1px solid var(--u-color-neutral-200);
+  border: 1px solid var(--color-neutral-200);
   border-radius: 10px;
-  background: var(--u-color-neutral-100);
+  background: var(--color-neutral-100);
   max-width: 600px;
   margin: 60px auto;
   box-sizing: border-box;

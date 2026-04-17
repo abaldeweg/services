@@ -71,24 +71,24 @@ const handleNavigation = (event: Event): void => {
   </li>
 </template>
 
-<style>
+<style scoped>
 .navigation_item {
   display: block;
   border-radius: 10px;
   margin: 0;
   transition: background 0.3s ease;
-  color: var(--u-color-neutral-950);
+  color: var(--color-neutral-950);
 }
 
 .navigation_item:hover,
 .navigation_item.isActive {
-  background: var(--u-color-neutral-200);
+  background: var(--color-neutral-200);
   transition: background 0.3s ease;
 }
 
 .navigation_background_neutral .navigation_item:hover,
 .navigation_background_neutral .navigation_item.isActive {
-  background: var(--u-color-primary-100);
+  background: var(--color-primary-100);
 }
 
 .navigation_link {
@@ -116,23 +116,23 @@ const handleNavigation = (event: Event): void => {
 }
 
 .navigation_badge {
-  color: var(--u-color-neutral-950);
+  color: var(--color-neutral-950);
 }
 
 .navigation_item_border_primary {
-  border: 1px solid var(--u-color-primary-100);
+  border: 1px solid var(--color-primary-100);
 }
 
 .navigation_item_border_neutral {
-  border: 1px solid var(--u-color-neutral-200);
+  border: 1px solid var(--color-neutral-200);
 }
 
 .navigation_item_background_primary {
-  background-color: var(--u-color-primary-100);
+  background-color: var(--color-primary-100);
 }
 
 .navigation_item_background_neutral {
-  background-color: var(--u-color-neutral-200);
+  background-color: var(--color-neutral-200);
 }
 
 .navigation_item_vertical .navigation_link {
