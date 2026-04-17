@@ -2,6 +2,8 @@
 
 ## v0.20.0
 
+- Switched to TypeScript
+  - Shipping also a `.d.ts` file.
 - Added Tailwind utility classes
   - The tailwind plugin needs to be added to the vite config.
   - Global styles needs to be imported.
