@@ -25,10 +25,11 @@ describe("BSelect", () => {
     expect(select.exists()).toBe(true)
 
     await select.setValue("a")
-    expect(wrapper.emitted()["update:modelValue"][0][0]).toBe("a")
+    const modelUpdates = wrapper.emitted("update:modelValue") as Array<[string]>
+    expect(modelUpdates[0][0]).toBe("a")
 
     await select.setValue("b")
-    expect(wrapper.emitted()["update:modelValue"][1][0]).toBe("b")
+    expect(modelUpdates[1][0]).toBe("b")
   })
 
   it("sets values correctly for checkbox type", async () => {
@@ -50,13 +51,14 @@ describe("BSelect", () => {
     expect(checkboxes.length).toBe(2)
 
     await checkboxes[0].setValue(true)
-    expect(wrapper.emitted()["update:modelValue"][0][0]).toContain("a")
+    const modelUpdates = wrapper.emitted("update:modelValue") as Array<[string[]]>
+    expect(modelUpdates[0][0]).toContain("a")
 
     await checkboxes[1].setValue(true)
-    expect(wrapper.emitted()["update:modelValue"][1][0]).toEqual(["a", "b"])
+    expect(modelUpdates[1][0]).toEqual(["a", "b"])
 
     await checkboxes[0].setValue(false)
-    expect(wrapper.emitted()["update:modelValue"][2][0]).toEqual(["b"])
+    expect(modelUpdates[2][0]).toEqual(["b"])
   })
 
   it("sets values correctly for radio type", async () => {
@@ -78,9 +80,10 @@ describe("BSelect", () => {
     expect(radios.length).toBe(2)
 
     await radios[0].setValue(true)
-    expect(wrapper.emitted()["update:modelValue"][0][0]).toBe("a")
+    const modelUpdates = wrapper.emitted("update:modelValue") as Array<[string]>
+    expect(modelUpdates[0][0]).toBe("a")
 
     await radios[1].setValue(true)
-    expect(wrapper.emitted()["update:modelValue"][1][0]).toBe("b")
+    expect(modelUpdates[1][0]).toBe("b")
   })
 })
