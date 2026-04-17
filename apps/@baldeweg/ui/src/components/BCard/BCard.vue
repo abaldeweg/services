@@ -59,40 +59,40 @@ withDefaults(defineProps<Props>(), {
 
 <style scoped>
 .card_outlined {
-  border: 2px solid var(--color-neutral-02);
+  border: 2px solid var(--u-color-neutral-200);
 }
 .card_filled {
-  background: var(--color-neutral-02);
+  background: var(--u-color-neutral-200);
 }
 .card_image {
-  background: var(--color-neutral-02);
+  background: var(--u-color-neutral-200);
   width: 100%;
   line-height: 0;
 }
 .card_title {
-  font-family: var(--font-serif);
+  font-family: var(--u-font-serif);
   font-size: 1.5rem;
   font-weight: bold;
   margin: 0;
 }
 .card_title,
 .card_title a {
-  color: var(--color-neutral-10);
+  color: var(--u-color-neutral-950);
 }
 .card_title:hover,
 .card_title a:hover {
-  color: var(--color-neutral-06);
+  color: var(--u-color-neutral-600);
 }
 .card_subtitle,
 .card_subtitle a,
 .card_subtitle a:hover {
-  color: var(--color-neutral-06);
+  color: var(--u-color-neutral-600);
   font-size: 1.2rem;
 }
 .card_text,
 .card_text a,
 .card_text a:hover {
-  color: var(--color-neutral-10);
+  color: var(--u-color-neutral-950);
 }
 .card_actions {
   text-align: right;

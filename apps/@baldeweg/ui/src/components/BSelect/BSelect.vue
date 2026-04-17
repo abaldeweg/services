@@ -125,20 +125,20 @@ watch(selected, (newValue) => {
 }
 
 .select_input {
-  border: 1px solid var(--color-neutral-04);
-  background: var(--color-neutral-00);
+  border: 1px solid var(--u-color-neutral-400);
+  background: var(--u-color-neutral-100);
   box-sizing: border-box;
   border-radius: 10px;
   width: 100%;
   padding: 5px 10px;
   margin: 0;
   font-size: 1rem;
-  color: var(--color-neutral-10);
+  color: var(--u-color-neutral-950);
 }
 
 .select_input:hover,
 .select_input:focus {
-  border: 1px solid var(--color-primary-10);
+  border: 1px solid var(--u-color-primary-900);
   outline: none;
 }
 
@@ -151,6 +151,6 @@ watch(selected, (newValue) => {
 
 .select_helpline {
   font-size: 0.8rem;
-  color: var(--color-neutral-08);
+  color: var(--u-color-neutral-800);
 }
 </style>

@@ -83,7 +83,7 @@ body.isModalOpen {
   position: fixed;
   top: 0;
   left: 0;
-  background: var(--color-neutral-00);
+  background: var(--u-color-neutral-100);
   width: 100%;
   height: 100%;
   opacity: 0.8;
@@ -93,9 +93,9 @@ body.isModalOpen {
   display: flex;
   flex-direction: column;
   position: relative;
-  border: 1px solid var(--color-neutral-02);
+  border: 1px solid var(--u-color-neutral-200);
   border-radius: 10px;
-  background: var(--color-neutral-00);
+  background: var(--u-color-neutral-100);
   height: calc(100vh - 120px);
   margin: 60px auto;
   box-sizing: border-box;
@@ -104,12 +104,12 @@ body.isModalOpen {
 .modal_header {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--color-neutral-02);
+  border-bottom: 1px solid var(--u-color-neutral-200);
   padding: 5px 20px;
 }
 
 .modal_title {
-  font-family: var(--font-sans);
+  font-family: var(--u-font-sans);
   font-size: 1rem;
   font-weight: normal;
   flex-grow: 1;
@@ -127,7 +127,7 @@ body.isModalOpen {
 }
 
 .modal_footer {
-  border-top: 1px solid var(--color-neutral-02);
+  border-top: 1px solid var(--u-color-neutral-200);
   padding: 20px;
 }
 </style>

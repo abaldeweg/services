@@ -1,12 +1,3 @@
-<script setup lang="ts">
-import { onMounted } from "vue"
-
-onMounted((): void => {
-  const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches
-  document.body.setAttribute("data-theme", isDark ? "dark" : "light")
-})
-</script>
-
 <template>
   <main class="content u:block u:clear-both">
     <slot />
@@ -19,94 +10,42 @@ onMounted((): void => {
 @import "tailwindcss/utilities.css" layer(utilities) prefix(u);
 
 body {
-  /* Neutral */
-  --color-neutral-10: #292929;
-  --color-neutral-08: #525252;
-  --color-neutral-06: #858585;
-  --color-neutral-04: #a3a3a3;
-  --color-neutral-02: #d6d6d6;
-  --color-neutral-00: #ffffff;
-  /* Primary */
-  --color-primary-10: #c1571a;
-  --color-primary-05: #e9915d;
-  --color-primary-00: #f3c2a5;
-  /* Accent */
-  --color-accent-red-10: #ed0c0c;
-  --color-accent-red-05: #ff7373;
-  --color-accent-red-00: #f65a5a;
-  --color-accent-green-10: #008a00;
-  --color-accent-green-05: #8bff8b;
-  --color-accent-green-00: #60f060;
-  --color-accent-yellow-10: #774b06;
-  --color-accent-yellow-05: #f8eb8c;
-  --color-accent-yellow-00: #cccc00;
-  --color-accent-blue-10: #0074d9;
-  --color-accent-blue-05: #85b4ff;
-  --color-accent-blue-00: #1793ff;
-  /* Misc */
   --masthead-top-height: 50px;
   --bottom-nav-height: 70px;
 
-  color: var(--color-neutral-10);
-  font-family: var(--font-sans);
+  color: var(--u-color-neutral-950);
+  font-family: var(--u-font-sans);
   padding: 0;
   margin: 0;
   scrollbar-gutter: stable;
 }
 
-body[data-theme="dark"] {
-  /* Primary */
-  --color-primary-10: #f3c2a5;
-  --color-primary-05: #e9915d;
-  --color-primary-00: #c1571a;
-  /* Accent */
-  --color-accent-red-10: #f65a5a;
-  --color-accent-red-05: #ff7373;
-  --color-accent-red-00: #ed0c0c;
-  --color-accent-green-10: #60f060;
-  --color-accent-green-05: #8bff8b;
-  --color-accent-green-00: #008a00;
-  --color-accent-yellow-10: #cccc00;
-  --color-accent-yellow-05: #f8eb8c;
-  --color-accent-yellow-00: #774b06;
-  --color-accent-blue-10: #1793ff;
-  --color-accent-blue-05: #85b4ff;
-  --color-accent-blue-00: #0074d9;
-  /* Neutral */
-  --color-neutral-10: #ffffff;
-  --color-neutral-08: #d6d6d6;
-  --color-neutral-06: #a3a3a3;
-  --color-neutral-04: #858585;
-  --color-neutral-02: #525252;
-  --color-neutral-00: #292929;
-}
-
 @theme inline {
   --*: initial;
 
-  --color-neutral-950: var(--color-neutral-10);
-  --color-neutral-800: var(--color-neutral-08);
-  --color-neutral-600: var(--color-neutral-06);
-  --color-neutral-400: var(--color-neutral-04);
-  --color-neutral-200: var(--color-neutral-02);
-  --color-neutral-100: var(--color-neutral-00);
+  --color-neutral-950: #292929;
+  --color-neutral-800: #525252;
+  --color-neutral-600: #858585;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-200: #d6d6d6;
+  --color-neutral-100: #ffffff;
 
-  --color-primary-900: var(--color-primary-10);
-  --color-primary-500: var(--color-primary-05);
-  --color-primary-100: var(--color-primary-00);
+  --color-primary-900: #c1571a;
+  --color-primary-500: #e9915d;
+  --color-primary-100: #f3c2a5;
 
-  --color-red-900: var(--color-accent-red-10);
-  --color-red-500: var(--color-accent-red-05);
-  --color-red-100: var(--color-accent-red-00);
-  --color-green-900: var(--color-accent-green-10);
-  --color-green-500: var(--color-accent-green-05);
-  --color-green-100: var(--color-accent-green-00);
-  --color-yellow-900: var(--color-accent-yellow-10);
-  --color-yellow-500: var(--color-accent-yellow-05);
-  --color-yellow-100: var(--color-accent-yellow-00);
-  --color-blue-900: var(--color-accent-blue-10);
-  --color-blue-500: var(--color-accent-blue-05);
-  --color-blue-100: var(--color-accent-blue-00);
+  --color-red-900: #ed0c0c;
+  --color-red-500: #ff7373;
+  --color-red-100: #f65a5a;
+  --color-green-900: #008a00;
+  --color-green-500: #8bff8b;
+  --color-green-100: #60f060;
+  --color-yellow-900: #774b06;
+  --color-yellow-500: #f8eb8c;
+  --color-yellow-100: #cccc00;
+  --color-blue-900: #0074d9;
+  --color-blue-500: #85b4ff;
+  --color-blue-100: #1793ff;
 
   --font-sans: "Open Sans", "Liberation Sans", "Helvetica Neue", Arial;
   --font-serif: Georgia, Constantia, "DejaVu Serif", "Times New Roman";
@@ -158,21 +97,49 @@ body[data-theme="dark"] {
   --blur-l: 20px;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --u-color-neutral-950: #ffffff;
+    --u-color-neutral-800: #d6d6d6;
+    --u-color-neutral-600: #a3a3a3;
+    --u-color-neutral-400: #858585;
+    --u-color-neutral-200: #525252;
+    --u-color-neutral-100: #292929;
+
+    --u-color-primary-900: #f3c2a5;
+    --u-color-primary-500: #e9915d;
+    --u-color-primary-100: #c1571a;
+
+    --u-color-red-900: #f65a5a;
+    --u-color-red-500: #ff7373;
+    --u-color-red-100: #ed0c0c;
+    --u-color-green-900: #60f060;
+    --u-color-green-500: #8bff8b;
+    --u-color-green-100: #008a00;
+    --u-color-yellow-900: #cccc00;
+    --u-color-yellow-500: #f8eb8c;
+    --u-color-yellow-100: #774b06;
+    --u-color-blue-900: #1793ff;
+    --u-color-blue-500: #85b4ff;
+    --u-color-blue-100: #0074d9;
+  }
+}
+
 body {
-  background: var(--color-neutral-00);
+  background: var(--u-color-neutral-100);
   padding: 0;
   margin: 0;
-  accent-color: var(--color-primary-10);
+  accent-color: var(--u-color-primary-900);
 }
 
 ::selection {
-  color: var(--color-neutral-00);
-  background: var(--color-primary-10);
+  color: var(--u-color-neutral-100);
+  background: var(--u-color-primary-900);
 }
 
 ::-moz-selection {
-  color: var(--color-neutral-00);
-  background: var(--color-primary-10);
+  color: var(--u-color-neutral-100);
+  background: var(--u-color-primary-900);
 }
 
 ::-webkit-scrollbar {
@@ -181,17 +148,17 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-neutral-06);
+  background: var(--u-color-neutral-600);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-neutral-08);
+  background: var(--u-color-neutral-800);
 }
 
 ::-webkit-scrollbar-track-piece {
-  border-left: 1px solid var(--color-neutral-02);
-  background: var(--color-neutral-00);
+  border-left: 1px solid var(--u-color-neutral-200);
+  background: var(--u-color-neutral-100);
 }
 
 .content {
@@ -208,10 +175,10 @@ video {
 
 a,
 a:hover {
-  color: var(--color-neutral-10);
+  color: var(--u-color-neutral-950);
   text-decoration: underline;
   text-underline-offset: 3px;
-  text-decoration-color: var(--color-primary-10);
+  text-decoration-color: var(--u-color-primary-900);
 }
 
 a:hover {
@@ -235,7 +202,7 @@ h5,
 h6 {
   margin: 0;
   margin-bottom: 10px;
-  font-family: var(--font-serif);
+  font-family: var(--u-font-serif);
   word-break: break-all;
 }
 
@@ -269,7 +236,7 @@ tr {
 
 th,
 td {
-  border-bottom: 1px solid var(--color-neutral-02);
+  border-bottom: 1px solid var(--u-color-neutral-200);
   vertical-align: top;
   padding: 10px;
 }

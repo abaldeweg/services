@@ -77,18 +77,18 @@ const handleNavigation = (event: Event): void => {
   border-radius: 10px;
   margin: 0;
   transition: background 0.3s ease;
-  color: var(--color-neutral-10);
+  color: var(--u-color-neutral-950);
 }
 
 .navigation_item:hover,
 .navigation_item.isActive {
-  background: var(--color-neutral-02);
+  background: var(--u-color-neutral-200);
   transition: background 0.3s ease;
 }
 
 .navigation_background_neutral .navigation_item:hover,
 .navigation_background_neutral .navigation_item.isActive {
-  background: var(--color-primary-00);
+  background: var(--u-color-primary-100);
 }
 
 .navigation_link {
@@ -116,23 +116,23 @@ const handleNavigation = (event: Event): void => {
 }
 
 .navigation_badge {
-  color: var(--color-neutral-10);
+  color: var(--u-color-neutral-950);
 }
 
 .navigation_item_border_primary {
-  border: 1px solid var(--color-primary-00);
+  border: 1px solid var(--u-color-primary-100);
 }
 
 .navigation_item_border_neutral {
-  border: 1px solid var(--color-neutral-02);
+  border: 1px solid var(--u-color-neutral-200);
 }
 
 .navigation_item_background_primary {
-  background-color: var(--color-primary-00);
+  background-color: var(--u-color-primary-100);
 }
 
 .navigation_item_background_neutral {
-  background-color: var(--color-neutral-02);
+  background-color: var(--u-color-neutral-200);
 }
 
 .navigation_item_vertical .navigation_link {

@@ -27,19 +27,19 @@ withDefaults(defineProps<Props>(), {
 
 <style>
 .navigation_border_primary {
-  border: 1px solid var(--color-primary-00);
+  border: 1px solid var(--u-color-primary-100);
 }
 
 .navigation_border_neutral {
-  border: 1px solid var(--color-neutral-02);
+  border: 1px solid var(--u-color-neutral-200);
 }
 
 .navigation_background_primary {
-  background-color: var(--color-primary-00);
+  background-color: var(--u-color-primary-100);
 }
 
 .navigation_background_neutral {
-  background-color: var(--color-neutral-02);
+  background-color: var(--u-color-neutral-200);
 }
 
 @media (min-width: 600px) {

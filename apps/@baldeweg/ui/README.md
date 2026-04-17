@@ -38,35 +38,79 @@ Example Layout
 The defaults for CSS properties can be overridden.
 
 ```css
-html {
-    /* Primary Colors */
-    --color-primary-10: #0000ff;
-    --color-primary-05: #8b8bff;
-    --color-primary-00: #e7e7ff;
-    /* Neutral Colors */
-    --color-neutral-10: #333333;
-    --color-neutral-08: #4f4f4f;
-    --color-neutral-06: #828282;
-    --color-neutral-04: #b8b8b8;
-    --color-neutral-02: #cbcbcb;
-    --color-neutral-00: #ffffff;
-    /* Accent Colors */
-    --color-accent-red-10: #ff0000;
-    --color-accent-red-05: #ff7373;
-    --color-accent-red-00: #ffe7e7;
-    --color-accent-green-10: #00ff00;
-    --color-accent-green-05: #8bff8b;
-    --color-accent-green-00: #e7ffe7;
-    --color-accent-yellow-10: #f1d302;
-    --color-accent-yellow-05: #f8eb8c;
-    --color-accent-yellow-00: #fdfbe8;
-    /* Fonts */
-    --font-sans: "Open Sans", "Liberation Sans", "Helvetica Neue", Arial;
-    --font-serif: Georgia, Constantia, "DejaVu Serif", "Times New Roman";
-    --font-monospace: Consolas, "Liberation Mono", "Lucida Console";
-    /* Misc */
-    --masthead-top-height: 50px;
-    --bottom-nav-height: 60px;
+:root {
+  --color-neutral-950: #292929;
+  --color-neutral-800: #525252;
+  --color-neutral-600: #858585;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-200: #d6d6d6;
+  --color-neutral-100: #ffffff;
+
+  --color-primary-900: #c1571a;
+  --color-primary-500: #e9915d;
+  --color-primary-100: #f3c2a5;
+
+  --color-red-900: #ed0c0c;
+  --color-red-500: #ff7373;
+  --color-red-100: #f65a5a;
+  --color-green-900: #008a00;
+  --color-green-500: #8bff8b;
+  --color-green-100: #60f060;
+  --color-yellow-900: #774b06;
+  --color-yellow-500: #f8eb8c;
+  --color-yellow-100: #cccc00;
+  --color-blue-900: #0074d9;
+  --color-blue-500: #85b4ff;
+  --color-blue-100: #1793ff;
+
+  --font-sans: "Open Sans", "Liberation Sans", "Helvetica Neue", Arial;
+  --font-serif: Georgia, Constantia, "DejaVu Serif", "Times New Roman";
+  --font-mono: Consolas, "Liberation Mono", "Lucida Console";
+
+  --spacing-none: 0px;
+  --spacing-s: 3px;
+  --spacing-m: 5px;
+  --spacing-l: 10px;
+  --spacing-xl: 20px;
+  --spacing-2xl: 40px;
+
+  --text-xs: 0.8rem;
+  --text-s: 0.9rem;
+  --text-m: 1rem;
+  --text-l: 1.3rem;
+  --text-xl: 1.6rem;
+
+  --font-weight-normal: 500;
+  --font-weight-bold: 900;
+
+  --radius-xs: 2px;
+  --radius-s: 4px;
+  --radius-m: 6px;
+  --radius-l: 8px;
+  --radius-xl: 10px;
+  --radius-full: 9999px;
+
+  --shadow-s: 0 2px 2px 1px rgb(0 0 0 / 0.3);
+  --shadow-m: 0 5px 5px 2px rgb(0 0 0 / 0.3);
+  --shadow-l: 0 10px 10px 4px rgb(0 0 0 / 0.3);
+
+  --inset-shadow-xs: inset 0 1px 2px rgb(0 0 0 / 0.3);
+  --inset-shadow-s: inset 0 2px 4px rgb(0 0 0 / 0.3);
+  --inset-shadow-m: inset 0 4px 8px rgb(0 0 0 / 0.3);
+
+  --drop-shadow-xs: 0 2px 2px rgb(0 0 0 / 0.5);
+  --drop-shadow-s: 0 4px 4px rgb(0 0 0 / 0.5);
+  --drop-shadow-m: 0 6px 6px rgb(0 0 0 / 0.5);
+  --drop-shadow-l: 0 8px 8px rgb(0 0 0 / 0.5);
+  --drop-shadow-xl: 0 10px 10px rgb(0 0 0 / 0.5);
+
+  --text-shadow-s: 0px 1px 1px rgb(0 0 0 / 0.5);
+  --text-shadow-m: 0px 2px 2px rgb(0 0 0 / 0.5);
+  --text-shadow-l: 0px 3px 3px rgb(0 0 0 / 0.5);
+
+  --blur-s: 5px;
+  --blur-m: 10px;
+  --blur-l: 20px;
 }
 ```
 

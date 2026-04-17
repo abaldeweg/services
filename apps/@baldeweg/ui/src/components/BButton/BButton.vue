@@ -49,31 +49,31 @@ const emit = defineEmits<{
 .btn_primary {
   outline: 0;
   border: 0;
-  background: var(--color-primary-10);
+  background: var(--u-color-primary-900);
   padding: 6px 11px;
-  color: var(--color-neutral-00);
+  color: var(--u-color-neutral-100);
   opacity: 1;
   transition: background 0.3s;
 }
 
 .btn_primary:hover,
 .btn_primary:focus {
-  color: var(--color-neutral-00);
-  background: var(--color-primary-05);
+  color: var(--u-color-neutral-100);
+  background: var(--u-color-primary-500);
 }
 
 .btn_primary_danger {
-  background: var(--color-accent-red-10);
+  background: var(--u-color-red-900);
 }
 
 .btn_primary_danger:hover,
 .btn_primary_danger:focus {
-  background: var(--color-accent-red-05);
+  background: var(--u-color-red-500);
 }
 
 .btn_primary[disabled],
 .btn_primary[disabled]:hover {
-  background: var(--color-neutral-06);
+  background: var(--u-color-neutral-600);
   cursor: default;
 }
 
@@ -84,35 +84,35 @@ const emit = defineEmits<{
 /* Outline */
 .btn_outline {
   outline: 0;
-  border: 1px solid var(--color-primary-10);
-  background: var(--color-neutral-00);
+  border: 1px solid var(--u-color-primary-900);
+  background: var(--u-color-neutral-100);
   padding: 5px 10px;
-  color: var(--color-primary-10);
+  color: var(--u-color-primary-900);
   transition: background 0.2s;
 }
 
 .btn_outline:hover,
 .btn_outline:focus {
-  background: var(--color-primary-00);
-  color: var(--color-primary-10);
+  background: var(--u-color-primary-00);
+  color: var(--u-color-primary-900);
 }
 
 .btn_outline_danger {
-  border-color: var(--color-accent-red-10);
-  color: var(--color-accent-red-10);
+  border-color: var(--u-color-red-900);
+  color: var(--u-color-red-900);
 }
 
 .btn_outline_danger:hover,
 .btn_outline_danger:focus {
-  color: var(--color-accent-red-10);
-  background: var(--color-accent-red-00);
+  color: var(--u-color-red-900);
+  background: var(--u-color-red-100);
 }
 
 .btn_outline[disabled],
 .btn_outline[disabled]:hover {
   background: transparent;
-  border: 1px solid var(--color-neutral-06);
-  color: var(--color-neutral-06);
+  border: 1px solid var(--u-color-neutral-600);
+  color: var(--u-color-neutral-600);
   cursor: default;
 }
 
@@ -124,18 +124,18 @@ const emit = defineEmits<{
 .btn_text {
   border: 0;
   background: transparent;
-  color: var(--color-primary-10);
+  color: var(--u-color-primary-900);
   padding: 5px 10px;
 }
 
 .btn_text_danger,
 .btn_text_danger:hover {
-  color: var(--color-accent-red-10);
+  color: var(--u-color-red-900);
 }
 
 .btn_text[disabled],
 .btn_text[disabled]:hover {
-  color: var(--color-neutral-06);
+  color: var(--u-color-neutral-600);
   cursor: default;
 }
 </style>

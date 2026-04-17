@@ -69,7 +69,7 @@ const emit = defineEmits<{
 
 .input_input:hover,
 .input_input:focus {
-  border: 1px solid var(--color-primary-10);
+  border: 1px solid var(--u-color-primary-900);
   outline: none;
 }
 
@@ -84,6 +84,6 @@ input[type="range"].input_input {
 
 .input_helpline {
   font-size: 0.8rem;
-  color: var(--color-neutral-08);
+  color: var(--u-color-neutral-800);
 }
 </style>

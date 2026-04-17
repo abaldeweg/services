@@ -38,7 +38,7 @@ withDefaults(defineProps<Props>(), {
 }
 
 .dropdown_item:hover.dropdown_canHover {
-  background: var(--color-neutral-02);
+  background: var(--u-color-neutral-200);
 }
 
 .dropdown_title {

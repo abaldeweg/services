@@ -117,8 +117,8 @@ const slots = useSlots()
   min-width: 200px;
   max-width: 90%;
   border-radius: 10px;
-  border: 1px solid var(--color-neutral-02);
-  background: var(--color-neutral-00);
+  border: 1px solid var(--u-color-neutral-200);
+  background: var(--u-color-neutral-100);
   padding: 0;
   margin: 0;
   list-style: none;

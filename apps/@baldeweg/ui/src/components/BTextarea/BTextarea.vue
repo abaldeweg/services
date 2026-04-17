@@ -58,7 +58,7 @@ const emit = defineEmits<{
 
 .textarea_input:hover,
 .textarea_input:focus {
-  border: 1px solid var(--color-primary-10);
+  border: 1px solid var(--u-color-primary-900);
   outline: none;
 }
 

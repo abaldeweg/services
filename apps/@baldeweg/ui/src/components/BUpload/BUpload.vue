@@ -54,13 +54,13 @@ const isDragging = ref<boolean>(false)
 .upload {
   position: relative;
   height: 300px;
-  border: 1px solid var(--color-neutral-02);
+  border: 1px solid var(--u-color-neutral-200);
   border-radius: 10px;
 }
 
 .upload:hover,
 .upload.isDragging {
-  border: 1px solid var(--color-primary-10);
+  border: 1px solid var(--u-color-primary-900);
 }
 
 .upload_text {

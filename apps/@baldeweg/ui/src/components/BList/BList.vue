@@ -119,7 +119,7 @@ const slots = useSlots()
 }
 
 .list_hasDivider {
-  border-bottom: 1px solid var(--color-neutral-02);
+  border-bottom: 1px solid var(--u-color-neutral-200);
 }
 
 .list a,
@@ -128,7 +128,7 @@ const slots = useSlots()
 }
 
 .list_hasHover:hover {
-  background: var(--color-neutral-02);
+  background: var(--u-color-neutral-200);
   cursor: pointer;
 }
 
@@ -175,7 +175,7 @@ const slots = useSlots()
 
 .list_content a,
 .list_content a:hover {
-  color: var(--color-neutral-10) !important;
+  color: var(--u-color-neutral-950) !important;
 }
 
 .list_subtitle {
@@ -185,7 +185,7 @@ const slots = useSlots()
 .list_text {
   padding-left: 20px;
   text-align: right;
-  color: var(--color-primary-10);
+  color: var(--u-color-primary-900);
   font-weight: bold;
 }
 

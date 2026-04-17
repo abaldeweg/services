@@ -42,14 +42,14 @@ const emit = defineEmits<{
   top: 5px;
   left: 5px;
   border-radius: 90px;
-  background: var(--color-neutral-00);
+  background: var(--u-color-neutral-100);
   width: 20px;
   height: 20px;
   transition: 0.2s;
 }
 
 .switch_indicator.isActive {
-  background: var(--color-primary-10);
+  background: var(--u-color-primary-900);
 }
 
 .switch_indicator.isActive::after {

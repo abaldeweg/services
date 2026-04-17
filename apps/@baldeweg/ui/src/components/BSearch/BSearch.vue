@@ -83,17 +83,17 @@ const emit = defineEmits<{
 .search {
   display: block;
   border-radius: 10px;
-  border: 1px solid var(--color-neutral-04);
+  border: 1px solid var(--u-color-neutral-400);
   flex-grow: 1;
   align-items: center;
 }
 
 .search.search_isBranded {
-  border: 1px solid var(--color-primary-10);
+  border: 1px solid var(--u-color-primary-900);
 }
 
 .search_input {
-  background: var(--color-neutral-00);
+  background: var(--u-color-neutral-100);
   border-radius: 10px;
   flex-grow: 1;
   outline: 0;
@@ -102,9 +102,9 @@ const emit = defineEmits<{
   padding: 5px;
   padding-left: 10px;
   margin: 0;
-  font-family: var(--font-sans);
+  font-family: var(--u-font-sans);
   font-size: 1rem;
-  color: var(--color-neutral-10);
+  color: var(--u-color-neutral-950);
 }
 
 .search_buttons {
@@ -146,7 +146,7 @@ input[type="search"]::-ms-clear {
 
 @media (prefers-color-scheme: dark) {
   .search_button {
-    color: var(--color-neutral-10);
+    color: var(--u-color-neutral-950);
   }
 }
 </style>
