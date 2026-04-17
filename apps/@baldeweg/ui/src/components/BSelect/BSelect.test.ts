@@ -51,7 +51,9 @@ describe("BSelect", () => {
     expect(checkboxes.length).toBe(2)
 
     await checkboxes[0].setValue(true)
-    const modelUpdates = wrapper.emitted("update:modelValue") as Array<[string[]]>
+    const modelUpdates = wrapper.emitted("update:modelValue") as Array<
+      [string[]]
+    >
     expect(modelUpdates[0][0]).toContain("a")
 
     await checkboxes[1].setValue(true)

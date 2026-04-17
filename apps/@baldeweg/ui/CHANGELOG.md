@@ -3,36 +3,36 @@
 ## v0.20.0
 
 - Switched to TypeScript
-  - Shipping also a `.d.ts` file.
+    - Shipping also a `.d.ts` file.
 - Added Tailwind utility classes
-  - The tailwind plugin needs to be added to the vite config.
-  - Global styles needs to be imported.
-  - CSS custom properties (variables) live now in `:root`.
-  - Refer to the `README.md` for more details.
+    - The tailwind plugin needs to be added to the vite config.
+    - Global styles needs to be imported.
+    - CSS custom properties (variables) live now in `:root`.
+    - Refer to the `README.md` for more details.
 - Removed class `visuallyHidden`, use `sr-only` instead
 - Renamed var `--font-monospace` to `--font-mono`
 - Renamed color vars:
-  - `--color-neutral-10` to `--color-neutral-950`
-  - `--color-neutral-08` to `--color-neutral-800`
-  - `--color-neutral-06` to `--color-neutral-600`
-  - `--color-neutral-04` to `--color-neutral-400`
-  - `--color-neutral-02` to `--color-neutral-200`
-  - `--color-neutral-00` to `--color-neutral-100`
-  - `--color-primary-10` to `--color-primary-900`
-  - `--color-primary-05` to `--color-primary-500`
-  - `--color-primary-00` to `--color-primary-100`
-  - `--color-accent-red-10` to `--color-red-900`
-  - `--color-accent-red-05` to `--color-red-500`
-  - `--color-accent-red-00` to `--color-red-100`
-  - `--color-accent-green-10` to `--color-green-900`
-  - `--color-accent-green-05` to `--color-green-500`
-  - `--color-accent-green-00` to `--color-green-100`
-  - `--color-accent-yellow-10` to `--color-yellow-900`
-  - `--color-accent-yellow-05` to `--color-yellow-500`
-  - `--color-accent-yellow-00` to `--color-yellow-100`
-  - `--color-accent-blue-10` to `--color-blue-900`
-  - `--color-accent-blue-05` to `--color-blue-500`
-  - `--color-accent-blue-00` to `--color-blue-100`
+    - `--color-neutral-10` to `--color-neutral-950`
+    - `--color-neutral-08` to `--color-neutral-800`
+    - `--color-neutral-06` to `--color-neutral-600`
+    - `--color-neutral-04` to `--color-neutral-400`
+    - `--color-neutral-02` to `--color-neutral-200`
+    - `--color-neutral-00` to `--color-neutral-100`
+    - `--color-primary-10` to `--color-primary-900`
+    - `--color-primary-05` to `--color-primary-500`
+    - `--color-primary-00` to `--color-primary-100`
+    - `--color-accent-red-10` to `--color-red-900`
+    - `--color-accent-red-05` to `--color-red-500`
+    - `--color-accent-red-00` to `--color-red-100`
+    - `--color-accent-green-10` to `--color-green-900`
+    - `--color-accent-green-05` to `--color-green-500`
+    - `--color-accent-green-00` to `--color-green-100`
+    - `--color-accent-yellow-10` to `--color-yellow-900`
+    - `--color-accent-yellow-05` to `--color-yellow-500`
+    - `--color-accent-yellow-00` to `--color-yellow-100`
+    - `--color-accent-blue-10` to `--color-blue-900`
+    - `--color-accent-blue-05` to `--color-blue-500`
+    - `--color-accent-blue-00` to `--color-blue-100`
 - Removed `BBottomNav` component, use `BNavigation` instead
 - Removed `BNav` component, use `BNavigation` instead
 - Removed `BMasthead` component, no replacement
@@ -128,7 +128,7 @@ Slots
 
 - In BSearch its possible to hide the reset button
 - Redesign BAlert <https://github.com/abaldeweg/ui/blob/main/packages/%40baldeweg/ui/docu/components.md#balert>
-  - 3 new CSS vars for the blue info alerts
+    - 3 new CSS vars for the blue info alerts
 - Rework tooltips component
 
 ## v0.9.0
