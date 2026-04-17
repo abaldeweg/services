@@ -44,7 +44,7 @@ export const Upload: Story = {
   args: {
     id: "upload",
     text: "Drop a file here or click to upload",
-    'onUpdate:modelValue': action('upload'),
+    "onUpdate:modelValue": action("upload"),
   },
 }
 
@@ -53,6 +53,6 @@ export const PDFUpload: Story = {
     id: "upload",
     text: "Drop a pdf file here or click to upload",
     accept: "application/pdf",
-    'onUpdate:modelValue': action('upload'),
+    "onUpdate:modelValue": action("upload"),
   },
 }
