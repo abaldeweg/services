@@ -3,6 +3,7 @@ import { setup } from "@storybook/vue3-vite"
 import { createRouter, createMemoryHistory } from "vue-router"
 import BApp from "../src/components/BApp/BApp.vue"
 import { registerPlugins } from "../src/plugins"
+import "../src/globals.css"
 
 const mockRouter = createRouter({
   history: createMemoryHistory(),

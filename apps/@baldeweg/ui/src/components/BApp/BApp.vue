@@ -1,14 +1,10 @@
 <template>
-  <main class="content block clear-both">
+  <main class="content clear-both block">
     <slot />
   </main>
 </template>
 
 <style>
-@layer theme, utilities;
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/utilities.css" layer(utilities);
-
 body {
   --masthead-top-height: 50px;
 
@@ -17,111 +13,6 @@ body {
   padding: 0;
   margin: 0;
   scrollbar-gutter: stable;
-}
-
-@theme inline {
-  --*: initial;
-
-  --color-neutral-950: #292929;
-  --color-neutral-800: #525252;
-  --color-neutral-600: #858585;
-  --color-neutral-400: #a3a3a3;
-  --color-neutral-200: #d6d6d6;
-  --color-neutral-100: #ffffff;
-
-  --color-primary-900: #c1571a;
-  --color-primary-500: #e9915d;
-  --color-primary-100: #f3c2a5;
-
-  --color-red-900: #ed0c0c;
-  --color-red-500: #ff7373;
-  --color-red-100: #f65a5a;
-  --color-green-900: #008a00;
-  --color-green-500: #8bff8b;
-  --color-green-100: #60f060;
-  --color-yellow-900: #774b06;
-  --color-yellow-500: #f8eb8c;
-  --color-yellow-100: #cccc00;
-  --color-blue-900: #0074d9;
-  --color-blue-500: #85b4ff;
-  --color-blue-100: #1793ff;
-
-  --font-sans: "Open Sans", "Liberation Sans", "Helvetica Neue", Arial;
-  --font-serif: Georgia, Constantia, "DejaVu Serif", "Times New Roman";
-  --font-mono: Consolas, "Liberation Mono", "Lucida Console";
-
-  --spacing-none: 0px;
-  --spacing-s: 3px;
-  --spacing-m: 5px;
-  --spacing-l: 10px;
-  --spacing-xl: 20px;
-  --spacing-2xl: 40px;
-
-  --text-xs: 0.8rem;
-  --text-s: 0.9rem;
-  --text-m: 1rem;
-  --text-l: 1.3rem;
-  --text-xl: 1.6rem;
-
-  --font-weight-normal: 500;
-  --font-weight-bold: 900;
-
-  --radius-xs: 2px;
-  --radius-s: 4px;
-  --radius-m: 6px;
-  --radius-l: 8px;
-  --radius-xl: 10px;
-  --radius-full: 9999px;
-
-  --shadow-s: 0 2px 2px 1px rgb(0 0 0 / 0.3);
-  --shadow-m: 0 5px 5px 2px rgb(0 0 0 / 0.3);
-  --shadow-l: 0 10px 10px 4px rgb(0 0 0 / 0.3);
-
-  --inset-shadow-xs: inset 0 1px 2px rgb(0 0 0 / 0.3);
-  --inset-shadow-s: inset 0 2px 4px rgb(0 0 0 / 0.3);
-  --inset-shadow-m: inset 0 4px 8px rgb(0 0 0 / 0.3);
-
-  --drop-shadow-xs: 0 2px 2px rgb(0 0 0 / 0.5);
-  --drop-shadow-s: 0 4px 4px rgb(0 0 0 / 0.5);
-  --drop-shadow-m: 0 6px 6px rgb(0 0 0 / 0.5);
-  --drop-shadow-l: 0 8px 8px rgb(0 0 0 / 0.5);
-  --drop-shadow-xl: 0 10px 10px rgb(0 0 0 / 0.5);
-
-  --text-shadow-s: 0px 1px 1px rgb(0 0 0 / 0.5);
-  --text-shadow-m: 0px 2px 2px rgb(0 0 0 / 0.5);
-  --text-shadow-l: 0px 3px 3px rgb(0 0 0 / 0.5);
-
-  --blur-s: 5px;
-  --blur-m: 10px;
-  --blur-l: 20px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-neutral-950: #ffffff;
-    --color-neutral-800: #d6d6d6;
-    --color-neutral-600: #a3a3a3;
-    --color-neutral-400: #858585;
-    --color-neutral-200: #525252;
-    --color-neutral-100: #292929;
-
-    --color-primary-900: #f3c2a5;
-    --color-primary-500: #e9915d;
-    --color-primary-100: #c1571a;
-
-    --color-red-900: #f65a5a;
-    --color-red-500: #ff7373;
-    --color-red-100: #ed0c0c;
-    --color-green-900: #60f060;
-    --color-green-500: #8bff8b;
-    --color-green-100: #008a00;
-    --color-yellow-900: #cccc00;
-    --color-yellow-500: #f8eb8c;
-    --color-yellow-100: #774b06;
-    --color-blue-900: #1793ff;
-    --color-blue-500: #85b4ff;
-    --color-blue-100: #0074d9;
-  }
 }
 
 body {

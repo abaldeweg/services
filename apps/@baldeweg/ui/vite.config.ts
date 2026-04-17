@@ -1,4 +1,5 @@
 import { fileURLToPath, URL } from "node:url"
+import fs from "node:fs"
 import vue from "@vitejs/plugin-vue"
 import { defineConfig } from "vite"
 import vueDevTools from "vite-plugin-vue-devtools"
@@ -21,6 +22,19 @@ export default defineConfig(({ command }) => {
           ]
         : []),
       tailwindcss(),
+      {
+        name: "copy-globals-css",
+        generateBundle() {
+          this.emitFile({
+            type: "asset",
+            fileName: "globals.css",
+            source: fs.readFileSync(
+              path.resolve(__dirname, "src/globals.css"),
+              "utf-8",
+            ),
+          })
+        },
+      },
     ],
     resolve: {
       alias: {

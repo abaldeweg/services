@@ -19,6 +19,7 @@ Then you can add this to your `main.js`.
 ```js
 import { createUi } from "@baldeweg/ui"
 import "@baldeweg/ui/styles"
+import "@baldeweg/ui/globals"
 
 const ui = createUi()
 
@@ -113,6 +114,8 @@ The defaults for CSS properties can be overridden.
   --blur-l: 20px;
 }
 ```
+
+It's recommended to use `<style scoped>` for component-specific styles.
 
 ## Utility Classes
 

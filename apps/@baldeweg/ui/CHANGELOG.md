@@ -3,11 +3,11 @@
 ## v0.20.0
 
 - Added Tailwind utility classes
+  - The tailwind plugin needs to be added to the vite config.
+  - Global styles needs to be imported.
+  - CSS custom properties (variables) live now in `:root`.
+  - Refer to the `README.md` for more details.
 - Removed class `visuallyHidden`, use `sr-only` instead
-- Removed `BBottomNav` component, use `BNavigation` instead
-- Removed `BNav` component, use `BNavigation` instead
-- Removed `BMasthead` component, no replacement
-- Removed `BTabs` component, use `BNavigation` instead
 - Renamed var `--font-monospace` to `--font-mono`
 - Renamed color vars:
   - `--color-neutral-10` to `--color-neutral-950`
@@ -31,6 +31,11 @@
   - `--color-accent-blue-10` to `--color-blue-900`
   - `--color-accent-blue-05` to `--color-blue-500`
   - `--color-accent-blue-00` to `--color-blue-100`
+- Removed `BBottomNav` component, use `BNavigation` instead
+- Removed `BNav` component, use `BNavigation` instead
+- Removed `BMasthead` component, no replacement
+- Removed `BTabs` component, use `BNavigation` instead
+- `<style scoped>` is now recommended
 
 ## v0.19.0
 
@@ -121,7 +126,7 @@ Slots
 
 - In BSearch its possible to hide the reset button
 - Redesign BAlert <https://github.com/abaldeweg/ui/blob/main/packages/%40baldeweg/ui/docu/components.md#balert>
-    - 3 new CSS vars for the blue info alerts
+  - 3 new CSS vars for the blue info alerts
 - Rework tooltips component
 
 ## v0.9.0

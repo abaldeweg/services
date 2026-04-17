@@ -56,7 +56,8 @@
       "types": "./dist/types/components/index.d.ts",
       "import": "./dist/ui.es.js"
     },
-    "./styles": "./dist/ui.css"
+    "./styles": "./dist/ui.css",
+    "./globals": "./dist/globals.css"
   },
   "author": "André Baldeweg <a@baldeweg.org>",
   "license": "MIT",
