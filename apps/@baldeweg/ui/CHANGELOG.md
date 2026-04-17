@@ -11,27 +11,27 @@
 - Removed `BTabs` component, use `BNavigation` instead
 - Renamed var `--font-monospace` to `--font-mono`
 - Renamed color vars:
-  - `--color-neutral-10` to `--u-color-neutral-950`
-  - `--color-neutral-08` to `--u-color-neutral-800`
-  - `--color-neutral-06` to `--u-color-neutral-600`
-  - `--color-neutral-04` to `--u-color-neutral-400`
-  - `--color-neutral-02` to `--u-color-neutral-200`
-  - `--color-neutral-00` to `--u-color-neutral-100`
-  - `--color-primary-10` to `--u-color-primary-900`
-  - `--color-primary-05` to `--u-color-primary-500`
-  - `--color-primary-00` to `--u-color-primary-100`
-  - `--color-accent-red-10` to `--u-color-red-900`
-  - `--color-accent-red-05` to `--u-color-red-500`
-  - `--color-accent-red-00` to `--u-color-red-100`
-  - `--color-accent-green-10` to `--u-color-green-900`
-  - `--color-accent-green-05` to `--u-color-green-500`
-  - `--color-accent-green-00` to `--u-color-green-100`
-  - `--color-accent-yellow-10` to `--u-color-yellow-900`
-  - `--color-accent-yellow-05` to `--u-color-yellow-500`
-  - `--color-accent-yellow-00` to `--u-color-yellow-100`
-  - `--color-accent-blue-10` to `--u-color-blue-900`
-  - `--color-accent-blue-05` to `--u-color-blue-500`
-  - `--color-accent-blue-00` to `--u-color-blue-100`
+    - `--color-neutral-10` to `--u-color-neutral-950`
+    - `--color-neutral-08` to `--u-color-neutral-800`
+    - `--color-neutral-06` to `--u-color-neutral-600`
+    - `--color-neutral-04` to `--u-color-neutral-400`
+    - `--color-neutral-02` to `--u-color-neutral-200`
+    - `--color-neutral-00` to `--u-color-neutral-100`
+    - `--color-primary-10` to `--u-color-primary-900`
+    - `--color-primary-05` to `--u-color-primary-500`
+    - `--color-primary-00` to `--u-color-primary-100`
+    - `--color-accent-red-10` to `--u-color-red-900`
+    - `--color-accent-red-05` to `--u-color-red-500`
+    - `--color-accent-red-00` to `--u-color-red-100`
+    - `--color-accent-green-10` to `--u-color-green-900`
+    - `--color-accent-green-05` to `--u-color-green-500`
+    - `--color-accent-green-00` to `--u-color-green-100`
+    - `--color-accent-yellow-10` to `--u-color-yellow-900`
+    - `--color-accent-yellow-05` to `--u-color-yellow-500`
+    - `--color-accent-yellow-00` to `--u-color-yellow-100`
+    - `--color-accent-blue-10` to `--u-color-blue-900`
+    - `--color-accent-blue-05` to `--u-color-blue-500`
+    - `--color-accent-blue-00` to `--u-color-blue-100`
 
 ## v0.19.0
 
