@@ -11,7 +11,6 @@
 
 body {
   --masthead-top-height: 50px;
-  --bottom-nav-height: 70px;
 
   color: var(--u-color-neutral-950);
   font-family: var(--u-font-sans);
