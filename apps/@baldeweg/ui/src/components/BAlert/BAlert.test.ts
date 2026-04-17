@@ -18,7 +18,7 @@ describe("BAlert", () => {
         },
       },
     })
-    expect(wrapper.classes()).toContain("alert_info")
+    expect(wrapper.classes()).toContain("u:text-blue-500")
   })
 
   it("sets alert_danger class", () => {
@@ -32,7 +32,7 @@ describe("BAlert", () => {
         },
       },
     })
-    expect(wrapper.classes()).toContain("alert_danger")
+    expect(wrapper.classes()).toContain("u:text-red-500")
   })
 
   it("sets alert_warning class", () => {
@@ -46,7 +46,7 @@ describe("BAlert", () => {
         },
       },
     })
-    expect(wrapper.classes()).toContain("alert_warning")
+    expect(wrapper.classes()).toContain("u:text-yellow-500")
   })
 
   it("sets alert_success class", () => {
@@ -60,7 +60,7 @@ describe("BAlert", () => {
         },
       },
     })
-    expect(wrapper.classes()).toContain("alert_success")
+    expect(wrapper.classes()).toContain("u:text-green-500")
   })
 
   it("uses info type by default", () => {
@@ -71,6 +71,6 @@ describe("BAlert", () => {
         },
       },
     })
-    expect(wrapper.classes()).toContain("alert_info")
+    expect(wrapper.classes()).toContain("u:text-blue-500")
   })
 })
