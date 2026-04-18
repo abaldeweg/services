@@ -74,7 +74,7 @@ The defaults for CSS properties can be overridden.
     --spacing-l: 10px;
     --spacing-2xl: 40px;
 
-    --text-xs: 0.8rem;
+    --text-s: 0.8rem;
     --text-m: 1rem;
     --text-l: 1.2rem;
     --text-xl: 1.5rem;
@@ -136,7 +136,7 @@ Most of the [Tailwind utility classes](https://tailwindcss.com/docs/) are availa
 - Font Weight: `normal`, `bold`
 - Spacing: `none`, `s`, `m`, `l`, `xl`, `2xl`
 - Radius: `s`, `m`, `l`, `full`
-- Text: `xs`, `s`, `m`, `l`, `xl`, `2xl`, `3xl`
+- Text: `s`, `m`, `l`, `xl`, `2xl`, `3xl`
 - Shadow: `s`, `m`, `l`
 - Inset Shadow: `xs`, `s`, `m`
 - Drop Shadow: `xs`, `s`, `m`, `l`, `xl`

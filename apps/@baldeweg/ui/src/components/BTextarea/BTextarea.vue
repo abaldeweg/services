@@ -41,7 +41,7 @@ const emit = defineEmits<{
         "
       />
     </div>
-    <p v-if="help" class="textarea_helpline text-xs text-neutral-800">
+    <p v-if="help" class="textarea_helpline text-s text-neutral-800">
       {{ help }}
     </p>
   </div>

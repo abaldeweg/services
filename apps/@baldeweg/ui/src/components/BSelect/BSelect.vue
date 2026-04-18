@@ -110,7 +110,7 @@ watch(selected, (newValue) => {
       </div>
     </div>
 
-    <p v-if="help" class="select_helpline text-xs text-neutral-800">
+    <p v-if="help" class="select_helpline text-s text-neutral-800">
       {{ help }}
     </p>
   </div>
