@@ -64,7 +64,7 @@ const handleNavigation = (event: Event): void => {
         <slot />
       </span>
 
-      <span class="text-neutral-950" v-if="badge">
+      <span class="navigation_badge text-neutral-950" v-if="badge">
         {{ badge }}
       </span>
     </a>

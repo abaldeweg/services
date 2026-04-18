@@ -11,35 +11,35 @@ describe("BNavigation", () => {
   // border
   it("does not apply a border class when border is none", () => {
     const wrapper = mount(BNavigation, { props: { border: "none" } })
-    expect(wrapper.classes()).not.toContain("navigation_border_primary")
-    expect(wrapper.classes()).not.toContain("navigation_border_neutral")
+    expect(wrapper.classes()).not.toContain("border-primary-100")
+    expect(wrapper.classes()).not.toContain("border-neutral-200")
   })
 
-  it("applies navigation_border_primary class when border is primary", () => {
+  it("applies border-primary-100 class when border is primary", () => {
     const wrapper = mount(BNavigation, { props: { border: "primary" } })
-    expect(wrapper.classes()).toContain("navigation_border_primary")
+    expect(wrapper.classes()).toContain("border-primary-100")
   })
 
-  it("applies navigation_border_neutral class when border is neutral", () => {
+  it("applies border-neutral-200 class when border is neutral", () => {
     const wrapper = mount(BNavigation, { props: { border: "neutral" } })
-    expect(wrapper.classes()).toContain("navigation_border_neutral")
+    expect(wrapper.classes()).toContain("border-neutral-200")
   })
 
   // background
   it("does not apply a background class when background is none", () => {
     const wrapper = mount(BNavigation, { props: { background: "none" } })
-    expect(wrapper.classes()).not.toContain("navigation_background_primary")
-    expect(wrapper.classes()).not.toContain("navigation_background_neutral")
+    expect(wrapper.classes()).not.toContain("bg-primary-100")
+    expect(wrapper.classes()).not.toContain("bg-neutral-200")
   })
 
-  it("applies navigation_background_primary class when background is primary", () => {
+  it("applies bg-primary-100 class when background is primary", () => {
     const wrapper = mount(BNavigation, { props: { background: "primary" } })
-    expect(wrapper.classes()).toContain("navigation_background_primary")
+    expect(wrapper.classes()).toContain("bg-primary-100")
   })
 
-  it("applies navigation_background_neutral class when background is neutral", () => {
+  it("applies bg-neutral-200 class when background is neutral", () => {
     const wrapper = mount(BNavigation, { props: { background: "neutral" } })
-    expect(wrapper.classes()).toContain("navigation_background_neutral")
+    expect(wrapper.classes()).toContain("bg-neutral-200")
   })
 
   // direction
