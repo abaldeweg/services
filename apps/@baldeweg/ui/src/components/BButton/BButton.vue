@@ -93,7 +93,7 @@ const emit = defineEmits<{
 
 .btn_outline:hover,
 .btn_outline:focus {
-  background: var(--color-primary-00);
+  background: var(--color-primary-100);
   color: var(--color-primary-900);
 }
 
