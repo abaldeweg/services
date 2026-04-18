@@ -1,5 +1,5 @@
 <template>
-  <main class="content clear-both block">
+  <main class="z-1 clear-both block">
     <slot />
   </main>
 </template>
@@ -44,10 +44,6 @@ body {
 ::-webkit-scrollbar-track-piece {
   border-left: 1px solid var(--color-neutral-200);
   background: var(--color-neutral-100);
-}
-
-.content {
-  z-index: 1;
 }
 
 img,
@@ -102,8 +98,6 @@ h2 {
 h3 {
   font-size: 1rem;
 }
-
-
 
 @media all and (min-width: 600px) {
   h1 {
