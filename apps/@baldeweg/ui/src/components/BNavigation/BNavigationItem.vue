@@ -42,7 +42,7 @@ const handleNavigation = (event: Event): void => {
 
 <template>
   <li
-    class="navigation_item m-none block rounded-xl text-neutral-950"
+    class="navigation_item m-none rounded-m block text-neutral-950"
     :class="[
       border !== 'none' && `navigation_item_border_${border}`,
       background !== 'none' && `navigation_item_background_${background}`,

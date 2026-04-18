@@ -72,23 +72,21 @@ The defaults for CSS properties can be overridden.
     --spacing-s: 3px;
     --spacing-m: 5px;
     --spacing-l: 10px;
-    --spacing-xl: 20px;
     --spacing-2xl: 40px;
 
     --text-xs: 0.8rem;
-    --text-s: 0.9rem;
     --text-m: 1rem;
-    --text-l: 1.3rem;
-    --text-xl: 1.6rem;
+    --text-l: 1.2rem;
+    --text-xl: 1.5rem;
+    --text-2xl: 1.6rem;
+    --text-3xl: 1.8rem;
 
     --font-weight-normal: 500;
     --font-weight-bold: 900;
 
-    --radius-xs: 2px;
-    --radius-s: 4px;
-    --radius-m: 6px;
-    --radius-l: 8px;
-    --radius-xl: 10px;
+    --radius-s: 10px;
+    --radius-m: 20px;
+    --radius-l: 40px;
     --radius-full: 9999px;
 
     --shadow-s: 0 2px 2px 1px rgb(0 0 0 / 0.3);
@@ -137,8 +135,8 @@ Most of the [Tailwind utility classes](https://tailwindcss.com/docs/) are availa
 - Fonts: `sans`, `serif`, `mono`
 - Font Weight: `normal`, `bold`
 - Spacing: `none`, `s`, `m`, `l`, `xl`, `2xl`
-- Radius: `xs`, `s`, `m`, `l`, `xl`, `full`
-- Text: `xs`, `s`, `m`, `l`, `xl`
+- Radius: `s`, `m`, `l`, `full`
+- Text: `xs`, `s`, `m`, `l`, `xl`, `2xl`, `3xl`
 - Shadow: `s`, `m`, `l`
 - Inset Shadow: `xs`, `s`, `m`
 - Drop Shadow: `xs`, `s`, `m`, `l`, `xl`

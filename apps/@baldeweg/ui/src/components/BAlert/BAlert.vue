@@ -27,7 +27,7 @@ const alertClass = computed<Record<string, boolean>>(
 
 <template>
   <div
-    class="gap-xl p-xl my-l box-border flex rounded-xl border border-blue-500 text-blue-500"
+    class="gap-xl p-xl my-l rounded-m box-border flex border border-blue-500 text-blue-500"
     :class="alertClass"
     v-if="!showAlert"
   >

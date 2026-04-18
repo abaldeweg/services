@@ -49,7 +49,7 @@ const slots = useSlots()
     />
 
     <div
-      class="modal_inner my-3xl relative mx-auto box-border flex flex-col rounded-xl border border-neutral-200 bg-neutral-100"
+      class="modal_inner my-2xl rounded-m relative mx-auto box-border flex flex-col border border-neutral-200 bg-neutral-100"
       :style="{ maxWidth: width + 'px' }"
     >
       <div class="py-m px-xl flex items-center border-b border-neutral-200">

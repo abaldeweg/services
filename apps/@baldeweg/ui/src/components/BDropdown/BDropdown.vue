@@ -92,7 +92,7 @@ const slots = useSlots()
     />
 
     <ul
-      class="dropdown m-none p-none fixed hidden list-none overflow-auto rounded-xl border border-neutral-200 bg-neutral-100 text-left"
+      class="dropdown m-none p-none rounded-m fixed hidden list-none overflow-auto border border-neutral-200 bg-neutral-100 text-left"
       :class="{
         isActive: show,
       }"

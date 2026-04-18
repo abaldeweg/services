@@ -28,7 +28,7 @@ const emit = defineEmits<{
     </div>
     <div class="py-m">
       <textarea
-        class="px-m py-m text-m m-0 box-border w-full resize-y rounded-xl border border-neutral-400 bg-neutral-100 text-neutral-950"
+        class="px-m py-m text-m rounded-m m-0 box-border w-full resize-y border border-neutral-400 bg-neutral-100 text-neutral-950"
         v-bind="$attrs"
         :value="modelValue"
         :name="name"

@@ -45,7 +45,7 @@ const emit = defineEmits<{
     </div>
     <div class="py-m">
       <input
-        class="px-m py-m text-m input_input m-0 box-border w-full rounded-xl border border-neutral-400 bg-neutral-100 text-neutral-950"
+        class="px-m py-m text-m input_input rounded-m m-0 box-border w-full border border-neutral-400 bg-neutral-100 text-neutral-950"
         v-bind="$attrs"
         :type="type"
         :value="modelValue"

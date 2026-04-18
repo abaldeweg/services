@@ -29,13 +29,13 @@ const emit = defineEmits<{
 
 <template>
   <form
-    class="search block grow items-center rounded-xl border border-neutral-400"
+    class="search rounded-m block grow items-center border border-neutral-400"
     :class="{ search_isBranded: branded }"
     @submit.prevent="emit('submit', $event)"
   >
     <input
       type="search"
-      class="search_input p-m pl-l m-none text-m w-full grow rounded-xl border-none bg-neutral-100 font-sans text-neutral-950 outline-none"
+      class="search_input p-m pl-l m-none text-m rounded-m w-full grow border-none bg-neutral-100 font-sans text-neutral-950 outline-none"
       :placeholder="placeholder"
       :value="modelValue"
       :autofocus="focus"
@@ -83,8 +83,6 @@ const emit = defineEmits<{
 .search.search_isBranded {
   border: 1px solid var(--color-primary-900);
 }
-
-
 
 .search_button {
   border: 0;

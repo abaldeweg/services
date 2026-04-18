@@ -22,7 +22,7 @@ const emit = defineEmits<{
 
 <template>
   <button
-    class="text-m relative m-0 inline-block cursor-pointer overflow-hidden rounded-xl text-center font-sans no-underline"
+    class="text-m rounded-m relative m-0 inline-block cursor-pointer overflow-hidden text-center font-sans no-underline"
     :class="{
       btn_primary:
         design === 'primary' ||

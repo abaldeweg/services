@@ -21,7 +21,7 @@ const isDragging = ref<boolean>(false)
 
 <template>
   <div
-    class="upload relative rounded-xl border border-neutral-200"
+    class="upload rounded-m relative border border-neutral-200"
     :class="{ isDragging: isDragging }"
   >
     <p class="upload_text absolute text-center">{{ text }}</p>

@@ -32,7 +32,7 @@ const close = () => {
     />
 
     <div
-      class="dialog_body my-3xl relative mx-auto box-border rounded-xl border border-neutral-200 bg-neutral-100"
+      class="dialog_body my-2xl rounded-m relative mx-auto box-border border border-neutral-200 bg-neutral-100"
     >
       <div class="p-xl">
         <slot />

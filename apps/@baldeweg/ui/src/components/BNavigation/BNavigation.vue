@@ -14,7 +14,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <ul
-    class="gap-s p-xl m-0 flex list-none flex-col rounded-xl"
+    class="gap-s p-xl rounded-m m-0 flex list-none flex-col"
     :class="{
       border: border !== 'none',
       'border-primary-100': border === 'primary',

@@ -95,7 +95,7 @@ watch(selected, (newValue) => {
       <div v-if="type === 'options'">
         <select
           v-model="selected"
-          class="select_input py-m px-l text-m m-none box-border w-full rounded-xl border border-neutral-400 bg-neutral-100 text-neutral-950"
+          class="select_input py-m px-l text-m m-none rounded-m box-border w-full border border-neutral-400 bg-neutral-100 text-neutral-950"
           :id="id"
           :name="name"
         >
