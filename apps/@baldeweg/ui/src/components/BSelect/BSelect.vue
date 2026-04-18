@@ -45,15 +45,15 @@ watch(selected, (newValue) => {
 </script>
 
 <template>
-  <div class="select_group">
+  <div class="select_group mb-xl">
     <div
-      :class="['select_item', { 'sr-only': hideLabel }]"
+      :class="['select_item', 'py-m', 'px-none', { 'sr-only': hideLabel }]"
       v-if="type === 'options'"
     >
       <label :for="id">{{ label }}</label>
     </div>
 
-    <div class="select_item">
+    <div class="select_item py-m px-none">
       <div v-if="type === 'checkbox'">
         <div
           v-for="option in options"
@@ -93,7 +93,12 @@ watch(selected, (newValue) => {
       </div>
 
       <div v-if="type === 'options'">
-        <select v-model="selected" class="select_input" :id="id" :name="name">
+        <select
+          v-model="selected"
+          class="select_input py-m px-l text-m m-none box-border w-full rounded-xl border border-neutral-400 bg-neutral-100 text-neutral-950"
+          :id="id"
+          :name="name"
+        >
           <option
             v-for="option in options"
             :key="option[optionsKeyName]"
@@ -105,35 +110,15 @@ watch(selected, (newValue) => {
       </div>
     </div>
 
-    <p v-if="help" class="select_helpline">
+    <p v-if="help" class="select_helpline text-xs text-neutral-800">
       {{ help }}
     </p>
   </div>
 </template>
 
 <style scoped>
-.select_group {
-  margin-bottom: 20px;
-}
-
 .select_group:last-child {
   margin-bottom: 0;
-}
-
-.select_item {
-  padding: 5px 0;
-}
-
-.select_input {
-  border: 1px solid var(--color-neutral-400);
-  background: var(--color-neutral-100);
-  box-sizing: border-box;
-  border-radius: 10px;
-  width: 100%;
-  padding: 5px 10px;
-  margin: 0;
-  font-size: 1rem;
-  color: var(--color-neutral-950);
 }
 
 .select_input:hover,
@@ -147,10 +132,5 @@ watch(selected, (newValue) => {
   width: 1rem;
   height: 1rem;
   margin-right: 10px;
-}
-
-.select_helpline {
-  font-size: 0.8rem;
-  color: var(--color-neutral-800);
 }
 </style>

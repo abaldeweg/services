@@ -25,7 +25,7 @@ const slots = useSlots()
 <template>
   <Transition name="panel_overlay" v-if="!props.permanent">
     <div
-      class="panel_overlay"
+      class="panel_overlay absolute z-3 bg-neutral-100 opacity-70"
       @click="emit('update:modelValue', false)"
       v-if="modelValue"
     />
@@ -33,7 +33,7 @@ const slots = useSlots()
 
   <Transition name="panel_container">
     <div
-      class="panel_container"
+      class="panel_container fixed z-3 flex flex-col bg-neutral-100"
       :class="{
         panel_position_left: position === 'left',
         panel_position_right: position === 'right',
@@ -44,13 +44,13 @@ const slots = useSlots()
         maxWidth: width,
       }"
     >
-      <div class="panel_header" v-if="slots.header">
+      <div class="border-b border-neutral-200" v-if="slots.header">
         <slot name="header" />
       </div>
-      <div class="panel_content">
+      <div class="panel_content grow overflow-y-auto">
         <slot />
       </div>
-      <div class="panel_footer" v-if="slots.footer">
+      <div class="border-t border-neutral-200" v-if="slots.footer">
         <slot name="footer" />
       </div>
     </div>
@@ -59,25 +59,16 @@ const slots = useSlots()
 
 <style scoped>
 .panel_overlay {
-  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--color-neutral-100);
-  opacity: 0.7;
-  z-index: 3;
 }
 
 .panel_container {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
   top: 0;
   bottom: 0;
-  background: var(--color-neutral-100);
   width: calc(100% - 20px);
-  z-index: 3;
 }
 
 .panel_container.panel_position_left {
@@ -90,18 +81,8 @@ const slots = useSlots()
   border-left: 1px solid var(--color-neutral-200);
 }
 
-.panel_header {
-  border-bottom: 1px solid var(--color-neutral-200);
-}
-
 .panel_content {
-  flex-grow: 1;
   max-height: calc(100vh);
-  overflow-y: auto;
-}
-
-.panel_footer {
-  border-top: 1px solid var(--color-neutral-200);
 }
 
 /* transition overlay */

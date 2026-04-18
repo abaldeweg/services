@@ -29,13 +29,13 @@ const emit = defineEmits<{
 
 <template>
   <form
-    class="search"
+    class="search block grow items-center rounded-xl border border-neutral-400"
     :class="{ search_isBranded: branded }"
     @submit.prevent="emit('submit', $event)"
   >
     <input
       type="search"
-      class="search_input"
+      class="search_input p-m pl-l m-none text-m w-full grow rounded-xl border-none bg-neutral-100 font-sans text-neutral-950 outline-none"
       :placeholder="placeholder"
       :value="modelValue"
       :autofocus="focus"
@@ -44,7 +44,7 @@ const emit = defineEmits<{
       "
       aria-label="Search"
     />
-    <div class="search_buttons">
+    <div class="search_buttons w-full text-right">
       <button
         type="reset"
         class="search_button"
@@ -80,37 +80,11 @@ const emit = defineEmits<{
 </template>
 
 <style scoped>
-.search {
-  display: block;
-  border-radius: 10px;
-  border: 1px solid var(--color-neutral-400);
-  flex-grow: 1;
-  align-items: center;
-}
-
 .search.search_isBranded {
   border: 1px solid var(--color-primary-900);
 }
 
-.search_input {
-  background: var(--color-neutral-100);
-  border-radius: 10px;
-  flex-grow: 1;
-  outline: 0;
-  border: 0;
-  width: 100%;
-  padding: 5px;
-  padding-left: 10px;
-  margin: 0;
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  color: var(--color-neutral-950);
-}
 
-.search_buttons {
-  width: 100%;
-  text-align: right;
-}
 
 .search_button {
   border: 0;

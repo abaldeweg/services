@@ -46,9 +46,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="slider" ref="slider">
+  <div class="slider relative w-full" ref="slider">
     <BMaterialIcon
-      class="slider_arrow_left"
+      class="slider_arrow_left absolute"
       color="var(--color-neutral-100)"
       :size="40"
       hover
@@ -57,11 +57,11 @@ onUnmounted(() => {
     >
       chevron_left
     </BMaterialIcon>
-    <div class="slider_body" tabindex="0">
+    <div class="slider_body gap-xl flex overflow-x-auto" tabindex="0">
       <slot />
     </div>
     <BMaterialIcon
-      class="slider_arrow_right"
+      class="slider_arrow_right absolute"
       color="var(--color-neutral-100)"
       :size="40"
       hover
@@ -74,22 +74,13 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-.slider {
-  position: relative;
-  width: 100%;
-}
-
 .slider_body {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
 }
 
 .slider_arrow_left,
 .slider_arrow_right {
-  position: absolute;
   top: 50%;
   display: none;
   align-items: center;

@@ -13,40 +13,24 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <li
-    class="dropdown_item"
+    class="dropdown_item py-l px-xl flex cursor-pointer items-center"
     :class="{ dropdown_isBold: bold, dropdown_canHover: !noHover }"
   >
-    <div class="dropdown_icon" v-if="icon">
+    <div class="mr-l flex" v-if="icon">
       <BMaterialIcon :type="icon" :size="15">{{ icon }}</BMaterialIcon>
     </div>
-    <div class="dropdown_title">
+    <div class="w-full">
       <slot />
     </div>
   </li>
 </template>
 
 <style scoped>
-.dropdown_item {
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
 .dropdown_item.dropdown_isBold {
   font-weight: bold;
 }
 
 .dropdown_item:hover.dropdown_canHover {
   background: var(--color-neutral-200);
-}
-
-.dropdown_title {
-  width: 100%;
-}
-
-.dropdown_icon {
-  display: flex;
-  margin-right: 10px;
 }
 </style>

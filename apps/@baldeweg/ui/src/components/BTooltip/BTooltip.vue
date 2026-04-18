@@ -21,7 +21,7 @@ const positionClass = computed<Record<string, boolean>>(() => {
 </script>
 
 <template>
-  <div class="tooltip">
+  <div class="tooltip relative">
     <slot />
     <span class="tooltip_text" :class="positionClass">{{ text }}</span>
   </div>
@@ -29,7 +29,6 @@ const positionClass = computed<Record<string, boolean>>(() => {
 
 <style scoped>
 .tooltip {
-  position: relative;
   display: inline-block;
   line-height: 0;
 }

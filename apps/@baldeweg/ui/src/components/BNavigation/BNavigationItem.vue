@@ -42,7 +42,7 @@ const handleNavigation = (event: Event): void => {
 
 <template>
   <li
-    class="navigation_item"
+    class="navigation_item m-none block rounded-xl text-neutral-950"
     :class="[
       border !== 'none' && `navigation_item_border_${border}`,
       background !== 'none' && `navigation_item_background_${background}`,
@@ -53,18 +53,18 @@ const handleNavigation = (event: Event): void => {
     <a
       :href="href"
       @click="handleNavigation"
-      class="navigation_link"
+      class="navigation_link gap-xl py-m px-xl flex flex-row"
       rel="noopener noreferrer"
     >
-      <span class="navigation_icon" v-if="icon">
+      <span class="navigation_icon flex items-center" v-if="icon">
         <BMaterialIcon :size="18">{{ icon }}</BMaterialIcon>
       </span>
 
-      <span class="navigation_title">
+      <span class="navigation_title grow">
         <slot />
       </span>
 
-      <span class="navigation_badge" v-if="badge">
+      <span class="text-neutral-950" v-if="badge">
         {{ badge }}
       </span>
     </a>
@@ -73,11 +73,7 @@ const handleNavigation = (event: Event): void => {
 
 <style scoped>
 .navigation_item {
-  display: block;
-  border-radius: 10px;
-  margin: 0;
   transition: background 0.3s ease;
-  color: var(--color-neutral-950);
 }
 
 .navigation_item:hover,
@@ -92,10 +88,6 @@ const handleNavigation = (event: Event): void => {
 }
 
 .navigation_link {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  padding: 5px 20px;
   text-decoration: none;
 }
 
@@ -105,18 +97,8 @@ const handleNavigation = (event: Event): void => {
 }
 
 .navigation_icon {
-  display: flex;
-  align-items: center;
   width: 18px;
   line-height: 1;
-}
-
-.navigation_title {
-  flex-grow: 1;
-}
-
-.navigation_badge {
-  color: var(--color-neutral-950);
 }
 
 .navigation_item_border_primary {

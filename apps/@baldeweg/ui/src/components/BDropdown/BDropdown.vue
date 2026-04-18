@@ -84,7 +84,7 @@ const slots = useSlots()
     </span>
 
     <div
-      class="dropdown_overlay"
+      class="hidden"
       :class="{
         isActive: show,
       }"
@@ -92,7 +92,7 @@ const slots = useSlots()
     />
 
     <ul
-      class="dropdown"
+      class="dropdown m-none p-none fixed hidden list-none overflow-auto rounded-xl border border-neutral-200 bg-neutral-100 text-left"
       :class="{
         isActive: show,
       }"
@@ -110,27 +110,14 @@ const slots = useSlots()
 
 <style scoped>
 .dropdown {
-  display: none;
-  position: fixed;
   top: 0;
   left: 0;
   min-width: 200px;
   max-width: 90%;
-  border-radius: 10px;
-  border: 1px solid var(--color-neutral-200);
-  background: var(--color-neutral-100);
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  text-align: left;
   max-height: 300px;
-  overflow: auto;
 }
 .dropdown.isActive {
   display: block;
-}
-.dropdown_overlay {
-  display: none;
 }
 .dropdown_overlay.isActive {
   position: fixed;

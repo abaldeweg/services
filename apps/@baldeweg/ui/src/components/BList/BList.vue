@@ -34,7 +34,7 @@ const slots = useSlots()
 
 <template>
   <div
-    class="list"
+    class="list my-xl mx-none flex"
     :class="{
       list_hasHover: hover,
       list_isActive: active,
@@ -42,7 +42,7 @@ const slots = useSlots()
   >
     <div
       v-if="slots.media"
-      class="list_media"
+      class="list_media py-xl px-none pr-xl"
       :class="{
         list_hasHover: hover,
         list_isActive: active,
@@ -56,9 +56,10 @@ const slots = useSlots()
     </div>
 
     <div
-      class="list_content"
+      class="list_content py-xl px-none grow"
       :class="{
-        list_hasDivider: divider,
+        'border-b': divider,
+        'border-neutral-200': divider,
       }"
     >
       <RouterLink :to="route" v-if="route">
@@ -78,7 +79,7 @@ const slots = useSlots()
           <slot name="title" />
         </h3>
         <p>
-          <span v-if="slots.subtitle" class="list_subtitle">
+          <span v-if="slots.subtitle" class="list_subtitle font-bold">
             <slot name="subtitle" />
           </span>
           <span v-if="slots.subtitle && slots.default"> - </span>
@@ -89,9 +90,10 @@ const slots = useSlots()
 
     <div
       v-if="slots.text"
-      class="list_text"
+      class="list_text py-xl px-none pl-xl text-primary-900 text-right font-bold"
       :class="{
-        list_hasDivider: divider,
+        'border-b': divider,
+        'border-neutral-200': divider,
       }"
       :style="{ width: textWidth }"
     >
@@ -100,9 +102,10 @@ const slots = useSlots()
 
     <div
       v-if="slots.controls"
-      class="list_controls"
+      class="list_controls py-xl px-none pl-xl text-right"
       :class="{
-        list_hasDivider: divider,
+        'border-b': divider,
+        'border-neutral-200': divider,
       }"
       :style="{ width: controlsWidth }"
     >
@@ -113,13 +116,7 @@ const slots = useSlots()
 
 <style scoped>
 .list {
-  display: flex;
-  margin: 20px 0;
   transition: background-color 0.3s ease;
-}
-
-.list_hasDivider {
-  border-bottom: 1px solid var(--color-neutral-200);
 }
 
 .list a,
@@ -130,17 +127,6 @@ const slots = useSlots()
 .list_hasHover:hover {
   background: var(--color-neutral-200);
   cursor: pointer;
-}
-
-.list_media,
-.list_content,
-.list_text,
-.list_controls {
-  padding: 10px 0;
-}
-
-.list_media {
-  padding-right: 20px;
 }
 
 .list_media.list_mediaSize_landscape {
@@ -161,10 +147,6 @@ const slots = useSlots()
   border-radius: 50%;
 }
 
-.list_content {
-  flex-grow: 1;
-}
-
 .list_content h3 {
   margin: 0;
 }
@@ -176,21 +158,5 @@ const slots = useSlots()
 .list_content a,
 .list_content a:hover {
   color: var(--color-neutral-950) !important;
-}
-
-.list_subtitle {
-  font-weight: bold;
-}
-
-.list_text {
-  padding-left: 20px;
-  text-align: right;
-  color: var(--color-primary-900);
-  font-weight: bold;
-}
-
-.list_controls {
-  padding-left: 20px;
-  text-align: right;
 }
 </style>

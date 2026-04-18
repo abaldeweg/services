@@ -42,24 +42,30 @@ const slots = useSlots()
 </script>
 
 <template>
-  <div v-if="modelValue" class="modal">
-    <div class="modal_overlay" @click="close" />
+  <div v-if="modelValue" class="modal fixed z-4 w-full">
+    <div
+      class="modal_overlay fixed h-full w-full bg-neutral-100 opacity-80"
+      @click="close"
+    />
 
-    <div class="modal_inner" :style="{ maxWidth: width + 'px' }">
-      <div class="modal_header">
-        <h2 class="modal_title" v-if="slots.title">
+    <div
+      class="modal_inner my-3xl relative mx-auto box-border flex flex-col rounded-xl border border-neutral-200 bg-neutral-100"
+      :style="{ maxWidth: width + 'px' }"
+    >
+      <div class="py-m px-xl flex items-center border-b border-neutral-200">
+        <h2 class="modal_title grow font-normal" v-if="slots.title">
           <slot name="title" />
         </h2>
-        <span class="modal_close" @click="close" v-if="closeButton">
+        <span class="float-right" @click="close" v-if="closeButton">
           <BMaterialIcon :size="26" hover>close</BMaterialIcon>
         </span>
       </div>
 
-      <div class="modal_body">
+      <div class="modal_body grow overflow-y-auto">
         <slot />
       </div>
 
-      <div class="modal_footer" v-if="slots.footer">
+      <div class="p-xl border-t border-neutral-200" v-if="slots.footer">
         <slot name="footer" />
       </div>
     </div>
@@ -74,62 +80,26 @@ body.isModalOpen {
 
 <style scoped>
 .modal {
-  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  z-index: 4;
 }
 
 .modal_overlay {
-  position: fixed;
   top: 0;
   left: 0;
-  background: var(--color-neutral-100);
-  width: 100%;
-  height: 100%;
-  opacity: 0.8;
 }
 
 .modal_inner {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  border: 1px solid var(--color-neutral-200);
-  border-radius: 10px;
-  background: var(--color-neutral-100);
   height: calc(100vh - 120px);
-  margin: 60px auto;
-  box-sizing: border-box;
-}
-
-.modal_header {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--color-neutral-200);
-  padding: 5px 20px;
 }
 
 .modal_title {
   font-family: var(--font-sans);
   font-size: 1rem;
-  font-weight: normal;
-  flex-grow: 1;
   margin: 0;
 }
 
-.modal_close {
-  float: right;
-}
-
 .modal_body {
-  flex-grow: 1;
   height: calc(100vh - 90px);
-  overflow-y: auto;
-}
-
-.modal_footer {
-  border-top: 1px solid var(--color-neutral-200);
-  padding: 20px;
 }
 </style>

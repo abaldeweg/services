@@ -28,7 +28,7 @@ const emit = defineEmits<{
     </div>
     <div class="py-m">
       <textarea
-        class="px-m py-m text-m textarea_input m-0 box-border w-full rounded-xl border border-neutral-400 bg-neutral-100 text-neutral-950"
+        class="px-m py-m text-m m-0 box-border w-full resize-y rounded-xl border border-neutral-400 bg-neutral-100 text-neutral-950"
         v-bind="$attrs"
         :value="modelValue"
         :name="name"
@@ -41,7 +41,7 @@ const emit = defineEmits<{
         "
       />
     </div>
-    <p v-if="help" class="textarea_helpline text-neutral-800">
+    <p v-if="help" class="textarea_helpline text-xs text-neutral-800">
       {{ help }}
     </p>
   </div>
@@ -52,17 +52,9 @@ const emit = defineEmits<{
   margin-bottom: 0;
 }
 
-.textarea_input {
-  resize: vertical;
-}
-
 .textarea_input:hover,
 .textarea_input:focus {
   border: 1px solid var(--color-primary-900);
   outline: none;
-}
-
-.textarea_helpline {
-  font-size: 0.8rem;
 }
 </style>

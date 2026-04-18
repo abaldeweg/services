@@ -25,14 +25,19 @@ const close = () => {
 </script>
 
 <template>
-  <div v-if="visible" class="dialog">
-    <div class="dialog_overlay" @click="close" />
+  <div v-if="visible" class="dialog fixed z-5 w-full">
+    <div
+      class="dialog_overlay fixed h-full w-full bg-neutral-100 opacity-80"
+      @click="close"
+    />
 
-    <div class="dialog_body">
-      <div class="dialog_content">
+    <div
+      class="dialog_body my-3xl relative mx-auto box-border rounded-xl border border-neutral-200 bg-neutral-100"
+    >
+      <div class="p-xl">
         <slot />
       </div>
-      <div class="dialog_footer">
+      <div class="p-xl text-right">
         <slot name="actions" />
       </div>
     </div>
@@ -41,39 +46,16 @@ const close = () => {
 
 <style scoped>
 .dialog {
-  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  z-index: 5;
 }
 
 .dialog_overlay {
-  position: fixed;
   top: 0;
   left: 0;
-  background: var(--color-neutral-100);
-  width: 100%;
-  height: 100%;
-  opacity: 0.8;
 }
 
 .dialog_body {
-  position: relative;
-  border: 1px solid var(--color-neutral-200);
-  border-radius: 10px;
-  background: var(--color-neutral-100);
   max-width: 600px;
-  margin: 60px auto;
-  box-sizing: border-box;
-}
-
-.dialog_content {
-  padding: 20px;
-}
-
-.dialog_footer {
-  padding: 20px;
-  text-align: right;
 }
 </style>

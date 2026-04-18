@@ -15,6 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const iconClasses = computed<Array<string | Record<string, boolean>>>(() => [
   "icon",
+  "opacity-100",
   "material-symbols-outlined",
   "align-middle",
   { canHover: props.hover },
@@ -34,7 +35,6 @@ const iconStyle = computed<Record<string, string>>(() => ({
 
 <style scoped>
 .icon {
-  opacity: 1;
   transition: opacity 0.2s;
 }
 

@@ -20,10 +20,13 @@ const isDragging = ref<boolean>(false)
 </script>
 
 <template>
-  <div class="upload" :class="{ isDragging: isDragging }">
-    <p class="upload_text">{{ text }}</p>
+  <div
+    class="upload relative rounded-xl border border-neutral-200"
+    :class="{ isDragging: isDragging }"
+  >
+    <p class="upload_text absolute text-center">{{ text }}</p>
     <div
-      class="upload_dropzone"
+      class="absolute h-full w-full"
       @dragover="isDragging = true"
       @dragenter="isDragging = true"
       @dragleave="isDragging = false"
@@ -32,7 +35,7 @@ const isDragging = ref<boolean>(false)
     >
       <BInput
         type="file"
-        class="upload_input"
+        class="upload_input absolute h-full w-full cursor-pointer opacity-0"
         event
         :id="id"
         :accept="accept"
@@ -52,10 +55,7 @@ const isDragging = ref<boolean>(false)
 
 <style scoped>
 .upload {
-  position: relative;
   height: 300px;
-  border: 1px solid var(--color-neutral-200);
-  border-radius: 10px;
 }
 
 .upload:hover,
@@ -64,23 +64,8 @@ const isDragging = ref<boolean>(false)
 }
 
 .upload_text {
-  position: absolute;
   top: 50%;
   transform: translateY(-50%);
   width: 100%;
-  text-align: center;
-}
-
-.upload_dropzone {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.upload_input {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0.001;
 }
 </style>

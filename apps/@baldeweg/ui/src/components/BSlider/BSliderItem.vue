@@ -10,7 +10,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div
-    class="slider_item"
+    class="slider_item block"
     :class="{
       slider_size_xs: size === 'xs',
       slider_size_s: size === 's',
@@ -25,7 +25,6 @@ withDefaults(defineProps<Props>(), {
 
 <style scoped>
 .slider_item {
-  display: block;
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
