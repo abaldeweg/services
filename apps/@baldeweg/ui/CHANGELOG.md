@@ -38,6 +38,7 @@
 - Removed `BMasthead` component, no replacement
 - Removed `BTabs` component, use `BNavigation` instead
 - `<style scoped>` is now recommended
+- Moved global table styles to `BTable` component.
 
 ## v0.19.0
 

@@ -108,28 +108,7 @@ h3 {
   font-size: 1rem;
 }
 
-table {
-  width: 100%;
-  border-spacing: 0;
-  padding: 0;
-  margin: 0;
-  overflow: auto;
-}
 
-th {
-  text-align: left;
-}
-
-tr {
-  transition: background 0.3s ease;
-}
-
-th,
-td {
-  border-bottom: 1px solid var(--color-neutral-200);
-  vertical-align: top;
-  padding: 10px;
-}
 
 @media all and (min-width: 600px) {
   h1 {

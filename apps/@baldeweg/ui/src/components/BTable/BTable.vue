@@ -15,7 +15,30 @@ withDefaults(defineProps<Props>(), {
 </template>
 
 <style scoped>
-.table.canHover tbody tr:hover {
+.table :deep(table) {
+  width: 100%;
+  border-spacing: 0;
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+}
+
+.table :deep(th) {
+  text-align: left;
+}
+
+.table :deep(tr) {
+  transition: background 0.3s ease;
+}
+
+.table :deep(th),
+.table :deep(td) {
+  border-bottom: 1px solid var(--color-neutral-200);
+  vertical-align: top;
+  padding: 10px;
+}
+
+.table.canHover :deep(tbody tr:hover) {
   background: var(--color-neutral-200);
   transition: background 0.3s ease;
 }
