@@ -8,18 +8,13 @@
 body {
   --masthead-top-height: 50px;
 
+  background: var(--color-neutral-100);
+  accent-color: var(--color-primary-900);
   color: var(--color-neutral-950);
   font-family: var(--font-sans);
   padding: 0;
   margin: 0;
   scrollbar-gutter: stable;
-}
-
-body {
-  background: var(--color-neutral-100);
-  padding: 0;
-  margin: 0;
-  accent-color: var(--color-primary-900);
 }
 
 ::selection {
