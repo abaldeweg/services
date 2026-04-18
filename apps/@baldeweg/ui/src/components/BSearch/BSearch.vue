@@ -84,8 +84,6 @@ const emit = defineEmits<{
   border: 1px solid var(--color-primary-900);
 }
 
-
-
 .search_button {
   border: 0;
   background: transparent;
