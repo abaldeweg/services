@@ -13,12 +13,6 @@ const meta = {
     },
     closable: { control: "boolean" },
   },
-  decorators: [
-    () => ({
-      template:
-        '<div style="padding: 3em; height: 300px; position: relative;">This is same text.<story/></div>',
-    }),
-  ],
   tags: ["beta"],
 } satisfies Meta<typeof BAlert>
 
@@ -35,7 +29,7 @@ export const Type: Story = {
     setup() {
       return { args }
     },
-    template: `<BAlert v-bind="args">This is an alert message. <a href="#">Link</a></BAlert>`,
+    template: `<BAlert v-bind="args">This is an alert message.</BAlert>`,
   }),
 }
 
@@ -48,10 +42,9 @@ export const Closable: Story = {
     components: {
       BAlert,
     },
-
     setup() {
       return { args }
     },
-    template: `<BAlert v-bind="args">This is an alert message. <a href="#">Link</a></BAlert>`,
+    template: `<BAlert v-bind="args">This is an alert message.</BAlert>`,
   }),
 }
