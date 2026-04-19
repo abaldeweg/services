@@ -39,6 +39,10 @@
 - Removed `BTabs` component, use `BNavigation` instead
 - `<style scoped>` is now recommended
 - Moved global table styles to `BTable` component.
+- Replaced global styles for `a`, with class `.link`.
+- Replaced global styles `h1` to `h6` with classes `.h1` to `.h6`.
+- Removed global styles for `p`, use utility classes instead, e.g. `py-l px-none m-none`.
+- Removed global styles for `li li`, use utility classes instead, e.g. `ml-m`.
 
 ## v0.19.0
 

@@ -104,3 +104,102 @@
         --color-blue-100: #0074d9;
     }
 }
+
+@layer base {
+    body {
+        --masthead-top-height: 50px;
+
+        background: var(--color-neutral-100);
+        accent-color: var(--color-primary-900);
+        color: var(--color-neutral-950);
+        font-family: var(--font-sans);
+        padding: var(--spacing-none);
+        margin: var(--spacing-none);
+        scrollbar-gutter: stable;
+    }
+
+    ::selection {
+        color: var(--color-neutral-100);
+        background: var(--color-primary-900);
+    }
+
+    ::-moz-selection {
+        color: var(--color-neutral-100);
+        background: var(--color-primary-900);
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--color-neutral-600);
+        border-radius: var(--radius-full);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--color-neutral-800);
+    }
+
+    ::-webkit-scrollbar-track-piece {
+        border-left: 1px solid var(--color-neutral-200);
+        background: var(--color-neutral-100);
+    }
+
+    img,
+    picture,
+    audio,
+    video {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .link,
+    .link:hover {
+        color: var(--color-neutral-950);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-color: var(--color-primary-900);
+    }
+
+    .link:hover {
+        text-decoration: none;
+    }
+
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
+        margin: var(--spacing-none);
+        margin-bottom: var(--spacing-l);
+        font-family: var(--font-serif);
+        word-break: break-all;
+    }
+
+    .h1 {
+        font-size: var(--text-3xl);
+    }
+
+    .h2 {
+        font-size: var(--text-2xl);
+    }
+
+    .h3 {
+        font-size: var(--text-xl);
+    }
+
+    .h4 {
+        font-size: var(--text-l);
+    }
+
+    .h5 {
+        font-size: var(--text-m);
+    }
+
+    .h6 {
+        font-size: var(--text-m);
+    }
+}

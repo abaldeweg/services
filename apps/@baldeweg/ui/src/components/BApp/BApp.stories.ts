@@ -28,31 +28,31 @@ export const General: Story = {
     template: `
       <BApp v-bind="args">
         <section>
-          <h1>Heading 1</h1>
-          <p>text text text text text text text text text text</p>
-          <h2>Heading 2</h2>
-          <p>text text text text text text text text text text</p>
-          <h3>Heading 3</h3>
-          <p>text text text text text text text text text text</p>
-          <h4>Heading 4</h4>
-          <p>text text text text text text text text text text</p>
-          <h5>Heading 5</h5>
-          <p>text text text text text text text text text text</p>
-          <h6>Heading 6</h6>
-          <p>text text text text text text text text text text</p>
+          <h1 class="h1">Heading 1</h1>
+          <p class="py-l px-none m-none">text text text text text text text text text text</p>
+          <h2 class="h2">Heading 2</h2>
+          <p class="py-l px-none m-none">text text text text text text text text text text</p>
+          <h3 class="h3">Heading 3</h3>
+          <p class="py-l px-none m-none">text text text text text text text text text text</p>
+          <h4 class="h4">Heading 4</h4>
+          <p class="py-l px-none m-none">text text text text text text text text text text</p>
+          <h5 class="h5">Heading 5</h5>
+          <p class="py-l px-none m-none">text text text text text text text text text text</p>
+          <h6 class="h6">Heading 6</h6>
+          <p class="py-l px-none m-none">text text text text text text text text text text</p>
         </section>
 
         <section>
-          <p><a href="#">Example Link</a></p>
-          <p><strong>bold</strong></p>
-          <p><code>code</code></p>
-          <p><em>emphasis</em></p>
-          <p><em>italic</em></p>
-          <p><strong>strong</strong></p>
+          <p class="py-l px-none m-none"><a href="#" class="link">Example Link</a></p>
+          <p class="py-l px-none m-none"><strong>bold</strong></p>
+          <p class="py-l px-none m-none"><code>code</code></p>
+          <p class="py-l px-none m-none"><em>emphasis</em></p>
+          <p class="py-l px-none m-none"><em>italic</em></p>
+          <p class="py-l px-none m-none"><strong>strong</strong></p>
         </section>
 
         <section>
-          <h2>Ordered List</h2>
+          <h2 class="h2">Ordered List</h2>
           <ol>
             <li>Item 1</li>
             <li>Item 2</li>
@@ -75,7 +75,7 @@ export const General: Story = {
         </section>
 
         <section>
-          <h2>Unordered List</h2>
+          <h2 class="h2">Unordered List</h2>
           <ul>
             <li>Item 1</li>
             <li>Item 2</li>
