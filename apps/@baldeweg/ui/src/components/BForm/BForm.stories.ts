@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
-
 import BForm from "./BForm.vue"
 
 const meta = {
