@@ -5,15 +5,6 @@ import BApp from "./BApp.vue"
 const meta = {
   component: BApp,
   tags: ["beta"],
-  parameters: {
-    layout: "fullscreen",
-    docs: {
-      description: {
-        component:
-          'Do not forget to set the attribute `id="app"` here, if not otherwise done.',
-      },
-    },
-  },
 } satisfies Meta<typeof BApp>
 
 export default meta
@@ -99,5 +90,4 @@ export const General: Story = {
       </BApp>
     `,
   }),
-  args: {},
 }
