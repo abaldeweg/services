@@ -7,8 +7,8 @@ defineProps<Props>()
 </script>
 
 <template>
-  <fieldset class="p-none m-none clear-both border-0">
-    <legend class="p-0">
+  <fieldset class="p-none m-none border-0">
+    <legend class="p-none">
       {{ legend }}
     </legend>
     <slot />
