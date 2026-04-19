@@ -9,13 +9,13 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="table overflow-auto" :class="{ canHover: hover }">
+  <div class="overflow-auto" :class="{ canHover: hover }">
     <slot />
   </div>
 </template>
 
 <style scoped>
-.table :deep(table) {
+:deep(table) {
   width: 100%;
   border-spacing: 0;
   padding: 0;
@@ -23,22 +23,22 @@ withDefaults(defineProps<Props>(), {
   overflow: auto;
 }
 
-.table :deep(th) {
+:deep(th) {
   text-align: left;
 }
 
-.table :deep(tr) {
+:deep(tr) {
   transition: background 0.3s ease;
 }
 
-.table :deep(th),
-.table :deep(td) {
+:deep(th),
+:deep(td) {
   border-bottom: 1px solid var(--color-neutral-200);
   vertical-align: top;
   padding: 10px;
 }
 
-.table.canHover :deep(tbody tr:hover) {
+.canHover :deep(tbody tr:hover) {
   background: var(--color-neutral-200);
   transition: background 0.3s ease;
 }
