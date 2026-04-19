@@ -27,7 +27,7 @@ const typeClass = computed<Record<string, boolean>>(
 
 <template>
   <div
-    class="gap-xl p-xl my-l rounded-m box-border flex border border-blue-500 text-blue-500"
+    class="gap-xl p-xl my-l rounded-m box-border flex border border-blue-900 text-blue-900"
     :class="typeClass"
     v-if="!showAlert"
   >
