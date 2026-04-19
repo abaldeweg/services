@@ -24,7 +24,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Full: Story = {
+export const Base: Story = {
   render: (args) => ({
     components: { BDropdownItem, BMaterialIcon },
     setup() {
@@ -33,14 +33,9 @@ export const Full: Story = {
     template:
       '<BDropdownItem v-bind="args">Combined Properties</BDropdownItem>',
   }),
-  args: {
-    bold: true,
-    icon: "star",
-    noHover: false,
-  },
 }
 
-export const WithIcon: Story = {
+export const Icon: Story = {
   render: (args) => ({
     components: { BDropdownItem, BMaterialIcon },
     setup() {
@@ -67,7 +62,7 @@ export const Bold: Story = {
   },
 }
 
-export const NoHover: Story = {
+export const Hover: Story = {
   render: (args) => ({
     components: { BDropdownItem, BMaterialIcon },
     setup() {

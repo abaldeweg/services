@@ -13,8 +13,8 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <li
-    class="dropdown_item py-l px-xl flex cursor-pointer items-center"
-    :class="{ dropdown_isBold: bold, dropdown_canHover: !noHover }"
+    class="py-l px-xl flex cursor-pointer items-center"
+    :class="{ 'font-bold': bold, 'hover:bg-neutral-200': !noHover }"
   >
     <div class="mr-l flex" v-if="icon">
       <BMaterialIcon :type="icon" :size="15">{{ icon }}</BMaterialIcon>
@@ -24,13 +24,3 @@ withDefaults(defineProps<Props>(), {
     </div>
   </li>
 </template>
-
-<style scoped>
-.dropdown_item.dropdown_isBold {
-  font-weight: bold;
-}
-
-.dropdown_item:hover.dropdown_canHover {
-  background: var(--color-neutral-200);
-}
-</style>
