@@ -1,38 +1,33 @@
 <script setup lang="ts">
-import { computed } from "vue"
-
-const emit = defineEmits<{ (e: "update:modelValue", value: boolean): void }>()
 
 interface Props {
-  modelValue?: boolean
+  modelValue: boolean
   canClose?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  modelValue: false,
   canClose: true,
 })
 
-const visible = computed<boolean>({
-  get: (): boolean => !!props.modelValue,
-  set: (value: boolean) => emit("update:modelValue", value),
-})
+const emit = defineEmits<{
+  "update:modelValue": [value: boolean]
+}>()
 
 const close = () => {
   if (!props.canClose) return
-  visible.value = false
+  emit("update:modelValue", false)
 }
 </script>
 
 <template>
-  <div v-if="visible" class="dialog fixed z-5 w-full">
+  <div v-if="props.modelValue" class="top-none left-none fixed z-5 w-full">
     <div
-      class="dialog_overlay fixed h-full w-full bg-neutral-100 opacity-80"
+      class="top-none left-none fixed h-full w-full bg-neutral-100 opacity-80"
       @click="close"
     />
 
     <div
-      class="dialog_body my-2xl rounded-m relative mx-auto box-border border border-neutral-200 bg-neutral-100"
+      class="my-2xl rounded-m relative mx-auto box-border max-w-[600px] border border-neutral-200 bg-neutral-100"
     >
       <div class="p-xl">
         <slot />
@@ -43,19 +38,3 @@ const close = () => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.dialog {
-  top: 0;
-  left: 0;
-}
-
-.dialog_overlay {
-  top: 0;
-  left: 0;
-}
-
-.dialog_body {
-  max-width: 600px;
-}
-</style>

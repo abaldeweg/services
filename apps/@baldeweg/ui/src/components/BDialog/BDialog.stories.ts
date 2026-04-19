@@ -40,29 +40,15 @@ const dialogTemplate = `
         </template>
         <template #actions>
           <button @click="args.modelValue = false">Close</button>
-          <button @click="args.modelValue = false" style="margin-left: 10px;">Submit</button>
+          <button @click="args.modelValue = false" class="ml-l">Submit</button>
         </template>
       </BDialog>
     </div>
   `
 
-export const Full: Story = {
+export const Base: Story = {
   args: {
-    modelValue: false,
-    canClose: true,
-  },
-  render: (args) => ({
-    components: { BDialog },
-    setup() {
-      return { args }
-    },
-    template: dialogTemplate,
-  }),
-}
-
-export const NonClosable: Story = {
-  args: {
-    modelValue: false,
+    modelValue: true,
     canClose: false,
   },
   render: (args) => ({
@@ -74,7 +60,7 @@ export const NonClosable: Story = {
   }),
 }
 
-export const OpenByDefault: Story = {
+export const Closable: Story = {
   args: {
     modelValue: true,
     canClose: true,
