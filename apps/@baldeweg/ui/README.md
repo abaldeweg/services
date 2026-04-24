@@ -84,6 +84,10 @@ The defaults for CSS properties can be overridden.
     --font-weight-normal: 500;
     --font-weight-bold: 900;
 
+    --tracking-s: -0.025em;
+    --tracking-m: 0em;
+    --tracking-l: 0.025em;
+
     --radius-s: 10px;
     --radius-m: 20px;
     --radius-l: 40px;
@@ -135,6 +139,7 @@ Most of the [Tailwind utility classes](https://tailwindcss.com/docs/) are availa
 - Fonts: `sans`, `serif`, `mono`
 - Font Weight: `normal`, `bold`
 - Spacing: `none`, `s`, `m`, `l`, `xl`, `2xl`
+- Tracking: `s`, `m`, `l`
 - Radius: `s`, `m`, `l`, `full`
 - Text: `s`, `m`, `l`, `xl`, `2xl`, `3xl`
 - Shadow: `s`, `m`, `l`
