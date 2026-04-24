@@ -66,6 +66,7 @@ watch(selected, (newValue) => {
             :value="option[optionsKeyName]"
             :name="`${name}-${option[optionsKeyName]}`"
             :id="`${name}-${option[optionsKeyName]}`"
+            class="mr-l h-[1rem] w-[1rem]"
           />
           <label :for="`${name}-${option[optionsKeyName]}`">
             {{ option[optionsValueName] }}
@@ -85,6 +86,7 @@ watch(selected, (newValue) => {
             :value="option[optionsKeyName]"
             :name="name"
             :id="option[optionsKeyName]"
+            class="mr-l h-[1rem] w-[1rem]"
           />
           <label :for="option[optionsKeyName]">
             {{ option[optionsValueName] }}
@@ -95,7 +97,7 @@ watch(selected, (newValue) => {
       <div v-if="type === 'options'">
         <select
           v-model="selected"
-          class="select_input py-m px-l text-m m-none rounded-m box-border w-full border border-neutral-400 bg-neutral-100 text-neutral-950"
+          class="select_input hover:border-primary-100 focus:border-primary-100 py-m px-l text-m m-none rounded-m box-border w-full border border-neutral-400 bg-neutral-100 text-neutral-950 hover:outline-0 focus:outline-0"
           :id="id"
           :name="name"
         >
@@ -115,22 +117,3 @@ watch(selected, (newValue) => {
     </p>
   </div>
 </template>
-
-<style scoped>
-.select_group:last-child {
-  margin-bottom: 0;
-}
-
-.select_input:hover,
-.select_input:focus {
-  border: 1px solid var(--color-primary-900);
-  outline: none;
-}
-
-.select_item input[type="checkbox"],
-.select_item input[type="radio"] {
-  width: 1rem;
-  height: 1rem;
-  margin-right: 10px;
-}
-</style>

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
-
 import BSelect from "./BSelect.vue"
 
 const meta = {
@@ -33,7 +32,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Full: Story = {
+export const Select: Story = {
   args: {
     modelValue: "option1",
     name: "checkbox",
