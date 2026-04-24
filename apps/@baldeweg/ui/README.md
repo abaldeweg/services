@@ -171,6 +171,10 @@ data-[size=large]:p-xl
 data-size:p-xl
 ```
 
+### Arbitrary Classes
+
+Some class names support arbitrary values, which can be used by wrapping the value in square brackets, e.g. `bg-[#ff0000]`, `w-[600px]`, or `max-w-[600px]`.
+
 ### Layout
 
 - Display: `block`, `inline-block`, `inline`, `flex`, `inline-flex`, `grid`, `inline-grid`, `hidden`, `table`, `table-row`, `table-cell`, `contents`, `flow-root`, `list-item`
