@@ -142,6 +142,35 @@ Most of the [Tailwind utility classes](https://tailwindcss.com/docs/) are availa
 - Drop Shadow: `xs`, `s`, `m`, `l`, `xl`
 - Text Shadow: `s`, `m`, `l`
 
+### States
+
+States can be used by prefixing class names with the state and a colon, e.g. `hover:bg-primary-900`. This works for pseudo-classes, pseudo-elements, print and attribute selectors.
+
+Example for `:hover`:
+
+```css
+hover:bg-primary-900
+```
+
+Example for `::after`:
+
+```css
+after:bg-primary-900
+```
+
+Example for print:
+
+```css
+print:hidden
+```
+
+Examples for data-attribute:
+
+```css
+data-[size=large]:p-xl
+data-size:p-xl
+```
+
 ### Layout
 
 - Display: `block`, `inline-block`, `inline`, `flex`, `inline-flex`, `grid`, `inline-grid`, `hidden`, `table`, `table-row`, `table-cell`, `contents`, `flow-root`, `list-item`
