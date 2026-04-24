@@ -72,6 +72,7 @@ The defaults for CSS properties can be overridden.
     --spacing-s: 3px;
     --spacing-m: 5px;
     --spacing-l: 10px;
+    --spacing-xl: 20px;
     --spacing-2xl: 40px;
 
     --text-s: 0.8rem;
