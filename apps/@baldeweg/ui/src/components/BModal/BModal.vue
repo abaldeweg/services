@@ -2,13 +2,12 @@
 import { onBeforeUnmount, onMounted, useSlots } from "vue"
 
 interface Props {
-  modelValue?: boolean
+  modelValue: boolean
   width?: number
   closeButton?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  modelValue: false,
   width: 600,
   closeButton: true,
 })
@@ -17,11 +16,19 @@ const emit = defineEmits<{
   "update:modelValue": [value: boolean]
 }>()
 
+const slots = useSlots()
+
+/**
+ * Closes the modal by emitting an event to update the modelValue to false and removing the "isModalOpen" class from the body element.
+ */
 const close = (): void => {
   emit("update:modelValue", false)
   document.body.classList.remove("isModalOpen")
 }
 
+/**
+ * Handles the keydown event to close the modal when the Escape key is pressed.
+ */
 const handleKeydown = (event: KeyboardEvent): void => {
   if (event.key === "Escape" && props.modelValue) {
     close()
@@ -37,23 +44,21 @@ onBeforeUnmount((): void => {
   document.body.classList.remove("isModalOpen")
   document.removeEventListener("keydown", handleKeydown)
 })
-
-const slots = useSlots()
 </script>
 
 <template>
-  <div v-if="modelValue" class="modal fixed z-4 w-full">
+  <div v-if="modelValue" class="top-none left-none fixed z-4 w-full">
     <div
-      class="modal_overlay fixed h-full w-full bg-neutral-100 opacity-80"
+      class="top-none left-none fixed h-full w-full bg-neutral-100 opacity-80"
       @click="close"
     />
 
     <div
-      class="modal_inner my-2xl rounded-m relative mx-auto box-border flex flex-col border border-neutral-200 bg-neutral-100"
+      class="my-2xl rounded-m relative mx-auto box-border flex h-[calc(100vh-120px)] flex-col border border-neutral-200 bg-neutral-100"
       :style="{ maxWidth: width + 'px' }"
     >
       <div class="py-m px-xl flex items-center border-b border-neutral-200">
-        <h2 class="modal_title grow font-normal" v-if="slots.title">
+        <h2 class="text-m m-none grow font-sans font-normal" v-if="slots.title">
           <slot name="title" />
         </h2>
         <span class="float-right" @click="close" v-if="closeButton">
@@ -61,7 +66,7 @@ const slots = useSlots()
         </span>
       </div>
 
-      <div class="modal_body grow overflow-y-auto">
+      <div class="h-[calc(100vh-90px)] grow overflow-y-auto">
         <slot />
       </div>
 
@@ -75,31 +80,5 @@ const slots = useSlots()
 <style>
 body.isModalOpen {
   overflow: hidden;
-}
-</style>
-
-<style scoped>
-.modal {
-  top: 0;
-  left: 0;
-}
-
-.modal_overlay {
-  top: 0;
-  left: 0;
-}
-
-.modal_inner {
-  height: calc(100vh - 120px);
-}
-
-.modal_title {
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  margin: 0;
-}
-
-.modal_body {
-  height: calc(100vh - 90px);
 }
 </style>
