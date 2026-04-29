@@ -2,10 +2,10 @@
 import { ref } from "vue"
 
 interface Props {
-  id?: string
+  modelValue: boolean
+  id: string
   text?: string
   accept?: string
-  modelValue?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
@@ -21,10 +21,10 @@ const isDragging = ref<boolean>(false)
 
 <template>
   <div
-    class="upload rounded-m relative border border-neutral-200"
-    :class="{ isDragging: isDragging }"
+    class="hover:border-primary-900 rounded-m relative h-[300px] border border-neutral-200"
+    :class="{ 'border-primary-900': isDragging }"
   >
-    <p class="upload_text absolute text-center">{{ text }}</p>
+    <p class="upload_text absolute top-[50%] w-full text-center">{{ text }}</p>
     <div
       class="absolute h-full w-full"
       @dragover="isDragging = true"
@@ -35,7 +35,7 @@ const isDragging = ref<boolean>(false)
     >
       <BInput
         type="file"
-        class="upload_input absolute h-full w-full cursor-pointer opacity-0"
+        class="absolute h-full w-full cursor-pointer opacity-0"
         event
         :id="id"
         :accept="accept"
@@ -54,18 +54,7 @@ const isDragging = ref<boolean>(false)
 </template>
 
 <style scoped>
-.upload {
-  height: 300px;
-}
-
-.upload:hover,
-.upload.isDragging {
-  border: 1px solid var(--color-primary-900);
-}
-
 .upload_text {
-  top: 50%;
   transform: translateY(-50%);
-  width: 100%;
 }
 </style>
