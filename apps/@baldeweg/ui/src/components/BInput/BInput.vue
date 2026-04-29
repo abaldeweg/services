@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-  modelValue?: string
+  modelValue: string
   type?:
     | "date"
     | "color"
@@ -39,13 +39,18 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="input_group mb-xl">
-    <div :class="['py-m input_item', { 'sr-only': hideLabel }]">
+  <div class="mb-xl">
+    <div :class="['py-m', { 'sr-only': hideLabel }]">
       <label :for="id">{{ label }}</label>
     </div>
     <div class="py-m">
       <input
-        class="px-m py-m text-m input_input rounded-m m-0 box-border w-full border border-neutral-400 bg-neutral-100 text-neutral-950"
+        :class="[
+          'px-l py-m text-m rounded-m m-0 box-border w-full border border-neutral-400 bg-neutral-100 text-neutral-950',
+          'hover:border-primary-900 focus:border-primary-900 focus:outline-none',
+          type === 'color' && 'h-[40px] w-[90px]',
+          type === 'range' && 'p-0',
+        ]"
         v-bind="$attrs"
         :type="type"
         :value="modelValue"
@@ -56,34 +61,8 @@ const emit = defineEmits<{
         "
       />
     </div>
-    <p v-if="help" class="input_helpline">
+    <p v-if="help" class="text-s text-neutral-800">
       {{ help }}
     </p>
   </div>
 </template>
-
-<style scoped>
-.input_group:last-child {
-  margin-bottom: 0;
-}
-
-.input_input:hover,
-.input_input:focus {
-  border: 1px solid var(--color-primary-900);
-  outline: none;
-}
-
-input[type="color"].input_input {
-  width: 90px;
-  height: 40px;
-}
-
-input[type="range"].input_input {
-  padding: 0;
-}
-
-.input_helpline {
-  font-size: 0.8rem;
-  color: var(--color-neutral-800);
-}
-</style>

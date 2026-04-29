@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
-
 import BInput from "./BInput.vue"
 
 const meta = {
@@ -20,25 +19,24 @@ const meta = {
   argTypes: {
     modelValue: { control: { type: "text" } },
     type: {
-      control: {
-        type: "select",
-        options: [
-          "date",
-          "color",
-          "datetime-local",
-          "email",
-          "month",
-          "number",
-          "password",
-          "range",
-          "search",
-          "tel",
-          "text",
-          "time",
-          "url",
-          "week",
-        ],
-      },
+      options: [
+        "date",
+        "color",
+        "datetime-local",
+        "email",
+        "month",
+        "number",
+        "password",
+        "range",
+        "search",
+        "tel",
+        "text",
+        "time",
+        "url",
+        "week",
+        "file",
+      ],
+      control: { type: "select" },
     },
     name: { control: { type: "text" } },
     id: { control: { type: "text" } },
@@ -51,178 +49,59 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Text: Story = {
+export const Type: Story = {
   args: {
     type: "text",
+    modelValue: "This is some sample text for the input.",
     name: "input",
     id: "input",
     label: "Label",
     help: "This is a help text",
     hideLabel: false,
   },
+  render: (args) => ({
+    components: { BInput },
+    setup() {
+      return { args }
+    },
+    template: `<BInput v-bind="args" />`,
+  }),
 }
 
-export const Date: Story = {
+export const HideLabel: Story = {
   args: {
-    type: "date",
-    name: "input",
-    id: "input",
-    label: "Label",
-    help: "This is a help text",
-    hideLabel: false,
-  },
-}
-
-export const Color: Story = {
-  args: {
-    type: "color",
-    name: "input",
-    id: "input",
-    label: "Label",
-    help: "This is a help text",
-    hideLabel: false,
-  },
-}
-
-export const Datetime: Story = {
-  args: {
-    type: "datetime-local",
-    name: "input",
-    id: "input",
-    label: "Label",
-    help: "This is a help text",
-    hideLabel: false,
-  },
-}
-
-export const Email: Story = {
-  args: {
-    type: "email",
-    name: "input",
-    id: "input",
-    label: "Label",
-    help: "This is a help text",
-    hideLabel: false,
-  },
-}
-
-export const Month: Story = {
-  args: {
-    type: "month",
-    name: "input",
-    id: "input",
-    label: "Label",
-    help: "This is a help text",
-    hideLabel: false,
-  },
-}
-
-export const Number: Story = {
-  args: {
-    type: "number",
-    name: "input",
-    id: "input",
-    label: "Label",
-    help: "This is a help text",
-    hideLabel: false,
-  },
-}
-
-export const Password: Story = {
-  args: {
-    type: "password",
-    name: "input",
-    id: "input",
-    label: "Label",
-    help: "This is a help text",
-    hideLabel: false,
-  },
-}
-
-export const Range: Story = {
-  args: {
-    type: "range",
-    name: "input",
-    id: "input",
-    label: "Label",
-    help: "This is a help text",
-    hideLabel: false,
-  },
-}
-
-export const Search: Story = {
-  args: {
-    type: "search",
-    name: "input",
-    id: "input",
-    label: "Label",
-    help: "This is a help text",
-    hideLabel: false,
-  },
-}
-
-export const Tel: Story = {
-  args: {
-    type: "tel",
-    name: "input",
-    id: "input",
-    label: "Label",
-    help: "This is a help text",
-    hideLabel: false,
-  },
-}
-
-export const Time: Story = {
-  args: {
-    type: "time",
-    name: "input",
-    id: "input",
-    label: "Label",
-    help: "This is a help text",
-    hideLabel: false,
-  },
-}
-
-export const URL: Story = {
-  args: {
-    type: "url",
-    name: "input",
-    id: "input",
-    label: "Label",
-    help: "This is a help text",
-    hideLabel: false,
-  },
-}
-
-export const Week: Story = {
-  args: {
-    type: "week",
-    name: "input",
-    id: "input",
-    label: "Label",
-    help: "This is a help text",
-    hideLabel: false,
-  },
-}
-
-export const HiddenLabel: Story = {
-  args: {
-    type: "text",
-    name: "input",
-    id: "input",
-    label: "Label",
-    help: "This is a help text",
     hideLabel: true,
+    modelValue: "This is some sample text for the input.",
+    type: "text",
+    name: "input",
+    id: "input",
+    label: "Label",
+    help: "This is a help text",
   },
+  render: (args) => ({
+    components: { BInput },
+    setup() {
+      return { args }
+    },
+    template: `<BInput v-bind="args" />`,
+  }),
 }
 
 export const WithoutHelpline: Story = {
   args: {
+    help: "",
+    modelValue: "This is some sample text for the input.",
     type: "text",
     name: "input",
     id: "input",
     label: "Label",
-    help: "",
     hideLabel: false,
   },
+  render: (args) => ({
+    components: { BInput },
+    setup() {
+      return { args }
+    },
+    template: `<BInput v-bind="args" />`,
+  }),
 }
