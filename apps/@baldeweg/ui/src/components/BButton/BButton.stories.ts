@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
 import { action } from "storybook/actions"
-
 import BButton from "./BButton.vue"
 
 const meta = {
@@ -32,6 +31,13 @@ export const Primary: Story = {
     default: "Send",
     design: "primary",
   },
+  render: (args) => ({
+    components: { BButton },
+    setup() {
+      return { args }
+    },
+    template: `<BButton v-bind="args">{{ args.default }}</BButton>`,
+  }),
 }
 
 export const Secondary: Story = {
@@ -39,6 +45,13 @@ export const Secondary: Story = {
     default: "Send",
     design: "primary_danger",
   },
+  render: (args) => ({
+    components: { BButton },
+    setup() {
+      return { args }
+    },
+    template: `<BButton v-bind="args">{{ args.default }}</BButton>`,
+  }),
 }
 
 export const PrimaryWide: Story = {
@@ -46,6 +59,13 @@ export const PrimaryWide: Story = {
     default: "Send",
     design: "primary_wide",
   },
+  render: (args) => ({
+    components: { BButton },
+    setup() {
+      return { args }
+    },
+    template: `<BButton v-bind="args">{{ args.default }}</BButton>`,
+  }),
 }
 
 export const Outline: Story = {
@@ -53,6 +73,13 @@ export const Outline: Story = {
     default: "Send",
     design: "outline",
   },
+  render: (args) => ({
+    components: { BButton },
+    setup() {
+      return { args }
+    },
+    template: `<BButton v-bind="args">{{ args.default }}</BButton>`,
+  }),
 }
 
 export const OutlineDanger: Story = {
@@ -60,6 +87,13 @@ export const OutlineDanger: Story = {
     default: "Send",
     design: "outline_danger",
   },
+  render: (args) => ({
+    components: { BButton },
+    setup() {
+      return { args }
+    },
+    template: `<BButton v-bind="args">{{ args.default }}</BButton>`,
+  }),
 }
 
 export const OutlineWide: Story = {
@@ -67,6 +101,13 @@ export const OutlineWide: Story = {
     default: "Send",
     design: "outline_wide",
   },
+  render: (args) => ({
+    components: { BButton },
+    setup() {
+      return { args }
+    },
+    template: `<BButton v-bind="args">{{ args.default }}</BButton>`,
+  }),
 }
 
 export const Text: Story = {
@@ -74,6 +115,13 @@ export const Text: Story = {
     default: "Send",
     design: "text",
   },
+  render: (args) => ({
+    components: { BButton },
+    setup() {
+      return { args }
+    },
+    template: `<BButton v-bind="args">{{ args.default }}</BButton>`,
+  }),
 }
 
 export const TextDanger: Story = {
@@ -81,4 +129,11 @@ export const TextDanger: Story = {
     default: "Send",
     design: "text_danger",
   },
+  render: (args) => ({
+    components: { BButton },
+    setup() {
+      return { args }
+    },
+    template: `<BButton v-bind="args">{{ args.default }}</BButton>`,
+  }),
 }

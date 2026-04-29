@@ -1,5 +1,4 @@
 import { describe, it, expect } from "vitest"
-
 import BButton from "../BButton/BButton.vue"
 
 describe("BButton", () => {
