@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
-
 import BTextarea from "./BTextarea.vue"
 
 const meta = {
@@ -26,7 +25,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Full: Story = {
+export const Base: Story = {
   args: {
     modelValue: "This is some sample text for the textarea.",
     name: "textarea",
