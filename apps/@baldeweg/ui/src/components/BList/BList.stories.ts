@@ -31,135 +31,21 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Basic: Story = {
+export const Landscape: Story = {
   render: (args) => ({
     components: { BList },
     setup() {
-      return { args }
+      return { args, placeholderImage }
     },
     template: `
       <BList v-bind="args">
+      <template #media>
+          <img :src="placeholderImage" alt="Placeholder" />
+        </template>
         <template #title>List Title</template>
         <template #subtitle>Subtitle</template>
+        <template #text>Text</template>
         This is the default content
-      </BList>
-    `,
-  }),
-  args: {
-    hover: true,
-    divider: false,
-  },
-}
-
-export const WithMedia: Story = {
-  render: (args) => ({
-    components: { BList },
-    setup() {
-      return { args, placeholderImage }
-    },
-    template: `
-      <BList v-bind="args">
-        <template #media>
-          <img :src="placeholderImage" alt="Placeholder" />
-        </template>
-        <template #title>List with Media</template>
-        <template #subtitle>Media Example</template>
-        Content with media image
-      </BList>
-    `,
-  }),
-  args: {
-    mediaSize: "landscape",
-    hover: true,
-    divider: false,
-  },
-}
-
-export const WithAvatar: Story = {
-  render: (args) => ({
-    components: { BList },
-    setup() {
-      return { args, placeholderImage }
-    },
-    template: `
-      <BList v-bind="args">
-        <template #media>
-          <img :src="placeholderImage" alt="Avatar" />
-        </template>
-        <template #title>User Profile</template>
-        <template #subtitle>Username</template>
-        Profile information
-      </BList>
-    `,
-  }),
-  args: {
-    mediaSize: "avatar",
-    hover: true,
-    divider: false,
-  },
-}
-
-export const WithTextColumn: Story = {
-  render: (args) => ({
-    components: { BList },
-    setup() {
-      return { args }
-    },
-    template: `
-      <BList v-bind="args">
-        <template #title>Item with Text Column</template>
-        <template #subtitle>Information</template>
-        Main content
-        <template #text>Additional Text</template>
-      </BList>
-    `,
-  }),
-  args: {
-    textWidth: "150px",
-    hover: true,
-    divider: true,
-  },
-}
-
-export const WithControls: Story = {
-  render: (args) => ({
-    components: { BList },
-    setup() {
-      return { args }
-    },
-    template: `
-      <BList v-bind="args">
-        <template #title>Item with Controls</template>
-        <template #subtitle>Action Item</template>
-        Content with control buttons
-        <template #controls>
-          <button>Edit</button>
-        </template>
-      </BList>
-    `,
-  }),
-  args: {
-    controlsWidth: "80px",
-    hover: true,
-    divider: true,
-  },
-}
-
-export const FullExample: Story = {
-  render: (args) => ({
-    components: { BList },
-    setup() {
-      return { args, placeholderImage }
-    },
-    template: `
-      <BList v-bind="args">
-        <template #media>
-          <img :src="placeholderImage" alt="Placeholder" />
-        </template>
-        <template #title>Complete Example</template>
-        <template #subtitle>All Features</template>
-        Content with all available slots
-        <template #text>0.00 €</template>
         <template #controls>
           <button>Add</button>
           <button>Remove</button>
@@ -168,11 +54,71 @@ export const FullExample: Story = {
     `,
   }),
   args: {
-    mediaSize: "landscape",
-    textWidth: "100px",
-    controlsWidth: "120px",
-    hover: true,
     divider: true,
+    hover: true,
     route: { name: "home", params: { id: 1 } },
+    controlsWidth: "120px",
+  },
+}
+
+export const Portrait: Story = {
+  render: (args) => ({
+    components: { BList },
+    setup() {
+      return { args, placeholderImage }
+    },
+    template: `
+      <BList v-bind="args">
+      <template #media>
+          <img :src="placeholderImage" alt="Placeholder" />
+        </template>
+        <template #title>List Title</template>
+        <template #subtitle>Subtitle</template>
+        <template #text>Text</template>
+        This is the default content
+        <template #controls>
+          <button>Add</button>
+          <button>Remove</button>
+        </template>
+      </BList>
+    `,
+  }),
+  args: {
+    mediaSize: "portrait",
+    divider: true,
+    hover: true,
+    route: { name: "home", params: { id: 1 } },
+    controlsWidth: "120px",
+  },
+}
+
+export const Avatar: Story = {
+  render: (args) => ({
+    components: { BList },
+    setup() {
+      return { args, placeholderImage }
+    },
+    template: `
+      <BList v-bind="args">
+      <template #media>
+          <img :src="placeholderImage" alt="Placeholder" />
+        </template>
+        <template #title>List Title</template>
+        <template #subtitle>Subtitle</template>
+        <template #text>Text</template>
+        This is the default content
+        <template #controls>
+          <button>Add</button>
+          <button>Remove</button>
+        </template>
+      </BList>
+    `,
+  }),
+  args: {
+    mediaSize: "avatar",
+    divider: true,
+    hover: true,
+    route: { name: "home", params: { id: 1 } },
+    controlsWidth: "120px",
   },
 }

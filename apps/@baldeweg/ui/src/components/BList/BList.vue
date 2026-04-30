@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { computed, useSlots } from "vue"
-import { useRoute, useRouter } from "vue-router"
+import { useSlots } from "vue"
 import type { RouteLocationRaw } from "vue-router"
 
 interface Props {
@@ -12,21 +11,12 @@ interface Props {
   hover?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   mediaSize: "landscape",
   textWidth: "200px",
   controlsWidth: "50px",
   divider: false,
   hover: false,
-})
-
-const router = useRouter()
-const currentRoute = useRoute()
-
-const active = computed(() => {
-  if (!props.route) return false
-  const resolved = router.resolve(props.route as RouteLocationRaw)
-  return resolved.fullPath === currentRoute.fullPath
 })
 
 const slots = useSlots()
@@ -36,19 +26,17 @@ const slots = useSlots()
   <div
     class="list my-xl mx-none flex"
     :class="{
-      list_hasHover: hover,
-      list_isActive: active,
+      'hover:cursor-pointer hover:bg-neutral-200': hover,
     }"
   >
     <div
       v-if="slots.media"
       class="list_media py-xl px-none pr-xl"
       :class="{
-        list_hasHover: hover,
-        list_isActive: active,
-        list_mediaSize_landscape: mediaSize === 'landscape',
-        list_mediaSize_portrait: mediaSize === 'portrait',
-        list_mediaSize_avatar: mediaSize === 'avatar',
+        'cursor-pointer hover:bg-neutral-200': hover,
+        'w-[200px]': mediaSize === 'landscape',
+        'w-[100px]': mediaSize === 'portrait',
+        'list_avatar h-[50px] w-[50px] rounded-full': mediaSize === 'avatar',
       }"
       :style="{ width: mediaSize }"
     >
@@ -58,15 +46,14 @@ const slots = useSlots()
     <div
       class="list_content py-xl px-none grow"
       :class="{
-        'border-b': divider,
-        'border-neutral-200': divider,
+        'border-b border-neutral-200': divider,
       }"
     >
       <RouterLink :to="route" v-if="route">
-        <h3 v-if="slots.title">
+        <h3 class="m-none" v-if="slots.title">
           <slot name="title" />
         </h3>
-        <p>
+        <p class="p-none m-none">
           <span v-if="slots.subtitle" class="list_subtitle">
             <slot name="subtitle" />
           </span>
@@ -75,10 +62,10 @@ const slots = useSlots()
         </p>
       </RouterLink>
       <div v-else>
-        <h3 v-if="slots.title">
+        <h3 class="m-none" v-if="slots.title">
           <slot name="title" />
         </h3>
-        <p>
+        <p class="p-none m-none">
           <span v-if="slots.subtitle" class="list_subtitle font-bold">
             <slot name="subtitle" />
           </span>
@@ -92,8 +79,7 @@ const slots = useSlots()
       v-if="slots.text"
       class="list_text py-xl px-none pl-xl text-primary-900 text-right font-bold"
       :class="{
-        'border-b': divider,
-        'border-neutral-200': divider,
+        'border-b border-neutral-200': divider,
       }"
       :style="{ width: textWidth }"
     >
@@ -104,8 +90,7 @@ const slots = useSlots()
       v-if="slots.controls"
       class="list_controls py-xl px-none pl-xl text-right"
       :class="{
-        'border-b': divider,
-        'border-neutral-200': divider,
+        'border-b border-neutral-200': divider,
       }"
       :style="{ width: controlsWidth }"
     >
@@ -114,7 +99,7 @@ const slots = useSlots()
   </div>
 </template>
 
-<style scoped>
+<style>
 .list {
   transition: background-color 0.3s ease;
 }
@@ -124,35 +109,10 @@ const slots = useSlots()
   text-decoration: none;
 }
 
-.list_hasHover:hover {
-  background: var(--color-neutral-200);
-  cursor: pointer;
-}
-
-.list_media.list_mediaSize_landscape {
-  width: 200px;
-}
-
-.list_mediaSize_landscape img {
-  width: 200px;
-}
-
-.list_mediaSize_portrait img {
-  width: 100px;
-}
-
-.list_mediaSize_avatar img {
+.list_avatar img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-}
-
-.list_content h3 {
-  margin: 0;
-}
-
-.list_content p {
-  padding: 0;
 }
 
 .list_content a,
