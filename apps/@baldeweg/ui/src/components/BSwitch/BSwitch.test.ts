@@ -8,7 +8,6 @@ describe("BSwitch", () => {
   })
 
   it("emits update:modelValue with toggled value on click", async () => {
-    const { mount } = await import("@vue/test-utils")
     const wrapper = mount(BSwitch, {
       props: {
         modelValue: false,

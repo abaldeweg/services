@@ -16,8 +16,8 @@ const emit = defineEmits<{
 <template>
   <div class="flex items-center">
     <button
-      class="switch_indicator relative cursor-pointer rounded-full border-0 bg-neutral-800 p-0"
-      :class="{ isActive: modelValue }"
+      class="switch_indicator relative h-[30px] w-[50px] cursor-pointer rounded-full border-0 bg-neutral-800 p-0"
+      :class="{ 'isActive bg-primary-900': modelValue }"
       @click="emit('update:modelValue', !modelValue)"
       :aria-label="label"
     />
@@ -31,11 +31,6 @@ const emit = defineEmits<{
 </template>
 
 <style scoped>
-.switch_indicator {
-  height: 30px;
-  width: 50px;
-}
-
 .switch_indicator::after {
   content: "";
   position: absolute;
@@ -46,10 +41,6 @@ const emit = defineEmits<{
   width: 20px;
   height: 20px;
   transition: 0.2s;
-}
-
-.switch_indicator.isActive {
-  background: var(--color-primary-900);
 }
 
 .switch_indicator.isActive::after {

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
-
 import BSwitch from "./BSwitch.vue"
 
 const meta = {
