@@ -155,19 +155,19 @@ States can be used by prefixing class names with the state and a colon, e.g. `ho
 Example for `:hover`:
 
 ```css
-hover: bg-primary-900;
+hover:bg-primary-900;
 ```
 
 Example for `::after`:
 
 ```css
-after: bg-primary-900;
+after:bg-primary-900;
 ```
 
 Example for print:
 
 ```css
-print: hidden;
+print:hidden;
 ```
 
 Examples for data-attribute:
