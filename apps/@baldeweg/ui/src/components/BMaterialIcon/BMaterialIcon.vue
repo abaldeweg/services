@@ -18,7 +18,7 @@ const iconClasses = computed<Array<string | Record<string, boolean>>>(() => [
   "opacity-100",
   "material-symbols-outlined",
   "align-middle",
-  { canHover: props.hover },
+  { "hover:opacity-60 hover:cursor-pointer": props.hover },
 ])
 
 const iconStyle = computed<Record<string, string>>(() => ({
@@ -36,11 +36,6 @@ const iconStyle = computed<Record<string, string>>(() => ({
 <style scoped>
 .icon {
   transition: opacity 0.2s;
-}
-
-.icon:hover.canHover {
-  opacity: 0.6;
-  cursor: pointer;
 }
 
 .material-symbols-outlined {

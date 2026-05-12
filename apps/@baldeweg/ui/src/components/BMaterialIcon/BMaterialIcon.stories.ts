@@ -28,7 +28,7 @@ export const Normal: Story = {
   args: {
     size: 24,
     color: "#ffffff",
-    hover: false,
+    hover: true,
   },
   render: (args) => ({
     components: { BMaterialIcon },
@@ -43,7 +43,7 @@ export const Large: Story = {
   args: {
     size: 48,
     color: "#ffffff",
-    hover: false,
+    hover: true,
   },
   render: (args) => ({
     components: { BMaterialIcon },
@@ -55,21 +55,6 @@ export const Large: Story = {
 }
 
 export const Colored: Story = {
-  args: {
-    size: 24,
-    color: "#ff0000",
-    hover: false,
-  },
-  render: (args) => ({
-    components: { BMaterialIcon },
-    setup() {
-      return { args }
-    },
-    template: `<BMaterialIcon v-bind="args">home</BMaterialIcon>`,
-  }),
-}
-
-export const WithHoverEffect: Story = {
   args: {
     size: 24,
     color: "#ff0000",
