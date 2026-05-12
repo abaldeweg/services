@@ -1,3 +1,5 @@
 packages:
     - apps/@baldeweg/create/
     - apps/@baldeweg/ui/
+allowBuilds:
+    esbuild: true
