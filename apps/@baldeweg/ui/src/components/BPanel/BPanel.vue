@@ -24,7 +24,7 @@ const slots = useSlots()
 <template>
   <Transition name="panel_overlay" v-if="!props.permanent">
     <div
-      class="panel_overlay print:hidden top-none bottom-none left-none right-none absolute z-3 bg-neutral-100 opacity-70"
+      class="panel_overlay top-none bottom-none left-none right-none absolute z-3 bg-neutral-100 opacity-70 print:hidden"
       @click="emit('update:modelValue', false)"
       v-if="modelValue"
     />
@@ -32,11 +32,13 @@ const slots = useSlots()
 
   <Transition name="panel_container">
     <div
-      class="panel_container print:hidden top-none bottom-none w-[calc(100%-20px)] fixed z-3 flex flex-col bg-neutral-100"
+      class="panel_container top-none bottom-none fixed z-3 flex w-[calc(100%-20px)] flex-col bg-neutral-100 print:hidden"
       :class="{
-        'panel_position_left left-none border-r border-neutral-200': position === 'left',
-        'panel_position_right right-none border-l border-neutral-200': position === 'right',
-        'panel_permanent': permanent,
+        'panel_position_left left-none border-r border-neutral-200':
+          position === 'left',
+        'panel_position_right right-none border-l border-neutral-200':
+          position === 'right',
+        panel_permanent: permanent,
       }"
       v-if="modelValue"
       :style="{
