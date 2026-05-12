@@ -2,14 +2,13 @@
 import { useSlots } from "vue"
 
 interface Props {
-  modelValue?: boolean
+  modelValue: boolean
   position?: "left" | "right"
   width?: string
   permanent?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  modelValue: false,
   position: "left",
   width: "300px",
   permanent: false,
@@ -25,7 +24,7 @@ const slots = useSlots()
 <template>
   <Transition name="panel_overlay" v-if="!props.permanent">
     <div
-      class="panel_overlay absolute z-3 bg-neutral-100 opacity-70"
+      class="panel_overlay print:hidden top-none bottom-none left-none right-none absolute z-3 bg-neutral-100 opacity-70"
       @click="emit('update:modelValue', false)"
       v-if="modelValue"
     />
@@ -33,11 +32,11 @@ const slots = useSlots()
 
   <Transition name="panel_container">
     <div
-      class="panel_container fixed z-3 flex flex-col bg-neutral-100"
+      class="panel_container print:hidden top-none bottom-none w-[calc(100%-20px)] fixed z-3 flex flex-col bg-neutral-100"
       :class="{
-        panel_position_left: position === 'left',
-        panel_position_right: position === 'right',
-        panel_permanent: permanent,
+        'panel_position_left left-none border-r border-neutral-200': position === 'left',
+        'panel_position_right right-none border-l border-neutral-200': position === 'right',
+        'panel_permanent': permanent,
       }"
       v-if="modelValue"
       :style="{
@@ -47,7 +46,7 @@ const slots = useSlots()
       <div class="border-b border-neutral-200" v-if="slots.header">
         <slot name="header" />
       </div>
-      <div class="panel_content grow overflow-y-auto">
+      <div class="panel_content max-h-screen grow overflow-y-auto">
         <slot />
       </div>
       <div class="border-t border-neutral-200" v-if="slots.footer">
@@ -58,33 +57,6 @@ const slots = useSlots()
 </template>
 
 <style scoped>
-.panel_overlay {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.panel_container {
-  top: 0;
-  bottom: 0;
-  width: calc(100% - 20px);
-}
-
-.panel_container.panel_position_left {
-  left: 0;
-  border-right: 1px solid var(--color-neutral-200);
-}
-
-.panel_container.panel_position_right {
-  right: 0;
-  border-left: 1px solid var(--color-neutral-200);
-}
-
-.panel_content {
-  max-height: calc(100vh);
-}
-
 /* transition overlay */
 .panel_overlay-enter-active,
 .panel_overlay-leave-active {
@@ -118,12 +90,5 @@ const slots = useSlots()
 .panel_container-enter-from.panel_position_right,
 .panel_container-leave-to.panel_position_right {
   transform: translateX(300px);
-}
-
-@media print {
-  .panel_overlay,
-  .panel_container {
-    display: none;
-  }
 }
 </style>

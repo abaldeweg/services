@@ -5,7 +5,8 @@ const meta = {
   component: BPanel,
   argTypes: {
     position: {
-      control: { type: "select", options: ["left", "right"] },
+      control: { type: "radio" },
+      options: ["left", "right"],
       description: "The position of the panel",
     },
     width: {
@@ -66,9 +67,9 @@ const panelTemplate = `
     </BPanel>
   `
 
-export const LeftPanel: Story = {
+export const Left: Story = {
   args: {
-    modelValue: false,
+    modelValue: true,
     position: "left",
     width: "300px",
     permanent: false,
@@ -82,9 +83,9 @@ export const LeftPanel: Story = {
   }),
 }
 
-export const RightPanel: Story = {
+export const Right: Story = {
   args: {
-    modelValue: false,
+    modelValue: true,
     position: "right",
     width: "300px",
     permanent: false,
@@ -98,41 +99,9 @@ export const RightPanel: Story = {
   }),
 }
 
-export const WithoutHeader: Story = {
+export const Width: Story = {
   args: {
-    modelValue: false,
-    position: "left",
-    width: "300px",
-    permanent: false,
-  },
-  render: (args) => ({
-    components: { BPanel },
-    setup() {
-      return { args }
-    },
-    template: panelTemplate,
-  }),
-}
-
-export const WithoutFooter: Story = {
-  args: {
-    modelValue: false,
-    position: "left",
-    width: "300px",
-    permanent: false,
-  },
-  render: (args) => ({
-    components: { BPanel },
-    setup() {
-      return { args }
-    },
-    template: panelTemplate,
-  }),
-}
-
-export const CustomWidth: Story = {
-  args: {
-    modelValue: false,
+    modelValue: true,
     position: "left",
     width: "500px",
     permanent: false,
@@ -146,7 +115,7 @@ export const CustomWidth: Story = {
   }),
 }
 
-export const PermanentPanel: Story = {
+export const Permanent: Story = {
   args: {
     modelValue: true,
     position: "left",
