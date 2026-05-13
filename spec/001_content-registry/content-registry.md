@@ -41,7 +41,7 @@ Implementations MUST validate the provided `version` against the supported versi
 
 If `version` is omitted, the Content Registry MUST set it to the latest supported version. The provided value MUST be one of the supported versions listed in this section.
 
-## 3. Revision Schema
+## 3. Document
 
 A revision is always scoped to its record `id`.
 
@@ -205,7 +205,7 @@ Subject to `assets_max_count` (see [Section 5.1](#51-fields)).
 }
 ```
 
-## 4. Record Schema
+## 4. Revision
 
 ### 4.1. Fields
 
