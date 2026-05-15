@@ -13,15 +13,24 @@ withDefaults(defineProps<Props>(), {
 <template>
   <div class="tooltip relative inline-block">
     <slot />
-    <span class="tooltip_text rounded-s bg-neutral-200 p-l text-neutral-950 text-center opacity-0 invisible absolute z-1
-    after:absolute after:border-10" :class="{
-      'min-w-[120px] max-w-[320px] left-[50%] after:left-[50%] after:-ml-l': position === 'top' || position === 'bottom',
-      'h-auto min-w-[120px] max-w-[320px] bottom-[50%] after:top-[50%] after:-mt-l': position === 'left' || position === 'right',
-      'tooltip_position_top bottom-full mb-l after:top-full': position === 'top',
-      'tooltip_position_bottom top-full mt-l after:bottom-full': position === 'bottom',
-      'tooltip_position_left right-full mr-l after:left-full': position === 'left',
-      'tooltip_position_right left-full ml-l after:right-full': position === 'right',
-    }">{{ text }}</span>
+    <span
+      class="tooltip_text p-l invisible absolute z-1 rounded-s bg-neutral-200 text-center text-neutral-950 opacity-0 after:absolute after:border-10"
+      :class="{
+        'after:-ml-l left-[50%] max-w-[320px] min-w-[120px] after:left-[50%]':
+          position === 'top' || position === 'bottom',
+        'after:-mt-l bottom-[50%] h-auto max-w-[320px] min-w-[120px] after:top-[50%]':
+          position === 'left' || position === 'right',
+        'tooltip_position_top mb-l bottom-full after:top-full':
+          position === 'top',
+        'tooltip_position_bottom mt-l top-full after:bottom-full':
+          position === 'bottom',
+        'tooltip_position_left mr-l right-full after:left-full':
+          position === 'left',
+        'tooltip_position_right ml-l left-full after:right-full':
+          position === 'right',
+      }"
+      >{{ text }}</span
+    >
   </div>
 </template>
 
