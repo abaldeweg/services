@@ -1,134 +1,63 @@
 <script setup lang="ts">
-import { computed } from "vue"
-
 interface Props {
   position?: "top" | "bottom" | "left" | "right"
   text?: string
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   position: "top",
-})
-
-const positionClass = computed<Record<string, boolean>>(() => {
-  return {
-    tooltip_position_top: props.position === "top",
-    tooltip_position_bottom: props.position === "bottom",
-    tooltip_position_left: props.position === "left",
-    tooltip_position_right: props.position === "right",
-  }
+  text: "",
 })
 </script>
 
 <template>
-  <div class="tooltip relative">
+  <div class="tooltip relative inline-block">
     <slot />
-    <span class="tooltip_text" :class="positionClass">{{ text }}</span>
+    <span class="tooltip_text rounded-s bg-neutral-200 p-l text-neutral-950 text-center opacity-0 invisible absolute z-1
+    after:absolute after:border-10" :class="{
+      'min-w-[120px] max-w-[320px] left-[50%] after:left-[50%] after:-ml-l': position === 'top' || position === 'bottom',
+      'h-auto min-w-[120px] max-w-[320px] bottom-[50%] after:top-[50%] after:-mt-l': position === 'left' || position === 'right',
+      'tooltip_position_top bottom-full mb-l after:top-full': position === 'top',
+      'tooltip_position_bottom top-full mt-l after:bottom-full': position === 'bottom',
+      'tooltip_position_left right-full mr-l after:left-full': position === 'left',
+      'tooltip_position_right left-full ml-l after:right-full': position === 'right',
+    }">{{ text }}</span>
   </div>
 </template>
 
 <style scoped>
 .tooltip {
-  display: inline-block;
   line-height: 0;
 }
 
 .tooltip_text {
-  border-radius: 10px;
-  background: var(--color-neutral-200);
-  padding: 10px;
-  color: var(--color-neutral-950);
-  text-align: center;
   line-height: initial;
-  opacity: 0;
   transition: opacity 0.3s;
-  visibility: hidden;
-}
-
-.tooltip_position_top,
-.tooltip_position_bottom,
-.tooltip_position_left,
-.tooltip_position_right {
-  position: absolute;
-  z-index: 1;
 }
 
 .tooltip_position_top,
 .tooltip_position_bottom {
-  min-width: 120px;
-  max-width: 320px;
-  left: 50%;
   transform: translateX(-50%);
 }
 
-.tooltip_position_top {
-  bottom: 100%;
-  margin-bottom: 10px;
-}
-
-.tooltip_position_bottom {
-  top: 100%;
-  margin-top: 10px;
-}
-
 .tooltip_position_left,
 .tooltip_position_right {
-  height: auto;
-  min-width: 120px;
-  max-width: 320px;
-  bottom: 50%;
   transform: translateY(50%);
 }
 
-.tooltip_position_left {
-  right: 100%;
-  margin-right: 10px;
-}
-
-.tooltip_position_right {
-  left: 100%;
-  margin-left: 10px;
-}
-
-.tooltip_text.tooltip_position_top::after,
-.tooltip_text.tooltip_position_bottom::after,
-.tooltip_text.tooltip_position_left::after,
-.tooltip_text.tooltip_position_right::after {
-  content: "";
-  position: absolute;
-  border-width: 10px;
-  border-style: solid;
-}
-
-.tooltip_text.tooltip_position_top::after,
-.tooltip_text.tooltip_position_bottom::after {
-  left: 50%;
-  margin-left: -10px;
-}
-
 .tooltip_text.tooltip_position_top::after {
-  top: 100%;
   border-color: var(--color-neutral-200) transparent transparent transparent;
 }
 
 .tooltip_text.tooltip_position_bottom::after {
-  bottom: 100%;
   border-color: transparent transparent var(--color-neutral-200) transparent;
 }
 
-.tooltip_text.tooltip_position_left::after,
-.tooltip_text.tooltip_position_right::after {
-  top: 50%;
-  margin-top: -10px;
-}
-
 .tooltip_text.tooltip_position_left::after {
-  left: 100%;
   border-color: transparent transparent transparent var(--color-neutral-200);
 }
 
 .tooltip_text.tooltip_position_right::after {
-  right: 100%;
   border-color: transparent var(--color-neutral-200) transparent transparent;
 }
 

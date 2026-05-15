@@ -34,9 +34,11 @@ export const General: Story = {
       return { args }
     },
     template: `
-      <BTooltip v-bind="args">
-        <button>Hover me</button>
-      </BTooltip>
+      <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <BTooltip v-bind="args">
+          <button>Hover me</button>
+        </BTooltip>
+      </div>
     `,
   }),
 }
@@ -51,9 +53,11 @@ export const Bottom: Story = {
       return { args }
     },
     template: `
-      <BTooltip v-bind="args">
-        <button>Hover me</button>
-      </BTooltip>
+      <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <BTooltip v-bind="args">
+          <button>Hover me</button>
+        </BTooltip>
+      </div>
     `,
   }),
 }
@@ -69,9 +73,11 @@ export const Left: Story = {
       return { args }
     },
     template: `
-      <BTooltip v-bind="args">
-        <button>Hover me</button>
-      </BTooltip>
+      <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <BTooltip v-bind="args">
+          <button>Hover me</button>
+        </BTooltip>
+      </div>
     `,
   }),
 }
@@ -87,9 +93,11 @@ export const Right: Story = {
       return { args }
     },
     template: `
-      <BTooltip v-bind="args">
-        <button>Hover me</button>
-      </BTooltip>
+      <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <BTooltip v-bind="args">
+          <button>Hover me</button>
+        </BTooltip>
+      </div>
     `,
   }),
 }
@@ -105,9 +113,11 @@ export const LongText: Story = {
       return { args }
     },
     template: `
-      <BTooltip v-bind="args">
-        <button>Hover me</button>
-      </BTooltip>
+      <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <BTooltip v-bind="args">
+          <button>Hover me</button>
+        </BTooltip>
+      </div>
     `,
   }),
 }
