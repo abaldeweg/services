@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface Props {
+  modelValue: string
   placeholder?: string
-  modelValue?: string
   filter?: boolean
   branded?: boolean
   focus?: boolean
@@ -12,10 +12,14 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
+  placeholder: '',
   filter: false,
   branded: false,
   focus: false,
   reset: false,
+  resetLabel: "Reset",
+  filterLabel: "Filter",
+  searchLabel: "Search"
 })
 
 const emit = defineEmits<{
@@ -30,7 +34,7 @@ const emit = defineEmits<{
 <template>
   <form
     class="search rounded-m block grow items-center border border-neutral-400"
-    :class="{ search_isBranded: branded }"
+    :class="{ 'border-primary-900': branded }"
     @submit.prevent="emit('submit', $event)"
   >
     <input
@@ -47,7 +51,7 @@ const emit = defineEmits<{
     <div class="search_buttons w-full text-right">
       <button
         type="reset"
-        class="search_button"
+        class="border-none bg-transparent py-m px-l m-none cursor-pointer text-neutral-400" :class="{'text-primary-900' : branded}"
         @click="emit('reset')"
         v-if="reset"
       >
@@ -57,7 +61,7 @@ const emit = defineEmits<{
       </button>
       <button
         type="button"
-        class="search_button"
+        class="border-none bg-transparent py-m px-l m-none cursor-pointer text-neutral-400" :class="{'text-primary-900' : branded}"
         @click="emit('filter')"
         v-if="filter"
       >
@@ -65,7 +69,7 @@ const emit = defineEmits<{
           filter_alt
         </BMaterialIcon>
       </button>
-      <button class="search_button">
+      <button class="border-none bg-transparent py-m px-l m-none cursor-pointer text-neutral-400" :class="{'text-primary-900' : branded}">
         <BMaterialIcon
           :size="22"
           :isPrimary="branded"
@@ -80,18 +84,6 @@ const emit = defineEmits<{
 </template>
 
 <style scoped>
-.search.search_isBranded {
-  border: 1px solid var(--color-primary-900);
-}
-
-.search_button {
-  border: 0;
-  background: transparent;
-  padding: 5px 10px;
-  margin: 0;
-  cursor: pointer;
-}
-
 .search_input::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }

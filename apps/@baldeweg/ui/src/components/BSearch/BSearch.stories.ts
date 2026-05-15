@@ -25,97 +25,17 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Base: Story = {
+export const Full: Story = {
   args: {
     placeholder: "Search",
     modelValue: "",
     searchLabel: "Search",
-  },
-  render: (args) => ({
-    components: { BSearch },
-    setup() {
-      return { args }
-    },
-    template: '<BSearch v-bind="args" />',
-  }),
-}
-
-export const WithFilter: Story = {
-  args: {
-    placeholder: "Search",
-    modelValue: "",
     filter: true,
-    filterLabel: "Show filters",
-    searchLabel: "Search",
-  },
-  render: (args) => ({
-    components: { BSearch },
-    setup() {
-      return { args }
-    },
-    template: '<BSearch v-bind="args" />',
-  }),
-}
-
-export const WithReset: Story = {
-  args: {
-    placeholder: "Search",
-    modelValue: "Search term",
-    reset: true,
-    resetLabel: "Clear search",
-    searchLabel: "Search",
-  },
-  render: (args) => ({
-    components: { BSearch },
-    setup() {
-      return { args }
-    },
-    template: '<BSearch v-bind="args" />',
-  }),
-}
-
-export const Branded: Story = {
-  args: {
-    placeholder: "Search",
-    modelValue: "",
     branded: true,
-    searchLabel: "Search",
-  },
-  render: (args) => ({
-    components: { BSearch },
-    setup() {
-      return { args }
-    },
-    template: '<BSearch v-bind="args" />',
-  }),
-}
-
-export const Autofocus: Story = {
-  args: {
-    placeholder: "Search",
-    modelValue: "",
-    focus: true,
-    searchLabel: "Search",
-  },
-  render: (args) => ({
-    components: { BSearch },
-    setup() {
-      return { args }
-    },
-    template: '<BSearch v-bind="args" />',
-  }),
-}
-
-export const WithAllFeatures: Story = {
-  args: {
-    placeholder: "Search",
-    modelValue: "Example search",
-    filter: true,
+    focus: false,
     reset: true,
-    branded: true,
-    resetLabel: "Clear search",
-    filterLabel: "Show filters",
-    searchLabel: "Search",
+    resetLabel: "Reset",
+    filterLabel: "Filter",
   },
   render: (args) => ({
     components: { BSearch },
