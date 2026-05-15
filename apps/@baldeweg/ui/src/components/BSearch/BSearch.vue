@@ -12,14 +12,14 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  placeholder: '',
+  placeholder: "",
   filter: false,
   branded: false,
   focus: false,
   reset: false,
   resetLabel: "Reset",
   filterLabel: "Filter",
-  searchLabel: "Search"
+  searchLabel: "Search",
 })
 
 const emit = defineEmits<{
@@ -51,7 +51,8 @@ const emit = defineEmits<{
     <div class="search_buttons w-full text-right">
       <button
         type="reset"
-        class="border-none bg-transparent py-m px-l m-none cursor-pointer text-neutral-400" :class="{'text-primary-900' : branded}"
+        class="py-m px-l m-none cursor-pointer border-none bg-transparent text-neutral-400"
+        :class="{ 'text-primary-900': branded }"
         @click="emit('reset')"
         v-if="reset"
       >
@@ -61,7 +62,8 @@ const emit = defineEmits<{
       </button>
       <button
         type="button"
-        class="border-none bg-transparent py-m px-l m-none cursor-pointer text-neutral-400" :class="{'text-primary-900' : branded}"
+        class="py-m px-l m-none cursor-pointer border-none bg-transparent text-neutral-400"
+        :class="{ 'text-primary-900': branded }"
         @click="emit('filter')"
         v-if="filter"
       >
@@ -69,7 +71,10 @@ const emit = defineEmits<{
           filter_alt
         </BMaterialIcon>
       </button>
-      <button class="border-none bg-transparent py-m px-l m-none cursor-pointer text-neutral-400" :class="{'text-primary-900' : branded}">
+      <button
+        class="py-m px-l m-none cursor-pointer border-none bg-transparent text-neutral-400"
+        :class="{ 'text-primary-900': branded }"
+      >
         <BMaterialIcon
           :size="22"
           :isPrimary="branded"
