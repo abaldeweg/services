@@ -72,9 +72,6 @@ const handleNavigation = (event: Event): void => {
 </template>
 
 <style scoped>
-.navigation_item {
-}
-
 .navigation_item:hover,
 .navigation_item.isActive {
   background: var(--color-neutral-200);
