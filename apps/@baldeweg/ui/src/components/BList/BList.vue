@@ -24,7 +24,7 @@ const slots = useSlots()
 
 <template>
   <div
-    class="list transition duration-300 ease-in-out my-xl mx-none flex"
+    class="list my-xl mx-none flex transition duration-300 ease-in-out"
     :class="{
       'hover:cursor-pointer hover:bg-neutral-200': hover,
     }"
