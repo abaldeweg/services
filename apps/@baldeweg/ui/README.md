@@ -114,6 +114,14 @@ The defaults for CSS properties can be overridden.
     --text-shadow-m: 0px 2px 2px rgb(0 0 0 / 0.5);
     --text-shadow-l: 0px 3px 3px rgb(0 0 0 / 0.5);
 
+    --animate-spin: spin 2s linear infinite;
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
     --blur-s: 5px;
     --blur-m: 10px;
     --blur-l: 20px;
@@ -315,12 +323,13 @@ Some class names support arbitrary values, which can be used by wrapping the val
 - Opacity: `opacity-0`, `opacity-5`, `opacity-10`, `opacity-15`, `opacity-20`, `opacity-25`, `opacity-30`, `opacity-35`, `opacity-40`, `opacity-45`, `opacity-50`, `opacity-55`, `opacity-60`, `opacity-65`, `opacity-70`, `opacity-75`, `opacity-80`, `opacity-85`, `opacity-90`, `opacity-95`, `opacity-100`
 - Mix Blend Mode: `mix-blend-normal`, `mix-blend-multiply`, `mix-blend-screen`, `mix-blend-overlay`, `mix-blend-darken`, `mix-blend-lighten`, `mix-blend-color-dodge`, `mix-blend-color-burn`, `mix-blend-hard-light`, `mix-blend-soft-light`, `mix-blend-difference`, `mix-blend-exclusion`, `mix-blend-hue`, `mix-blend-saturation`, `mix-blend-color`, `mix-blend-luminosity`
 
-### Transitions
+### Transitions & Animation
 
 - Transition: `transition`, `transition-none`, `transition-all`, `transition-colors`, `transition-opacity`, `transition-shadow`, `transition-transform`
 - Duration: `duration-{number}`
 - Timing Function: `ease-linear`, `ease-in`, `ease-out`, `ease-in-out`
 - Delay: `delay-{number}`
+- Animate: `animate-none`, `animate-spin`, `animate-{value}`
 
 ### Interactivity
 

@@ -78,6 +78,14 @@
     --text-shadow-m: 0px 2px 2px rgb(0 0 0 / 0.5);
     --text-shadow-l: 0px 3px 3px rgb(0 0 0 / 0.5);
 
+    --animate-spin: spin 2s linear infinite;
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
     --blur-s: 5px;
     --blur-m: 10px;
     --blur-l: 20px;

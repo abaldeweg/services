@@ -10,7 +10,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div
-    class="spinner border-t-primary-900 rounded-full border-neutral-200"
+    class="animate-spin border-t-primary-900 rounded-full border-neutral-200"
     :class="{
       'h-xl w-xl border-2': size === 's',
       'h-[40px] w-[40px] border-4': size === 'm',
@@ -18,19 +18,3 @@ withDefaults(defineProps<Props>(), {
     }"
   />
 </template>
-
-<style scoped>
-.spinner {
-  animation: spinner 2s linear infinite;
-}
-
-@keyframes spinner {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-</style>
