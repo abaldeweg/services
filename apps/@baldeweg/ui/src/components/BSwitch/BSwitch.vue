@@ -16,7 +16,7 @@ const emit = defineEmits<{
 <template>
   <div class="flex items-center">
     <button
-      class="switch_indicator transition duration-200 relative h-[30px] w-[50px] cursor-pointer rounded-full border-0 bg-neutral-800 p-0"
+      class="switch_indicator relative h-[30px] w-[50px] cursor-pointer rounded-full border-0 bg-neutral-800 p-0 transition duration-200"
       :class="{ 'isActive bg-primary-900': modelValue }"
       @click="emit('update:modelValue', !modelValue)"
       :aria-label="label"

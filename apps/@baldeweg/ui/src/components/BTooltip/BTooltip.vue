@@ -11,10 +11,10 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="tooltip leading-none relative inline-block">
+  <div class="tooltip relative inline-block leading-none">
     <slot />
     <span
-      class="tooltip_text leading-[initial] transition duration-300 p-l invisible absolute z-1 rounded-s bg-neutral-200 text-center text-neutral-950 opacity-0 after:absolute after:border-10"
+      class="tooltip_text p-l invisible absolute z-1 rounded-s bg-neutral-200 text-center leading-[initial] text-neutral-950 opacity-0 transition duration-300 after:absolute after:border-10"
       :class="{
         'after:-ml-l left-[50%] max-w-[320px] min-w-[120px] after:left-[50%]':
           position === 'top' || position === 'bottom',
