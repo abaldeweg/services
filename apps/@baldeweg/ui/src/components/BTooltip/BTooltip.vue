@@ -14,7 +14,7 @@ withDefaults(defineProps<Props>(), {
   <div class="tooltip relative inline-block">
     <slot />
     <span
-      class="tooltip_text p-l invisible absolute z-1 rounded-s bg-neutral-200 text-center text-neutral-950 opacity-0 after:absolute after:border-10"
+      class="tooltip_text transition duration-300 p-l invisible absolute z-1 rounded-s bg-neutral-200 text-center text-neutral-950 opacity-0 after:absolute after:border-10"
       :class="{
         'after:-ml-l left-[50%] max-w-[320px] min-w-[120px] after:left-[50%]':
           position === 'top' || position === 'bottom',
@@ -41,7 +41,6 @@ withDefaults(defineProps<Props>(), {
 
 .tooltip_text {
   line-height: initial;
-  transition: opacity 0.3s;
 }
 
 .tooltip_position_top,

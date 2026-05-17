@@ -14,7 +14,8 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const iconClasses = computed<Array<string | Record<string, boolean>>>(() => [
-  "icon",
+  "transition",
+  "duration-200",
   "opacity-100",
   "material-symbols-outlined",
   "align-middle",
@@ -34,10 +35,6 @@ const iconStyle = computed<Record<string, string>>(() => ({
 </template>
 
 <style scoped>
-.icon {
-  transition: opacity 0.2s;
-}
-
 .material-symbols-outlined {
   font-variation-settings:
     "FILL" 0,

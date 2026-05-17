@@ -79,6 +79,13 @@
     --blur-s: 5px;
     --blur-m: 10px;
     --blur-l: 20px;
+
+    --ease-in: cubic-bezier(0.3, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.3, 0, 0.2, 1);
+
+    --default-transition-duration: 200ms;
+    --default-transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);
 }
 
 @media (prefers-color-scheme: dark) {

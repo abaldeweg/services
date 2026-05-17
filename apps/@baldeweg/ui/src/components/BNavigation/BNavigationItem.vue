@@ -42,7 +42,7 @@ const handleNavigation = (event: Event): void => {
 
 <template>
   <li
-    class="navigation_item m-none rounded-m block text-neutral-950"
+    class="navigation_item transition duration-300 ease-in-out m-none rounded-m block text-neutral-950"
     :class="[
       border !== 'none' && `navigation_item_border_${border}`,
       background !== 'none' && `navigation_item_background_${background}`,
@@ -73,13 +73,11 @@ const handleNavigation = (event: Event): void => {
 
 <style scoped>
 .navigation_item {
-  transition: background 0.3s ease;
 }
 
 .navigation_item:hover,
 .navigation_item.isActive {
   background: var(--color-neutral-200);
-  transition: background 0.3s ease;
 }
 
 .navigation_background_neutral .navigation_item:hover,
