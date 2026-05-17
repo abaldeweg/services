@@ -56,7 +56,7 @@ const handleNavigation = (event: Event): void => {
       class="navigation_link gap-xl py-m px-xl flex flex-row"
       rel="noopener noreferrer"
     >
-      <span class="navigation_icon flex items-center" v-if="icon">
+      <span class="navigation_icon leading-m flex items-center" v-if="icon">
         <BMaterialIcon :size="18">{{ icon }}</BMaterialIcon>
       </span>
 
@@ -93,7 +93,6 @@ const handleNavigation = (event: Event): void => {
 
 .navigation_icon {
   width: 18px;
-  line-height: 1;
 }
 
 .navigation_item_border_primary {

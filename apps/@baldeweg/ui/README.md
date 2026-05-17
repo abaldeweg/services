@@ -89,6 +89,8 @@ The defaults for CSS properties can be overridden.
     --tracking-m: 0em;
     --tracking-l: 0.025em;
 
+    --leading-m: 1;
+
     --radius-s: 10px;
     --radius-m: 20px;
     --radius-l: 40px;
@@ -143,6 +145,7 @@ Most of the [Tailwind utility classes](https://tailwindcss.com/docs/) are availa
 - Tracking: `s`, `m`, `l`
 - Radius: `s`, `m`, `l`, `full`
 - Text: `s`, `m`, `l`, `xl`, `2xl`, `3xl`
+- Line Height (Leading): `none`, `m`
 - Shadow: `s`, `m`, `l`
 - Inset Shadow: `xs`, `s`, `m`
 - Drop Shadow: `xs`, `s`, `m`, `l`, `xl`
@@ -236,6 +239,7 @@ Some class names support arbitrary values, which can be used by wrapping the val
 - Text Decoration Color: `decoration-{color}`
 - Text Overflow: `truncate`, `text-ellipsis`, `text-clip`
 - Text Wrap: `text-wrap`, `text-nowrap`, `text-balance`, `text-pretty`
+- Line Height: `leading-none`, `leading-m`
 - Vertical Align: `align-baseline`, `align-top`, `align-middle`, `align-bottom`, `align-text-top`, `align-text-bottom`, `align-sub`, `align-super`
 - Whitespace: `whitespace-normal`, `whitespace-nowrap`, `whitespace-pre`, `whitespace-pre-line`, `whitespace-pre-wrap`, `whitespace-break-spaces`
 - Word Break: `break-normal`, `break-words`, `break-all`, `break-keep`
