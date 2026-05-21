@@ -207,7 +207,7 @@ data-size:p-xl
 Breakpoints can be used by prefixing class names with the breakpoint name and a colon, e.g. `small:bg-primary-900`.
 
 | Breakpoint | Min Width | Width for 16px Base Font Size |
-|------------|-----------|-------------------------------|
+| ---------- | --------- | ----------------------------- |
 | small      | 48rem     | 768px                         |
 | medium     | 64rem     | 1024px                        |
 
