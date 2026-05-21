@@ -35,6 +35,10 @@
     --breakpoint-small: 48rem;
     --breakpoint-medium: 64rem;
 
+    --container-small: 24rem;
+    --container-medium: 32rem;
+    --container-large: 48rem;
+
     --spacing-none: 0px;
     --spacing-s: 3px;
     --spacing-m: 5px;
