@@ -216,7 +216,7 @@ Breakpoints can be used by prefixing class names with the breakpoint name and a 
 Container queries can be used by adding class name `@container` to the container element. The items also need the `@` prefix and the size, e.g. `@medium:bg-primary-900`. A container name is defined by adding `/[NAME]` to the element's class, e.g. `@medium/[NAME]:bg-primary-900`.
 
 | Container Name | Container Size | Width for 16px Base Font Size |
-|----------------|----------------|-------------------------------|
+| -------------- | -------------- | ----------------------------- |
 | small          | 24rem          | 384px                         |
 | medium         | 32rem          | 512px                         |
 | large          | 48rem          | 768px                         |
