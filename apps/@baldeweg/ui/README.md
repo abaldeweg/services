@@ -68,6 +68,9 @@ The defaults for CSS properties can be overridden.
     --font-serif: Georgia, Constantia, "DejaVu Serif", "Times New Roman";
     --font-mono: Consolas, "Liberation Mono", "Lucida Console";
 
+    --breakpoint-small: 48rem;
+    --breakpoint-medium: 64rem;
+
     --spacing-none: 0px;
     --spacing-s: 3px;
     --spacing-m: 5px;
@@ -194,6 +197,15 @@ Examples for data-attribute:
 data-[size=large]:p-xl
 data-size:p-xl
 ```
+
+### Breakpoints
+
+Breakpoints can be used by prefixing class names with the breakpoint name and a colon, e.g. `small:bg-primary-900`.
+
+| Breakpoint | Min Width | Width for 16px Base Font Size |
+|------------|-----------|-------------------------------|
+| small      | 48rem     | 768px                         |
+| medium     | 64rem     | 1024px                        |
 
 ### Arbitrary Classes
 

@@ -32,6 +32,9 @@
     --font-serif: Georgia, Constantia, "DejaVu Serif", "Times New Roman";
     --font-mono: Consolas, "Liberation Mono", "Lucida Console";
 
+    --breakpoint-small: 48rem;
+    --breakpoint-medium: 64rem;
+
     --spacing-none: 0px;
     --spacing-s: 3px;
     --spacing-m: 5px;
