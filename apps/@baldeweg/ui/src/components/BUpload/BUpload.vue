@@ -8,9 +8,7 @@ interface Props {
   accept?: string
 }
 
-withDefaults(defineProps<Props>(), {
-  modelValue: false,
-})
+defineProps<Props>()
 
 const emit = defineEmits<{
   "update:modelValue": [file: File | null]
@@ -24,7 +22,7 @@ const isDragging = ref<boolean>(false)
     class="hover:border-primary-900 rounded-m relative h-[300px] border border-neutral-200"
     :class="{ 'border-primary-900': isDragging }"
   >
-    <p class="upload_text absolute top-[50%] w-full text-center">{{ text }}</p>
+    <p class="absolute top-[50%] w-full text-center -translate-y-1/2">{{ text }}</p>
     <div
       class="absolute h-full w-full"
       @dragover="isDragging = true"
@@ -52,9 +50,3 @@ const isDragging = ref<boolean>(false)
     </div>
   </div>
 </template>
-
-<style scoped>
-.upload_text {
-  transform: translateY(-50%);
-}
-</style>
