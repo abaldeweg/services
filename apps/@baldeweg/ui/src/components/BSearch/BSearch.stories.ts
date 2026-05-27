@@ -9,8 +9,8 @@ const meta = {
     },
   },
   argTypes: {
-    placeholder: { control: { type: "text" } },
     modelValue: { control: { type: "text" } },
+    placeholder: { control: { type: "text" } },
     filter: { control: { type: "boolean" } },
     branded: { control: { type: "boolean" } },
     focus: { control: { type: "boolean" } },
@@ -25,10 +25,31 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Full: Story = {
+export const Neutral: Story = {
   args: {
-    placeholder: "Search",
     modelValue: "",
+    placeholder: "Search",
+    searchLabel: "Search",
+    filter: true,
+    branded: false,
+    focus: false,
+    reset: true,
+    resetLabel: "Reset",
+    filterLabel: "Filter",
+  },
+  render: (args) => ({
+    components: { BSearch },
+    setup() {
+      return { args }
+    },
+    template: '<BSearch v-bind="args" />',
+  }),
+}
+
+export const Branded: Story = {
+  args: {
+    modelValue: "",
+    placeholder: "Search",
     searchLabel: "Search",
     filter: true,
     branded: true,

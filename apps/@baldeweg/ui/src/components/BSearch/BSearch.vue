@@ -33,13 +33,13 @@ const emit = defineEmits<{
 
 <template>
   <form
-    class="search rounded-m block grow items-center border border-neutral-400"
+    class="search small:flex rounded-m block grow items-center border border-neutral-400"
     :class="{ 'border-primary-900': branded }"
     @submit.prevent="emit('submit', $event)"
   >
     <input
       type="search"
-      class="search_input p-m pl-l m-none text-m rounded-m w-full grow border-none bg-neutral-100 font-sans text-neutral-950 outline-none"
+      class="search_input small:w-auto p-m pl-l m-none text-m rounded-m w-full grow border-none bg-neutral-100 font-sans text-neutral-950 outline-none"
       :placeholder="placeholder"
       :value="modelValue"
       :autofocus="focus"
@@ -48,7 +48,7 @@ const emit = defineEmits<{
       "
       aria-label="Search"
     />
-    <div class="search_buttons w-full text-right">
+    <div class="small:w-auto w-full text-right">
       <button
         type="reset"
         class="py-m px-l m-none cursor-pointer border-none bg-transparent text-neutral-400"
@@ -97,25 +97,5 @@ input[type="search"]::-ms-clear {
   display: none;
   width: 0;
   height: 0;
-}
-
-@media all and (min-width: 500px) {
-  .search {
-    display: flex;
-  }
-
-  .search_buttons {
-    width: auto;
-  }
-
-  .search_input {
-    width: auto;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .search_button {
-    color: var(--color-neutral-950);
-  }
 }
 </style>
