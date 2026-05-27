@@ -29,20 +29,14 @@ describe("BSwitch", () => {
     }
 
     const wrapper = mount(Parent)
-    await wrapper
-      .findComponent(BSwitch)
-      .find("button")
-      .trigger("click")
+    await wrapper.findComponent(BSwitch).find("button").trigger("click")
 
     expect(wrapper.vm.value).toBe(true)
 
     const child = wrapper.findComponent(BSwitch)
     expect(child.props("modelValue")).toBe(true)
 
-    await wrapper
-      .findComponent(BSwitch)
-      .find("button")
-      .trigger("click")
+    await wrapper.findComponent(BSwitch).find("button").trigger("click")
     expect(wrapper.vm.value).toBe(false)
   })
 })
