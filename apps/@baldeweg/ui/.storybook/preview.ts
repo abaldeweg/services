@@ -35,8 +35,8 @@ const preview: Preview = {
     a11y: {
       test: "todo",
     },
-    tags: ["autodocs"],
   },
+  tags: ["autodocs"],
 }
 
 export const decorators = [
