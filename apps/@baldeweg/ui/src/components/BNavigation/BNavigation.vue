@@ -21,19 +21,9 @@ withDefaults(defineProps<Props>(), {
       'border-neutral-200': border === 'neutral',
       'bg-primary-100': background === 'primary',
       'bg-neutral-200': background === 'neutral',
-      navigation_horizontal: direction === 'horizontal',
+      'navigation_horizontal small:flex-row small:p-none small:px-xl small:overflow-x-auto': direction === 'horizontal',
     }"
   >
     <slot />
   </ul>
 </template>
-
-<style scoped>
-@media (min-width: 600px) {
-  .navigation_horizontal {
-    flex-direction: row;
-    padding: 0 20px;
-    overflow-x: auto;
-  }
-}
-</style>

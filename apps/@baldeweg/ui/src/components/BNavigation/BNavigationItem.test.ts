@@ -32,26 +32,26 @@ describe("BNavigationItem", () => {
       props: { border: "none" },
       global: { plugins: [router] },
     })
-    expect(wrapper.classes()).not.toContain("navigation_item_border_primary")
-    expect(wrapper.classes()).not.toContain("navigation_item_border_neutral")
+    expect(wrapper.classes()).not.toContain("border-primary-100")
+    expect(wrapper.classes()).not.toContain("border-neutral-200")
   })
 
-  it("applies navigation_item_border_primary class", async () => {
+  it("applies border-primary-100 class", async () => {
     const router = await createTestRouter()
     const wrapper = mount(BNavigationItem, {
       props: { border: "primary" },
       global: { plugins: [router] },
     })
-    expect(wrapper.classes()).toContain("navigation_item_border_primary")
+    expect(wrapper.classes()).toContain("border-primary-100")
   })
 
-  it("applies navigation_item_border_neutral class", async () => {
+  it("applies border-neutral-200 class", async () => {
     const router = await createTestRouter()
     const wrapper = mount(BNavigationItem, {
       props: { border: "neutral" },
       global: { plugins: [router] },
     })
-    expect(wrapper.classes()).toContain("navigation_item_border_neutral")
+    expect(wrapper.classes()).toContain("border-neutral-200")
   })
 
   // background
@@ -61,49 +61,45 @@ describe("BNavigationItem", () => {
       props: { background: "none" },
       global: { plugins: [router] },
     })
-    expect(wrapper.classes()).not.toContain(
-      "navigation_item_background_primary",
-    )
-    expect(wrapper.classes()).not.toContain(
-      "navigation_item_background_neutral",
-    )
+    expect(wrapper.classes()).not.toContain("bg-primary-100")
+    expect(wrapper.classes()).not.toContain("bg-neutral-200")
   })
 
-  it("applies navigation_item_background_primary class", async () => {
+  it("applies bg-primary-100 class", async () => {
     const router = await createTestRouter()
     const wrapper = mount(BNavigationItem, {
       props: { background: "primary" },
       global: { plugins: [router] },
     })
-    expect(wrapper.classes()).toContain("navigation_item_background_primary")
+    expect(wrapper.classes()).toContain("bg-primary-100")
   })
 
-  it("applies navigation_item_background_neutral class", async () => {
+  it("applies bg-neutral-200 class", async () => {
     const router = await createTestRouter()
     const wrapper = mount(BNavigationItem, {
       props: { background: "neutral" },
       global: { plugins: [router] },
     })
-    expect(wrapper.classes()).toContain("navigation_item_background_neutral")
+    expect(wrapper.classes()).toContain("bg-neutral-200")
   })
 
   // direction
-  it("does not apply navigation_item_vertical class for horizontal direction", async () => {
+  it("does not apply flex-col class for horizontal direction", async () => {
     const router = await createTestRouter()
     const wrapper = mount(BNavigationItem, {
       props: { direction: "horizontal" },
       global: { plugins: [router] },
     })
-    expect(wrapper.classes()).not.toContain("navigation_item_vertical")
+    expect(wrapper.find(".navigation_link").classes()).not.toContain("flex-col")
   })
 
-  it("applies navigation_item_vertical class for vertical direction", async () => {
+  it("applies flex-col class for vertical direction", async () => {
     const router = await createTestRouter()
     const wrapper = mount(BNavigationItem, {
       props: { direction: "vertical" },
       global: { plugins: [router] },
     })
-    expect(wrapper.classes()).toContain("navigation_item_vertical")
+    expect(wrapper.find(".navigation_link").classes()).toContain("flex-col")
   })
 
   // route
@@ -125,22 +121,24 @@ describe("BNavigationItem", () => {
     expect(wrapper.find("a").attributes("href")).toBe("https://localhost")
   })
 
-  it("applies isActive class when the route matches the current path", async () => {
+  it("applies bg-neutral-200 class when the route matches the current path", async () => {
     const router = await createTestRouter("/inbox")
     const wrapper = mount(BNavigationItem, {
       props: { route: { path: "/inbox" } },
       global: { plugins: [router] },
     })
-    expect(wrapper.classes()).toContain("isActive")
+    expect(wrapper.classes()).toContain("bg-neutral-200")
   })
 
-  it("does not apply isActive class when the route does not match", async () => {
+  it("does not apply bg-neutral-200 class when the route does not match", async () => {
     const router = await createTestRouter("/")
     const wrapper = mount(BNavigationItem, {
       props: { route: { path: "/inbox" } },
       global: { plugins: [router] },
     })
-    expect(wrapper.classes()).not.toContain("isActive")
+    const classes = wrapper.classes().join(" ")
+    const hasActiveBg = /\sbg-neutral-200(?:\s|$)/.test(" " + classes)
+    expect(hasActiveBg).toBe(false)
   })
 
   // icon

@@ -33,6 +33,25 @@ const isActive = computed<boolean>(() => {
   return currentRoute.path === router.resolve(props.route).path
 })
 
+const borderClasses = computed(() => {
+  return {
+    primary: "border border-primary-100",
+    neutral: "border border-neutral-200",
+    none: "",
+  }[props.border]
+})
+
+const backgroundClasses = computed(() => {
+  return {
+    primary: "bg-primary-100",
+    neutral: "bg-neutral-200",
+    none: "",
+  }[props.background]
+})
+
+/**
+ * Handles navigation when the item is clicked.
+ */
 const handleNavigation = (event: Event): void => {
   if (typeof props.route !== "object" || props.route === null) return
   event.preventDefault()
@@ -42,25 +61,34 @@ const handleNavigation = (event: Event): void => {
 
 <template>
   <li
-    class="navigation_item m-none rounded-m block text-neutral-950 transition duration-300 ease-in-out"
+    class="navigation_item m-none rounded-m block text-neutral-950 transition duration-300 ease-in-out hover:bg-neutral-200"
     :class="[
-      border !== 'none' && `navigation_item_border_${border}`,
-      background !== 'none' && `navigation_item_background_${background}`,
-      direction === 'vertical' && 'navigation_item_vertical',
-      isActive && 'isActive',
+      borderClasses,
+      backgroundClasses,
+      isActive && 'bg-neutral-200',
+      background === 'neutral' && isActive && 'bg-primary-100',
+      background === 'neutral' && 'hover:bg-primary-100',
     ]"
   >
     <a
       :href="href"
       @click="handleNavigation"
-      class="navigation_link gap-xl py-m px-xl flex flex-row"
+      class="navigation_link no-underline gap-xl py-m px-xl flex flex-row"
+      :class="[
+        direction === 'vertical' && 'flex-col items-center',
+      ]"
       rel="noopener noreferrer"
     >
-      <span class="navigation_icon leading-m flex items-center" v-if="icon">
+      <span class="navigation_icon w-[18px] leading-m flex items-center" v-if="icon">
         <BMaterialIcon :size="18">{{ icon }}</BMaterialIcon>
       </span>
 
-      <span class="navigation_title grow">
+      <span
+        class="navigation_title grow"
+        :class="[
+          direction === 'vertical' && 'grow-0',
+        ]"
+      >
         <slot />
       </span>
 
@@ -70,54 +98,3 @@ const handleNavigation = (event: Event): void => {
     </a>
   </li>
 </template>
-
-<style scoped>
-.navigation_item:hover,
-.navigation_item.isActive {
-  background: var(--color-neutral-200);
-}
-
-.navigation_background_neutral .navigation_item:hover,
-.navigation_background_neutral .navigation_item.isActive {
-  background: var(--color-primary-100);
-}
-
-.navigation_link {
-  text-decoration: none;
-}
-
-.navigation a,
-.navigation a:hover {
-  text-decoration: none;
-}
-
-.navigation_icon {
-  width: 18px;
-}
-
-.navigation_item_border_primary {
-  border: 1px solid var(--color-primary-100);
-}
-
-.navigation_item_border_neutral {
-  border: 1px solid var(--color-neutral-200);
-}
-
-.navigation_item_background_primary {
-  background-color: var(--color-primary-100);
-}
-
-.navigation_item_background_neutral {
-  background-color: var(--color-neutral-200);
-}
-
-.navigation_item_vertical .navigation_link {
-  flex-direction: column;
-  align-items: center;
-}
-
-.navigation_item_vertical .navigation_title {
-  flex-grow: 0;
-  font-size: 0.8rem;
-}
-</style>

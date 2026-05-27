@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
-
 import BNavigation from "./BNavigation.vue"
 import BNavigationItem from "./BNavigationItem.vue"
 
