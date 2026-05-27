@@ -15,7 +15,7 @@ describe("BSwitch", () => {
       },
     })
 
-    await wrapper.find(".switch_indicator").trigger("click")
+    await wrapper.find("button").trigger("click")
     const emitted = wrapper.emitted()
     expect(emitted).toHaveProperty("update:modelValue")
     expect(emitted["update:modelValue"]?.[0]).toEqual([true])
@@ -31,7 +31,7 @@ describe("BSwitch", () => {
     const wrapper = mount(Parent)
     await wrapper
       .findComponent(BSwitch)
-      .find(".switch_indicator")
+      .find("button")
       .trigger("click")
 
     expect(wrapper.vm.value).toBe(true)
@@ -41,7 +41,7 @@ describe("BSwitch", () => {
 
     await wrapper
       .findComponent(BSwitch)
-      .find(".switch_indicator")
+      .find("button")
       .trigger("click")
     expect(wrapper.vm.value).toBe(false)
   })
