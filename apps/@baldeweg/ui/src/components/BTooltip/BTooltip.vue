@@ -11,22 +11,22 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="tooltip relative inline-block leading-none">
+  <div class="group relative inline-block leading-none">
     <slot />
     <span
-      class="tooltip_text p-l invisible absolute z-1 rounded-s bg-neutral-200 text-center leading-[initial] text-neutral-950 opacity-0 transition duration-300 after:absolute after:border-10"
+      class="tooltip_text p-l invisible group-hover:visible absolute z-1 rounded-s bg-neutral-200 text-center leading-[initial] text-neutral-950 opacity-0 group-hover:opacity-100 transition duration-300 after:absolute after:border-10"
       :class="{
-        'after:-ml-l left-[50%] max-w-[320px] min-w-[120px] after:left-[50%]':
+        'left-[50%] max-w-[320px] min-w-[120px] after:left-[50%] translate-x-[-50%] after:-ml-l':
           position === 'top' || position === 'bottom',
-        'after:-mt-l bottom-[50%] h-auto max-w-[320px] min-w-[120px] after:top-[50%]':
+        'bottom-[50%] h-auto max-w-[320px] min-w-[120px] after:top-[50%] translate-y-[50%] after:-mt-l':
           position === 'left' || position === 'right',
-        'tooltip_position_top mb-l bottom-full after:top-full':
+        'mb-l bottom-full after:top-full after:border-t-neutral-200 after:border-r-transparent after:border-b-transparent after:border-l-transparent':
           position === 'top',
-        'tooltip_position_bottom mt-l top-full after:bottom-full':
+        'mt-l top-full after:bottom-full after:border-t-transparent after:border-r-transparent after:border-b-neutral-200 after:border-l-transparent':
           position === 'bottom',
-        'tooltip_position_left mr-l right-full after:left-full':
+        'mr-l right-full after:left-full after:border-t-transparent after:border-r-transparent after:border-b-transparent after:border-l-neutral-200':
           position === 'left',
-        'tooltip_position_right ml-l left-full after:right-full':
+        'ml-l left-full after:right-full after:border-t-transparent after:border-r-neutral-200 after:border-b-transparent after:border-l-transparent':
           position === 'right',
       }"
       >{{ text }}</span
@@ -34,35 +34,3 @@ withDefaults(defineProps<Props>(), {
   </div>
 </template>
 
-<style scoped>
-.tooltip_position_top,
-.tooltip_position_bottom {
-  transform: translateX(-50%);
-}
-
-.tooltip_position_left,
-.tooltip_position_right {
-  transform: translateY(50%);
-}
-
-.tooltip_text.tooltip_position_top::after {
-  border-color: var(--color-neutral-200) transparent transparent transparent;
-}
-
-.tooltip_text.tooltip_position_bottom::after {
-  border-color: transparent transparent var(--color-neutral-200) transparent;
-}
-
-.tooltip_text.tooltip_position_left::after {
-  border-color: transparent transparent transparent var(--color-neutral-200);
-}
-
-.tooltip_text.tooltip_position_right::after {
-  border-color: transparent var(--color-neutral-200) transparent transparent;
-}
-
-.tooltip:hover .tooltip_text {
-  visibility: visible;
-  opacity: 1;
-}
-</style>
