@@ -73,21 +73,20 @@ const handleNavigation = (event: Event): void => {
     <a
       :href="href"
       @click="handleNavigation"
-      class="navigation_link no-underline gap-xl py-m px-xl flex flex-row"
-      :class="[
-        direction === 'vertical' && 'flex-col items-center',
-      ]"
+      class="navigation_link gap-xl py-m px-xl flex flex-row no-underline"
+      :class="[direction === 'vertical' && 'flex-col items-center']"
       rel="noopener noreferrer"
     >
-      <span class="navigation_icon w-[18px] leading-m flex items-center" v-if="icon">
+      <span
+        class="navigation_icon leading-m flex w-[18px] items-center"
+        v-if="icon"
+      >
         <BMaterialIcon :size="18">{{ icon }}</BMaterialIcon>
       </span>
 
       <span
         class="navigation_title grow"
-        :class="[
-          direction === 'vertical' && 'grow-0',
-        ]"
+        :class="[direction === 'vertical' && 'grow-0']"
       >
         <slot />
       </span>

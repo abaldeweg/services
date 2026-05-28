@@ -14,11 +14,11 @@ withDefaults(defineProps<Props>(), {
   <div class="group relative inline-block leading-none">
     <slot />
     <span
-      class="tooltip_text p-l invisible group-hover:visible absolute z-1 rounded-s bg-neutral-200 text-center leading-[initial] text-neutral-950 opacity-0 group-hover:opacity-100 transition duration-300 after:absolute after:border-10"
+      class="tooltip_text p-l invisible absolute z-1 rounded-s bg-neutral-200 text-center leading-[initial] text-neutral-950 opacity-0 transition duration-300 group-hover:visible group-hover:opacity-100 after:absolute after:border-10"
       :class="{
-        'left-[50%] max-w-[320px] min-w-[120px] after:left-[50%] translate-x-[-50%] after:-ml-l':
+        'after:-ml-l left-[50%] max-w-[320px] min-w-[120px] translate-x-[-50%] after:left-[50%]':
           position === 'top' || position === 'bottom',
-        'bottom-[50%] h-auto max-w-[320px] min-w-[120px] after:top-[50%] translate-y-[50%] after:-mt-l':
+        'after:-mt-l bottom-[50%] h-auto max-w-[320px] min-w-[120px] translate-y-[50%] after:top-[50%]':
           position === 'left' || position === 'right',
         'mb-l bottom-full after:top-full after:border-t-neutral-200 after:border-r-transparent after:border-b-transparent after:border-l-transparent':
           position === 'top',
@@ -33,4 +33,3 @@ withDefaults(defineProps<Props>(), {
     >
   </div>
 </template>
-
