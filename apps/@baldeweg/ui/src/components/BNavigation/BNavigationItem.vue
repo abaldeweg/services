@@ -24,13 +24,13 @@ const currentRoute = useRoute()
 
 const href = computed<string | undefined>(() => {
   if (typeof props.route === "string") return props.route
-  if (typeof props.route === "object") return router.resolve(props.route).href
+  if (typeof props.route === "object") return router?.resolve(props.route)?.href
   return undefined
 })
 
 const isActive = computed<boolean>(() => {
   if (typeof props.route !== "object" || props.route === null) return false
-  return currentRoute.path === router.resolve(props.route).path
+  return currentRoute?.path === router?.resolve(props.route)?.path
 })
 
 const borderClasses = computed(() => {
