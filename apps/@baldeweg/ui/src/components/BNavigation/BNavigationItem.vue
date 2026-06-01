@@ -73,7 +73,7 @@ const handleNavigation = (event: Event): void => {
     <a
       :href="href"
       @click="handleNavigation"
-      class="navigation_link no-underline gap-xl py-m px-xl flex flex-row"
+      class="navigation_link no-underline gap-xl py-m px-xl flex flex-row text-neutral-950"
       :class="[
         direction === 'vertical' && 'flex-col items-center',
       ]"
