@@ -53,7 +53,7 @@ const emit = defineEmits<{
         ]"
         v-bind="$attrs"
         :type="type"
-        :value="modelValue"
+        :value="type === 'file' ? '' : modelValue"
         :name="name"
         :id="id"
         @input="
