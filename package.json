@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "description": "Collection of useful services.",
   "scripts": {
-    "cli": "pnpm -F @baldeweg/create build && node ./apps/@baldeweg/create/dist/src/cli.js",
-    "eslint-inspect": "npx @eslint/config-inspector@latest --open=false"
+    "cli": "pnpm -F @baldeweg/create build && node ./apps/@baldeweg/create/dist/src/cli.js"
   },
   "type": "module",
   "license": "MIT",
