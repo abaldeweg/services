@@ -6,13 +6,13 @@ on:
         branches:
             - main
         paths:
-            - "apps/@baldeweg/ui/**"
+            - "packages/@baldeweg/ui/**"
             - ".github/workflows/ci_ui.yaml"
     pull_request:
         branches:
             - main
         paths:
-            - "apps/@baldeweg/ui/**"
+            - "packages/@baldeweg/ui/**"
             - ".github/workflows/ci_ui.yaml"
 
 permissions:
