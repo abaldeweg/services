@@ -21,7 +21,8 @@ withDefaults(defineProps<Props>(), {
       'border-neutral-200': border === 'neutral',
       'bg-primary-100': background === 'primary',
       'bg-neutral-200': background === 'neutral',
-      'navigation_horizontal small:flex-row small:p-none small:px-xl small:overflow-x-auto': direction === 'horizontal',
+      'navigation_horizontal small:flex-row small:p-none small:px-xl small:overflow-x-auto':
+        direction === 'horizontal',
     }"
   >
     <slot />

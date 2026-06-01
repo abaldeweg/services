@@ -79,15 +79,16 @@ const handleNavigation = (event: Event): void => {
       ]"
       rel="noopener noreferrer"
     >
-      <span class="navigation_icon w-[18px] leading-m flex items-center" v-if="icon">
+      <span
+        class="navigation_icon leading-m flex w-[18px] items-center"
+        v-if="icon"
+      >
         <BMaterialIcon :size="18">{{ icon }}</BMaterialIcon>
       </span>
 
       <span
         class="navigation_title grow"
-        :class="[
-          direction === 'vertical' && 'grow-0',
-        ]"
+        :class="[direction === 'vertical' && 'grow-0']"
       >
         <slot />
       </span>
