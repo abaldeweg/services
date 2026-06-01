@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite"
+import { action } from "storybook/actions"
 import BSearch from "./BSearch.vue"
 
 const meta = {
@@ -36,6 +37,10 @@ export const Neutral: Story = {
     reset: true,
     resetLabel: "Reset",
     filterLabel: "Filter",
+    "onUpdate:modelValue": action("update:modelValue"),
+    onSubmit: action("submit"),
+    onReset: action("reset"),
+    onFilter: action("filter"),
   },
   render: (args) => ({
     components: { BSearch },
@@ -57,6 +62,10 @@ export const Branded: Story = {
     reset: true,
     resetLabel: "Reset",
     filterLabel: "Filter",
+    "onUpdate:modelValue": action("update:modelValue"),
+    onSubmit: action("submit"),
+    onReset: action("reset"),
+    onFilter: action("filter"),
   },
   render: (args) => ({
     components: { BSearch },
