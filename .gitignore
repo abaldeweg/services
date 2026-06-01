@@ -4,6 +4,5 @@ test-results/
 playwright-report/
 __pycache__/
 .venv/
-
 *storybook.log
 storybook-static
