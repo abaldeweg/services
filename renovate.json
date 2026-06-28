@@ -1,10 +1,18 @@
 {
-  "extends": ["config:base", ":disableDependencyDashboard"],
+  "extends": [
+    "config:base",
+    ":disableDependencyDashboard"
+  ],
+  "minimumReleaseAge": "1 day",
   "packageRules": [
     {
-      "updateTypes": ["patch"],
+      "updateTypes": [
+        "patch"
+      ],
       "automerge": true,
-      "requiredStatusChecks": ["ci/tests"]
+      "requiredStatusChecks": [
+        "ci/tests"
+      ]
     }
   ]
 }
