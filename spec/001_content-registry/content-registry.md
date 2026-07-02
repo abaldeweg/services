@@ -21,15 +21,23 @@ The primary goal of the Content Registry is to store state. It is targeted at sm
 
 The library does not make decisions regarding rendering (HTML, app view, print), does not handle user management or access control, and does not store physical asset files. Asset references are stored inside revisions only.
 
-## 1. Terminology
+## Versioning
+
+This specification uses [SemVer](https://semver.org/) to track changes to the specification itself.
+
+In schemas is only the first part (Major) of the version number used to indicate breaking changes, e.g. `1` for spec version `1.2.0`.
+
+Implementations MUST validate the provided `version` against the supported versions.
+
+If `version` is omitted, the Content Registry MUST set it to the latest supported version. The provided value MUST be one of the supported versions listed in this section.
+
+## Terminology
 
 Key words: The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", and "MAY" in this document are to be interpreted as described in [RFC 2119](https://datatracker.ietf.org/doc/html/rfc2119).
 
 Implementations: Software systems that implement this Content Registry specification.
 
 Consuming System: A system that uses the Content Registry to store and retrieve content. Examples include CMSs, web frontends, mobile apps, etc.
-
-Channel Head: This is the channel’s revision pointer stored in the channel state. Each channel maintains its own independent head.
 
 ## 2. Versioning
 
