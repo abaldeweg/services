@@ -151,9 +151,55 @@ Subject to `assets_max_count` (see [Section 3.1](#31-fields)).
 }
 ```
 
-## 4. Revision
+### 1.3. Programmatic API
 
-### 4.1. Fields
+The data can be stored in the filesystem, in a version control system, in a database or something else. This is completely implementation-defined. The following API MUST be present.
+
+#### `listDocuments`
+
+```text
+listDocuments() -> {
+  "items": Array<Document>
+}
+```
+
+Lists all documents in the registry.
+
+### `createDocument`
+
+```text
+createDocument(Document) -> String
+```
+
+Returns the uuid of the newly created document.
+
+### `updateDocument`
+
+```text
+updateDocument(Document) -> void
+```
+
+Updates an existing document.
+
+### `showDocument`
+
+```text
+showDocument(uuid) -> Document
+```
+
+Returns the document with the given uuid.
+
+### `removeDocument`
+
+```text
+removeDocument(uuid) -> boolean
+```
+
+Removes the document with the given uuid. Returns `true` if the document was removed, `false` if not.
+
+## 2. Revision
+
+### 2.1. Fields
 
 #### `version`
 
