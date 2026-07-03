@@ -39,21 +39,9 @@ Implementations: Software systems that implement this Content Registry specifica
 
 Consuming System: A system that uses the Content Registry to store and retrieve content. Examples include CMSs, web frontends, mobile apps, etc.
 
-## 2. Versioning
+## 1. Document
 
-This specification uses [SemVer](https://semver.org/) to track changes to the specification itself.
-
-In schemas is only the first part (Major) of the version number used to indicate breaking changes, e.g. `1` for spec version `1.2.0`.
-
-Implementations MUST validate the provided `version` against the supported versions.
-
-If `version` is omitted, the Content Registry MUST set it to the latest supported version. The provided value MUST be one of the supported versions listed in this section.
-
-## 3. Document
-
-A revision is always scoped to its record `id`.
-
-### 3.1. Fields
+### 1.1. Fields
 
 #### `version`
 
@@ -61,7 +49,7 @@ A revision is always scoped to its record `id`.
 - Required: Yes
 - Default: latest supported version
 - Limit: -
-- Allowed Values: see [Section 2](#2-versioning)
+- Allowed Values: see [Versioning](#versioning)
 
 Refers to the used spec version.
 
@@ -71,41 +59,9 @@ Refers to the used spec version.
 - Required: Yes
 - Default: -
 - Limit: -
-- Allowed Values: `^[a-z0-9]+:[a-f0-9]+$`
-
-Identifier for a revision.
-
-The ID is a hash computed from the whole object, excluding the `id` itself (see [Section 7](#7-security-considerations)).
-
-The revision MUST be brought into canonical JSON form before hashing, using the JSON Canonicalization Scheme (JCS) as specified in [RFC 8785](https://datatracker.ietf.org/doc/html/rfc8785).
-
-The hash MUST only be an identifier and a proof for the integrity of the revision history. Nothing else is intended to be derived from the hash.
+- Allowed Values: UUID
 
 This value MUST only be calculated by the Content Registry.
-
-#### `record_id`
-
-- Type: String
-- Required: Yes
-- Default: -
-- Limit: -
-- Allowed Values: `^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$`
-
-Identifier of the record the revision belongs to.
-
-Implementations MUST enforce that revisions are stored and referenced only within their `record_id`.
-
-#### `parent`
-
-- Type: String \| null
-- Required: Yes
-- Default: `null`
-- Limit: -
-- Allowed Values: `^[a-z0-9]+:[a-f0-9]+$` (revision hash) or `null`
-
-A hash acting as a reference to the previous revision (see [Section 7](#7-security-considerations)).
-
-This value MUST only be set or changed by the Content Registry.
 
 #### `created_at`
 
@@ -119,34 +75,22 @@ This value MUST only be set or changed by the Content Registry.
 
 #### `attributes`
 
-- Type: Object \| null
+- Type: Object | null
 - Required: No
 - Default: -
 - Limit: -
 - Allowed Values:-
 
-Variable data that describes the article in more detail.
+Variable data that describes the article in more detail, e.g. meta data.
 
 The Content Registry does not enforce any structure or required fields within `attributes`.
 
-Subject to `attributes_max_bytes` (see [Section 5.1](#51-fields)).
+Subject to `attributes_max_bytes` (see [Section 3.1](#31-fields)).
 
-#### `document`
-
-- Type: Object<String, String \| Object \| null> | null
-- Required: No
-- Default: -
-- Limit: -
-- Allowed Values: -
-
-Encapsulation of the actual content.
-
-Subject to `document_content_max_bytes` (see [Section 5.1](#51-fields)).
-
-#### `document.format`
+#### `format`
 
 - Type: String
-- Required: No
+- Required: Yes
 - Default: -
 - Limit: -
 - Allowed Values: -
@@ -155,19 +99,17 @@ Technical type of the content (e.g., Markdown, HTML, JSON, Plain Text).
 
 A version number SHOULD be appended to the value, e.g., `markdown-v2`.
 
-If `document.format` is present, `document.content` MUST also be present.
+#### `content`
 
-#### `document.content`
-
-- Type: String \| Object
-- Required: No
+- Type: String | Object
+- Required: Yes
 - Default: -
 - Limit: -
 - Allowed Values: -
 
 The actual payload.
 
-If `document.content` is present, `document.format` MUST also be present.
+Subject to `document_content_max_bytes` (see [Section 3.1](#31-fields)).
 
 #### `assets`
 
@@ -187,26 +129,22 @@ Asset keys MUST be normalized to lowercase to prevent collisions across consumin
 
 If an asset is changed, the old version remains referenced by previous revisions.
 
-Subject to `assets_max_count` (see [Section 5.1](#51-fields)).
+Subject to `assets_max_count` (see [Section 3.1](#31-fields)).
 
-### 3.2. Example
+### 1.2. Example
 
 ```json
 {
   "version": 1,
-  "id": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "record_id": "123e4547-e89b-12d3-a456-426614774000",
-  "parent": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "id": "f8e0d210-3958-4c40-8e47-2e23b4dfb867",
   "created_at": "2026-03-12T14:30:00Z",
   "attributes": {
     "title": "Title",
     "author": "Author",
     "published_at": "2026-03-12T12:00:00Z"
   },
-  "document": {
-    "format": "markdown",
-    "content": "# Title\n\n![Architecture](hero-image-architecture.webp)\n\nContent"
-  },
+  "format": "markdown",
+  "content": "# Title\n\n![Architecture](hero-image-architecture.webp)\n\nContent",
   "assets": {
     "hero-image-architecture.webp": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   }
