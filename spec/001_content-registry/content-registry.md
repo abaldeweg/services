@@ -85,7 +85,7 @@ Variable data that describes the article in more detail, e.g. meta data.
 
 The Content Registry does not enforce any structure or required fields within `attributes`.
 
-Subject to `attributes_max_bytes` (see [Section 3.1](#31-fields)).
+Subject to `attributes_max_bytes` (see [Section 2.1](#21-fields)).
 
 #### `format`
 
@@ -109,7 +109,7 @@ A version number SHOULD be appended to the value, e.g., `markdown-v2`.
 
 The actual payload.
 
-Subject to `document_content_max_bytes` (see [Section 3.1](#31-fields)).
+Subject to `document_content_max_bytes` (see [Section 2.1](#21-fields)).
 
 #### `assets`
 
@@ -129,7 +129,7 @@ Asset keys MUST be normalized to lowercase to prevent collisions across consumin
 
 If an asset is changed, the old version remains referenced by previous revisions.
 
-Subject to `assets_max_count` (see [Section 3.1](#31-fields)).
+Subject to `assets_max_count` (see [Section 2.1](#21-fields)).
 
 ### 1.2. Example
 
@@ -197,13 +197,13 @@ removeDocument(uuid) -> boolean
 
 Removes the document with the given uuid. Returns `true` if the document was removed, `false` if not.
 
-## 3. Configuration
+## 2. Configuration
 
 The Content Registry MUST expose a configuration object with sensible defaults. Consuming systems MAY override these values. Implementations MAY extend the configuration with additional fields.
 
 If limits are exceeded, the operation MUST fail with error code `INVALID_ARGUMENT`.
 
-### 3.1. Fields
+### 2.1. Fields
 
 #### `attributes_max_bytes`
 
@@ -239,7 +239,7 @@ Byte size is measured as the encoded byte length of the serialized JSON.
 
 Defines the maximum allowed number of assets in a revision.
 
-## 4. Security Considerations
+## 3. Security Considerations
 
 Implementations MUST validate and enforce schema constraints. Consuming systems are responsible for validating `attributes`, `document`, and `assets` before calling the API, in order to prevent code injection or other security issues.
 
