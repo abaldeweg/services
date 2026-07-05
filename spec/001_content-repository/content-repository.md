@@ -1,4 +1,4 @@
-# Content Registry
+# Content Repository
 
 ⚠️ **Draft:** This specification is not yet stable and may change at any time without prior notice. Do not use as a basis for production implementations.
 
@@ -13,11 +13,11 @@
 
 ## Abstract
 
-The Content Registry is a central, technology-neutral library serving as a Single Source of Truth for digital content intended for delivery across various channels, including blogs, wikis, landing pages, news, knowledge bases, podcasts, microblogs, newsletters, and more.
+The Content Repository is a central, technology-neutral library serving as a Single Source of Truth for digital content intended for delivery across various channels, including blogs, wikis, landing pages, news, knowledge bases, podcasts, microblogs, newsletters, and more.
 
-The registry delivers pure raw data and provides the interface through which external systems - such as CMSs, web frontends, and mobile apps — can retrieve content in a predictable format.
+The repository delivers pure raw data and provides the interface through which external systems - such as CMSs, web frontends, and mobile apps — can retrieve content in a predictable format.
 
-The primary goal of the Content Registry is to store state. It is targeted at small and medium requirements while being designed to be extensible.
+The primary goal of the Content Repository is to store state. It is targeted at small and medium requirements while being designed to be extensible.
 
 The library does not make decisions regarding rendering (HTML, app view, print), does not handle user management or access control, and does not store physical asset files. Asset references are stored inside revisions only.
 
@@ -29,15 +29,15 @@ In schemas is only the first part (Major) of the version number used to indicate
 
 Implementations MUST validate the provided `version` against the supported versions.
 
-If `version` is omitted, the Content Registry MUST set it to the latest supported version. The provided value MUST be one of the supported versions listed in this section.
+If `version` is omitted, the Content Repository MUST set it to the latest supported version. The provided value MUST be one of the supported versions listed in this section.
 
 ## Terminology
 
 Key words: The key words "MUST", "MUST NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", and "MAY" in this document are to be interpreted as described in [RFC 2119](https://datatracker.ietf.org/doc/html/rfc2119).
 
-Implementations: Software systems that implement this Content Registry specification.
+Implementations: Software systems that implement this Content Repository specification.
 
-Consuming System: A system that uses the Content Registry to store and retrieve content. Examples include CMSs, web frontends, mobile apps, etc.
+Consuming System: A system that uses the Content Repository to store and retrieve content. Examples include CMSs, web frontends, mobile apps, etc.
 
 ## 1. Document
 
@@ -61,7 +61,7 @@ Refers to the used spec version.
 - Limit: -
 - Allowed Values: UUID
 
-This value MUST only be calculated by the Content Registry.
+This value MUST only be calculated by the Content Repository.
 
 #### `created_at`
 
@@ -71,7 +71,7 @@ This value MUST only be calculated by the Content Registry.
 - Limit: -
 - Allowed Values: ISO 8601 String in UTC using the `Z` suffix
 
-This value MUST only be set or changed by the Content Registry.
+This value MUST only be set or changed by the Content Repository.
 
 #### `attributes`
 
@@ -83,7 +83,7 @@ This value MUST only be set or changed by the Content Registry.
 
 Variable data that describes the article in more detail, e.g. meta data.
 
-The Content Registry does not enforce any structure or required fields within `attributes`.
+The Content Repository does not enforce any structure or required fields within `attributes`.
 
 Subject to `attributes_max_bytes` (see [Section 2.1](#21-fields)).
 
@@ -163,7 +163,7 @@ listDocuments() -> {
 }
 ```
 
-Lists all documents in the registry.
+Lists all documents in the repository.
 
 ### `createDocument`
 
@@ -199,7 +199,7 @@ Removes the document with the given uuid. Returns `true` if the document was rem
 
 ## 2. Configuration
 
-The Content Registry MUST expose a configuration object with sensible defaults. Consuming systems MAY override these values. Implementations MAY extend the configuration with additional fields.
+The Content Repository MUST expose a configuration object with sensible defaults. Consuming systems MAY override these values. Implementations MAY extend the configuration with additional fields.
 
 If limits are exceeded, the operation MUST fail with error code `INVALID_ARGUMENT`.
 
