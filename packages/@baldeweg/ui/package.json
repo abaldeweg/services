@@ -20,9 +20,9 @@
     "vue-router": "5.0.7"
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "10.4.6",
-    "@storybook/addon-docs": "10.4.6",
-    "@storybook/vue3-vite": "10.4.6",
+    "@storybook/addon-a11y": "10.5.2",
+    "@storybook/addon-docs": "10.5.2",
+    "@storybook/vue3-vite": "10.5.2",
     "@tailwindcss/vite": "4.2.4",
     "@tsconfig/node24": "24.0.4",
     "@types/jsdom": "28.0.3",
@@ -34,7 +34,7 @@
     "jsdom": "29.1.1",
     "knip": "6.25.0",
     "prettier": "3.9.5",
-    "storybook": "10.4.6",
+    "storybook": "10.5.2",
     "storybook-addon-tag-badges": "3.1.0",
     "tailwindcss": "4.2.4",
     "typescript": "6.0.3",
