@@ -17,7 +17,7 @@
     "@tailwindcss/vite": "4.2.4",
     "tailwindcss": "4.2.4",
     "vue": "3.5.40",
-    "vue-router": "5.0.7"
+    "vue-router": "5.2.0"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "10.5.3",
@@ -43,7 +43,7 @@
     "vite-plugin-webfont-dl": "3.12.0",
     "vitest": "4.1.10",
     "vue": "3.5.40",
-    "vue-router": "5.0.7",
+    "vue-router": "5.2.0",
     "vue-tsc": "3.3.8"
   },
   "files": [
