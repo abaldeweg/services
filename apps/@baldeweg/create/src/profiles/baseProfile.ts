@@ -47,6 +47,7 @@ export const baseProfile: Profile = {
     await writeJson("renovate.json", {
       extends: ["config:base", ":disableDependencyDashboard"],
       minimumReleaseAge: "1 day",
+      minimumReleaseAgeBehaviour: "timestamp-optional",
       packageRules: [
         {
           updateTypes: ["patch"],
