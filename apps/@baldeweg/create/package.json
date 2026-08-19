@@ -19,18 +19,18 @@
     "@clack/prompts": "1.7.0",
     "deepmerge": "4.3.1",
     "ejs": "3.1.10",
-    "js-yaml": "4.3.0",
+    "js-yaml": "4.3.1",
     "yaml": "2.9.0"
   },
   "devDependencies": {
     "@types/ejs": "3.1.5",
     "@types/js-yaml": "4.0.9",
-    "@types/node": "24.13.2",
-    "eslint": "10.6.0",
-    "knip": "6.20.0",
-    "prettier": "3.9.4",
-    "typescript": "6.0.3",
-    "vitest": "4.1.9"
+    "@types/node": "24.13.3",
+    "eslint": "10.8.1",
+    "knip": "6.32.2",
+    "prettier": "3.9.6",
+    "typescript": "7.0.2",
+    "vitest": "4.1.10"
   },
   "type": "module",
   "publishConfig": {
