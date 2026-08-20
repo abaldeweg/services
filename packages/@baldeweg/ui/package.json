@@ -1,6 +1,6 @@
 {
   "name": "@baldeweg/ui",
-  "version": "0.20.0-alpha.1",
+  "version": "0.20.0-alpha.2",
   "scripts": {
     "dev": "storybook dev -p 6006 --disable-telemetry",
     "build": "vite build",
