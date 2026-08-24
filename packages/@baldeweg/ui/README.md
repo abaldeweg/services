@@ -19,7 +19,7 @@ Then you can add this to your `main.js`.
 ```js
 import { createUi } from "@baldeweg/ui"
 import "@baldeweg/ui/styles"
-import './style.css'
+import "./style.css"
 const ui = createUi()
 
 app.use(ui)
@@ -28,10 +28,9 @@ app.use(ui)
 Create a `style.css` und put the following content inside of it.
 
 ```css
-@import 'tailwindcss';
-@import '@baldeweg/ui/globals';
+@import "tailwindcss";
+@import "@baldeweg/ui/globals";
 @source "../node_modules/@baldeweg/ui/dist/ui.es.js";
-
 ```
 
 Example Layout
