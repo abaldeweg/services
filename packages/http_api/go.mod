@@ -1,3 +1,4 @@
+// Helper for creating an HTTP API.
 module github.com/abaldeweg/services/packages/http_api
 
 go 1.25.3
