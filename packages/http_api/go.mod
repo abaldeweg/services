@@ -1,4 +1,4 @@
-module github.com/abaldeweg/services/http_api
+module github.com/abaldeweg/services/packages/http_api
 
 go 1.25.3
 

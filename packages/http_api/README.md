@@ -16,7 +16,7 @@ package main
 import (
     "log"
 
-    "github.com/abaldeweg/services/http_api"
+    "github.com/abaldeweg/services/packages/http_api"
 )
 
 func main() {

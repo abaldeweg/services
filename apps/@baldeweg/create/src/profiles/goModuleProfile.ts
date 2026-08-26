@@ -31,19 +31,19 @@ export const goModuleProfile: Profile = {
       },
     })
 
-    const importPath = await text({
-      message: "What is the import path of the module?",
-      placeholder: "Path",
-      initialValue: "github.com/abaldeweg/services",
-      validate(value) {
-        if (!value || value.length === 0) return `Value is required!`
-      },
-    })
-
     const packageDirs = await listPackageDirs(".")
     const pkgDir = await select({
       message: "Which package directory should the module be created in?",
       options: packageDirs.map((d) => ({ value: d, label: d })),
+    })
+
+    const importPath = await text({
+      message: "What is the import path of the module?",
+      placeholder: "Path",
+      initialValue: `github.com/abaldeweg/services/${pkgDir}/${name}`,
+      validate(value) {
+        if (!value || value.length === 0) return `Value is required!`
+      },
     })
 
     return { name, importPath, pkgDir }
@@ -139,7 +139,7 @@ export const goModuleProfile: Profile = {
     await copyTemplate(
       "go/release.yaml.ejs",
       `.github/workflows/release_${options.name}.yaml`,
-      { name: options.name },
+      { outputDir: outputDir, name: options.name },
     )
 
     await copyTemplate(
