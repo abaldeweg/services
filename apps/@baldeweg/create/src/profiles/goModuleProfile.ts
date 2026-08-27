@@ -40,7 +40,7 @@ export const goModuleProfile: Profile = {
     const importPath = await text({
       message: "What is the import path of the module?",
       placeholder: "Path",
-      initialValue: `github.com/abaldeweg/services/${pkgDir}/${name}`,
+      initialValue: `github.com/abaldeweg/services/${String(pkgDir)}/${String(name)}`,
       validate(value) {
         if (!value || value.length === 0) return `Value is required!`
       },
