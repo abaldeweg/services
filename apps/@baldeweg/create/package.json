@@ -1,6 +1,6 @@
 {
   "name": "@baldeweg/create",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A simple project generator.",
   "main": "dist/src/cli.js",
   "bin": {
