@@ -10,6 +10,10 @@ const meta = {
       control: { type: "select" },
       options: ["selector", "mouse", "bottom"],
     },
+    align: {
+      control: { type: "select" },
+      options: ["bottom", "top", "left", "right"],
+    },
     keepOpen: {
       control: "boolean",
     },
@@ -20,6 +24,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 const dropdownTemplate = `
+  <div style="display: flex; justify-content: center; align-items: center; min-height: 350px;">
     <BDropdown v-bind="args">
       <template #selector>
         <button>
@@ -30,11 +35,64 @@ const dropdownTemplate = `
       <DropdownItem>Item 2</DropdownItem>
       <DropdownItem>Item 3</DropdownItem>
     </BDropdown>
+  </div>
 `
 
-export const Position: Story = {
+export const AlignBottom: Story = {
   args: {
-    position: "selector",
+    align: "bottom",
+  },
+  render: (args) => ({
+    components: { BDropdown, DropdownItem },
+    setup() {
+      return { args }
+    },
+    template: dropdownTemplate,
+  }),
+}
+
+export const AlignTop: Story = {
+  args: {
+    align: "top",
+  },
+  render: (args) => ({
+    components: { BDropdown, DropdownItem },
+    setup() {
+      return { args }
+    },
+    template: dropdownTemplate,
+  }),
+}
+
+export const AlignLeft: Story = {
+  args: {
+    align: "left",
+  },
+  render: (args) => ({
+    components: { BDropdown, DropdownItem },
+    setup() {
+      return { args }
+    },
+    template: dropdownTemplate,
+  }),
+}
+
+export const AlignRight: Story = {
+  args: {
+    align: "right",
+  },
+  render: (args) => ({
+    components: { BDropdown, DropdownItem },
+    setup() {
+      return { args }
+    },
+    template: dropdownTemplate,
+  }),
+}
+
+export const PositionMouse: Story = {
+  args: {
+    position: "mouse",
   },
   render: (args) => ({
     components: { BDropdown, DropdownItem },
@@ -47,7 +105,6 @@ export const Position: Story = {
 
 export const KeepOpen: Story = {
   args: {
-    position: "selector",
     keepOpen: true,
   },
   render: (args) => ({

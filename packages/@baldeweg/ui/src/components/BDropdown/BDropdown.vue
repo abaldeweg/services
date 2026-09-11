@@ -3,6 +3,7 @@ import { ref, useSlots } from "vue"
 
 interface Props {
   position?: "selector" | "mouse" | "bottom"
+  align?: "bottom" | "top" | "left" | "right"
   keepOpen?: boolean
 }
 
@@ -15,8 +16,10 @@ const slots = useSlots()
 
 const show = ref<boolean>(false)
 
-const top = ref<string>("0px")
-const left = ref<string>("0px")
+const top = ref<string | undefined>()
+const bottom = ref<string | undefined>()
+const left = ref<string | undefined>()
+const right = ref<string | undefined>()
 
 const selector = ref<HTMLElement | null>(null)
 const dropdown = ref<HTMLElement | null>(null)
@@ -35,6 +38,39 @@ const showDropdown = (event: MouseEvent): void => {
     dropdownEl
   const { clientX: clickX, clientY: clickY } = event
   const { innerWidth: clientWidth, innerHeight: clientHeight } = window
+
+  const isMouse = props.position === "mouse"
+
+  top.value = undefined
+  bottom.value = undefined
+  left.value = undefined
+  right.value = undefined
+
+  if (props.align) {
+    if (props.align === "top") {
+      bottom.value = `${clientHeight - (isMouse ? clickY : selectorY)}px`
+      left.value = `${isMouse ? clickX : selectorX}px`
+      return
+    }
+
+    if (props.align === "bottom") {
+      top.value = `${isMouse ? clickY : selectorY + selectorHeight}px`
+      left.value = `${isMouse ? clickX : selectorX}px`
+      return
+    }
+
+    if (props.align === "left") {
+      right.value = `${clientWidth - (isMouse ? clickX : selectorX)}px`
+      top.value = `${isMouse ? clickY : selectorY}px`
+      return
+    }
+
+    if (props.align === "right") {
+      left.value = `${isMouse ? clickX : selectorX + selectorWidth}px`
+      top.value = `${isMouse ? clickY : selectorY}px`
+      return
+    }
+  }
 
   if (props.position === "mouse") {
     left.value =
@@ -89,14 +125,16 @@ const showDropdown = (event: MouseEvent): void => {
 
   <!-- dropdown -->
   <ul
-    class="dropdown top-none left-none m-none p-none rounded-m fixed box-border max-h-[300px] w-[200px] max-w-[90%] list-none overflow-auto border border-neutral-200 bg-neutral-100 text-left"
+    class="dropdown m-none p-none rounded-m fixed box-border max-h-[300px] w-[200px] max-w-[90%] list-none overflow-auto border border-neutral-200 bg-neutral-100 text-left"
     :class="{
       block: show,
       hidden: !show,
     }"
     :style="{
       top: top,
+      bottom: bottom,
       left: left,
+      right: right,
     }"
     @click="!keepOpen ? (show = false) : null"
     ref="dropdown"
