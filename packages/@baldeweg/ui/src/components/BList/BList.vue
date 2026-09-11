@@ -31,7 +31,7 @@ const slots = useSlots()
   >
     <div
       v-if="slots.media"
-      class="list_media py-xl px-none pr-xl"
+      class="list_media px-none pr-xl"
       :class="{
         'cursor-pointer hover:bg-neutral-200': hover,
         'w-[200px]': mediaSize === 'landscape',
@@ -44,7 +44,7 @@ const slots = useSlots()
     </div>
 
     <div
-      class="list_content py-xl px-none grow"
+      class="list_content px-none grow"
       :class="{
         'border-b border-neutral-200': divider,
       }"
@@ -77,7 +77,7 @@ const slots = useSlots()
 
     <div
       v-if="slots.text"
-      class="list_text py-xl px-none pl-xl text-primary-900 text-right font-bold"
+      class="list_text px-none pl-xl text-primary-900 text-right font-bold"
       :class="{
         'border-b border-neutral-200': divider,
       }"
@@ -88,7 +88,7 @@ const slots = useSlots()
 
     <div
       v-if="slots.controls"
-      class="list_controls py-xl px-none pl-xl text-right"
+      class="list_controls px-none pl-xl text-right"
       :class="{
         'border-b border-neutral-200': divider,
       }"
