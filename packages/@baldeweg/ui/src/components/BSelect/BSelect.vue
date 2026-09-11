@@ -97,7 +97,7 @@ watch(selected, (newValue) => {
       <div v-if="type === 'options'">
         <select
           v-model="selected"
-          class="select_input hover:border-primary-100 focus:border-primary-100 py-m px-l text-m m-none rounded-m box-border w-full border border-neutral-400 bg-neutral-100 text-neutral-950 hover:outline-0 focus:outline-0"
+          class="select_input hover:border-primary-100 focus:border-primary-100 py-m p-l text-m m-none rounded-m box-border w-full border border-neutral-400 bg-neutral-100 text-neutral-950 hover:outline-0 focus:outline-0"
           :id="id"
           :name="name"
         >

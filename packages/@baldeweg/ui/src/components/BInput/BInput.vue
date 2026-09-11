@@ -46,7 +46,7 @@ const emit = defineEmits<{
     <div class="py-m">
       <input
         :class="[
-          'px-l py-m text-m rounded-m m-0 box-border w-full border border-neutral-400 bg-neutral-100 text-neutral-950',
+          'p-l text-m rounded-m m-0 box-border w-full border border-neutral-400 bg-neutral-100 text-neutral-950',
           'hover:border-primary-900 focus:border-primary-900 focus:outline-none',
           type === 'color' && 'h-[40px] w-[90px]',
           type === 'range' && 'p-0',
