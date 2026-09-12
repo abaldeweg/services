@@ -51,6 +51,7 @@
   ],
   "main": "./dist/ui.es.js",
   "module": "./dist/ui.es.js",
+  "types": "./dist/types/components/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/types/components/index.d.ts",
