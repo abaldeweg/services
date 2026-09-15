@@ -1,0 +1,62 @@
+package validation
+
+import (
+	"fmt"
+	"sync"
+
+	"github.com/gin-gonic/gin/binding"
+	"github.com/go-playground/validator/v10"
+)
+
+// Validator wraps the go-playground validator and provides methods
+// to register custom validators.
+type Validator struct {
+	Engine *validator.Validate
+}
+
+var (
+	// validators holds the map of custom validators added via AddValidator.
+	validators   = make(map[string]validator.Func)
+	validatorsMu sync.RWMutex
+)
+
+// NewValidator creates a new Validator instance and initializes the validator engine.
+func NewValidator() (*Validator, error) {
+	engine, ok := binding.Validator.Engine().(*validator.Validate)
+	if !ok {
+		return nil, fmt.Errorf("validator engine is not *validator.Validate")
+	}
+	return &Validator{Engine: engine}, nil
+}
+
+// AddValidator adds a custom validator to the global validators map. It
+// panics if name is empty, validatorFunc is nil, or name is already taken.
+func AddValidator(name string, validatorFunc validator.Func) {
+	if name == "" {
+		panic("validation: validator name must not be empty")
+	}
+	if validatorFunc == nil {
+		panic(fmt.Sprintf("validation: validator %q has a nil function", name))
+	}
+
+	validatorsMu.Lock()
+	defer validatorsMu.Unlock()
+
+	if _, exists := validators[name]; exists {
+		panic(fmt.Sprintf("validation: duplicate validator %q", name))
+	}
+	validators[name] = validatorFunc
+}
+
+// RegisterValidators registers all added validators with the validator engine.
+func (v *Validator) RegisterValidators() error {
+	validatorsMu.RLock()
+	defer validatorsMu.RUnlock()
+
+	for name, fn := range validators {
+		if err := v.Engine.RegisterValidation(name, fn); err != nil {
+			return fmt.Errorf("failed to register validator %q: %w", name, err)
+		}
+	}
+	return nil
+}
