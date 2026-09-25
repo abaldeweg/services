@@ -13,9 +13,9 @@ const props = withDefaults(defineProps<Props>(), {
 
 const sizeClass = computed(() => {
   return {
-    "w-[600px]": props.size === "s",
-    "w-[1160px]": props.size === "m",
-    "w-full": props.size === "l",
+    "max-w-[600px]": props.size === "s",
+    "max-w-[1160px]": props.size === "m",
+    "w-full": true
   }
 })
 
