@@ -15,7 +15,7 @@ const sizeClass = computed(() => {
   return {
     "max-w-[600px]": props.size === "s",
     "max-w-[1160px]": props.size === "m",
-    "w-full": true
+    "w-full": true,
   }
 })
 
