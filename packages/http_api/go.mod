@@ -1,7 +1,7 @@
 // Helper for creating an HTTP API.
 module github.com/abaldeweg/services/packages/http_api
 
-go 1.25.3
+go 1.27.0
 
 require (
 	github.com/gin-contrib/cors v1.7.8
