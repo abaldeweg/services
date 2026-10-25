@@ -56,6 +56,7 @@ func (db *DB) ConnectAndMigrate(SQLiteMigrations fs.FS) error {
 		return fmt.Errorf("database connection failed: %w", err)
 	}
 	if err := db.Migrate(ctx, SQLiteMigrations); err != nil {
+		_ = db.Close()
 		return fmt.Errorf("database migration failed: %w", err)
 	}
 	return nil
