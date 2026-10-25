@@ -66,10 +66,10 @@ func TestSQLite_Migrate(t *testing.T) {
 	}()
 
 	mockFS := fstest.MapFS{
-		"1.sql": &fstest.MapFile{
+		"migrations/1.sql": &fstest.MapFile{
 			Data: []byte("CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT);"),
 		},
-		"2.sql": &fstest.MapFile{
+		"migrations/2.sql": &fstest.MapFile{
 			Data: []byte("INSERT INTO users (name) VALUES ('Jane');"),
 		},
 	}

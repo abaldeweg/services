@@ -308,6 +308,8 @@ if err := db.Migrate(ctx, SQLiteMigrations); err != nil {
 }
 ```
 
+Migrations must be located in a dir named "migrations".
+
 ### MongoDB
 
 ```go
