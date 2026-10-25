@@ -55,6 +55,9 @@ import (
  "log"
 
  _ "github.com/abaldeweg/services/packages/api/docs"
+ "github.com/abaldeweg/services/packages/api/internal/handlers"
+ "github.com/abaldeweg/services/packages/api/internal/repositories"
+ _ "github.com/abaldeweg/services/packages/api/internal/validators"
  "github.com/abaldeweg/services/packages/http_api/pkg/config"
  "github.com/abaldeweg/services/packages/http_api/pkg/database/sqlite"
  "github.com/abaldeweg/services/packages/http_api/pkg/docu"
@@ -66,7 +69,7 @@ import (
 // App struct holds the application's handlers, configuration,
 // database connection, and HTTP router.
 type App struct {
- Config  *viper.Viper
+ Config *viper.Viper
  DB     *sqlite.DB
  Server *server.Server
  Docu   *docu.Docu
@@ -94,10 +97,17 @@ func NewApp() (*App, error) {
  }
 
  // Server
- if err := a.initServer(); err != nil {
+ srv, err := server.NewServer(8080, a.Config.GetString("GIN_MODE"))
+ if err != nil {
   _ = a.DB.Close()
-  return nil, err
+  return nil, fmt.Errorf("failed to initialize server: %w", err)
  }
+ srv.SetCORS(
+  a.Config.GetString("CORS_ALLOW_ORIGIN"),
+  a.Config.GetString("CORS_ALLOW_HEADERS"),
+ )
+ srv.AddMessage(a.Docu.GenerateCLIMessage(8080))
+ a.Server = srv
 
  // Validators
  v, err := validation.NewValidator()
@@ -106,11 +116,12 @@ func NewApp() (*App, error) {
   return nil, fmt.Errorf("failed to create validator: %w", err)
  }
  if err := v.RegisterValidators(); err != nil {
+  _ = a.DB.Close()
   return nil, fmt.Errorf("failed to register validators: %w", err)
  }
 
  // Router
- a.initRoutes()
+ a.loadRoutes()
 
  return a, nil
 }
@@ -127,100 +138,18 @@ func (a *App) Run() error {
 
  return a.Server.Run()
 }
-```
 
-```go
-// app/config.go
-package app
-
-import (
- "github.com/abaldeweg/services/packages/http_api/pkg/config"
- "github.com/spf13/viper"
-)
-
-// initConfig initializes the application's configuration by loading environment variables.
-func initConfig() *viper.Viper {
- cfg := config.NewConfig()
- cfg.LoadEnv()
- return cfg.Viper
-}
-```
-
-```go
-// app/db.go
-package app
-
-import (
- "context"
- "embed"
- "fmt"
-
- "github.com/abaldeweg/services/packages/http_api/pkg/database/sqlite"
-)
-
-//go:embed migrations
-var SQLiteMigrations embed.FS
-
-// initDB initializes the SQLite database connection and performs migrations.
-func (a *App) initDB() error {
- a.DB = sqlite.NewSQLite("file:app.db")
-
- ctx := context.Background()
- if err := a.DB.Connect(ctx); err != nil {
-  return fmt.Errorf("database connection failed: %w", err)
- }
- if err := a.DB.Migrate(ctx, SQLiteMigrations); err != nil {
-  return fmt.Errorf("database migration failed: %w", err)
- }
- return nil
-}
-```
-
-```go
-// app/routes.go
-package app
-
-import (
- "github.com/abaldeweg/services/packages/api/internal/handlers"
- "github.com/abaldeweg/services/packages/api/internal/repositories"
-)
-
-// initRoutes sets up the application's routes for the documentation and book handler.
-func (a *App) initRoutes() {
+// loadRoutes sets up the application's routes for the documentation and book handler.
+func (a *App) loadRoutes() {
+ // Initialize repositories
  bookRepo := repositories.NewBookRepository(a.DB.Client)
 
+ // Initialize handlers
  bookHandler := handlers.NewBookHandler(bookRepo)
 
+ // Register routes
  a.Docu.RegisterRoutes(a.Server.Router)
  bookHandler.RegisterRoutes(a.Server.Router)
-}
-```
-
-```go
-// app/server.go
-package app
-
-import (
- "fmt"
-
- "github.com/abaldeweg/services/packages/http_api/pkg/server"
-)
-
-// initServer initializes the HTTP server for the application.
-func (a *App) initServer() error {
- srv, err := server.NewServer(8080, a.Config.GetString("GIN_MODE"))
- if err != nil {
-  return fmt.Errorf("failed to initialize server: %w", err)
- }
-
- srv.SetCORS(
-  a.Config.GetString("CORS_ALLOW_ORIGIN"),
-  a.Config.GetString("CORS_ALLOW_HEADERS"),
- )
- srv.AddMessage(a.Docu.GenerateCLIMessage(8080))
-
- a.Server = srv
- return nil
 }
 ```
 

@@ -25,8 +25,15 @@ func NewValidator() (*Validator, error) {
 	return &Validator{Engine: engine}, nil
 }
 
-// AddValidator adds a custom validator to the global validators map.
+// AddValidator adds a custom validator to the global validators map. It
+// panics if name is empty, validatorFunc is nil, or name is already taken.
 func AddValidator(name string, validatorFunc validator.Func) {
+	if name == "" {
+		panic("validation: validator name must not be empty")
+	}
+	if validatorFunc == nil {
+		panic(fmt.Sprintf("validation: validator %q has a nil function", name))
+	}
 	if _, exists := validators[name]; exists {
 		panic(fmt.Sprintf("validation: duplicate validator %q", name))
 	}
