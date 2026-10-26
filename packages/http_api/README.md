@@ -336,7 +336,7 @@ config := config.NewConfig()
 // Optionally, load config file, e.g., ".env", "config.yaml"
 config.SetConfigFile(".env")
 
-// Optionally, load environment variables
+// Optionally, use environment variables
 config.LoadEnv()
 
 // Read the configuration files
