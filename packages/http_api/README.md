@@ -303,9 +303,23 @@ if err := db.Connect(ctx); err != nil {
   return nil, fmt.Errorf("database connection failed: %w", err)
 }
 
+// Optionally, run database migrations
 if err := db.Migrate(ctx, SQLiteMigrations); err != nil {
   return nil, fmt.Errorf("database migration failed: %w", err)
 }
+```
+
+This can also be written as:
+
+```go
+import "github.com/abaldeweg/services/packages/http_api/pkg/database/sqlite"
+
+db := sqlite.NewSQLite("file:app.db")
+
+a.DB = sqlite.NewSQLite("file:app.db")
+ if err := a.DB.ConnectAndMigrate(SQLiteMigrations); err != nil {
+  return nil, err
+ }
 ```
 
 Migrations must be located in a dir named "migrations".
