@@ -77,7 +77,10 @@ func (s *Server) RunWithContext(ctx context.Context) error {
 	}()
 
 	select {
-	case err := <-serverErrors:
+	case err, ok := <-serverErrors:
+		if !ok {
+			return nil
+		}
 		return fmt.Errorf("server error: %w", err)
 	case <-ctx.Done():
 		shutdownCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
