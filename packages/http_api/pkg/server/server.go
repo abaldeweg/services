@@ -67,11 +67,13 @@ func (s *Server) Run() error {
 func (s *Server) RunWithContext(ctx context.Context) error {
 	serverErrors := make(chan error, 1)
 	go func() {
-		addr := s.HTTPServer.Addr
-		if addr == "" {
-			addr = ":http"
+		if s.HTTPServer == nil || s.HTTPServer.Addr == "" {
+			serverErrors <- errors.New("http server address is not configured")
+			close(serverErrors)
+			return
 		}
-		ln, err := net.Listen("tcp", addr)
+
+		ln, err := net.Listen("tcp", s.HTTPServer.Addr)
 		if err != nil {
 			serverErrors <- err
 			close(serverErrors)
