@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"net"
 	"net/http"
 	"os/signal"
 	"slices"
@@ -66,11 +67,22 @@ func (s *Server) Run() error {
 func (s *Server) RunWithContext(ctx context.Context) error {
 	serverErrors := make(chan error, 1)
 	go func() {
+		addr := s.HTTPServer.Addr
+		if addr == "" {
+			addr = ":http"
+		}
+		ln, err := net.Listen("tcp", addr)
+		if err != nil {
+			serverErrors <- err
+			close(serverErrors)
+			return
+		}
+
 		for i := range s.Messages {
 			fmt.Print(s.Messages[i] + "\n")
 		}
 
-		if err := s.HTTPServer.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
+		if err := s.HTTPServer.Serve(ln); err != nil && !errors.Is(err, http.ErrServerClosed) {
 			serverErrors <- err
 		}
 		close(serverErrors)
