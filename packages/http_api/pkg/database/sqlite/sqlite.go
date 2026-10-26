@@ -1,12 +1,10 @@
 package sqlite
 
 import (
-	"cmp"
 	"context"
 	"database/sql"
 	"fmt"
 	"io/fs"
-	"slices"
 
 	"github.com/abaldeweg/services/packages/http_api/pkg/database/migration"
 
@@ -85,12 +83,6 @@ func (db *DB) Migrate(ctx context.Context, fsys fs.FS) error {
 
 	if len(migrations) == 0 {
 		return nil
-	}
-
-	if !slices.IsSortedFunc(migrations, func(a, b migration.Migration) int {
-		return cmp.Compare(a.Version, b.Version)
-	}) {
-		return fmt.Errorf("migrations must be sorted by version ascending")
 	}
 
 	if err := db.ensureMigrationsTable(ctx); err != nil {
