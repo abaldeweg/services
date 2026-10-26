@@ -348,32 +348,48 @@ if err := config.ReadConfig(); err != nil {
 
 ## Validation
 
+Create a new validator instance and register custom validators.
+
 ```go
-package app
+import "github.com/abaldeweg/services/packages/http_api/pkg/validation"
+
+v, err := validation.NewValidator()
+if err != nil {
+ _ = a.DB.Close()
+ return nil, fmt.Errorf("failed to create validator: %w", err)
+}
+if err := v.RegisterValidators(); err != nil {
+ _ = a.DB.Close()
+ return nil, fmt.Errorf("failed to register validators: %w", err)
+}
+```
+
+Create a new validator in a dedicated validators package. The package name can be defined individually based on the project structure.
+
+```go
+package validators
 
 import (
  "github.com/abaldeweg/services/packages/http_api/pkg/validation"
  "github.com/go-playground/validator/v10"
 )
 
-// customValidators maps validator tags to their validation functions.
-var customValidators = validation.Validators{
- "example": validateExample,
-}
-
 // validateExample validates whether the content is non-empty.
 func validateExample(fl validator.FieldLevel) bool {
  content := fl.Field().String()
  return len(content) > 0
 }
+
+// init registers the example validator.
+func init() {
+ validation.AddValidator("example", validateExample)
+}
 ```
 
-Call the `NewValidation` function with the custom validators.
+Import this validators package in the application to ensure the custom validators are registered.
 
 ```go
-if err := validation.NewValidation(customValidators); err != nil {
-  return nil, fmt.Errorf("failed to register validators: %w", err)
- }
+import _ "github.com/abaldeweg/services/packages/api/internal/validators"
 ```
 
 ## Server
