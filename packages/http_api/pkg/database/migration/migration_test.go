@@ -12,8 +12,8 @@ import (
 
 func TestLoad_ValidFiles(t *testing.T) {
 	dir := fstest.MapFS{
-		"1.sql": &fstest.MapFile{Data: []byte("CREATE TABLE a (id INTEGER);")},
-		"2.sql": &fstest.MapFile{Data: []byte("CREATE TABLE b (id INTEGER);")},
+		"migrations/1.sql": &fstest.MapFile{Data: []byte("CREATE TABLE a (id INTEGER);")},
+		"migrations/2.sql": &fstest.MapFile{Data: []byte("CREATE TABLE b (id INTEGER);")},
 	}
 
 	migrations, err := migration.Load(dir, ".sql")
@@ -33,9 +33,9 @@ func TestLoad_ValidFiles(t *testing.T) {
 
 func TestLoad_SortedAscendingNumerically(t *testing.T) {
 	dir := fstest.MapFS{
-		"10.sql": &fstest.MapFile{Data: []byte("-- ten")},
-		"2.sql":  &fstest.MapFile{Data: []byte("-- two")},
-		"1.sql":  &fstest.MapFile{Data: []byte("-- one")},
+		"migrations/10.sql": &fstest.MapFile{Data: []byte("-- ten")},
+		"migrations/2.sql":  &fstest.MapFile{Data: []byte("-- two")},
+		"migrations/1.sql":  &fstest.MapFile{Data: []byte("-- one")},
 	}
 
 	migrations, err := migration.Load(dir, ".sql")
@@ -80,8 +80,10 @@ func TestLoad_RootNotExist(t *testing.T) {
 
 func TestLoad_SkipsSubdirectory(t *testing.T) {
 	dir := fstest.MapFS{
-		"1.sql":     &fstest.MapFile{Data: []byte("-- root")},
-		"dir/2.sql": &fstest.MapFile{Data: []byte("-- ignore")},
+		"migrations/1.sql":     &fstest.MapFile{Data: []byte("-- migrations root")},
+		"migrations/dir/2.sql": &fstest.MapFile{Data: []byte("-- ignore sub dir")},
+		"other/3.sql":          &fstest.MapFile{Data: []byte("-- ignore other dir")},
+		"4.sql":                &fstest.MapFile{Data: []byte("-- ignore root level")},
 	}
 
 	migrations, err := migration.Load(dir, ".sql")
@@ -89,21 +91,21 @@ func TestLoad_SkipsSubdirectory(t *testing.T) {
 		t.Fatalf("unexpected error: %v", err)
 	}
 	if len(migrations) != 1 {
-		t.Fatalf("expected 1 migration (subdirectories must be skipped), got %d: %+v", len(migrations), migrations)
+		t.Fatalf("expected 1 migration (only migrations/ root files), got %d: %+v", len(migrations), migrations)
 	}
 	if migrations[0].Version != 1 {
-		t.Fatalf("expected the root-level migration, got version %d", migrations[0].Version)
+		t.Fatalf("expected version 1, got %d", migrations[0].Version)
 	}
 }
 
 func TestLoad_SkipsInvalidFilenames(t *testing.T) {
 	dir := fstest.MapFS{
-		"1.sql":                    &fstest.MapFile{Data: []byte("-- valid")},
-		"abc.sql":                  &fstest.MapFile{Data: []byte("-- invalid")},
-		"2.txt":                    &fstest.MapFile{Data: []byte("-- invalid")},
-		"3.sql.bak":                &fstest.MapFile{Data: []byte("-- invalid")},
-		"99999999999999999999.sql": &fstest.MapFile{Data: []byte("-- overflow, invalid")},
-		"2":                        &fstest.MapFile{Data: []byte("-- no extension")},
+		"migrations/1.sql":                    &fstest.MapFile{Data: []byte("-- valid")},
+		"migrations/abc.sql":                  &fstest.MapFile{Data: []byte("-- invalid")},
+		"migrations/2.txt":                    &fstest.MapFile{Data: []byte("-- invalid")},
+		"migrations/3.sql.bak":                &fstest.MapFile{Data: []byte("-- invalid")},
+		"migrations/99999999999999999999.sql": &fstest.MapFile{Data: []byte("-- overflow, invalid")},
+		"migrations/2":                        &fstest.MapFile{Data: []byte("-- no extension")},
 	}
 
 	migrations, err := migration.Load(dir, ".sql")

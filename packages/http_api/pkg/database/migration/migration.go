@@ -17,10 +17,10 @@ type Migration struct {
 	Script  string
 }
 
-// Load reads migration files from the specified directory, parses their
+// Load reads migration files from the "migrations" directory, parses their
 // versions, and returns a sorted list of Migration objects.
 func Load(dir fs.FS, ext string) ([]Migration, error) {
-	entries, err := fs.ReadDir(dir, ".")
+	entries, err := fs.ReadDir(dir, "migrations")
 	if err != nil {
 		if errors.Is(err, fs.ErrNotExist) {
 			return nil, nil
@@ -51,7 +51,7 @@ func Load(dir fs.FS, ext string) ([]Migration, error) {
 			continue
 		}
 
-		script, err := fs.ReadFile(dir, name)
+		script, err := fs.ReadFile(dir, "migrations/"+name)
 		if err != nil {
 			return nil, fmt.Errorf("failed to read migration %q: %w", name, err)
 		}
