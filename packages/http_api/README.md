@@ -373,6 +373,24 @@ d.RegisterRoutes(router)
 d.GenerateCLIMessage(8080)
 ```
 
+## Server
+
+```go
+import (
+    "log"
+
+    "github.com/abaldeweg/services/packages/http_api/pkg/server"
+)
+
+s := server.NewServer(8080, handler)
+    if err := s.Run(); err != nil {
+    log.Fatalf("Failed to start server: %v", err)
+ }
+
+// Optionally, add a message to be displayed when the server starts.
+s.AddMessage("Server is starting...\n")
+```
+
 ## Validation
 
 Create a new validator instance and register custom validators.
@@ -417,24 +435,6 @@ Import this validators package in the application to ensure the custom validator
 
 ```go
 import _ "github.com/abaldeweg/services/packages/api/internal/validators"
-```
-
-## Server
-
-```go
-import (
-    "log"
-
-    "github.com/abaldeweg/services/packages/http_api/pkg/server"
-)
-
-s := server.NewServer(8080, handler)
-    if err := s.Run(); err != nil {
-    log.Fatalf("Failed to start server: %v", err)
- }
-
-// Optionally, add a message to be displayed when the server starts.
-s.AddMessage("Server is starting...\n")
 ```
 
 ## Middlewares
