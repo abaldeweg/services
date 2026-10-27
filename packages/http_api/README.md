@@ -10,7 +10,7 @@ You can set the Gin mode ("release", "debug", "test") via the environment variab
 
 ### Swagger
 
-For using the swagger documentation, install the module `go install github.com/swaggo/swag/cmd/swag@latest` and then run `swag init` in your project root to generate the Swagger docs.
+For using the swagger documentation, install the module `go install github.com/swaggo/swag/cmd/swag@latest` and then run `swag init -o ./internal/docs` in your project root to generate the Swagger docs.
 
 ### main.go (Example)
 
