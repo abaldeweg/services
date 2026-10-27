@@ -1,10 +1,10 @@
-package docu_test
+package doc_test
 
 import (
 	"net/http"
 	"testing"
 
-	"github.com/abaldeweg/services/packages/http_api/pkg/docu"
+	"github.com/abaldeweg/services/packages/http_api/pkg/doc"
 	"github.com/gin-gonic/gin"
 )
 
@@ -12,7 +12,7 @@ func init() {
 	gin.SetMode(gin.TestMode)
 }
 
-func TestNewRouter(t *testing.T) {
+func TestNewDoc(t *testing.T) {
 	tests := []struct {
 		name string
 		mode string
@@ -37,9 +37,9 @@ func TestNewRouter(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			d := docu.NewRouter(tt.mode)
+			d := doc.NewDoc(tt.mode)
 			if d == nil {
-				t.Fatal("expected NewRouter to return a non-nil Docu instance")
+				t.Fatal("expected NewDoc to return a non-nil Doc instance")
 			}
 			if d.Mode != tt.mode {
 				t.Errorf("expected Mode %q, got %q", tt.mode, d.Mode)
@@ -83,7 +83,7 @@ func TestGenerateCLIMessage(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			d := docu.NewRouter(tt.mode)
+			d := doc.NewDoc(tt.mode)
 			got := d.GenerateCLIMessage(tt.port)
 			if got != tt.expected {
 				t.Errorf("expected %q, got %q", tt.expected, got)
@@ -123,7 +123,7 @@ func TestRegisterRoutes(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			router := gin.New()
-			d := docu.NewRouter(tt.mode)
+			d := doc.NewDoc(tt.mode)
 			d.RegisterRoutes(router)
 
 			hasRoute := false

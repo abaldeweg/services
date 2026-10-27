@@ -360,6 +360,20 @@ if err := db.Connect(ctx); err != nil {
 }
 ```
 
+## Docu
+
+```go
+import "github.com/abaldeweg/services/packages/http_api/pkg/doc"
+
+d := doc.NewDoc(gin.DebugMode)
+
+// Register the routes for the Swagger documentation
+d.RegisterRoutes(router)
+
+// Generate the CLI message for accessing the Swagger documentation
+d.GenerateCLIMessage(8080)
+```
+
 ## Validation
 
 Create a new validator instance and register custom validators.
@@ -422,20 +436,6 @@ s := server.NewServer(8080, handler)
 
 // Optionally, add a message to be displayed when the server starts.
 s.AddMessage("Server is starting...\n")
-```
-
-## Docu
-
-```go
-import "github.com/abaldeweg/services/packages/http_api/pkg/docu"
-
-d := docu.NewRouter(gin.DebugMode)
-
-// Register the routes for the Swagger documentation
-d.RegisterRoutes(router)
-
-// Generate the CLI message for accessing the Swagger documentation
-d.GenerateCLIMessage(8080)
 ```
 
 ## Middlewares
