@@ -4,10 +4,12 @@ import (
 	"os"
 	"path/filepath"
 	"testing"
+
+	"github.com/abaldeweg/services/packages/http_api/pkg/config"
 )
 
 func TestNewConfig(t *testing.T) {
-	cfg := NewConfig()
+	cfg := config.NewConfig()
 	if cfg == nil {
 		t.Fatal("expected NewConfig to return a non-nil Config instance")
 	}
@@ -56,7 +58,7 @@ func TestSetConfigFileAndReadConfig_Success(t *testing.T) {
 				t.Fatalf("failed to create temporary config file %s: %v", tt.filename, err)
 			}
 
-			cfg := NewConfig()
+			cfg := config.NewConfig()
 			cfg.SetConfigFile(configPath)
 
 			if err := cfg.ReadConfig(); err != nil {
@@ -72,7 +74,7 @@ func TestSetConfigFileAndReadConfig_Success(t *testing.T) {
 }
 
 func TestReadConfig_FileNotFound(t *testing.T) {
-	cfg := NewConfig()
+	cfg := config.NewConfig()
 	cfg.SetConfigFile("non_existent_file.yaml")
 
 	err := cfg.ReadConfig()
@@ -87,7 +89,7 @@ func TestLoadEnv(t *testing.T) {
 
 	t.Setenv(envKey, envValue)
 
-	cfg := NewConfig()
+	cfg := config.NewConfig()
 	cfg.LoadEnv()
 
 	gotValue := cfg.Viper.GetString(envKey)

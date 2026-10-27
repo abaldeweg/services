@@ -289,6 +289,29 @@ func (r *BookRepository) FindAll(ctx context.Context) ([]models.Book, error) {
 }
 ```
 
+## Config
+
+Config is using [Viper](https://pkg.go.dev/github.com/spf13/viper).
+
+The file must have a supported file extension.
+
+```go
+// Create a new instance
+config := config.NewConfig()
+
+// Optionally, load config file, e.g., ".env", "config.yaml"
+config.SetConfigFile(".env")
+
+// Optionally, use environment variables
+config.LoadEnv()
+
+// Read the configuration files
+// This is only required if a config file is set.
+if err := config.ReadConfig(); err != nil {
+  return nil, fmt.Errorf("failed to read config: %w", err)
+ }
+```
+
 ## Database
 
 ### SQLite
@@ -335,29 +358,6 @@ ctx := context.Background()
 if err := db.Connect(ctx); err != nil {
   return nil, fmt.Errorf("database connection failed: %w", err)
 }
-```
-
-## Config
-
-Config is using [Viper](https://pkg.go.dev/github.com/spf13/viper).
-
-The file must have a supported file extension.
-
-```go
-// Create a new instance
-config := config.NewConfig()
-
-// Optionally, load config file, e.g., ".env", "config.yaml"
-config.SetConfigFile(".env")
-
-// Optionally, use environment variables
-config.LoadEnv()
-
-// Read the configuration files
-// This on only required if a config file is set.
-if err := config.ReadConfig(); err != nil {
-  return nil, fmt.Errorf("failed to read config: %w", err)
- }
 ```
 
 ## Validation
