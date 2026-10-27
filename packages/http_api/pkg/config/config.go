@@ -24,7 +24,7 @@ func (c *Config) SetConfigFile(name string) {
 	c.Viper.SetConfigFile(name)
 }
 
-// LoadEnv loads environment variables into the Viper configuration.
+// LoadEnv activates environment variables for the Viper configuration.
 func (c *Config) LoadEnv() {
 	c.Viper.AutomaticEnv()
 }
