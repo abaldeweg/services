@@ -5,7 +5,7 @@
     "ghcr.io/abaldeweg/services/bash:0.2.0": {},
     "ghcr.io/guiyomh/features/goreleaser:0.1.1": {},
     "ghcr.io/devcontainers/features/node:2.1.1": {
-      "version": "24",
+      "version": "26",
       "installPnpm": "true"
     },
     "ghcr.io/devcontainers/features/go:1.4.0": {}
