@@ -23,7 +23,7 @@ jobs:
             - name: Use Node.js 24.x
               uses: actions/setup-node@v7
               with:
-                  node-version: 24.x
+                  node-version: 26.x
             - name: Set version in package.json
               run: |
                   sed -i 's/"version": "[^"]*"/"version": "${{ inputs.tag_name }}"/g' packages/@baldeweg/ui/package.json
@@ -51,7 +51,7 @@ jobs:
             - name: Use Node.js 24.x
               uses: actions/setup-node@v7
               with:
-                  node-version: 24.x
+                  node-version: 26.x
                   registry-url: "https://registry.npmjs.org"
             - name: Install pnpm
               run: npm install -g pnpm
