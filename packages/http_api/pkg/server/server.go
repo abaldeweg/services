@@ -60,8 +60,8 @@ func NewServer(port int, mode string) (*Server, error) {
 
 // Run starts the server with default OS signal handling (SIGINT, SIGTERM)
 // and gracefully shuts down.
-func (s *Server) Run() error {
-	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+func (s *Server) Run(ctx context.Context) error {
+	ctx, stop := signal.NotifyContext(ctx, syscall.SIGINT, syscall.SIGTERM)
 	defer stop()
 
 	return s.RunWithContext(ctx)

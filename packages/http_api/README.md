@@ -18,7 +18,7 @@ package main
 import (
  "log"
 
- "github.com/abaldeweg/services/packages/go_api_example/internal/app"
+ "github.com/abaldeweg/services/packages/api/internal/app"
 )
 
 // main function initializes the application and starts the server.
@@ -47,6 +47,7 @@ func main() {
 package app
 
 import (
+ "context"
  "embed"
  "fmt"
  "log"
@@ -136,7 +137,8 @@ func (a *App) Run() error {
   }
  }()
 
- return a.Server.Run()
+ ctx := context.Background()
+ return a.Server.Run(ctx)
 }
 
 // loadRoutes sets up the application's routes for the documentation and book handler.
@@ -195,7 +197,7 @@ func (handler *BookHandler) RegisterRoutes(router *gin.Engine) {
 // @Description  Returns a list of all books
 // @Tags         books
 // @Produce      json
-// @Success      200  {array}  models.Book
+// @Success      200  {object}  models.Book
 // @Failure      500  {object} map[string]string
 // @Router       /books [get]
 func (handler *BookHandler) GetBooks(c *gin.Context) {
