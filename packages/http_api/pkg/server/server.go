@@ -122,8 +122,10 @@ func (s *Server) AddMessage(msg string) {
 
 // SetCORS configures the CORS middleware for the server
 // with the specified allowed origins and headers.
-func (s *Server) SetCORS(corsAllowOrigin, corsAllowHeaders string) {
-	if s.Router != nil {
-		s.Router.Use(cors.CORS(corsAllowOrigin, corsAllowHeaders))
+func (s *Server) SetCORS(corsAllowOrigin, corsAllowHeaders string) error {
+	if s.Router == nil {
+		return errors.New("server: router is not initialized")
 	}
+	s.Router.Use(cors.CORS(corsAllowOrigin, corsAllowHeaders))
+	return nil
 }
