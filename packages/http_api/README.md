@@ -18,7 +18,7 @@ package main
 import (
  "log"
 
- "github.com/abaldeweg/services/packages/api/internal/app"
+ "github.com/abaldeweg/services/packages/go_api_example/internal/app"
 )
 
 // main function initializes the application and starts the server.
@@ -51,7 +51,7 @@ import (
  "fmt"
  "log"
 
- _ "github.com/abaldeweg/services/packages/api/docs"
+ _ "github.com/abaldeweg/services/packages/api/internal/docs"
  "github.com/abaldeweg/services/packages/api/internal/handlers"
  "github.com/abaldeweg/services/packages/api/internal/repositories"
  _ "github.com/abaldeweg/services/packages/api/internal/validators"
@@ -69,7 +69,7 @@ type App struct {
  Config *viper.Viper
  DB     *sqlite.DB
  Server *server.Server
- Doc   *doc.Doc
+ Doc    *doc.Doc
 }
 
 //go:embed migrations/*.sql
@@ -87,7 +87,7 @@ func NewApp() (*App, error) {
  // Mode
  mode := a.Config.GetString("MODE")
 
- // Docu
+ // Doc
  a.Doc = doc.NewDoc(mode)
 
  // DB
