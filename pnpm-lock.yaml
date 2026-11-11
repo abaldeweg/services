@@ -148,8 +148,8 @@ importers:
         specifier: 8.2.1
         version: 8.2.1(vite@8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))(vue@3.5.45(typescript@6.0.3))
       vite-plugin-webfont-dl:
-        specifier: 3.13.2
-        version: 3.13.2(debug@4.4.3)(vite@8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))
+        specifier: 3.14.0
+        version: 3.14.0(debug@4.4.3)(vite@8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))
       vitest:
         specifier: 5.1.0
         version: 5.1.0(@types/node@26.6.6)(jsdom@31.0.0)(vite@8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))
@@ -3819,8 +3819,8 @@ packages:
     peerDependencies:
       vite: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
 
-  vite-plugin-webfont-dl@3.13.2:
-    resolution: {integrity: sha512-XXZYuh8V9aUxTI2Tkr9Nvyb79KuoKve8zBqobUcDLSsPgKu9PwyolSzsYeHDrF5ZWMYC3sBNizonfvzmC7GUZA==}
+  vite-plugin-webfont-dl@3.14.0:
+    resolution: {integrity: sha512-3qL+JJ2+EPRnkzd5FMuJfquULP3eEtllIZyVUywUy3wkDxhwH1EeMPrNxBooqrl5GrsiVfLcv+OM7K38PBVKtw==}
     peerDependencies:
       vite: ^2 || ^3 || ^4 || ^5 || ^6 || ^7 || ^8
 
@@ -7831,11 +7831,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vite-plugin-webfont-dl@3.13.2(debug@4.4.3)(vite@8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)):
+  vite-plugin-webfont-dl@3.14.0(debug@4.4.3)(vite@8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)):
     dependencies:
       axios: 1.20.0(debug@4.4.3)
       clean-css: 5.3.3
-      flat-cache: 6.1.23
       picocolors: 1.1.1
       vite: 8.3.7(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0)
     transitivePeerDependencies:
