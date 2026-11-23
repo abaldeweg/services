@@ -47,12 +47,12 @@ fix: fix a bug
 
 Types:
 
-| Name | Description | SemVer |
-| --- | --- | --- |
-| `fix` | Fixes a bug | PATCH |
-| `feat` | Introduces a new feature | MINOR |
-| Breaking change (`!`) | Changes the API in a backwards-incompatible way | MAJOR |
-| `chore` | Dependecy, Updates, Linting, etc. | PATCH |
+| Name                  | Description                                     | SemVer |
+| --------------------- | ----------------------------------------------- | ------ |
+| `fix`                 | Fixes a bug                                     | PATCH  |
+| `feat`                | Introduces a new feature                        | MINOR  |
+| Breaking change (`!`) | Changes the API in a backwards-incompatible way | MAJOR  |
+| `chore`               | Dependecy, Updates, Linting, etc.               | PATCH  |
 
 Additional types refer to [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#type-enum).
 
