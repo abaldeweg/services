@@ -246,6 +246,8 @@ type BookResponse struct {
 }
 ```
 
+Note: `BookRequest` uses the custom validator `example`. Custom validators are only available if the package that defines them is imported (see [Validation](#validation)). Without that import, validating a `BookRequest` panics at runtime with `Undefined validation function 'example' on field 'Author'`.
+
 ### Repository (Example)
 
 ```go
@@ -463,7 +465,7 @@ func init() {
 }
 ```
 
-Import this validators package in the application to ensure the custom validators are registered.
+Important: Custom validators register themselves in `init()`, and Go only runs `init()` of packages that are imported. The validators package must therefore be imported in the application with a blank import. The compiler does not report a missing import. Without it, the first validation of a struct that uses the custom validator panics at runtime.
 
 ```go
 import _ "github.com/abaldeweg/services/packages/api/internal/validators"
