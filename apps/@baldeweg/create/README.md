@@ -24,6 +24,38 @@ The CLI will prompt you to select one or more profiles to run. This will display
 baldeweg-create
 ```
 
+## Conventional Commits
+
+This repo uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). They serve to determine the version number of a release automatically.
+
+- The optional scope is not used.
+- Breaking changes are marked solely with a `!`.
+- Commit messages usually use type and subject, the rest is not needed.
+- Only the types below are used.
+
+Format:
+
+```ini
+<type>: <subject>
+```
+
+Example:
+
+```ini
+fix: fix a bug
+```
+
+Types:
+
+| Name                  | Description                                     | SemVer |
+| --------------------- | ----------------------------------------------- | ------ |
+| `fix`                 | Fixes a bug                                     | PATCH  |
+| `feat`                | Introduces a new feature                        | MINOR  |
+| Breaking change (`!`) | Changes the API in a backwards-incompatible way | MAJOR  |
+| `chore`               | Dependecy, Updates, Linting, etc.               | PATCH  |
+
+Additional types refer to [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#type-enum).
+
 ## Monorepo-Structure
 
 This structure organizes your codebase around self-contained modules, promoting code reuse.
