@@ -107,6 +107,7 @@ func NewApp() (*App, error) {
   a.Config.GetString("CORS_ALLOW_ORIGIN"),
   a.Config.GetString("CORS_ALLOW_HEADERS"),
  ); err != nil {
+  _ = a.DB.Close()
   return nil, fmt.Errorf("failed to set CORS: %w", err)
  }
  srv.AddMessage(a.Doc.GenerateCLIMessage(8080))
