@@ -62,7 +62,7 @@ func TestGenerateCLIMessage(t *testing.T) {
 			expected: "Swagger-Docs available at http://127.0.0.1:8080/swagger/index.html",
 		},
 		{
-			name:     "empty mode returns empty string",
+			name:     "empty mode is treated as dev and returns message",
 			mode:     "",
 			port:     3000,
 			expected: "Swagger-Docs available at http://127.0.0.1:3000/swagger/index.html",
