@@ -1,6 +1,6 @@
 # http_api
 
-http_api offers a simple abstraction around existing tools to run an HTTP API server, with router and CORS.
+`http_api` offers a thin abstraction around existing tools to run an HTTP API server with router, CORS, validation, database access and optional API documentation.
 
 ## App-Structure
 
@@ -398,18 +398,22 @@ d.GenerateCLIMessage(8080)
 
 ```go
 import (
+    "context"
     "log"
 
     "github.com/abaldeweg/services/packages/http_api/pkg/server"
 )
 
-s := server.NewServer(8080, "dev")
-if err := s.Run(); err != nil {
-    log.Fatalf("Failed to start server: %v", err)
- }
+s, err := server.NewServer(8080, "dev")
+if err != nil {
+    log.Fatalf("Failed to create server: %v", err)
+}
 
-// Optionally, add a message to be displayed when the server starts.
 s.AddMessage("Server is starting...")
+
+if err := s.Run(context.Background()); err != nil {
+    log.Fatalf("Failed to start server: %v", err)
+}
 ```
 
 ### Validation
