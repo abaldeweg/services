@@ -397,6 +397,12 @@ d.GenerateCLIMessage(8080)
 
 ### Server
 
+`NewServer` validates the port (1-65535) and returns an error if it is invalid.
+
+`AddMessage` must be called before `Run`.
+
+`Run` blocks until the server stops. It listens for `SIGINT` and `SIGTERM` and shuts down gracefully.
+
 ```go
 import (
     "context"
