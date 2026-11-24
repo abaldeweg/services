@@ -55,7 +55,7 @@ func TestServer_AddMessage(t *testing.T) {
 }
 
 func TestServer_RunWithContext(t *testing.T) {
-	s, err := server.NewServer(8091, gin.TestMode) // Fester Test-Port statt 0, um Bindungsfehler zu vermeiden
+	s, err := server.NewServer(8091, gin.TestMode)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -66,7 +66,6 @@ func TestServer_RunWithContext(t *testing.T) {
 	defer cancel()
 
 	err = s.RunWithContext(ctx)
-	// Ein durch den Context ausgelöster Deadline-Fehler ist beim Shutdown gewollt und kein Testfehler
 	if err != nil && err.Error() != "server error: context deadline exceeded" {
 		t.Fatalf("unexpected server run error: %v", err)
 	}
