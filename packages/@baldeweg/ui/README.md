@@ -381,3 +381,17 @@ Some class names support arbitrary values, which can be used by wrapping the val
 
 - Screen Reader: `sr-only`, `not-sr-only`
 - Forced Color Adjust: `forced-color-adjust-auto`, `forced-color-adjust-none`
+
+### Scrollbar
+
+- Width: `scrollbar-auto`, `scrollbar-thin`, `scrollbar-none`
+- Color: `scrollbar-thumb-{color}`, `scrollbar-track-{color}`
+- Gutter: `scrollbar-gutter-auto`, `scrollbar-gutter-stable`, `scrollbar-gutter-both`
+
+### Zoom
+
+Zoom: `zoom-{number}`
+
+### Tab Size
+
+Tab: `tab-{number}`
