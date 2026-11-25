@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.21.0
+
+- Add backdrop filters
+
 ## v0.20.0
 
 - Switched to TypeScript
