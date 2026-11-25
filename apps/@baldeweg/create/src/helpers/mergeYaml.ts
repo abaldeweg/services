@@ -1,8 +1,11 @@
 import { readFile, writeFile } from "node:fs/promises"
 import { log } from "@clack/prompts"
 import deepmerge from "deepmerge"
-import yaml from "js-yaml"
+import { dump, load } from "js-yaml"
 import { getTargetPath } from "./utils.js"
+
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null && !Array.isArray(value)
 
 /**
  * Merges data into an existing YAML file.
@@ -13,7 +16,8 @@ export async function mergeYaml(filePath: string, data: object): Promise<void> {
   let fileContent: Record<string, unknown> = {}
   try {
     const content = await readFile(absFilePath, "utf8")
-    fileContent = (yaml.load(content) as Record<string, unknown>) || {}
+    const parsed = content.trim() === "" ? undefined : load(content)
+    fileContent = isRecord(parsed) ? parsed : {}
   } catch (err: unknown) {
     if (
       err instanceof Error &&
@@ -27,5 +31,5 @@ export async function mergeYaml(filePath: string, data: object): Promise<void> {
 
   const merged = deepmerge(fileContent, data)
 
-  await writeFile(absFilePath, yaml.dump(merged))
+  await writeFile(absFilePath, dump(merged))
 }
