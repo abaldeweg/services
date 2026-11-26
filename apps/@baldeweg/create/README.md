@@ -24,6 +24,10 @@ The CLI will prompt you to select one or more profiles to run. This will display
 baldeweg-create
 ```
 
+## Agile Manifesto
+
+In this repository, the [Agile Manifesto](https://agilemanifesto.org/) is put into practice.
+
 ## Monorepo-Structure
 
 This structure organizes your codebase around self-contained modules, promoting code reuse.
