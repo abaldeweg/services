@@ -5,11 +5,16 @@ import { listPackageDirs, canCreatePackage } from "./packages.js"
 
 describe("packages helper", () => {
   afterAll(async () => {
-    await rm(join(".", "__test_output__/packages"), { force: true, recursive: true })
+    await rm(join(".", "__test_output__/packages"), {
+      force: true,
+      recursive: true,
+    })
   })
 
   it("listPackageDirs returns defaults plus matching packages-* dirs", async () => {
-    await mkdir("./__test_output__/packages/packages-private", { recursive: true })
+    await mkdir("./__test_output__/packages/packages-private", {
+      recursive: true,
+    })
 
     const results = await listPackageDirs("./__test_output__/packages")
     expect(results).toContain("apps")
@@ -33,7 +38,9 @@ describe("packages helper", () => {
   })
 
   it("canCreatePackage returns false when package already exists", async () => {
-    await mkdir("./__test_output__/packages/packages/package", { recursive: true })
+    await mkdir("./__test_output__/packages/packages/package", {
+      recursive: true,
+    })
 
     const ok = await canCreatePackage("./__test_output__/packages", "package")
     expect(ok).toBe(false)
