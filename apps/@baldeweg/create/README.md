@@ -24,6 +24,10 @@ The CLI will prompt you to select one or more profiles to run. This will display
 baldeweg-create
 ```
 
+## Agile Manifesto
+
+In this repository, the [Agile Manifesto](https://agilemanifesto.org/) is put into practice.
+
 ## Conventional Commits
 
 This repo uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). They serve to determine the version number of a release automatically.
