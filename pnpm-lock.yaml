@@ -53,9 +53,6 @@ importers:
       ejs:
         specifier: 3.1.10
         version: 3.1.10
-      js-yaml:
-        specifier: 5.5.0
-        version: 5.5.0
       yaml:
         specifier: 2.9.1
         version: 2.9.1
@@ -1925,9 +1922,6 @@ packages:
     resolution: {integrity: sha512-BJ8/l4R5LRE7hW9WdSuGYrLSHi2ynxeFpDFbH0K/CgNeY/tyhk+vO6TYxXC5r5CpUhNVX310xzPsN/H9lCdfOA==}
     engines: {node: '>=14'}
 
-  argparse@3.0.4:
-    resolution: {integrity: sha512-fwWK3Zq22l4XJJjx5mcBHGikIk+hJqO+32dPm0Jur7+rtG5x1scOjSfdT9ZKeWHPpsya/l0HHK4tDImBkTrtvA==}
-
   aria-query@5.3.0:
     resolution: {integrity: sha512-b0P0sZPKtyu8HkeRAfCq0IfURZK+SuwMjY1UXGBU27wpAiTwQAIlq56IbIO+ytk/JjS1fMR14ee5WBBfKi5J6A==}
 
@@ -2813,10 +2807,6 @@ packages:
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
-
-  js-yaml@5.5.0:
-    resolution: {integrity: sha512-paNr4LFIFPjeeSmwNYdrb8FafLLG/Cr2Af3GjbsHJ5CxIjH4r0c2emlmRdAtpPAieP1gRVzk6buBbVP5gBMGAg==}
-    hasBin: true
 
   jsdom@31.0.1:
     resolution: {integrity: sha512-CbhJL8ZQg3eKswxSZth4QO9tW0jPIhmR0vtSXQSbKSfWbwIT6hoRc17wdHIVTQ43KI0mdV5iTJr3281IDgVZ5g==}
@@ -5670,8 +5660,6 @@ snapshots:
 
   ansis@4.3.1: {}
 
-  argparse@3.0.4: {}
-
   aria-query@5.3.0:
     dependencies:
       dequal: 2.0.3
@@ -6680,10 +6668,6 @@ snapshots:
   js-stringify@1.0.2: {}
 
   js-tokens@4.0.0: {}
-
-  js-yaml@5.5.0:
-    dependencies:
-      argparse: 3.0.4
 
   jsdom@31.0.1:
     dependencies:

@@ -1,7 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises"
 import { log } from "@clack/prompts"
 import deepmerge from "deepmerge"
-import { dump, load } from "js-yaml"
+import { parse, stringify } from "yaml"
 import { getTargetPath } from "./utils.js"
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -16,7 +16,7 @@ export async function mergeYaml(filePath: string, data: object): Promise<void> {
   let fileContent: Record<string, unknown> = {}
   try {
     const content = await readFile(absFilePath, "utf8")
-    const parsed = content.trim() === "" ? undefined : load(content)
+    const parsed = content.trim() === "" ? undefined : parse(content)
     fileContent = isRecord(parsed) ? parsed : {}
   } catch (err: unknown) {
     if (
@@ -31,5 +31,5 @@ export async function mergeYaml(filePath: string, data: object): Promise<void> {
 
   const merged = deepmerge(fileContent, data)
 
-  await writeFile(absFilePath, dump(merged))
+  await writeFile(absFilePath, stringify(merged))
 }
