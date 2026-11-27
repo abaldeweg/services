@@ -3,6 +3,7 @@
 ## v0.21.0
 
 - Add backdrop filters
+- Removed `BTable`, use TW-Styles instead
 
 ## v0.20.0
 
