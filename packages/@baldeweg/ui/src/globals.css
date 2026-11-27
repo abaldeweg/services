@@ -97,6 +97,16 @@
     --blur-m: 10px;
     --blur-l: 20px;
 
+    --backdrop-brightness-s: 0.9;
+    --backdrop-brightness-m: 0.75;
+    --backdrop-brightness-l: 0.5;
+    --backdrop-contrast-s: 1.1;
+    --backdrop-contrast-m: 1.25;
+    --backdrop-contrast-l: 1.5;
+    --backdrop-saturate-s: 1.25;
+    --backdrop-saturate-m: 1.5;
+    --backdrop-saturate-l: 2;
+
     --ease-in: cubic-bezier(0.3, 0, 1, 1);
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
     --ease-in-out: cubic-bezier(0.3, 0, 0.2, 1);

@@ -23,7 +23,6 @@ import BSlider from "./BSlider/BSlider.vue"
 import BSliderItem from "./BSlider/BSliderItem.vue"
 import BSpinner from "./BSpinner/BSpinner.vue"
 import BSwitch from "./BSwitch/BSwitch.vue"
-import BTable from "./BTable/BTable.vue"
 import BTextarea from "./BTextarea/BTextarea.vue"
 import BTooltip from "./BTooltip/BTooltip.vue"
 import BUpload from "./BUpload/BUpload.vue"
@@ -54,7 +53,6 @@ export {
   BSliderItem,
   BSpinner,
   BSwitch,
-  BTable,
   BTextarea,
   BTooltip,
   BUpload,

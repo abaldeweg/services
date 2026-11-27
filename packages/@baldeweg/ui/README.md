@@ -353,6 +353,9 @@ Some class names support arbitrary values, which can be used by wrapping the val
 - Drop Shadow: `drop-shadow-xs`, `drop-shadow-s`, `drop-shadow-m`, `drop-shadow-l`, `drop-shadow-xl`, `drop-shadow-none`
 - Text Shadow: `text-shadow-s`, `text-shadow-m`, `text-shadow-l`, `text-shadow-none`
 - Blur: `blur-s`, `blur-m`, `blur-l`, `blur-none`
+- Brightness: `brightness-s`, `brightness-m`, `brightness-l`, `brightness-none`
+- Contrast: `contrast-s`, `contrast-m`, `contrast-l`, `contrast-none`
+- Saturate: `saturate-s`, `saturate-m`, `saturate-l`, `saturate-none`
 - Opacity: `opacity-0`, `opacity-5`, `opacity-10`, `opacity-15`, `opacity-20`, `opacity-25`, `opacity-30`, `opacity-35`, `opacity-40`, `opacity-45`, `opacity-50`, `opacity-55`, `opacity-60`, `opacity-65`, `opacity-70`, `opacity-75`, `opacity-80`, `opacity-85`, `opacity-90`, `opacity-95`, `opacity-100`
 - Mix Blend Mode: `mix-blend-normal`, `mix-blend-multiply`, `mix-blend-screen`, `mix-blend-overlay`, `mix-blend-darken`, `mix-blend-lighten`, `mix-blend-color-dodge`, `mix-blend-color-burn`, `mix-blend-hard-light`, `mix-blend-soft-light`, `mix-blend-difference`, `mix-blend-exclusion`, `mix-blend-hue`, `mix-blend-saturation`, `mix-blend-color`, `mix-blend-luminosity`
 
