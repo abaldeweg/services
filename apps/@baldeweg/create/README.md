@@ -24,60 +24,6 @@ The CLI will prompt you to select one or more profiles to run. This will display
 baldeweg-create
 ```
 
-## Agile Manifesto
-
-In this repository, the [Agile Manifesto](https://agilemanifesto.org/) is put into practice.
-
-## Conventional Commits
-
-This repo uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). They serve to determine the version number of a release automatically.
-
-- Breaking changes are marked solely with a `!`.
-- Commit messages usually use type and subject, the rest is not needed.
-
-## Branching Strategy
-
-This repository applies [Trunk Based Development](https://trunkbaseddevelopment.com/).
-
-Trunk-Based Development is a branching model in which changes are integrated from a PR into the common `main` branch at frequent intervals. In this repository, branches are allowed to be longer-lived, but they must be kept very small. This keeps merge conflicts small, ensures that integration issues are identified early, and maintains the trunk in a state that is always ready for a release.
-
-## Monorepo-Structure
-
-This structure organizes your codebase around self-contained modules, promoting code reuse.
-
-- `apps/`: This directory contains all of your executable applications. These are typically the public-facing or end-user facing parts of your project, such as a web frontend, an API server, or a command-line tool. An app consumes packages from the `packages` directory.
-- `packages/`: This directory holds all the reusable libraries that are shared across your applications. A package is a dependency that can be imported by one or more apps across different repositories.
-- `notebooks/`: This directory contains notebooks for data analysis or experimentation.
-- `scripts/`: Shell scripts are the universal language for automating your build and test processes. They're natively supported on all major operating systems and CI/CD environments, ensuring your commands run everywhere.
-
-### Testing
-
-Tests are placed alongside the code they test. For JavaScript/VueJS, this means `.test.js` files and for Go, `*_test.go` files.
-
-### Naming Convention for Packages
-
-To avoid name conflicts, package names must be unique between `apps/` and `packages/`. A package with the same name must not exist in both `apps/` and `packages/` at the same time. If this occurs, please choose a different package name.
-
-### Dealing with Naming Conflicts
-
-We try to find new, unique names for each package to avoid conflicts. For JavaScript, you can make use of vendor prefixes (e.g., `@baldeweg/auth`) to ensure uniqueness.
-
-The goal is to avoid renaming or moving packages later by choosing unique and descriptive names from the start.
-
-We do not use a subdirectory for every language. This is because if you have a JavaScript library called `auth` and, a few years later, you want to add a Go package with the same name, you would have to move the existing JS package, which is disruptive.
-
-### Reccommendations for VueJS
-
-Use `types/` directory in the project root for shared types and declarations. It's also possible to organize types in a modularized style — for example placing type definitions under the `src/modules/product/types/` directory. Try to place types as close as possible to where they are used, to keep context clear.
-
-Organize code thematically within the existing technical folders: create per-feature subfolders inside components, composables, or views (e.g. components/product/, components/order/). This approach preserves the technical separation and grouping related code.
-
-### Security
-
-All npm packages are ready for trusted publishing using GitHub Actions. You need to configure it on npm. For more info have a look at <https://docs.npmjs.com/trusted-publishers>.
-
-Pin dependencies to exact versions to avoid supply chain attacks and ensure reproducible builds. npm is already configured to do this for you when you install packages.
-
 ## Profiles
 
 ### Write a profile
